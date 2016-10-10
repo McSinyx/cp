@@ -2,77 +2,50 @@
 
 var
   fi, fo: text;
-  s: string[3] = 'CnX';
-  n: cardinal = 0;
-  i: cardinal;
-  j: byte;
-
-
-function enc(s: string): string;
-  var
-    c1, c2, c3: byte;
-
-  begin
-    c1 := ord(s[1]);
-    if length(s) < 2 then
-      c2 := 0
-    else
-      c2 := ord(s[2]);
-    if length(s) < 3 then
-      c3 := 0
-    else
-      c3 := ord(s[3]);
-
-    enc := chr(c1 div 4 + 32) 
-           + chr(c1 mod 4 * 16 + c2 div 16 + 32)
-           + chr(c2 mod 16 * 4 + c3 div 64 + 32)
-           + chr(c3 mod 64 + 32)
-  end;
-
+  s: string[45] = '                                             ';
+  n, i: shortint;
+  c1, c2, c3: byte;
 
 begin
   assign(fi, '1enc.inp');
+  reset(fi);
   assign(fo, '1enc.out');
-
-  reset(fi);
-  while not eof(fi) do
-    begin
-      read(fi, s[1]);
-      inc(n)
-    end;
-  if n = 0 then
-    writeln(fo, ' ');
-
-  reset(fi);
   rewrite(fo);
-  for i := 1 to n div 45 do
-    begin
-      write(fo, 'M');
-      for j := 1 to 15 do
-        begin
-          read(fi, s);
-          write(fo, enc(s))
-        end;
-      writeln(fo);
-    end;
 
-  n := n mod 45;
-  if n > 0 then
-    begin
-      write(fo, chr(n + 32));
-      for i := 1 to n div 3 do
-        begin
-          read(fi, s);
-          write(fo, enc(s))
-        end;
-        if n mod 3 > 0 then
-          begin
-            read(fi, s);
-            writeln(fo, enc(s))
-          end
+  repeat
+    n := 0;
+    while (n < 45) and not(eof(fi)) do
+      begin
+        inc(n);
+        read(fi, s[n])
+      end;
+    write(fo, chr(n + 32));
+
+    for i := 0 to n div 3 - 1 do
+      begin
+        c1 := ord(s[i * 3 + 1]);
+        c2 := ord(s[i * 3 + 2]);
+        c3 := ord(s[i * 3 + 3]);
+        write(fo, chr(c1 div 4 + 32));
+        write(fo, chr(c1 mod 4 * 16 + c2 div 16 + 32));
+        write(fo, chr(c2 mod 16 * 4 + c3 div 64 + 32));
+        write(fo, chr(c3 mod 64 + 32))
+      end;
+
+    if n mod 3 > 0 then
+      begin
+        c1 := ord(s[n div 3 * 3 + 1]);
+        if n mod 3 = 2 then
+          c2 := ord(s[n div 3 * 3 + 2])
         else
-          writeln(fo)
-    end;
+          c2 := 0;
+        c3 := 0;
+        write(fo, chr(c1 div 4 + 32));
+        write(fo, chr(c1 mod 4 * 16 + c2 div 16 + 32));
+        write(fo, chr(c2 mod 16 * 4 + c3 div 64 + 32));
+        writeln(fo, chr(c3 mod 64 + 32))
+      end
+  until eof(fi);
 
   close(fi);
   close(fo)
