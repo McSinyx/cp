@@ -123,8 +123,10 @@ on Wikipedia.
 
 ##Finally
 
-This challenge is posted by /u/EvgeniyZh
+This challenge is posted by
+[/u/EvgeniyZh](https://www.reddit.com/user/EvgeniyZh)
 
 Also have a good challenge idea?
 
-Consider submitting it to /r/dailyprogrammer_ideas
+Consider submitting it to
+[/r/dailyprogrammer_ideas](https://www.reddit.com/r/dailyprogrammer_ideas)

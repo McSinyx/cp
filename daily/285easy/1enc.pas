@@ -45,6 +45,8 @@ begin
         write(fo, chr(c2 mod 16 * 4 + c3 div 64 + 32));
         writeln(fo, chr(c3 mod 64 + 32))
       end
+    else
+      writeln(fo)
   until eof(fi);
 
   close(fi);

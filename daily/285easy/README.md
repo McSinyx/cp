@@ -123,7 +123,7 @@ some sort. These include:
   even data type
 
 
-**sample 0 index codes** (for 16 reserved codes) (new paragraph for multiline
+**Sample 0 index codes** (for 16 reserved codes) (new paragraph for multiline
 explained codes)
 
     Null
