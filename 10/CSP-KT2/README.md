@@ -157,8 +157,8 @@ Sample Input | Sample Output
 7            | YES
 8            | YES
 9            | YES
-10           | YES
-11           | NO
-12           | YES
+10           | NO
+11           | YES
+12           | NO
 13           | NO
-14           | NO
+14           |
