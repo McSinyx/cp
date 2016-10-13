@@ -40,19 +40,14 @@ short desc_digits(short n)
 	return a[0] * 1000 + a[1] * 100 + a[2] * 10 + a[3];
 }
 
-short asc_digits(short n)
-{
-	sort_digits(n);
-
-	return a[3] * 1000 + a[2] * 100 + a[1] * 10 + a[0];
-}
-
 unsigned long long kaprekar(short n)
 {
 	char i;
 
-	for (i = 0; n ^ 6174; i++)
-		n = desc_digits(n) - asc_digits(n);
+	for (i = 0; n ^ 6174; i++) {
+		sort_digits(n);
+		n = (a[0] - a[3]) * 999 + (a[1] - a[2]) * 90;
+	}
 
 	return i;
 }

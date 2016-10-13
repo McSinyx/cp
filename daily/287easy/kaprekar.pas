@@ -1,5 +1,5 @@
-type
-  aos = array[0 .. 3] of shortint;
+var
+  a: array[0 .. 3] of shortint;
 
 function largest_digit(n: smallint): shortint;
   var
@@ -20,9 +20,8 @@ function largest_digit(n: smallint): shortint;
       exit(m)
   end;
 
-function sorted_digits(n: smallint): aos;
+procedure sort_digits(n: smallint);
   var
-    a: aos;
     i, j: shortint;
 
   begin
@@ -38,29 +37,14 @@ function sorted_digits(n: smallint): aos;
             inc(a[i], a[j]);
             a[j] := a[i] - a[j];
             dec(a[i], a[j])
-          end;
-
-    exit(a)
+          end
   end;
 
 function desc_digits(n: smallint): smallint;
-  var
-    a: aos;
-
   begin
-    a := sorted_digits(n);
+    sort_digits(n);
 
     exit(a[0] * 1000 + a[1] * 100 + a[2] * 10 + a[3])
-  end;
-
-function asc_digits(n: smallint): smallint;
-  var
-    a: aos;
-
-  begin
-    a := sorted_digits(n);
-
-    exit(a[3] * 1000 + a[2] * 100 + a[1] * 10 + a[0])
   end;
 
 function kaprekar(n: smallint): qword;
@@ -70,8 +54,9 @@ function kaprekar(n: smallint): qword;
   begin
     while n <> 6174 do
       begin
-        n := desc_digits(n) - asc_digits(n);
-        inc(i)
+        inc(i);
+        sort_digits(n);
+        n := (a[0] - a[3]) * 999 + (a[1] - a[2]) * 90
       end;
 
     exit(i)
