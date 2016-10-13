@@ -16,6 +16,8 @@ cập nhật dần.
 Bài làm trên Pascal được được dịch thử trên FPC 2.6 trở lên, bài viết trên C
 được dịch trên GCC 6 trở lên, bài làm trên Python chạy thử trên Python 3.5.
 
-Tất cả các bài làm được phát hành theo giấy phép GPLv3, cho phép người dùng
-chạy, nghiên cứu, chia sẻ và chỉnh sửa tự do. Các đề bài hầu như không rõ điều
-khoản sử dụng.
+Các commit message có dạng: `<đường dẫn>: <Nội dung thay đổi>`.
+
+Tất cả các bài làm được phát hành theo giấy phép [GPLv3](LICENSE), cho phép
+người dùng chạy, nghiên cứu, chia sẻ và chỉnh sửa tự do. Các đề bài hầu như
+không rõ điều khoản sử dụng.
