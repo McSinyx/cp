@@ -3,7 +3,7 @@
 - [x] pali: [Số Palindrome](http://laptrinh.ntu.edu.vn/Problem/Details/41)
 - [x] gacho: [Gà và chó](http://laptrinh.ntu.edu.vn/Problem/Details/116)
 - [x] luth: [Lũy thừa](http://laptrinh.ntu.edu.vn/Problem/Details/1156)
-- [ ] luth2: [Lũy thừa 2](http://laptrinh.ntu.edu.vn/Problem/Details/2240)
+- [x] luth2: [Lũy thừa 2](http://laptrinh.ntu.edu.vn/Problem/Details/2240)
 - [x] writer: [Robot đánh chữ](http://laptrinh.ntu.edu.vn/Problem/Details/3255)
 - [x] ngto4: [Tổng nguyên tố](http://laptrinh.ntu.edu.vn/Problem/Details/3256)
 - [x] demso0: [Đếm số không bên phải](http://laptrinh.ntu.edu.vn/Problem/Details/3330)
@@ -27,3 +27,4 @@
 - [x] chenhlech: [Chênh lệch](http://laptrinh.ntu.edu.vn/Problem/Details/5574)
 - [ ] editpic: [Chỉnh sửa ảnh](http://laptrinh.ntu.edu.vn/Problem/Details/5588)
 - [ ] cntpalin: [Đếm số Palindrome](http://laptrinh.ntu.edu.vn/Problem/Details/5600)
+- [x] TutOnEqua: [Tutoring on equations](http://laptrinh.ntu.edu.vn/Problem/Details/5606)
