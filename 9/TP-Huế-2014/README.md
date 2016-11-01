@@ -1,17 +1,22 @@
 # THI CHỌN HỌC SINH GIỎI CẤP THÀNH PHỐ
 
 UBND THÀNH PHỐ HUẾ
+
 PHÒNG GIÁO DỤC VÀ ĐÀO TẠO
+
 MÔN TIN HỌC - NĂM HỌC: 2013-2014
+
 Thời gian: 120 phút (Không kể thời gian giao đề)
 
 ## Bài 1 (3 điểm)
 
 Hai số tự nhiên `n`, `m` được gọi là nguyên tố tương đương nếu chúng có chung
-các ước số nguyên tố. Hãy viết chương trình nhập vào hai số `n`, `m` và kiểm
+các ước số nguyên tố.
+
+Hãy viết chương trình nhập vào hai số `n`, `m` và kiểm
 tra chúng có là nguyên tố tương đương với nhau hay không.
 
-**Ví dụ:** số 75 và số 15 là nguyên tố tương đương vì chúng có cùng các ước số
+**Ví dụ:** Số 75 và số 15 là nguyên tố tương đương vì chúng có cùng các ước số
 nguyên tố là 3 và 5. 
 
 ## Bài 2 (3 điểm)
