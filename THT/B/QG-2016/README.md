@@ -175,7 +175,7 @@ Nếu bạn viết chương trình bằng Pascal, bạn phải khai báo sử d�
 detect;` ngay sau dòng tiêu đề chương trình (xem ví dụ cuối bài).
 
 Nếu bạn viết chương trình bằng C/C++, bạn phải khai báo sử dụng thư viện
-`#include “detect.h”` (xem ví dụ cuối bài). Nếu bạn sử dụng Code Blocks hoặc
+`#include "detect.h"` (xem ví dụ cuối bài). Nếu bạn sử dụng Code Blocks hoặc
 DevCpp, bạn nên tạo một Project có chứa cả file bài làm và các files thư viện
 cho tiện lợi trong việc dịch chương trình.
 
