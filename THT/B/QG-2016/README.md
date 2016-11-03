@@ -219,6 +219,7 @@ Chương trình `FARM.cpp` có thể như sau:
 
 ```cpp
 #include "detect.h"
+
 int 
 main()
 {

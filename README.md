@@ -2,11 +2,11 @@
 
 Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 
-* `10`, `11`, `12` chứa các bài tập, đề thi *chính quy* phân theo lớp
+* `9`, `10`, `11`, `12` chứa các bài tập, đề thi *chính quy* phân theo lớp
 * `COCI` là các bài tập từ 
   [Giải Tin học Croatia mở rộng](http://www.hsin.hr/coci/)
 * `NTU` là các bài tập từ [Đại học Nha Trang](http://laptrinh.ntu.edu.vn/)
-* `THT-C` là các bài làm dự thi hội thi Tin học trẻ (không còn đề)
+* `THT` là các bài làm dự thi phần thi chung hội thi Tin học trẻ
 * `codeforces` chứa các bài tập từ... [Codeforces](http://codeforces.com/)
 * `daily` là các bài từ subreddit
   [/r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
