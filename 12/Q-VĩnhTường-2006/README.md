@@ -51,7 +51,7 @@ Ví dụ:
 |  70  | 2 5 7<br>64    |
 | 150  | 2 3 5 5<br>128 |
 
-## Câu 4
+## Câu 4 (3 điểm)
 
 Nhập vào một mảng gồm `n` (`n` < 20) số nguyên dương. Hãy đếm xem trong mảng có
 bao nhiêu số bậc thang. Biết một số được gọi là số bậc thang nếu biểu diễn thập

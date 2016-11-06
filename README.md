@@ -2,18 +2,18 @@
 
 Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 
-* `9`, `10`, `11`, `12` chứa các bài tập, đề thi *chính quy* phân theo lớp
-* `COCI` là các bài tập từ 
-  [Giải Tin học Croatia mở rộng](http://www.hsin.hr/coci/)
-* `NTU` là các bài tập từ [Đại học Nha Trang](http://laptrinh.ntu.edu.vn/)
-* `THT` là các bài làm dự thi phần thi chung hội thi Tin học trẻ
-* `codeforces` chứa các bài tập từ... [Codeforces](http://codeforces.com/)
-* `daily` là các bài từ subreddit
-  [/r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer)
+|        Thư mục        |                          Nguồn đề bài                          |
+| --------------------- | -------------------------------------------------------------- |
+| `9`, `10`, `11`, `12` | Bài tập, đề thi *chính quy* phân theo lớp                      |
+| `COCI`                | [Giải Tin học Croatia mở rộng](http://www. hsin.hr/coci/)      |
+| `NTU`                 | [Đại học Nha Trang](http://laptrinh.ntu.ed u.vn/)              |
+| `THT`                 | Hội thi Tin học trẻ                                            |
+| `codeforces`          | [Codeforces](http://codeforces.com/)                           |
+| `daily`               | [/r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer) |
 
-Trong mỗi thư mục con sẽ có tệp `README.md` ghi lại đề bài. Riêng `COCI`, `NTU`
-và `codeforces` sẽ chỉ có danh sách đường dẫn tới cái đề bài. Các đề bài sẽ được
-cập nhật dần.
+Ở mỗi thư mục con sẽ có tệp `README.md` ghi lại đề bài. Riêng `COCI`, `NTU` và
+`codeforces` sẽ chỉ có danh sách đường dẫn tới các đề bài. Đề bài sẽ được cập
+nhật dần.
 
 Bài làm trên Pascal được được dịch thử trên FPC 2.6 trở lên, bài viết trên C
 được dịch trên GCC 6 trở lên, bài làm trên Python chạy thử trên Python 3.5.
