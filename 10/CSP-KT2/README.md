@@ -9,7 +9,7 @@ Thời gian làm bài: 180 phút
 ## TỔNG QUAN VỀ ĐỀ THI
 
 Bài | Tên file bài làm | Giới hạn mỗi test | Điểm
---- | ---------------- | ----------------- | ----
+----|------------------|-------------------|-----
 1   | `NEGPAIRS.*`     | 0.5 giây          | 100
 2   | `DCOUNT.*`       | 0.5 giây          | 100
 3   | `SUMAVR.*`       | 0.5 giây          | 100
@@ -37,7 +37,7 @@ thỏa mãn a<sub>i</sub> = −a<sub>j</sub>.
 **Ví dụ:**
 
 Sample Input              | Sample Output
-------------------------- | -------------
+--------------------------|--------------
 9<br>-3 -2 -1 0 9 0 1 2 3 | 4
 6<br>0 0 0 0              | 6
 
@@ -62,7 +62,7 @@ dãy đã cho.
 **Ví dụ:**
 
 Sample Input            | Sample Output
------------------------ | -------------
+------------------------|--------------
 8<br>11 2 13 4 50 2 2 3 | 6 3
 
 *Giải thích: có 6 giá trị khác nhau trong dãy là 2, 3, 4, 11, 13 và 50, số 2
@@ -90,7 +90,7 @@ a<sub>n</sub> theo đúng thứ tự cách nhau bởi dấu cách.
 **Ví dụ:**
 
 Sample Input   | Sample Output
--------------- | -------------
+---------------|--------------
 5<br>1 2 2 3 4 | 1 3 2 6 8
 
 ## Bài 4. GHÉP CẶP (ZPAIRS.*)
@@ -122,7 +122,7 @@ lớn nhất tìm được thỏa mãn yêu cầu đề bài.
 **Ví dụ:**
 
 Sample Input                | Sample Output
---------------------------- | -------------
+----------------------------|--------------
 4 5<br>1 2 2 3<br>2 3 5 5 5 | 2
 
 ## Bài 5. DÃY SỐ HAMMING (HAMMING.*)
@@ -149,7 +149,7 @@ tương ứng với mỗi số a<sub>i</sub> có/không thuộc dãy Hamming.
 **Ví dụ:**
 
 Sample Input | Sample Output
------------- | -------------
+-------------|--------------
 11           | YES
 1            | YES
 2            | YES

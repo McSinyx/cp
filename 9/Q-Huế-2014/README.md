@@ -48,6 +48,6 @@ Dữ liệu ra chứa ở file `OUTPUT.OUT` là số lớn nhất nhận đượ
 **Ví dụ:**
 
 INPUT.INP | OUTPUT.OUT
---------- | ----------
+----------|-----------
 19012304  | 43210
 034012    |
