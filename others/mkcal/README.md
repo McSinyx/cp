@@ -66,7 +66,7 @@ Hãy xếp lịch thực hiện đủ n công việc.
 
 ### Dữ liệu ra
 
-Thứ thự thực hiện của n công việc in trên một dòng.
+Thứ tự thực hiện của n công việc in trên một dòng.
 
 ### Giới hạn
 
