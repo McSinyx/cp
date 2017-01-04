@@ -16,7 +16,7 @@ Thời gian: 180 phút
 |   2   |     BAI2.PAS     |     BAI2.INP    |    BAI2.OUT    |   5   |
 |   3   |     BAI3.PAS     |     BAI3.INP    |    BAI3.OUT    |   4   |
 |   4   |     BAI4.PAS     |     BAI4.INP    |    BAI4.OUT    |   3   |
-|   4   |     BAI5.PAS     |     BAI5.INP    |    BAI5.OUT    |   3   |
+|   5   |     BAI5.PAS     |     BAI5.INP    |    BAI5.OUT    |   3   |
 
 Giới hạn thời gian cho mỗi test là 3 giây.
 
