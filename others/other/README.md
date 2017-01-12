@@ -12,15 +12,75 @@ Tệp `BIN.INP` gồm một dòng duy nhất ghi số n.
 
 Tệp `BIN.OUT` gồm một dòng ghi biểu diễn nhị phân của n.
 
+### Giới hạn
+
+n ≤ 10<sup>18</sup>.
+
 ### Ví dụ
 
 | BIN.INP | BIN.OUT |
 | :-----: | :-----: |
 |   109   | 1101101 |
 
+## DiffSum
+
+Lập chương trình phân tích số nguyên dương n thành tổng của các số nguyên dương
+khác nhau sao cho tích của các số hạng này là lớn nhất có thể.
+
+### Dữ liệu
+
+Tệp `DIFFSUM.INP` gồm một dòng duy nhất ghi số n.
+
+### Kết quả
+
+Tệp `DIFFSUM.OUT` ghi các số hạng của cách phân tích tìm được theo thứ tự tăng
+dần trên một dòng.
+
 ### Giới hạn
 
-n ≤ 10<sup>18</sup>.
+n ≤ 10<sup>5</sup>.
+
+### Ví dụ
+
+| DIFFSUM.INP | DIFFSUM.OUT |
+| :---------: | :---------: |
+|      5      |     2 3     |
+|     10      |    2 3 5    |
+
+## Tìm dãy số nguyên liên tiếp
+
+Cho dãy gồm n số tự nhiên đôi một khác nhau a<sub>1</sub>, a<sub>2</sub>, …,
+a<sub>n</sub>. Nếu trong dãy đã cho có chứa số 0, bạn được phép thay số 0 bằng
+một số nguyên dương bất kì khác.
+
+### Yêu cầu
+
+Hãy chọn trong dãy gồm nhiều nhất các số sao cho các số đã chọn tạo thành một
+dãy số tự nhiên liên tiếp.
+
+### Dữ liệu
+
+Tệp `LSEQ.INP`:
+
+* Dòng thứ nhất chứa số nguyên dương n.
+* Dòng thứ hai dãy số tự nhiên a<sub>1</sub>, a<sub>2</sub>, …, a<sub>n</sub>.
+
+### Kết quả
+
+Tệp `LSEQ.OUT` gồm một dòng duy nhất ghi độ dài lớn nhất của dãy số tự nhiên
+liên tiếp chọn được.
+
+### Giới hạn
+
+* n ≤ 10<sup>6</sup>.
+* a<sub>i</sub> ≤ 10<sup>6</sup> ∀ 1 ≤ i ≤ n.
+
+### Ví dụ
+
+|      LSEQ.INP      | LSEQ.OUT |              Giải thích              |
+| ------------------ | :------: | ------------------------------------ |
+| 5<br>2 9 3 7 4     |     3    | Chọn dãy 2, 3, 4                     |
+| 7<br>1 2 4 7 6 0 8 |     5    | Thay 0 bởi 5, chọn dãy 4, 5, 6, 7, 8 |
 
 ## Trò chơi với dãy số
 
@@ -160,7 +220,7 @@ Tệp `DICT.INP` gồm n + q + 2 dòng:
 Tệp `DICT.OUT` gồm q dòng, mỗi dòng gồm một số nguyên là câu trả lời cho truy
 vấn tương ứng.
 
-## Giới hạn
+### Giới hạn
 
 * 1 ≤ n, q ≤ 20000.
 * 1 ≤ Độ dài w, s ≤ 20.
