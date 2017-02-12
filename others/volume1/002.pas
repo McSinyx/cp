@@ -1,4 +1,4 @@
-uses fibonacci;
+uses cmath;
 
 var
   m: int64;
@@ -13,9 +13,9 @@ begin
     end;
 
   for i := 3 to 88 do
-    if fibonacci93[i] > m then
+    if fibonacci[i] > m then
       begin
-        writeln(i - 1, ' ', fibonacci93[i - 1]);
+        writeln(i - 1, ' ', fibonacci[i - 1]);
         exit
       end
 end.
