@@ -151,5 +151,5 @@ capitalization from the above table. Example:
 
 ## Bonus
 
-Note that *bacon* has a few different possibilities. Which is the heaviest by
+Note that `bacon` has a few different possibilities. Which is the heaviest by
 atomic weight?
