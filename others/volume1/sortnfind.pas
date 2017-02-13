@@ -15,9 +15,9 @@ interface
 implementation
 
   procedure qsort(var a : intar);
-    procedure sort(l, r: integer);
+    procedure sort(l, r: int64);
       var
-        i, j, x, y: integer;
+        i, j, x, y: int64;
 
       begin
         i := l;
@@ -26,24 +26,22 @@ implementation
 
         repeat
           while a[i] < x do
-            inc(i);
-
+            i := i + 1;
           while x < a[j] do
-            dec(j);
+            j := j - 1;
 
           if i <= j then
             begin
               y := a[i];
               a[i] := a[j];
               a[j] := y;
-              inc(i);
+              i := i + 1;
               j := j - 1
             end
         until i > j;
 
         if l < j then
           sort(l, j);
-
         if i < r then
           sort(i, r)
       end;
