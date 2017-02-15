@@ -17,5 +17,8 @@ begin
         continue;
       b[a - 1] := true
     end;
-  writeln(all(b))
+  if all(b) then
+    writeln('YES')
+  else
+    writeln('NO')
 end.

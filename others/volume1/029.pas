@@ -1,4 +1,4 @@
-uses sortnfind;
+uses clib;
 
 var
   n, i: int16;

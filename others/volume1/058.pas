@@ -1,4 +1,4 @@
-uses math, clib;
+uses clib;
 
 var
   n, i: int16;
@@ -10,5 +10,7 @@ begin
   for i := 0 to n - 1 do
     read(a[i]);
   qsort(a);
-  writeln(max(a[0] * a[1], a[n - 2] * a[n - 1]))
+  for i := 0 to n - 2 do
+    write(a[i], ' ');
+  writeln(a[n - 1])
 end.

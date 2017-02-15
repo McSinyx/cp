@@ -1,4 +1,4 @@
-uses cmath;
+uses clib;
 
 var
   prime: array [2..1000000] of boolean;

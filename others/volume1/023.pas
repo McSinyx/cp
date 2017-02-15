@@ -1,4 +1,4 @@
-uses strutils, cmath;
+uses strutils, clib;
 
 var
   n, u: int64;

@@ -1,4 +1,4 @@
-uses cmath;
+uses clib;
 
 var
   a, b, g: int64;

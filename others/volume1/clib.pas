@@ -1,7 +1,10 @@
-(* Common mathematical functions and data *)
-unit cmath;
+(* Common library *)
+unit clib;
 
 interface
+
+  type
+    intar = array of int64;
 
   const
     factorial: array[1..20] of uint64 = (
@@ -122,11 +125,56 @@ interface
       12200160415121876738
     );
 
+  procedure qsort(var a : intar);
   function gcd(x, y: int64): int64;
   function isprime(x: int64): boolean;
   function issquare(x: int64): boolean;
+  function ispalindrome(s: ansistring): boolean;
+  function all(b: array of boolean): boolean;
+  function binin(
+    a: intar;
+    x: int64
+  ): boolean;
+
 
 implementation
+
+  procedure qsort(var a : intar);
+    procedure sort(l, r: int64);
+      var
+        i, j, x, y: int64;
+
+      begin
+        i := l;
+        j := r;
+        x := a[(l + r) div 2];
+
+        repeat
+          while a[i] < x do
+            i := i + 1;
+          while x < a[j] do
+            j := j - 1;
+
+          if i <= j then
+            begin
+              y := a[i];
+              a[i] := a[j];
+              a[j] := y;
+              i := i + 1;
+              j := j - 1
+            end
+        until i > j;
+
+        if l < j then
+          sort(l, j);
+        if i < r then
+          sort(i, r)
+      end;
+
+    begin
+      sort(0, length(a) - 1)
+    end;
+
 
   function gcd(x, y: int64): int64;
     var z: int64;
@@ -140,6 +188,7 @@ implementation
       gcd := x
     end;
 
+
   function isprime(x: int64): boolean;
     var i: int32;
     begin
@@ -151,9 +200,60 @@ implementation
       isprime := true
     end;
 
+
   function issquare(x: int64): boolean;
     begin
       issquare := (x >= 0) and (sqr(trunc(sqrt(x))) = x)
+    end;
+
+
+  function ispalindrome(s: ansistring): boolean;
+    var
+      n, i: int32;
+    begin
+      n := length(s);
+      for i := 1 to n div 2 do
+        if s[i] <> s[n - i + 1] then
+          exit(false);
+        ispalindrome := true
+    end;
+
+
+  function all(b: array of boolean): boolean;
+    var
+      i: boolean;
+    begin
+      for i in b do
+        if not i then
+          exit(false);
+      all := true
+    end;
+
+
+  function binin(
+    a: intar;
+    x: int64
+  ): boolean;
+
+    var
+      l, h, mid: uint64;
+
+    begin
+      l := 0;
+      h := length(a) - 1;
+
+      while l <= h do
+        begin
+          mid := (l + h) div 2;
+          if x = a[mid] then
+            exit(true)
+          else if x < a[mid] then
+            h := mid - 1
+          else
+            l := mid + 1
+        end;
+
+      binin := false
     end;
 
 end.

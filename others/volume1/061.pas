@@ -1,19 +1,16 @@
-uses clib;
-
 var
   n, i: int16;
-  a, b: array of int64;
+  a, b: array of int16;
 
 begin
   readln(n);
   setlength(a, n);
-  for i := 0 to n - 1 do
-    read(a[i]);
-  qsort(a);
   setlength(b, n);
   for i := 0 to n - 1 do
-    read(b[i]);
-  qsort(b);
+    begin
+      read(a[i]);
+      b[a[i] - 1] := i + 1
+    end;
   for i := 0 to n - 1 do
     if a[i] <> b[i] then
       begin

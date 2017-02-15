@@ -1,4 +1,4 @@
-uses cmath;
+uses clib;
 
 var
   n: int64;
