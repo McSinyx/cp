@@ -200,6 +200,29 @@ Tệp `FDP.OUT` gồm một dòng duy nhất ghi số tự nhiên k.
 |  10 10  |    2    |
 | 100 15  |   24    |
 
+## Vòng xoắn số nguyên
+
+Cho số nguyên dương n. Viết các số từ 1 đến n theo hình xoắn trôn ốc chữ nhật
+nằm ngang vuông nhất có thể.
+
+### Dữ liệu
+
+Tệp `SPIRAL.INP` gồm một dòng duy nhất ghi số nguyên dương n.
+
+### Kết quả
+
+Tệp `SPIRAL.OUT` ghi vòng xoắn trôn ốc.
+
+### Giới hạn
+
+n ≤ 10<sup>6</sup>.
+
+### Ví dụ
+
+| SPIRAL.INP |            SPIRAL.OUT            |
+| ---------- | -------------------------------- |
+|     12     | 1 2 3 4<br>10 11 12 5<br>9 8 7 6 |
+
 ## Từ điển
 
 Cho một từ điển gồm n từ w. Với q truy vấn, mỗi truy vấn đưa ra một xâu s, đếm
