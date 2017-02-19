@@ -82,54 +82,6 @@ liên tiếp chọn được.
 | 5<br>2 9 3 7 4     |     3    | Chọn dãy 2, 3, 4                     |
 | 7<br>1 2 4 7 6 0 8 |     5    | Thay 0 bởi 5, chọn dãy 4, 5, 6, 7, 8 |
 
-## Trò chơi với dãy số
-
-Hai bạn học sinh trong lúc nhàn rỗi nghĩ ra trò chơi sau đây:
-
-* Mỗi bạn chọn trước một dãy số gồm n số nguyên. Giả sử dãy số mà bạn thứ nhất
-  chọn là (b<sub>1</sub>, b<sub>2</sub>, …, b<sub>n</sub>) còn dãy số bạn thứ
-  hai chọn là (c<sub>1</sub>, c<sub>2</sub>, …, c<sub>n</sub>).
-* Mỗi lượt chơi mỗi bạn đưa ra một số hạng trong dãy số của mình. Nếu bạn thứ
-  nhất đưa ra số hạng b<sub>i</sub>, còn bạn thứ hai đưa ra số hạng
-  c<sub>j</sub> thì giá của lượt chơi đó sẽ là |b<sub>i</sub> + c<sub>j</sub>|.
-
-### Yêu cầu
-
-Hãy xác định giá nhỏ nhất của một lượt chơi trong số các lượt chơi có thể.
-
-### Dữ liệu
-
-Tệp `GAME.INP` gồm ba dòng:
-
-* Dòng đầu tiên chứa số nguyên dương n.
-* Dòng thứ hai chứa dãy số nguyên b<sub>1</sub>, b<sub>2</sub>, …,
-  b<sub>n</sub>.
-* Dòng thứ ba chứa dãy số nguyên c<sub>1</sub>, c<sub>2</sub>, …,
-  c<sub>n</sub>.
-
-### Kết quả
-
-Tệp `GAME.OUT` gồm một dòng ghi giá nhỏ nhất tìm được.
-
-### Giới hạn
-
-* n ≤ 10<sup>5</sup>.
-* |b<sub>i</sub>|, |c<sub>j</sub>| < 2<sup>63</sup> ∀ 1 ≤ i, j ≤ n.
-
-### Ví dụ
-
-|     GAME.INP     | GAME.OUT |
-| ---------------- | :------: |
-| 2<br>1 -2<br>2 3 |     0    |
-
-#### Giải thích
-
-Dãy số bạn thứ nhất chọn là (1, −2) còn dãy số mà bạn thứ hai chọn là (2,3).
-
-Khi đó các khả năng có thể của một lượt chơi là (1,2), (1,3), (−2,2), (−2,3).
-Như vậy, giá nhỏ nhất của một lượt chơi trong số các lượt chơi có thể là 0
-tương ứng với giá của lượt chơi (−2,2).
-
 ## Tìm đoạn thẳng v2
 
 Trên 1 đoạn trục số [−c, c], cho N đoạn thẳng, đoạn thứ i là [a<sub>i</sub>,

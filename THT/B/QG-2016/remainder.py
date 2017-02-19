@@ -18,17 +18,6 @@ TESTS = [
     [123456789123456789, 123456789123456789, 987654321123456789]
 ]
 
-
-def powmod(a, n, m):
-    if n == 1:
-        return a % m
-
-    if n % 2:
-        return powmod(a, n // 2, m) ** 2 * a % m
-
-    return powmod(a, n // 2, m) ** 2 % m
-
-
 # Gọi l là "chiều dài" của x, l = int(log10(x) + 1) hay l = len(str(x))
 # Đặt l ** 10 = a, dễ thấy y = x * (a**(n-1) + a**(n-2) + ... + a + 1)
 #                            = x * (a**n - 1) / (a - 1)
@@ -40,5 +29,5 @@ with open('REMAINDER.TXT', 'w') as f:
     for case in TESTS:
         a = 10 ** len(str(case[0]))
         case[2] *= a - 1
-        p = powmod(a, case[1], case[2])
+        p = pow(a, case[1], case[2])
         f.write(str(case[0] * (p - 1) % case[2] // (a - 1)) + '\n')
