@@ -131,10 +131,10 @@ interface
   function issquare(x: int64): boolean;
   function ispalindrome(s: ansistring): boolean;
   function all(b: array of boolean): boolean;
-  function binin(
+  function bsearch(
     a: intar;
     x: int64
-  ): boolean;
+  ): int64;
 
 
 implementation
@@ -230,30 +230,28 @@ implementation
     end;
 
 
-  function binin(
+  function bsearch(
     a: intar;
     x: int64
-  ): boolean;
+  ): int64;
 
     var
-      l, h, mid: uint64;
+      l, h, m: int64;
 
     begin
       l := 0;
       h := length(a) - 1;
-
       while l <= h do
         begin
-          mid := (l + h) div 2;
-          if x = a[mid] then
-            exit(true)
-          else if x < a[mid] then
-            h := mid - 1
+          m := (l + h) div 2;
+          if x = a[m] then
+            exit(m)
+          else if x < a[m] then
+            h := m - 1
           else
-            l := mid + 1
+            l := m + 1
         end;
-
-      binin := false
+      bsearch := -1
     end;
 
 end.
