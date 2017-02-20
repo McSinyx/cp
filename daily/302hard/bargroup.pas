@@ -1,4 +1,4 @@
-uses math, sysutils;
+uses math, strutils, sysutils;
 
 var
   minx, maxx, miny, maxy, stepx, stepy, i, x0, f: integer;
@@ -19,18 +19,6 @@ function gcd(a, b: integer): integer;
         a := c
       end;
     gcd := a
-  end;
-
-
-function rjust(
-  s: string;
-  width: byte;
-  fill: char
-): string;
-  begin
-    while length(s) < width do
-      s := fill + s;
-    rjust := s
   end;
 
 
@@ -69,19 +57,21 @@ begin
   setlength(xtrue, length(freq));
   for i := 0 to length(freq) - 1 do
     begin
-      xtrue[i] := rjust('', length(inttostr(minx + stepx * i)), '*');
-      xfalse[i] := rjust('', length(inttostr(minx + stepx * i)), ' ');
+      xtrue[i] := addchar('*', '', length(inttostr(minx + stepx * i)));
+      xfalse[i] := addchar(' ', '', length(inttostr(minx + stepx * i)));
       for j := 1 to stepx - 1 do
         begin
-          xtrue[i] := xtrue[i] +
-                      rjust('', length(inttostr(minx + stepx*i + j)) + 1, '*');
-          xfalse[i] := xfalse[i] +
-                       rjust('', length(inttostr(minx + stepx*i + j)) + 1, ' ')
+          xtrue[i] :=
+            xtrue[i] +
+            addchar('*', '', length(inttostr(minx + stepx*i + j)) + 1);
+          xfalse[i] :=
+            xfalse[i] +
+            addchar(' ', '', length(inttostr(minx + stepx*i + j)) + 1)
         end
     end;
 
   repeat
-    write(rjust(inttostr(maxy), lenf, ' '));
+    write(addchar(' ', inttostr(maxy), lenf), ' ');
     for i := 0 to length(freq) - 2 do
       begin
         if freq[i] >= maxy then
@@ -97,7 +87,7 @@ begin
     dec(maxy, stepy)
   until maxy < miny;
 
-  write(rjust('', lenf, ' '));
+  write(addchar(' ', '', lenf + 1));
   for i := minx to maxx - 1 do
     write(i, ' ');
   writeln(maxx)

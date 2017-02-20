@@ -3,8 +3,7 @@
   (cond ((= y 1) (remainder x z))
          ((= (remainder y 2) 0) (remainder (sqr (pow x (quotient y 2) z)) z))
          (else (remainder (* (sqr (pow x (quotient y 2) z)) x) z))))
-(with-output-to-file "REMAINDER.TXT" (lambda ()
-                                       (for-each
+(with-output-to-file "REMAINDER.TXT" (lambda () (for-each
   (lambda (l)
     (let* ((a (integer-expt 10 (string-length (number->string (list-ref l 0)))))
            (m (* (list-ref l 2) (- a 1)))

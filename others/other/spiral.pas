@@ -1,4 +1,4 @@
-uses sysutils;
+uses strutils, sysutils;
 
 const
   direction: array[0..3, 0..1] of int8 = ((0, 1), (1, 0), (0, -1), (-1, 0));
@@ -19,13 +19,6 @@ function mt(x, y: int16): boolean;
     if a[x][y] > 0 then
       exit(false);
     mt := true
-  end;
-
-function rjust(i: int32; len: int8): string;
-  begin
-    rjust := inttostr(i);
-    while length(rjust) < len do
-      rjust := ' ' + rjust
   end;
 
 begin
@@ -63,8 +56,8 @@ begin
   for x := 0 to m - 1 do
     begin
       for y := 0 to n - 2 do
-        write(f, rjust(a[x][y], d), ' ');
-      writeln(f, rjust(a[x][n - 1], d))
+        write(f, padleft(inttostr(a[x][y]), d), ' ');
+      writeln(f, padleft(inttostr(a[x][n - 1]), d))
     end;
   close(f)
 end.
