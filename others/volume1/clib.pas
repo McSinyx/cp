@@ -125,13 +125,18 @@ interface
       12200160415121876738
     );
 
-  procedure qsort(var a : intar);
   function gcd(x, y: int64): int64;
   function isprime(x: int64): boolean;
   function issquare(x: int64): boolean;
   function ispalindrome(s: ansistring): boolean;
   function all(b: array of boolean): boolean;
+
+  procedure qsort(var a : intar);
   function bsearch(
+    a: intar;
+    x: int64
+  ): int64;
+  function bisect_left(
     a: intar;
     x: int64
   ): int64;
@@ -176,6 +181,7 @@ implementation
     end;
 
 
+  (* Translated from Python 3 math module *)
   function gcd(x, y: int64): int64;
     var z: int64;
     begin
@@ -252,6 +258,30 @@ implementation
             l := m + 1
         end;
       bsearch := -1
+    end;
+
+
+  (* Translated from Python 3 bisect module *)
+  function bisect_left(
+    a: intar;
+    x: int64
+  ): int64;
+
+    var
+      l, h, m: int64;
+
+    begin
+      l := 0;
+      h := length(a);
+      while l < h do
+        begin
+          m := (l + h) div 2;
+          if a[m] < x then
+            l := m + 1
+          else
+            h := m
+        end;
+      bisect_left := l
     end;
 
 end.

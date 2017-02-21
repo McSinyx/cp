@@ -1,2 +1,1 @@
-(display (let ((a (read)) (b (read))) (exact->inexact (/ (+ a b) 2))))
-(newline)
+(format #t "~a\n" (exact->inexact (/ (+ (read) (read)) 2)))
