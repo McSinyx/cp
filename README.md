@@ -21,8 +21,14 @@ Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 `codeforces` sẽ chỉ có danh sách đường dẫn tới các đề bài. Đề bài sẽ được cập
 nhật dần.
 
-Bài làm trên Pascal được được dịch thử trên FPC 2.6 trở lên, bài viết trên C
-được dịch trên GCC 6 trở lên, bài làm trên Python chạy thử trên Python 3.5.
+Phiên bản các trình dịch sử dụng test:
+
+| Ngôn ngữ |     Trình dịch     |
+| -------- | ------------------ |
+|  C       | GNU GCC 4.9+       |
+|  Pascal  | Free Pascal 2.6.4+ |
+|  Python  | Python 3.4+        |
+|  Scheme  | GNU Guile 2.0.11+  |
 
 Tất cả các bài làm được phát hành theo giấy phép [GPLv3](LICENSE), cho phép
 người dùng chạy, nghiên cứu, chia sẻ và chỉnh sửa tự do. Các đề bài hầu như
