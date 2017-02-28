@@ -3,6 +3,8 @@ unit clib;
 
 interface
 
+  uses math, strutils;
+
   type
     intar = array of int64;
 
@@ -130,6 +132,7 @@ interface
   function issquare(x: int64): boolean;
   function ispalindrome(s: ansistring): boolean;
   function all(b: array of boolean): boolean;
+  function addintstr(a, b: ansistring): ansistring;
 
   procedure qsort(var a : intar);
   function bsearch(
@@ -233,6 +236,35 @@ implementation
         if not i then
           exit(false);
       all := true
+    end;
+
+
+  function addintstr(a, b: ansistring): ansistring;
+    var
+      n: int64;
+      remain: boolean = false;
+      d: uint8;
+
+    begin
+      n := max(length(a), length(b)) + 1;
+      a := addchar('0', a, n);
+      b := addchar('0', b, n);
+      repeat
+        if remain then
+          d := ord(a[n]) + ord(b[n]) - 47
+        else
+          d := ord(a[n]) + ord(b[n]) - 48;
+        if d > 57 then
+          begin
+            dec(d, 10);
+            remain := true
+          end
+        else
+          remain := false;
+        a[n] := chr(d);
+        dec(n)
+      until n = 0;
+      addintstr := ifthen(ord(a[1]) = 48, copy(a, 2, length(a) - 1), a)
     end;
 
 
