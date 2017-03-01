@@ -148,14 +148,14 @@ interface
 implementation
 
   procedure qsort(var a : intar);
-    procedure sort(l, r: int64);
+    procedure sort(l, h: int64);
       var
         i, j, x, y: int64;
 
       begin
         i := l;
-        j := r;
-        x := a[(l + r) div 2];
+        j := h;
+        x := a[(l + h) div 2];
 
         repeat
           while a[i] < x do
@@ -175,8 +175,8 @@ implementation
 
         if l < j then
           sort(l, j);
-        if i < r then
-          sort(i, r)
+        if i < h then
+          sort(i, h)
       end;
 
     begin
