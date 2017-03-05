@@ -1,0 +1,5 @@
+(define (cau2 s k m) (let* ((nk (quotient s k)) (nm (* (quotient k m) nk)))
+  (if (= nk 0) 0 (+ (cau2 (+ (remainder s k) (* (remainder k m) nk)) k m) nm))))
+(with-input-from-file "CAU2.INP" (lambda ()
+  (with-output-to-file "CAU2.OUT" (lambda ()
+    (format #t "~a\n" (cau2 (read) (read) (read)))))))
