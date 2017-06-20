@@ -61,7 +61,7 @@ var
   i: longint;
   ok: boolean;
 begin
-  assign(f, 'dic.dat');
+  assign(f, 'DIC.DAT');
   reset(f);
   while not seekeof(f) do
   begin

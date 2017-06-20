@@ -228,3 +228,150 @@ vấn tương ứng.
 * 2 từ có tiền tố `ban` là: `banana`, `ban`.
 * 3 từ có tiền tố `ba` là: `banana`, `ban`, `baconsoi`.
 * 2 từ có tiền tố `ali` là: `alibaba`.
+
+## Hình chữ nhật
+
+Cho tọa độ 3 điểm trên mặt phẳng, tìm 1 điểm còn lại để 4 điểm tạo thành 1 hình
+chữ nhật.
+
+### Dữ liệu
+
+Gồm 3 dòng, mỗi dòng gồm 2 số nguyên x, y (-100 ≤ x, y ≤ 100) là là toạ độ của
+1 điểm.
+
+### Kết quả
+
+2 số nguyên là toạ độ hai điểm còn lại của hình chữ nhật.
+
+### Ví dụ
+
+|      hcn.inp      | hcn.out |
+| :---------------: | :-----: |
+| 2 1<br>2 4<br>3 1 |   3 4   |
+| 2 5<br>5 1<br>1 3 |   6 3   |
+
+## Lấy bi
+
+Cho 3 lọ đựng bi, mỗi lọ đựng 1 số viên bi. Có quy tắc lấy bi là: lấy ở 2 lọ
+bất kì, mỗi lọ 1 viên bi, và cho vào lọ còn lại. Hỏi cách lấy bi nào sao cho
+tất cả bi đều ở trong 1 lọ, 2 lọ còn lại không có viên bi nào.
+
+### Dữ liệu
+
+1 dòng duy nhất gồm 3 số a, b, c (0 ≤ a, b, c ≤ 10<sup>9</sup>).
+
+### Kết quả
+
+`YES` nếu có cách chuyển bi để tất cả bi đều ở trong 1 lọ, nếu không `NO`.
+
+### Ví dụ
+
+| laybi.inp | laybi.out |
+| :-------: | :-------: |
+|   2 3 3   |    YES    |
+|   2 4 6   |    NO     |
+
+## Biến đổi số
+
+Cho 2 số nguyên x, y và 2 phép biến đổi là phép tăng lên a đơn vị b đơn vị. Hỏi
+có thể biến đổi x thành y được không?
+
+### Dữ liệu
+
+1 dòng duy nhất gồm 4 số x, y, a, b (0 ≤ x < y ≤ 2x10<sup>9</sup>; 0 ≤ a, b ≤
+10<sup>9</sup>).
+
+### Kết quả
+
+1 số duy nhất là số phép biến đổi ít nhất để x thành y. Nếu không biến đổi
+được thì in ra `-1`.
+
+| biendoiso.inp | biendoiso.inp |
+| :-----------: | :-----------: |
+|   3 20 2 3    |       6       |
+|   5 30 6 4    |      -1       |
+
+## Số cách đi của thỏ
+
+Một con thỏ cần băng qua một đoạn đường dài n mét, thỏ có ba cách nhảy với các
+độ dài bước nhảy là 3 mét, 2 mét, 1 mét. Một cách đi đúng của thỏ là dãy các
+bước nhảy của nó có tổng độ dài bằng n và bước nhảy liền sau không dài hơn bước
+nhảy liền trước trong dãy bước nhảy của nó.
+
+### Yêu cầu
+
+Cho biết số nguyên dương n, hãy tính số cách đi đúng khác nhau của thỏ để đi
+hết đoạn đường n mét. Số cách đi có thể rất lớn nên kết quả in ra được viết
+dưới dạng số dư của phép chia kết quả cho 1000000.
+
+### Dữ liệu
+
+Gồm một dòng chứa số nguyên n.
+
+### Kết quả
+
+In ra số nguyên duy nhất là số cách đi đúng của thỏ viết dưới dạng số dư của
+kết quả chia cho 1000000.
+
+### Hạn chế
+
+* 40% test đầu tiên có n ≤ 1000.
+* 30% test tiếp theo có 1000 < n ≤ 10<sup>9</sup>.
+* 30% test cuối cùng có 10<sup>9</sup> < n ≤ 10<sup>15</sup>.
+
+### Ví dụ
+
+| bunny.inp | bunny.out |
+| :-------: | :-------: |
+|     6     |     7     |
+
+#### Giải thích
+
+Với n = 6, thỏ có 7 cách đi như sau: 3+3, 3+2+1, 3+1+1+1, 2+2+2, 2+2+1+1,
+2+1+1+1+1, 1+1+1+1+1+1.
+
+## Biểu thức nhân, cộng
+
+Cho n số nguyên dương a<sub>i</sub>, i=1..n. Bạn phải đặt giữa n số này 2 phép
+nhân và n - 3 phép cộng sao cho kết quả biểu thức là lớn nhất.
+
+Chú ý: Không được thay đổi thứ tự xuất hiện các số nguyên dương của trong biểu
+thức thu được.
+
+### Dữ liệu
+
+* Dòng 1 chứa số nguyên dương n (4 ≤ n ≤ 1000).
+* n dòng tiếp theo, dòng thứ i + 1 chứa số nguyên dương a<sub>i</sub> ≤ 10000.
+
+### Kết quả
+
+Số nguyên dương lớn nhất là giá trị biểu thức thu được.
+
+### Ví dụ
+
+|  express.inp   | express.out |    Giải thích     |
+| -------------- | :---------: | ----------------- |
+| 5<br>4 7 1 5 3 |     44      | 4 * 7 + 1 + 5 * 3 |
+
+## Ước số
+
+Cho đoạn [a; b] \(a, b là số nguyên dương), tính các giá trị:
+
+* min: Số nhỏ nhất và có nhiều ước số nhất trong đoạn này.
+* cmin: Số lượng ước của min.
+* count: Số lượng số trong đoạn có số ước là cmin.
+
+### Dữ liệu
+
+Hai số nguyên dương a và b (a ≤ b ≤ 10<sup>9</sup>; b - a ≤ 10000).
+
+### Kết quả
+
+Ba số nguyên dương theo thứ tự min, cmin, count
+
+### Ví dụ
+
+| uocso.inp | uocso.out |
+| --------- | --------- |
+|  2 10     | 6 4 3     |
+|  200 200  | 200 12 1  |
