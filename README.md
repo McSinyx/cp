@@ -27,7 +27,7 @@ Phiên bản các trình dịch sử dụng test:
 | -------- | ------------------ |
 |  C       | GNU GCC 4.9+       |
 |  Pascal  | Free Pascal 2.6.4+ |
-|  Python  | Python 3.4+        |
+|  Python  | Python 3.5+        |
 |  Scheme  | GNU Guile 2.0.11+  |
 
 Tất cả các bài làm được phát hành theo giấy phép [GPLv3](LICENSE), cho phép
