@@ -1,26 +1,62 @@
 var
-  f : text;
-  n : word;
-  a, b : array of longword;
-  tmp0, tmp1 : longword;
+  f: text;
+  n, i: int16;
+  a, b: array of int32;
 
-procedure ins(var l : array of longword; x : longword);
+
+procedure swp(var x, y: int32);
+  var
+    tmp: int32;
+
   begin
-    setlength(l, length(l) + 1);
-    l[length(l) - 1] := x
+    tmp := x;
+    x := y;
+    y := tmp
   end;
 
+
+procedure qsort(l, h: int16);
+  var
+    i, j: int16;
+    tmp: int32;
+
+  begin
+    i := l;
+    j := h;
+    tmp := a[(l + h) div 2];
+
+    repeat
+      while a[i] < tmp do
+        inc(i);
+      while a[j] > tmp do
+        dec(j);
+
+      if i <= j then
+        begin
+          swp(a[i], a[j]);
+          swp(b[i], b[j]);
+          inc(i);
+          dec(j)
+        end;
+    until i > j;
+
+    if l < j then
+      qsort(l, j);
+    if i < h then
+      qsort(i, h)
+  end;
+
+
 begin
-  setlength(a, 0);
-  setlength(b, 0);
   assign(f, 'CLB.IN');
   reset(f);
   readln(f, n);
-  for i := 1 to n do
-    begin
-      readln(f, tmp0, tmp1);
-      ins(a, tmp0);
-      ins(b, tmp1)
-    end;
+  setlength(a, n);
+  setlength(b, n);
+  for i := 0 to n - 1 do
+    readln(f, a[i], b[i]);
   close(f);
-  
+  qsort(0, n - 1);
+  for i := 0 to n - 1 do
+    writeln(a[i], ' ', b[i])
+end.

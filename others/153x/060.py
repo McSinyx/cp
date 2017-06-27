@@ -2,10 +2,6 @@
 from fractions import Fraction
 
 
-def dec_div(n):
-    return n, l2, l5
-
-
 def decimal(fraction):
     a, b, l2, l5 = fraction.numerator, fraction.denominator, 0, 0
     if b == 1: return '{}\n'.format(a)
@@ -26,5 +22,4 @@ def decimal(fraction):
 
 
 with open('DECIMAL.INP') as fi, open('DECIMAL.OUT', 'w') as fo:
-    for line in fi:
-        fo.write(decimal(Fraction(*map(int, line.split()))))
+    for line in fi: fo.write(decimal(Fraction(*map(int, line.split()))))
