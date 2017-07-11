@@ -4,6 +4,8 @@ Môn: **TIN HỌC**
 
 ## Ngày thi thứ nhất: 05/01/2017
 
+Thời gian: **180** phút
+
 ### Tổng quan ngày thi thứ nhất
 
 |    Tên bài    | File chương trình | File dữ liệu | File kết quả | Điểm  |
@@ -37,9 +39,9 @@ khác với đoạn văn bản `aa` gồm các ký tự từ ký tự thứ 4 đ
 #### Yêu cầu
 
 Cho xâu ký tự *T* và *n* số nguyên không âm *k*<sub>1</sub>, *k*<sub>2</sub>,
-…, *k<sub>n</sub>*. Với mỗi giá trị k<sub>i</sub>, hãy tìm độ dài đoạn dài nhất
-trong xâu *T* có khả năng bị virus sao chép mức *k<sub>i</sub>* (*i* = 1, 2, …,
-*n*).
+…, *k<sub>n</sub>*. Với mỗi giá trị *k<sub>i</sub>*, hãy tìm độ dài đoạn dài
+nhất trong xâu *T* có khả năng bị virus sao chép mức *k<sub>i</sub>* (*i* = 1,
+2, …, *n*).
 
 #### Dữ liệu
 

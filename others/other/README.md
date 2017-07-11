@@ -375,3 +375,121 @@ Ba số nguyên dương theo thứ tự min, cmin, count
 | --------- | --------- |
 |  2 10     | 6 4 3     |
 |  200 200  | 200 12 1  |
+
+## Qua cầu
+
+Cho một chiếc cầu ngang có chiều dài n+1 được tạo bởi các ô vuông kích thước
+1×1 được đánh số từ 0 đến n, bạn đứng tại vị trí 0 lúc bắt đầu, và một chiếc
+giầy đăc biệt có thể nhảy xa tối đa m ô, tối thiểu 1 ô.
+
+### Yêu cầu
+
+Bạn hãy chỉ ra có bao nhiêu cách có thể đi đến vị trí thứ n của cây cầu này với
+đôi giầy đặc biệt kia. Được biết trên cây cầu có k vị tri bị hỏng và bạn không
+thể bước vào đó.
+
+### Dữ liệu
+
+* Dòng đầu tiên chứa 3 số n, m, k.
+* Dòng 2 chứa k số là vị trí các ô bị hỏng.
+
+### Kết quả
+
+1 dòng chứa số cách đi qua cầu mod 1000000007.
+
+### Giới hạn
+
+* Subtask1: 0 ≤ n, m ≤ 1000 (80% số điểm).
+* Subtask2: 0 ≤ n, m ≤ 10<sup>6</sup> (20% số điểm).
+
+### Ví dụ
+
+|  quacau.inp  | quacau.out |
+| ------------ | :--------: |
+| 8 3 2<br>3 4 |      8     |
+
+## Đếm dãy chia hết
+
+Cho một dãy số nguyên dương, đếm số lượng dãy con liên tiếp có tổng chia hết
+cho *d*. Hai dãy con được gọi là khác nhau nếu ít nhất một trong hai điểm đầu
+hoặc điểm cuối hai dãy con đó trong dãy đã cho là khác nhau. Ví dụ
+
+* Với *d* = 4, dãy (2, 1, 2, 1, 4, 1) có 4 dãy con thoả mãn là (1, 2, 1), (1,
+  2, 1, 4), (4) và (2, 1, 4, 1).
+* Với *d* = 2, dãy (1, 1, 1, 1) có 4 dãy con thỏa mãn.
+
+### Dữ liệu
+
+* Dòng đầu tiên là số *T* - số lượng test.
+* T nhóm dòng tiếp theo, mỗi dòng tương ứng một yêu cầu:
+    * Dòng đầu là 2 số nguyên dương *d* và *N*.
+    * Dòng thứ 2 chứa *N* số nguyên biểu diễn dãy số.
+
+### Kết quả
+
+*T* dòng là kết quả các test tương ứng theo thứ tự.
+
+### Ví dụ
+
+|       DIVSEQ.INP        | DIVSEQ.OUT |
+| ----------------------- | :--------: |
+| 1<br>4 6<br>2 1 2 1 4 1 |     4      |
+
+### Giới hạn
+
+* *T* ≤ 100.
+* *d* ≤ 1000000, *N* ≤ 50000, 50% số test có *N* ≤ 1000.
+
+## Hình vuông
+
+Cho 4 điểm trên hệ trục tọa độ chuẩn Oxy. Hãy kiểm tra xem bốn điểm này có phải
+là bốn đỉnh của một hình vuông có các cạnh song song với các trục toạ độ hay
+không?
+
+### Dữ liệu
+
+Gồm 4 dòng, mỗi dòng ghi 2 số nguyên là tọa độ của một điểm. Mỗi số nguyên có
+giá trị tuyệt đối không quá 10<sup>9</sup>.
+
+### Kết quả
+
+Diện tích hình vuông nếu bốn điểm thoả mãn yêu cầu đề bài, ngược lại ghi `-1`.
+
+### Ví dụ
+
+|        HINHVUONG.INP         | HINHVUONG.OUT |
+| :--------------------------: | :-----------: |
+| -3 -1<br>-3 3<br>1 3<br>1 -1 |      16       |
+
+## Chọn số
+
+Cho một dãy số nguyên a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>n</sub>.
+
+### Yêu cầu: 
+
+Đếm số cách chọn ra dãy số khác nhau gồm m phần tử. Hai dãy số được gọi là khác
+nhau nếu tồn tại ít nhất một vị trí mà ở đó giá trị 2 phần tử của 2 dãy là khác
+nhau.
+
+### Dữ liệu
+
+* Dòng đầu ghi 2 số n, m.
+* Dòng tiếp theo ghi các số nguyên a<sub>i</sub> (các số cách nhau ít nhất một
+  dấu cách).
+
+### Kết quả
+
+Ghi ra số lượng cách chọn dãy. Vì kết quả có thể rất lớn nên chỉ cần ghi phần
+dư của kết quả khi chia (10<sup>12</sup> + 7).
+
+### Giới hạn
+
+* 3 ≤ n ≤ 1000.
+* 1 ≤ m < n.
+* a<sub>i</sub> ≤ 10<sup>9</sup> ∀ 1 ≤ i ≤ n.
+
+### Ví dụ
+
+|  chonso.inp  | chonso.out |
+| ------------ | :--------: |
+| 3 2<br>1 3 1 |      3     |
