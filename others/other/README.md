@@ -493,3 +493,72 @@ dư của kết quả khi chia (10<sup>12</sup> + 7).
 |  chonso.inp  | chonso.out |
 | ------------ | :--------: |
 | 3 2<br>1 3 1 |      3     |
+
+## Thả diều
+
+Trong một cuộc thi thả diều, ban giám khảo căn cứ vào độ cao của mỗi chiếc
+diều đạt được khi thả lên trời và xếp hạng cho chiếc diều đó theo một cách đặc
+biệt: Những chiếc diều không được thả cùng một lúc, mà theo trình tự từng
+chiếc một. Khi một chiếc diều được thả lên trời, ban giám khảo sẽ căn cứ vào
+độ cao của chiếc diều và xếp hạng cho chiếc diều đó bằng cách so độ cao của nó
+với độ cao của những chiếc diều đã thả trước đó: hạng của một chiếc diều bằng
+số diễu đã thả cao hơn nó cộng thêm 1.
+
+### Yêu cầu
+
+Có *n* chiếc diều lần lượt được thả lên trời, em hãy cho biết dãy số biểu diễn
+giá trị xếp hạng của *n* chiếc diều đó.
+
+### Dữ liệu
+
+* Dòng đầu là số nguyên *n* ≤ 100000 cho biết số chiếc diều tham gia dự thi.
+* *n* dòng tiếp theo, mỗi dòng ghi một số nguyên dương ≤ 10<sup>9</sup> mô tả
+  độ cao của một chiếc diều, theo thứ tự mà nó được thả lên.
+
+### Kết quả
+
+Gồm *n* dòng: dòng thứ *i* ghi số nguyên biểu diễn giá trị xếp hạng của chiếc
+diều thứ *i* tại thời điểm nó được thả lên.
+
+### Ví dụ
+
+|               KITE.INP                |          KITE.OUT          |
+| :-----------------------------------: | :------------------------: |
+| 6<br>78<br>24<br>68<br>40<br>39<br>89 | 1<br>2<br>2<br>3<br>4<br>1 |
+
+#### Giải thích
+
+* Chiếc đầu tiên xếp hạng 1 vì trước nó chưa có chiếc diều nào được thả.
+* Chiếc thứ hai xếp hạng 2 vì 24 < 78.
+* Chiếc thứ ba cũng xếp hạng 2 vì 24 < 68 < 78.
+* Chiếc thứ tư xếp hạng 3 vì 24 < 40 < 68 < 78.
+* Chiếc thứ năm xếp hạng 4 vì 24 < 39 < 40 < 68 < 78.
+* Chiếc cuối cùng xếp hạng 1 vì 24 < 39 < 40 < 68 < 78 < 89.
+
+## Khối lập phương
+
+Cho 3 khối hình hộp chữ nhật có kích thước lần lượt là: (a<sub>1</sub>,
+b<sub>1</sub>, c<sub>1</sub>), (a<sub>2</sub>, b<sub>2</sub>, c<sub>2</sub>),
+(a<sub>3</sub>, b<sub>3</sub>, c<sub>3</sub>). Hãy xác định xem có thể xếp 3
+khối hình hộp chữ nhật này thành một khối lập phương hay không.
+
+### Dữ liệu vào
+
+* Dòng đầu tiên ghi số test T.
+* Tiếp theo là T test. Mỗi test được ghi trên 3 dòng, dòng i ghi 3 số nguyên
+  dương a<sub>i</sub>, b<sub>i</sub>, c<sub>i</sub>.
+
+### Kết quả
+
+Ứng với mỗi test, ghi ra `TRUE` hoặc `FALSE` tương ứng với có thể hoặc không
+thể xếp thành khối lập phương.
+
+### Giới hạn
+
+Các số trong input không vượt quá 100.
+
+### Ví dụ:
+
+|                          Input                          |    Output     |
+| :-----------------------------------------------------: | :-----------: |
+| 2<br>3 3 1<br>3 3 1<br>3 3 1<br>3 3 1<br>3 3 1<br>3 2 2 | TRUE<br>FALSE |
