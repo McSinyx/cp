@@ -73,3 +73,42 @@ Ghi ra thiết bị xuất chuẩn số đèn xanh sau lần bấm công tắc t
 | Sample Input | Sample Output |
 | :----------: | :-----------: |
 |       6      |       2       |
+
+## Hình chữ nhật bốn màu
+
+Trên mặt phẳng toạ độ Đề các vuông góc Oxy cho *n* điểm phân biệt
+*A<sub>i</sub>*(*x<sub>i</sub>*, *y<sub>i</sub>*), *i* = 1, 2, …, *n*. Mỗi điểm
+*A<sub>i</sub>* được tô bởi màu *c<sub>i</sub>* ∈ {1,2,3,4}. Ta gọi hình chữ
+nhật bốn màu là hình chữ nhật thoả mãn hai điều kiện sau:
+
+* Bốn đỉnh của hình chữ nhật là bốn điểm trong *n* điểm đã cho và được tô bởi
+  bốn màu khác nhau.
+* Các cạnh của hình chữ nhật song song với một trong hai trục toạ độ.
+
+### Yêu cầu
+
+Cho biết toạ độ và màu của *n* điểm, hãy đếm số lượng hình chữ nhật bốn màu.
+
+### Dữ liệu
+
+* Dòng đầu tiên chứa số nguyên dương *n* là số lượng điểm trên mặt phẳng.
+* Dòng thứ *i* trong *n* dòng tiếp theo chứa ba số nguyên *x<sub>i</sub>*,
+  *y<sub>i</sub>*, *c<sub>i</sub>* là thông tin về toạ độ và màu của điểm thứ 
+  *i*, *i* = 1, 2, …, *n*.
+
+*Các số trên cùng một dòng được ghi cách nhau ít nhất một dấu cách.*
+
+### Kết quả
+
+Một dòng chứa số lượng hình chữ nhật đếm được.
+
+### Giới hạn
+
+* 4 ≤ *n* ≤ 100000.
+* |*x<sub>i</sub>*|, |*y<sub>i</sub>*| ≤ 200.
+
+### Ví dụ
+
+|                              COLOREC.INP                              | COLOREC.OUT |
+| --------------------------------------------------------------------- | :---------: |
+| 7<br>0 0 1<br>0 1 4<br>2 1 2<br>2 -1 3<br>0 -1 1<br>-1 -1 4<br>-1 1 1 |      2      |

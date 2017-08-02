@@ -563,45 +563,6 @@ Các số trong input không vượt quá 100.
 | :-----------------------------------------------------: | :-----------: |
 | 2<br>3 3 1<br>3 3 1<br>3 3 1<br>3 3 1<br>3 3 1<br>3 2 2 | TRUE<br>FALSE |
 
-## Hình chữ nhật bốn màu
-
-Trên mặt phẳng toạ độ Đề các vuông góc Oxy cho *n* điểm phân biệt
-*A<sub>i</sub>*(*x<sub>i</sub>*, *y<sub>i</sub>*), *i* = 1, 2, …, *n*. Mỗi điểm
-*A<sub>i</sub>* được tô bởi màu *c<sub>i</sub>* ∈ {1,2,3,4}. Ta gọi hình chữ
-nhật bốn màu là hình chữ nhật thoả mãn hai điều kiện sau:
-
-* Bốn đỉnh của hình chữ nhật là bốn điểm trong *n* điểm đã cho và được tô bởi
-  bốn màu khác nhau.
-* Các cạnh của hình chữ nhật song song với một trong hai trục toạ độ.
-
-### Yêu cầu
-
-Cho biết toạ độ và màu của *n* điểm, hãy đếm số lượng hình chữ nhật bốn màu.
-
-### Dữ liệu
-
-* Dòng đầu tiên chứa số nguyên dương *n* là số lượng điểm trên mặt phẳng.
-* Dòng thứ *i* trong *n* dòng tiếp theo chứa ba số nguyên *x<sub>i</sub>*,
-  *y<sub>i</sub>*, *c<sub>i</sub>* là thông tin về toạ độ và màu của điểm thứ 
-  *i*, *i* = 1, 2, …, *n*.
-
-*Các số trên cùng một dòng được ghi cách nhau ít nhất một dấu cách.*
-
-### Kết quả
-
-Một dòng chứa số lượng hình chữ nhật đếm được.
-
-### Giới hạn
-
-* 4 ≤ *n* ≤ 100000.
-* |*x<sub>i</sub>*|, |*y<sub>i</sub>*| ≤ 200.
-
-### Ví dụ
-
-|                              COLOREC.INP                              | COLOREC.OUT |
-| --------------------------------------------------------------------- | :---------: |
-| 7<br>0 0 1<br>0 1 4<br>2 1 2<br>2 -1 3<br>0 -1 1<br>-1 -1 4<br>-1 1 1 |      2      |
-
 ## Đếm gà và chó
 
 Hiện nay dịch cúm gia cầm đang lây lan nhưng ý thức những người buôn gia cầm
@@ -652,3 +613,83 @@ In ra T dòng, mỗi dòng gồm một số nguyên là kết quả của mỗi 
 | Sample Input | Sample Output |
 | ------------ | ------------- |
 | 2<br>1<br>10 |    1<br>25    |
+
+## Dọn dẹp bộ nhớ
+
+Bộ nhớ của máy tính có dung lượng V byte được đánh số từ 0 đến V-1. Các khối bộ
+nhớ đã được phân phối được xác định bởi dãy các địa chỉ (a<sub>1 ,
+b<sub>1</sub>), (a<sub>2</sub>, b<sub>2</sub>), …, (a<sub>N</sub>,
+b<sub>N</sub>).  Các khối này được sắp xếp theo địa chỉ và không giao nhau,
+nghĩa là 0 ≤ a<sub>j</sub> ≤ b<sub>j</sub> < a<sub>j+1</sub> < V. Hệ điều hành
+cần cung cấp một khối gồm M byte cho một yêu cầu mới xuất hiện. Nếu như không
+gian nhớ tự do với dung lượng như vậy không còn, thì hệ điều hành cần dịch
+chuyển một khối nào đó để giải phóng được một đoạn nhớ liên tục có độ dài đòi
+hỏi.
+
+### Yêu cầu
+
+Tìm cách chọn khối bộ nhớ với dung lượng nhỏ nhất cần dịch chuyển để đáp ứng
+yêu cầu đặt ra. Trong trường hợp có nhiều cách lựa chọn, hãy đưa ra khối với
+địa chỉ đầu nhỏ nhất.
+
+### Dữ liệu
+
+* Dòng đầu là các số nguyên V N M.
+* Dòng tiếp theo là 2N cặp số nguyên (a<sub>1 , b<sub>1</sub>), (a<sub>2</sub>,
+  b<sub>2</sub>), …, (a<sub>N</sub>, b<sub>N</sub>).
+
+### Kết quả
+
+Một dòng chứa một số nguyên là:
+
+* -1, nếu không có cách di chuyển (không thể giải phóng không gian nhớ yêu
+  cầu), hoặc
+* 0 nếu không cần di chuyển, hoặc
+* chỉ số của khối cần di chuyển.
+
+### Giới hạn
+
+* 0 ≤ N ≤ 100000.
+* 1 ≤ V ≤ 2<sup>30</sup>.
+
+### Ví dụ
+
+|    DEFRAC.INP     | DEFRAC.OUT |
+| ----------------- | :--------: |
+| 10 2 4<br>1 5 7 7 |      2     |
+
+## Phân tích chương trình
+
+Trong việc phân tích chương trình, cần phát hiện xem đoạn mã nguồn của chương
+trình có chứa các câu lệnh mà không khi nào được thực hiện hay không (những
+lệnh như vậy để ngắn gọn ta gọi là lệnh thừa). Sự có mặt của các câu lệnh thừa
+thường mách bảo là chương trình còn lỗi. Do đó trong chương trình dịch của tất
+cả các ngôn ngữ lập trình luôn có môđun kiểm tra sự có mặt của các câu lệnh
+thừa.
+
+### Yêu cầu
+
+Bạn cần viết chương trình thực hiện công việc của môđun này.
+
+### Dữ liệu
+
+Gồm không quá 10000 dòng chứa dãy lệnh là kết quả của việc phân tích ngữ nghĩa
+của một đoạn mã nguồn. Mỗi dòng chứa một câu lệnh có một trong ba dạng sau:
+
+* `NEXT`: thực hiện câu lệnh kế tiếp nó;
+* `JUMP n` với n là số nguyên dương: thực hiện câu lệnh với chỉ số n (các câu
+  lệnh trong dãy lệnh được đánh số bắt đầu từ 1);
+* `JUMP n OR m` với n và m là các số nguyên dương: thực hiện một trong hai câu
+  lệnh với chỉ số n hoặc m.
+
+### Kết quả
+
+* Dòng đầu tiên ghi số nguyên k là số lượng câu lệnh thừa trong dãy lệnh đã cho.
+* Nếu k > 0 thì mỗi dòng trong số k dòng tiếp theo chứa chỉ số của một câu lệnh
+  thừa. Các chỉ số được đưa ra theo thứ tự tăng dần.
+
+### Ví dụ
+
+|                                LANG.INP                                 |  LANG.OUT   |
+| ----------------------------------------------------------------------- | :---------: |
+| NEXT<br>JUMP 4 or 6<br>NEXT<br>JUMP 3<br>NEXT<br>JUMP 8<br>NEXT<br>NEXT | 2<br>5<br>7 |
