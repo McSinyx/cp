@@ -601,3 +601,54 @@ Một dòng chứa số lượng hình chữ nhật đếm được.
 |                              COLOREC.INP                              | COLOREC.OUT |
 | --------------------------------------------------------------------- | :---------: |
 | 7<br>0 0 1<br>0 1 4<br>2 1 2<br>2 -1 3<br>0 -1 1<br>-1 -1 4<br>-1 1 1 |      2      |
+
+## Đếm gà và chó
+
+Hiện nay dịch cúm gia cầm đang lây lan nhưng ý thức những người buôn gia cầm
+rất yếu kém. Để qua mắt các trạm kiểm dịch, họ chở gà lẫn với chó. Một trạm
+kiểm dịch bắt được một xe chở gà và chó. Họ đếm được tất cả C chân gà và chó.
+
+### Yêu cầu
+
+Hãy cho biết số lượng từng con vật.
+
+### Dữ liệu
+
+* Gồm một dòng ghi số nguyên dương C là một số chẵn, C ≤ 100000.
+
+### Kết quả
+
+* Dòng thứ nhất ghi số S là số lời giải.
+* trong S dòng tiếp theo, mỗi dòng ghi một lời giải gồm hai số P, Q có nghĩa là
+  có P gà và Q chó.
+
+### Ví dụ
+
+| Input |         Output         |
+| :---: | ---------------------- |
+|   10  | 3<br>5 0<br>3 1<br>1 2 |
+
+## Tích các chữ số
+
+Gọi P(a) là hàm tính tích các chữ số của a. Cho một số nguyên không âm N, hãy
+tìm số nguyên dương a nhỏ nhất sao cho P(a) = N.
+
+### Dữ liệu
+
+* Dòng đầu tiên gồm một số nguyên T, số lượng test.
+* T dòng tiếp theo, mỗi dòng gồm một số nguyên N.
+
+### Kết quả
+
+In ra T dòng, mỗi dòng gồm một số nguyên là kết quả của mỗi test.
+
+### Giới hạn
+
+* 1 ≤ T ≤ 1000.
+* 0 ≤ P ≤ 10<sup>15</sup>.
+
+### Ví dụ
+
+| Sample Input | Sample Output |
+| ------------ | ------------- |
+| 2<br>1<br>10 |    1<br>25    |
