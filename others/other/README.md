@@ -693,3 +693,26 @@ của một đoạn mã nguồn. Mỗi dòng chứa một câu lệnh có một 
 |                                LANG.INP                                 |  LANG.OUT   |
 | ----------------------------------------------------------------------- | :---------: |
 | NEXT<br>JUMP 4 or 6<br>NEXT<br>JUMP 3<br>NEXT<br>JUMP 8<br>NEXT<br>NEXT | 2<br>5<br>7 |
+
+## Tìm số
+
+Cho hai số tự nhiên *n* và *p*. Tìm số *m* lớn nhất để *p<sup>m</sup>* là ước
+số của *n*!.
+
+### Dữ liệu
+
+Gồm hai số *n* và *p*.
+
+### Kết quả
+
+Số *m* tìm được.
+
+### Giới hạn
+
+*n*, *p* ≤ 30000, đảm bảo *m* > 0.
+
+### Ví dụ
+
+| MAXNUM.INP | MAXNUM.OUT |
+| :--------: | :--------: |
+|    7 3     |     2      |
