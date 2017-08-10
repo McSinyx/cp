@@ -716,3 +716,51 @@ Số *m* tìm được.
 | MAXNUM.INP | MAXNUM.OUT |
 | :--------: | :--------: |
 |    7 3     |     2      |
+
+## Chữ số
+
+Cho xâu M lập thành từ tập H = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F}
+và không bắt đầu bằng ký tự 0; xâu S giá trị ban đầu là xâu M.
+
+Người ta thực hiện L lần biến đổi theo các bước sau:
+
+* Đếm số lần xuất hiện các ký tự i thuộc tập H, đặt là K<sub>i</sub>.
+* Nếu K<sub>i</sub> > 0 người ta viết liên tiếp xâu biểu diễn K<sub>i</sub>
+  trong cơ số 16 và ký tự i, thu được giá trị mới của M.
+* Viết tiếp M vào cuối xâu S.
+
+### Yêu cầu
+
+Cho xâu M, số lần biến đổi L và X là một ký tự từ tập H. Hãy đếm số lần xuất
+hiện X trong S thu được sau L lần biến đổi.
+
+### Dữ liệu
+
+* Dòng thứ nhất chứa xâu M;
+* Dòng thứ hai chứa số tự nhiên L;
+* Dòng thứ ba chứa kí tự X.
+
+### Kết quả
+
+Một số nguyên là số lần xuất hiện của X trong S sau L lần biến đổi.
+
+### Giới hạn
+
+* M có độ dài không vượt quá 127 kí tự;
+* L ≤ 10<sup>7</sup>.
+
+### Ví dụ
+
+|   DIGIT.INP    | DIGIT.OUT |
+| -------------- | :-------: |
+| 150A<br>3<br>2 |     1     |
+
+#### Giải thích
+
+| Lần biến đổi |    M     |              S               |
+| :----------: | -------- | ---------------------------- |
+|       0      | 150A     | 150A                         |
+|       1      | 1011151A | 150A1011151A                 |
+|       2      | 1051151A | 150A1011151A1051151A         |
+|       3      | 1041251A | 150A1011151A1051151A1041251A |
+
