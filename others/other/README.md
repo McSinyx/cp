@@ -764,3 +764,94 @@ Một số nguyên là số lần xuất hiện của X trong S sau L lần bi�
 |       2      | 1051151A | 150A1011151A1051151A         |
 |       3      | 1041251A | 150A1011151A1051151A1041251A |
 
+## Nguyên tố tương đương
+
+Hai số tự nhiên được gọi là *Nguyên tố tương đương* nếu chúng có chung các ước
+số nguyên tố. Ví dụ các số 75 và 15 là nguyên tố tương đương vì cùng có các
+ước nguyên tố là 3 và 5.
+
+### Yêu cầu
+
+Xét các số từ *a* đến *b*, hãy đếm xem có bao nhiêu cặp số (*x*, *y*) mà *x* <
+*y* và *x*, *y* là nguyên tố tương đương.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên *T* là số bộ dữ liệu;
+* *T* dòng sau, mỗi dòng chứa hai số nguyên dương *a*, *b*.
+
+### Kết quả
+
+Gồm *T* dòng, mỗi dòng là số cặp số nguyên tố tương đương tương ứng với bộ dữ
+liệu.
+
+### Giới hạn
+
+* *T* ≤ 10;
+* *a* ≤ *b* ≤ 10<sub>6</sub>.
+
+### Ví dụ
+
+|      EP.INP      | EP.OUT |
+| ---------------- | :----: |
+| 2<br>1 5<br>1 10 | 1<br>4 |
+
+## Số dư
+
+Cho *n* số nguyên dương *a<sub>1</sub>*, *a<sub>2</sub>*, …, *a<sub>n</sub>*,
+trong đó tồn tại ít nhất một cặp sô khác nhau. Hãy tìm số nguyên dương *d* lớn
+nhất để *a<sub>1</sub>* mod *d* = *a<sub>2</sub>* mod *d* = … = *a<sub>n</sub>*.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên dương *n*;
+* Dòng thứ hai chứa *n* số nguyên dương *a<sub>1</sub>*, *a<sub>2</sub>*, …,
+  *a<sub>n</sub>*;
+
+### Kết quả
+
+Gồm một dòng chứa số nguyên dương *d* lớn nhất thỏa mãn điều kiện đề bài.
+
+### Giới hạn
+
+* *n* ≤ 100;
+* *a<sub>i</sub>* ≤ 10<sup>16</sup>.
+
+### Ví dụ
+
+| remain.inp | remain.out |
+| ---------- | :--------: |
+| 3<br>3 7 9 |      2     |
+
+## LCM
+
+Trong số học, bội số chung nhỏ nhất (tiếng Anh: *Least Common Multiple* hoặc
+*Lowest Common Multiple* (LCM)) của hai số nguyên *x* và *y* là số nguyên dương
+nhỏ nhất chia hết cho cả x và y.
+
+### Yêu cầu
+
+Cho hai số nguyên dương *a* và *b* (*a* ≤ *b*), hãy đếm số cặp số nguyên dương
+*x*, *y* sao cho LCM(*x*, *y*) = *a* × (*a*+1) × … × *b*.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên *T* là số bộ dữ liệu;
+* *T* dòng sau, mỗi dòng chứa hai số nguyên dương *a*, *b*.
+
+### Kết quả
+
+Gồm *T* dòng, mỗi dòng tương ứng với *a*, *b* của bộ dữ liệu vào là số cặp số
+nguyên dương thoả mãn yêu cầu đề bài. Vì kết quả có thể rất lớn, hãy đưa ra giá
+trị là phần dư khi chia cho 111539786.
+
+### Giới hạn
+
+* *T* ≤ 10;
+* *a* ≤ *b* ≤ 10<sup>6</sup>.
+
+### Ví dụ
+
+|     LCM.INP     | LCM.OUT |
+| --------------- | :-----: |
+| 2<br>2 3<br>5 5 | 9<br>3  |
