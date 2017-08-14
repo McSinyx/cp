@@ -855,3 +855,56 @@ trị là phần dư khi chia cho 111539786.
 |     LCM.INP     | LCM.OUT |
 | --------------- | :-----: |
 | 2<br>2 3<br>5 5 | 9<br>3  |
+
+## Khảo sát hang động ngầm
+
+Một nhóm chuyên gia có nhiệm vụ khảo sát một hang động ngầm mới được phát hiện.
+Nhiệm vụ của họ là vẽ sơ đồ hang, tìm hiểu về cấu trúc địa tầng, các hình thái
+của sự sống ở sâu trong lòng hang… Để đánh dấu đường đi, người ta dùng công cụ
+duy nhất là la bàn. Khi khởi hành và sau mỗi đơn vị khoảng cách, người phụ
+trách nhật ký của đoàn ghi lại hướng đi bằng một trong các chữ cái E, W, S, N
+tương ứng với việc đi theo các hướng Đông, Tây, Nam, Bắc (trong 1 đơn vị khoảng
+cách hướng đi không thay đổi). Một đoạn đường có thể đi lại khảo sát nhiều lần.
+Thông tin về đường đi được đưa vào máy tính sách tay để vẽ sơ đồ của hang đồng
+thời được dùng để tìm đường ra ngắn nhất theo lộ trình đã ghi nhận.
+
+### Yêu cầu
+
+Tìm độ dài đường ra ngắn nhất cho đoàn ra khỏi hang dựa theo đường ghi trong
+nhật ký.
+
+### Dữ liệu
+
+Gồm một số dòng các ký tự E, W, S, N, ghi liên tiếp nhau. Số ký tự không quá
+5000.
+
+### Kết quả
+
+Độ dài đường đi ngắn nhất tìm được.
+
+### Ví dụ
+
+|   KHAOSAT.INP    | KHAOSAT.OUT |                Giải thích                 |
+| ---------------- | :---------: | ----------------------------------------- |
+| EEENNWSEENWSSSWW |      6      | Đường đi ra theo chỉ dẫn của xâu `EENWWW` |
+
+## Chọn số
+
+Cho mảng A có kích thước NxN gồm các số nguyên không âm. Hãy chọn ra k số sao
+cho chọn một dòng có nhiều nhất 1 số được chọn, mỗi cột có nhiều nhất 1 số được
+chọn để tổng K số là lớn nhất.
+
+### Dữ liệu
+
+* Dòng đầu gồm 2 số N và K (K ≤ N ≤ 10);
+* N dòng tiếp theo là mảng A.
+
+### Kết quả
+
+Tổng lớn nhất chọn được và số cách chọn.
+
+### Ví dụ
+
+|          CHONSO1.INP           | CHONSO1.OUT |
+| ------------------------------ | :---------: |
+| 3 2<br>1 2 3<br>2 3 1<br>3 1 2 |     6 3     |
