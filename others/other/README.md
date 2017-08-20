@@ -717,6 +717,198 @@ Số *m* tìm được.
 | :--------: | :--------: |
 |    7 3     |     2      |
 
+## Chữ số
+
+Cho xâu M lập thành từ tập H = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F}
+và không bắt đầu bằng ký tự 0; xâu S giá trị ban đầu là xâu M.
+
+Người ta thực hiện L lần biến đổi theo các bước sau:
+
+* Đếm số lần xuất hiện các ký tự i thuộc tập H, đặt là K<sub>i</sub>.
+* Nếu K<sub>i</sub> > 0 người ta viết liên tiếp xâu biểu diễn K<sub>i</sub>
+  trong cơ số 16 và ký tự i, thu được giá trị mới của M.
+* Viết tiếp M vào cuối xâu S.
+
+### Yêu cầu
+
+Cho xâu M, số lần biến đổi L và X là một ký tự từ tập H. Hãy đếm số lần xuất
+hiện X trong S thu được sau L lần biến đổi.
+
+### Dữ liệu
+
+* Dòng thứ nhất chứa xâu M;
+* Dòng thứ hai chứa số tự nhiên L;
+* Dòng thứ ba chứa kí tự X.
+
+### Kết quả
+
+Một số nguyên là số lần xuất hiện của X trong S sau L lần biến đổi.
+
+### Giới hạn
+
+* M có độ dài không vượt quá 127 kí tự;
+* L ≤ 10<sup>7</sup>.
+
+### Ví dụ
+
+|   DIGIT.INP    | DIGIT.OUT |
+| -------------- | :-------: |
+| 150A<br>3<br>2 |     1     |
+
+#### Giải thích
+
+| Lần biến đổi |    M     |              S               |
+| :----------: | -------- | ---------------------------- |
+|       0      | 150A     | 150A                         |
+|       1      | 1011151A | 150A1011151A                 |
+|       2      | 1051151A | 150A1011151A1051151A         |
+|       3      | 1041251A | 150A1011151A1051151A1041251A |
+
+## Nguyên tố tương đương
+
+Hai số tự nhiên được gọi là *Nguyên tố tương đương* nếu chúng có chung các ước
+số nguyên tố. Ví dụ các số 75 và 15 là nguyên tố tương đương vì cùng có các
+ước nguyên tố là 3 và 5.
+
+### Yêu cầu
+
+Xét các số từ *a* đến *b*, hãy đếm xem có bao nhiêu cặp số (*x*, *y*) mà *x* <
+*y* và *x*, *y* là nguyên tố tương đương.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên *T* là số bộ dữ liệu;
+* *T* dòng sau, mỗi dòng chứa hai số nguyên dương *a*, *b*.
+
+### Kết quả
+
+Gồm *T* dòng, mỗi dòng là số cặp số nguyên tố tương đương tương ứng với bộ dữ
+liệu.
+
+### Giới hạn
+
+* *T* ≤ 10;
+* *a* ≤ *b* ≤ 10<sub>6</sub>.
+
+### Ví dụ
+
+|      EP.INP      | EP.OUT |
+| ---------------- | :----: |
+| 2<br>1 5<br>1 10 | 1<br>4 |
+
+## Số dư
+
+Cho *n* số nguyên dương *a<sub>1</sub>*, *a<sub>2</sub>*, …, *a<sub>n</sub>*,
+trong đó tồn tại ít nhất một cặp sô khác nhau. Hãy tìm số nguyên dương *d* lớn
+nhất để *a<sub>1</sub>* mod *d* = *a<sub>2</sub>* mod *d* = … = *a<sub>n</sub>*.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên dương *n*;
+* Dòng thứ hai chứa *n* số nguyên dương *a<sub>1</sub>*, *a<sub>2</sub>*, …,
+  *a<sub>n</sub>*;
+
+### Kết quả
+
+Gồm một dòng chứa số nguyên dương *d* lớn nhất thỏa mãn điều kiện đề bài.
+
+### Giới hạn
+
+* *n* ≤ 100;
+* *a<sub>i</sub>* ≤ 10<sup>16</sup>.
+
+### Ví dụ
+
+| remain.inp | remain.out |
+| ---------- | :--------: |
+| 3<br>3 7 9 |      2     |
+
+## LCM
+
+Trong số học, bội số chung nhỏ nhất (tiếng Anh: *Least Common Multiple* hoặc
+*Lowest Common Multiple* (LCM)) của hai số nguyên *x* và *y* là số nguyên dương
+nhỏ nhất chia hết cho cả x và y.
+
+### Yêu cầu
+
+Cho hai số nguyên dương *a* và *b* (*a* ≤ *b*), hãy đếm số cặp số nguyên dương
+*x*, *y* sao cho LCM(*x*, *y*) = *a* × (*a*+1) × … × *b*.
+
+### Dữ liệu
+
+* Dòng đầu chứa số nguyên *T* là số bộ dữ liệu;
+* *T* dòng sau, mỗi dòng chứa hai số nguyên dương *a*, *b*.
+
+### Kết quả
+
+Gồm *T* dòng, mỗi dòng tương ứng với *a*, *b* của bộ dữ liệu vào là số cặp số
+nguyên dương thoả mãn yêu cầu đề bài. Vì kết quả có thể rất lớn, hãy đưa ra giá
+trị là phần dư khi chia cho 111539786.
+
+### Giới hạn
+
+* *T* ≤ 10;
+* *a* ≤ *b* ≤ 10<sup>6</sup>.
+
+### Ví dụ
+
+|     LCM.INP     | LCM.OUT |
+| --------------- | :-----: |
+| 2<br>2 3<br>5 5 | 9<br>3  |
+
+## Khảo sát hang động ngầm
+
+Một nhóm chuyên gia có nhiệm vụ khảo sát một hang động ngầm mới được phát hiện.
+Nhiệm vụ của họ là vẽ sơ đồ hang, tìm hiểu về cấu trúc địa tầng, các hình thái
+của sự sống ở sâu trong lòng hang… Để đánh dấu đường đi, người ta dùng công cụ
+duy nhất là la bàn. Khi khởi hành và sau mỗi đơn vị khoảng cách, người phụ
+trách nhật ký của đoàn ghi lại hướng đi bằng một trong các chữ cái E, W, S, N
+tương ứng với việc đi theo các hướng Đông, Tây, Nam, Bắc (trong 1 đơn vị khoảng
+cách hướng đi không thay đổi). Một đoạn đường có thể đi lại khảo sát nhiều lần.
+Thông tin về đường đi được đưa vào máy tính sách tay để vẽ sơ đồ của hang đồng
+thời được dùng để tìm đường ra ngắn nhất theo lộ trình đã ghi nhận.
+
+### Yêu cầu
+
+Tìm độ dài đường ra ngắn nhất cho đoàn ra khỏi hang dựa theo đường ghi trong
+nhật ký.
+
+### Dữ liệu
+
+Gồm một số dòng các ký tự E, W, S, N, ghi liên tiếp nhau. Số ký tự không quá
+5000.
+
+### Kết quả
+
+Độ dài đường đi ngắn nhất tìm được.
+
+### Ví dụ
+
+|   KHAOSAT.INP    | KHAOSAT.OUT |                Giải thích                 |
+| ---------------- | :---------: | ----------------------------------------- |
+| EEENNWSEENWSSSWW |      6      | Đường đi ra theo chỉ dẫn của xâu `EENWWW` |
+
+## Chọn số
+
+Cho mảng A có kích thước NxN gồm các số nguyên không âm. Hãy chọn ra k số sao
+cho chọn một dòng có nhiều nhất 1 số được chọn, mỗi cột có nhiều nhất 1 số được
+chọn để tổng K số là lớn nhất.
+
+### Dữ liệu
+
+* Dòng đầu gồm 2 số N và K (K ≤ N ≤ 10);
+* N dòng tiếp theo là mảng A.
+
+### Kết quả
+
+Tổng lớn nhất chọn được và số cách chọn.
+
+### Ví dụ
+
+|          CHONSO1.INP           | CHONSO1.OUT |
+| ------------------------------ | :---------: |
+| 3 2<br>1 2 3<br>2 3 1<br>3 1 2 |     6 3     |
+
 ## Tính nước đọng
 
 Nền phẳng của 1 công trình xây dựng được chia thành lưới ô vuông đơn vị kích
