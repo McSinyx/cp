@@ -938,3 +938,44 @@ Một dòng duy nhất chứa số đơn vị khối nước đọng lại.
 |                               NUOC.INP                               | NUOC.OUT |
 | -------------------------------------------------------------------- | :------: |
 | 5 5<br>9 9 9 9 9<br>9 2 2 2 9<br>9 2 5 2 9<br>9 2 2 2 9<br>9 9 9 9 9 |    60    |
+
+## Vượt đại dương
+
+Bản đồ của một vùng biển được cho bởi một lưới các ô vuông đơn vị gồm N dòng, N
+cột (N ≤ 100), trong đó vùng biển được đánh số 0 và các vùng khác được đánh số
+1\. Giả sử rằng bên ngoài biên của lưới là đại dương mênh mông. Một hòn đảo là
+một tập các ô vuông có giá trị 1 và có chung cạnh với nhau, số các ô vuông này
+chính là diện tích của hòn đảo.
+
+Một ngư dân sống trên một hòn đảo sẽ vượt biển tìm đến một hòn đảo mới rộng lớn
+hơn để sinh sống. Từ một ô vuông trên bản đồ, anh ta chỉ được đến một ô khác
+chung cạnh với ô vuông mà anh ta đang đứng (cả trên cạn lẫn dưới biển). Khi
+vượt đại dương anh ta không muốn dừng chân trên một hòn đảo nào khác ngoài hòn
+đảo mà anh ta muốn đến.
+
+### Yêu cầu
+
+Cho trước bản đồ của vùng biển và vị trí của anh ngư dân, hãy cho biết có một
+hòn đảo nào khác có diện tích lớn hơn diện tích hòn đảo mà anh ngư dân đang
+sinh sống. Nếu có hãy chỉ giúp anh ngư dân một hành trình vượt biển đến một hòn
+đảo lớn hơn sao cho đoạn đường vượt biển là ngắn nhất. Nếu với cùng độ dài đoạn
+đường đó mà có thể đến được các đảo khác nhau thì ưu tiên đến đảo có diện tích
+lớn nhất.
+
+### Dữ liệu
+
+* Dòng đầu ghi số N cho biết kích thước bản đồ, hai số x, y là vị trí dòng và
+  cột trên bản đồ nơi mà anh ngư dân đang sinh sống.
+* N dòng tiếp theo, mỗi dòng ghi N số cho biết nội dung bản đồ các số trên cùng
+  một dòng cách nhau ít nhất một khoảng trắng.
+
+### Kết quả
+
+* Nếu không tìm được một hòn đảo thích hợp thì ghi số 0.
+* Nếu tìm được thì ghi độ dài của hành trình.
+
+### Ví dụ
+
+|                                VDD.INP                                 | VDD.OUT |
+| ---------------------------------------------------------------------- | :-----: |
+| 5 1 5<br>0 0 0 1 1<br>0 0 0 0 1<br>1 1 0 0 1<br>1 1 0 0 0<br>0 1 0 0 0 |    2    |
