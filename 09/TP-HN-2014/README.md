@@ -50,7 +50,7 @@ Hai số x và y trên cùng một dòng, cách nhau một dấu cách.
 
 ## Câu 2: Đua Robot
 
-Trong cuộc đua tốc độc có n Robot tham gia được đánh số từ 1 đến n. Đường đua
+Trong cuộc đua tốc độ có n Robot tham gia được đánh số từ 1 đến n. Đường đua
 có độ dài d (mét). Robot thứ i (1 ≤ i ≤ n) có vận tốc đua không đổi là
 v<sub>i</sub> (mét/phút). Các Robot xuất phát theo thứ tự từ 1 đến n và cách
 nhau 1 phút. Robot i gọi là vượt Robot j (1 ≤ j ≤ n) nếu i xuất phát sau j và
