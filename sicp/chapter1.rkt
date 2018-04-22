@@ -214,6 +214,7 @@
 (define (sum-cubes a b) (sum cube a inc b))
 (define (pi-sum a b)
   (sum (lambda (x) (/ 1.0 x (+ x 2))) a (lambda (x) (+ x 4)) b))
+(define dx 0.00001)
 (define (integral f a b dx)
   (* (sum f (+ a (/ dx 2.0)) (lambda (x) (+ x dx)) b) dx))
 
@@ -303,3 +304,91 @@
           ((and (negative? b-value) (positive? a-value))
            (search f b a))
           (else (error "Values are not of opposite sign" a b)))))
+
+(define (fixed-point f first-guess)
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (good-enough? guess next) next (try next))))
+  (try first-guess))
+
+(define (sqrt-fixed x)
+  (fixed-point (lambda (y) (average y (/ x y))) 1.0))
+
+; Exercise 1.35
+(define golden-ratio (fixed-point (lambda (x) (inc (/ x))) 1.0))
+
+; Exercise 1.37
+(define (cont-frac-recursive n d k)
+  (define (cont-frac n d k root)
+    (if (= k 0)
+        root
+        (cont-frac n d (dec k) (/ (n k) (+ (d k) root)))))
+  (if (> k 0)
+      (cont-frac n d (dec k) (/ (n k) (d k)))
+      (error "You weirdo!")))
+(define (cont-frac-iterative n d k)
+  (define (cont-frac n d k c)
+    (if (< c k)
+        (/ (n c) (+ (d c) (cont-frac n d k (inc c))))
+        (/ (n k) (d k)))) ; UB if k is not a positive integer
+  (cont-frac n d k 1))
+
+; Exercise 1.38
+(define (e-2 precision)
+  (cont-frac-iterative
+   (lambda (i) 1.0)
+   (lambda (i) (if (= (remainder i 3) 2) (* (inc i) 2/3) 1.0))
+   precision))
+
+; Exercise 1.39
+(define (tan-cf x k)
+  (cont-frac-iterative
+   (lambda (i) (if (= i 1) x (square x)))
+   (lambda (i) ((if (even? i) - +) (dec (* i 2))))
+   k))
+
+(define (average-damp f) (lambda (x) (average x (f x))))
+(define (newton-method g guess)
+  (define (deriv g)
+    (lambda (x) (/ (- (g (+ x dx)) (g x)) dx)))
+  (let ((f (lambda (x) (- x (/ (g x) ((deriv g) x))))))
+    (fixed-point f guess)))
+
+(define (fixed-point-of-transform g transform guess)
+  (fixed-point (transform g) guess))
+
+; Exercise 1.40
+(define (cubic a b c)
+  (lambda (x) (+ (cube x) (* (square x) a) (* x b) c)))
+
+; Exercise 1.41
+(define (duplicate f) (lambda (x) (f (f x))))
+
+; Exercise 1.42
+(define (compose f g) (lambda (x) (f (g x))))
+
+; Exercise 1.43
+(define (repeated f times)
+  (cond ((< times 1) identity)
+        ((= times 1) f)
+        (else (compose f (repeated f (dec times))))))
+
+; Exercise 1.44
+(define (smooth f)
+  (lambda (x) (/ (+ (f (- x dx)) (f x) (f (+ x dx))) 3)))
+(define (repeated-smooth f times) (repeated smooth times))
+
+; Exercise 1.45
+(define (root n x)
+  (fixed-point-of-transform
+   (lambda (y) (/ x (expt y (dec n))))
+   (repeated average-damp (log n 2))
+   1.0))
+
+; Exercise 1.46
+(define (iter-improve good-enough improve)
+  (lambda (x)
+    (let ((xim (improve x)))
+      (if (good-enough x xim)
+          xim
+          ((iter-improve good-enough improve) xim)))))
