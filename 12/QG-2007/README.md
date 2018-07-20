@@ -40,4 +40,4 @@ có dãy con nào thỏa mãn điều kiện đặt ra thì d = 0).
 Các dãy con không giảm của dãy số đã cho mà các phần tử của nó đều thuộc dãy
 (u<sub>k</sub>) là: 6, 6, 15 và 3, 21 (vì u<sub>2</sub> = 3, u<sub>3</sub> = 6,
 u<sub>5</sub> = 15, u<sub>6</sub> = 21). Dãy cần tìm là 6, 6, 15 có độ dài là
-3. 
+3.

@@ -1,0 +1,6 @@
+[submodule "paip"]
+	path = paip/book
+	url = https://github.com/norvig/paip-lisp.git
+[submodule "paip/book"]
+	path = paip/book
+	url = https://github.com/norvig/paip-lisp
