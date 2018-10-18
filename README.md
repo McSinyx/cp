@@ -13,6 +13,7 @@ Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 | `others`               | Các đề bài không rõ nguồn                         |
 | `paip`                 | Paradigms of Artificial Intelligence Programming  |
 | `sicp`                 | Structure and Interpretation of Computer Programs |
+| `toys`                 | Programs that don't deserve their own repo        |
 
 [0]: http://www.hsin.hr/coci/
 [1]: http://laptrinh.ntu.edu.vn/

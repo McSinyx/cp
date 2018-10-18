@@ -8,19 +8,19 @@ the library while doing your matrix homework ;-P
 """
 
 from itertools import islice
-from math import inf, isclose
+from math import inf
 from numpy import array
 
 
-def non0(row):
-    """Return index of first nonzero entry in row."""
+def leadidx(row):
+    """Return index of leading entry in row."""
     for index, entry in enumerate(row):
         if entry: return index
     else:
         return inf
 
 
-def gauss(mat):
+def gauss(mat, log=False):
     """Return a matrix in row-echelon form, which is row-equivalent to mat,
     along with shorthand method of notation of row operations performed.
     """
@@ -30,17 +30,19 @@ def gauss(mat):
     for i in range(m):
         while i + 1 < m:
             eye, ar = min(islice(enumerate(matrix), i + 1, m),
-                          default=inf, key=(lambda t: non0(t[1])))
-            if non0(ar) >= non0(matrix[i]): break
+                          key=(lambda t: leadidx(t[1])))
+            if leadidx(ar) >= leadidx(matrix[i]): break
             operations.append('R{} <-> R{}'.format(i + 1, eye + 1))
             matrix[i], matrix[eye] = ar, matrix[i]
+            if log: print(operations[-1], *matrix, sep='\n')
 
         row = matrix[i]
-        j = non0(row)
+        j = leadidx(row)
         if j == inf: return matrix, operations
         if row[j] != 1:     # floating point accuracy is a total disaster tho
             operations.append('({})R{} -> R{}'.format(1 / row[j], i+1, i+1))
             row /= row[j]
+            if log: print(operations[-1], *matrix, sep='\n')
 
         for l in range(i + 1, m):
             k = -matrix[l][j]
@@ -48,25 +50,27 @@ def gauss(mat):
                 operations.append('R{} + {}R{} -> R{}'.format(
                     l + 1, '' if k == 1 else '({})'.format(k), i + 1, l + 1))
                 matrix[l] += k * row
+                if log: print(operations[-1], *matrix, sep='\n')
     return matrix, operations
 
 
-def gauss_jordan(mat):
+def gauss_jordan(mat, log=False):
     """Return a matrix in reduced row-echelon form, which is
     row-equivalent to mat, along with shorthand method of notation of
     row operations performed.
     """
     if mat.size == 0: return mat, []
-    matrix, operations = gauss(mat)
+    matrix, operations = gauss(mat, log)
     m = len(mat)
     for i in range(1, m):
-        j = non0(matrix[i])
+        j = leadidx(matrix[i])
         if j == inf: return matrix, operations
         k = -matrix[i - 1][j]
         if k:
             operations.append('R{} + {}R{} -> R{}'.format(
                 i, '' if k == 1 else '({})'.format(k), i + 1, i))
             matrix[i - 1] += k * matrix[i]
+            if log: print(operations[-1], *matrix, sep='\n')
     return matrix, operations
 
 
