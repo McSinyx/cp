@@ -84,3 +84,48 @@ sub estimate-pi {
     1 / $factor / Srinivasa-Ramanujan
 }
 #put abs estimate-pi() - pi;
+
+sub ducks { map * ~ 'ack' , flat('J'..'N', 'Ou', 'P', 'Qu') }
+#put ducks;
+
+sub count(Str $string, Str $substr, Int $index = 0, Int $result = 0) {
+    my $i = index $string, $substr, $index;
+    return $result if $i === Any;
+    count $string, $substr, $i + 1, $result + 1
+}
+#put count 'banana', 'na';
+
+sub bubble-sort(@seq is copy) {
+    my $done;
+    repeat {
+        $done = True;
+        for ^(@seq.elems - 1) -> $i {
+            if @seq[$i] > @seq[$i+1] {
+                (@seq[$i], @seq[$i+1]) = @seq[$i+1], @seq[$i];
+                $done = False
+            }
+        }
+    } until $done;
+    @seq
+}
+#put bubble-sort <4 2 6 5 3 9 1>;
+
+sub select-sort(@seq is copy) {
+    for ^(@seq.elems - 1) -> $i {
+        for $i..^@seq.elems -> $j {
+            (@seq[$i], @seq[$j]) = @seq[$j], @seq[$i] if @seq[$i] > @seq[$j]
+        }
+    }
+    @seq
+}
+#put select-sort <4 2 6 5 3 9 1>;
+
+sub insert-sort(@seq is copy) {
+    for 1..^@seq.elems -> $i {
+        loop (my $j = $i; $j and @seq[$j] < @seq[$j - 1]; $j--) {
+            (@seq[$j], @seq[$j - 1]) = @seq[$j - 1], @seq[$j] 
+        }
+    }
+    @seq
+}
+#put insert-sort <4 2 6 5 3 9 1>;
