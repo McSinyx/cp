@@ -1,6 +1,7 @@
 #!/usr/bin/env perl6
 # Exercise 2.2.1
-sub sphere-volume($r) { 4/3 * π * $r³ }
+sub sphere-volume(Numeric(Cool) $r) { 4/3 * π * $r³ }
+#put sphere-volume('5');
 
 # Exercise 3.1
 # Notice the operator precedence
@@ -90,7 +91,7 @@ sub ducks { map * ~ 'ack' , flat('J'..'N', 'Ou', 'P', 'Qu') }
 
 sub count(Str $string, Str $substr, Int $index = 0, Int $result = 0) {
     my $i = index $string, $substr, $index;
-    return $result if $i === Any;
+    return $result unless defined $i;
     count $string, $substr, $i + 1, $result + 1
 }
 #put count 'banana', 'na';
@@ -129,3 +130,84 @@ sub insert-sort(@seq is copy) {
     @seq
 }
 #put insert-sort <4 2 6 5 3 9 1>;
+
+# Some simple regexes
+#put $/ if "π ≈ $(π)" ~~ /\d**10/;
+#put $/ if '1234567890' ~~ /^ <[0..7]>+ $/;
+#put $/ if ' Hello, World!' ~~ /\w+/;
+#put $/ if 'qaz asdf zxcv' ~~ /<< a \w*/;
+#put $/ if 'hmmm ooer' ~~ /<< <[aeiou]> \w*/;
+#put $/ if '0621323 0612345678- 0701234567' ~~ /<< 0 <[67]> \d**8 >>/;
+#put $/ if 'hMmM OoEr' ~~ /:i << <[aeiou]> \w*/;
+#put $/ if 'hmmm ooer' ~~ /(\w)$0/;
+#put $1 if 'hmmm ooer' ~~ /(\w) $0 .* ((\w) $0)/;
+
+sub YYYY-MM-DD(Str $string) {
+    "$0-$1-$2" if $string ~~ /<< (\d\d\d\d) \- (\d\d) \- (\d\d) >>
+    <?{0 < $1 < 13 && $2 && ($1 - 2 && $2 < 31 + ($1 - 1)%7%%2 ||
+                             $2 < 29 + $0%%400 + ($0%100)*($0%%4))}>/
+}
+#put YYYY-MM-DD '986-05-19-1700-02-29-1234-11-31-01-10-2000-02-29';
+
+# Exercise 7.3
+sub rotate-ascii(Str $string, Int $rotation) {
+    $string.comb.map({ m/<[A..Z]>/ && chr(65 + ($/.ord + $rotation - 65)%26) ||
+                       m/<[a..z]>/ && chr(97 + ($/.ord + $rotation - 97)%26) ||
+                       $_ }).join
+}
+#put rotate-ascii 'cheer', 7;
+#put rotate-ascii 'melon', -10;
+#put rotate-ascii 'HAL', 1;
+
+# Exercise 8.1
+#put $_ if $_.chars > 20 for '/usr/share/dict/words'.IO.lines;
+
+# Exercise 8.2
+sub words(&predicate) { grep &predicate, '/usr/share/dict/words'.IO.lines }
+#put $_ for words({ not /<[Ee]>/ });
+
+# Exercise 8.3
+multi avoids(@letters, @forbidden) { ($_ ∉ @letters for @forbidden).all }
+multi avoids(Str $word, Str $forbidden) { avoids $word.comb, $forbidden.comb }
+sub least-forbidden(Int $n) {
+    my %avoids = [$_ => {} for 'a'..'z'];
+    for '/usr/share/dict/words'.IO.lines.map(~*.lc).Set.keys -> $word {
+        %avoids{$_}{$word} = True unless defined index $word, $_ for 'a'..'z';
+    }
+
+    # Despacito (baby take it slow so we can last long)
+    [([∩] %avoids{$_}).elems => $_ for combinations('a'..'z', $n)].max.value
+}
+# Unless run on a supercomputer, there ain't no way
+# one has the patience to wait for it to finish.
+#say least-forbidden 5;
+
+# Exercise 8.4
+my $uses-only = <a c e f h l o>.Set;
+#put words -> $word { ($_ ∈ $uses-only for $word.comb).all };
+
+# Exercise 8.5
+my @uses-all = <a e i o u y>;
+#put words -> $word { (defined index $word, $_ for @uses-all).all };
+
+# Exercise 8.6
+multi is-abcdedarian(@word) { @word ~~ @word.sort }
+multi is-abcdedarian(Str $word) { is-abcdedarian $word.lc.comb }
+#put words &is-abcdedarian;
+
+# Exercise 8.7
+#put words { m/(.) $0 (.) $1 (.) $2/ };
+
+# Exercise 8.8
+#.put if [substr($_, 2), substr($_ + 1, 1), substr($_ + 2, 1, 4), ~($_ + 4)]
+#        .map(&is-palindrome).all for 100_000..999_996
+
+# Exercise 8.9
+sub age-reversible(Int $times) {
+    for '10'..'90' -> $car {
+        my $diff = $car - $car.flip;
+        my @reversible = grep { $_.flip == $_ - $diff }, $car..'99';
+        return @reversible if @reversible.elems == $times
+    }
+}
+#put age-reversible(8)[*-3].flip;
