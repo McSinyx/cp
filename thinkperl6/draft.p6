@@ -62,7 +62,7 @@ multi ack(Int $m where * > 0, Int $n where * > 0) {
 sub is-palindrome(Str $str) { $str eq $str.flip }
 
 # Exercise 5.4
-sub is-power-of($a, $b) { { $_ == $_.Int }(log $a, $b) }
+sub is-power-of($a, $b) { { $_ == .Int }(log $a, $b) }
 
 # Exercise 5.5: gcd is a built-in operator
 
@@ -100,9 +100,9 @@ sub bubble-sort(@seq is copy) {
     my $done;
     repeat {
         $done = True;
-        for ^(@seq.elems - 1) -> $i {
+        for ^@seq.end -> $i {
             if @seq[$i] > @seq[$i+1] {
-                (@seq[$i], @seq[$i+1]) = @seq[$i+1], @seq[$i];
+                @seq[$i, $i + 1] = @seq[$i + 1, $i];
                 $done = False
             }
         }
@@ -112,9 +112,9 @@ sub bubble-sort(@seq is copy) {
 #put bubble-sort <4 2 6 5 3 9 1>;
 
 sub select-sort(@seq is copy) {
-    for ^(@seq.elems - 1) -> $i {
-        for $i..^@seq.elems -> $j {
-            (@seq[$i], @seq[$j]) = @seq[$j], @seq[$i] if @seq[$i] > @seq[$j]
+    for ^@seq.end -> $i {
+        for $i..@seq.end -> $j {
+            @seq[$i, $j] = @seq[$j, $i] if @seq[$i] > @seq[$j]
         }
     }
     @seq
@@ -122,9 +122,9 @@ sub select-sort(@seq is copy) {
 #put select-sort <4 2 6 5 3 9 1>;
 
 sub insert-sort(@seq is copy) {
-    for 1..^@seq.elems -> $i {
+    for 1..@seq.end -> $i {
         loop (my $j = $i; $j and @seq[$j] < @seq[$j - 1]; $j--) {
-            (@seq[$j], @seq[$j - 1]) = @seq[$j - 1], @seq[$j] 
+            @seq[$j, $j - 1] = @seq[$j - 1, $j]
         }
     }
     @seq
@@ -160,18 +160,18 @@ sub rotate-ascii(Str $string, Int $rotation) {
 #put rotate-ascii 'HAL', 1;
 
 # Exercise 8.1
-#put $_ if $_.chars > 20 for '/usr/share/dict/words'.IO.lines;
+#.put if .chars > 20 for '/usr/share/dict/words'.IO.lines;
 
 # Exercise 8.2
-sub words(&predicate) { grep &predicate, '/usr/share/dict/words'.IO.lines }
-#put $_ for words({ not /<[Ee]>/ });
+sub words(&predicate) { '/usr/share/dict/words'.IO.lines.grep(&predicate) }
+#.put for words({ not /<[Ee]>/ });
 
 # Exercise 8.3
 multi avoids(@letters, @forbidden) { ($_ ∉ @letters for @forbidden).all }
 multi avoids(Str $word, Str $forbidden) { avoids $word.comb, $forbidden.comb }
 sub least-forbidden(Int $n) {
     my %avoids = [$_ => {} for 'a'..'z'];
-    for '/usr/share/dict/words'.IO.lines.map(~*.lc).Set.keys -> $word {
+    for '/usr/share/dict/words'.IO.lines.map(~*.lc).unique -> $word {
         %avoids{$_}{$word} = True unless defined index $word, $_ for 'a'..'z';
     }
 
@@ -183,31 +183,114 @@ sub least-forbidden(Int $n) {
 #say least-forbidden 5;
 
 # Exercise 8.4
-my $uses-only = <a c e f h l o>.Set;
-#put words -> $word { ($_ ∈ $uses-only for $word.comb).all };
+#.put for words { m:i/^ <[acefhlo]>+ $/ };
 
 # Exercise 8.5
 my @uses-all = <a e i o u y>;
-#put words -> $word { (defined index $word, $_ for @uses-all).all };
+#.put for words { (defined index $^word, $_ for @uses-all).all };
 
 # Exercise 8.6
-multi is-abcdedarian(@word) { @word ~~ @word.sort }
-multi is-abcdedarian(Str $word) { is-abcdedarian $word.lc.comb }
-#put words &is-abcdedarian;
+sub is-abcdedarian(Str $word) { [lt] $word.lc.comb }
+#.put for words &is-abcdedarian;
 
 # Exercise 8.7
-#put words { m/(.) $0 (.) $1 (.) $2/ };
+#.put for words { m/(.) $0 (.) $1 (.) $2/ };
 
 # Exercise 8.8
-#.put if [substr($_, 2), substr($_ + 1, 1), substr($_ + 2, 1, 4), ~($_ + 4)]
-#        .map(&is-palindrome).all for 100_000..999_996
+#.put if [.substr(2), substr($_ + 1, 1), substr($_ + 2, 1, 4), ~($_ + 4)]
+#        .map(&is-palindrome).all for 100_000..999_996;
 
 # Exercise 8.9
 sub age-reversible(Int $times) {
     for '10'..'90' -> $car {
         my $diff = $car - $car.flip;
-        my @reversible = grep { $_.flip == $_ - $diff }, $car..'99';
-        return @reversible if @reversible.elems == $times
+        my @reversible = grep { .flip == $_ - $diff }, $car..'99';
+        return @reversible if @reversible == $times
     }
 }
 #put age-reversible(8)[*-3].flip;
+
+# Exercise 9.1
+multi nested-sum(Numeric $number) { $number }
+multi nested-sum(@array) { @array.map(&nested-sum).sum }
+#put nested-sum [1, 2, [3, 4], [5, [6, 7]], [[8], [9, [10]]]];
+
+# Exercise 9.2
+#put [\+] 1..4;
+
+# Exercise 9.5
+#put [≤] (1, 2, 2);
+#put [≤] (1, 2, 1);
+
+# Exercise 9.6
+sub is-anagram(Str $this, Str $that) { $this.comb.sort ~~ $that.comb.sort }
+#put is-anagram 'this', 'shit';
+
+# Exercise 9.7
+sub has-duplicates(@array) { @array.unique != @array }
+#put has-duplicates <o o e r>;
+
+# Exercise 9.8
+sub birthday-paradox(Int $n, Int $T) {
+    sum(map { has-duplicates map { Int(rand * 365.25) }, ^$n }, ^$T) / $T
+}
+#put birthday-paradox 23, 10000;
+
+# Exercise 9.10
+sub bisect(@a, $x, Int $low = 0, Int $high = @a.elems) {
+    return unless $low < $high;
+    my $mid = ($low + $high) div 2;
+    my $cmp = @a[$mid] cmp $x;
+    return $mid unless $cmp;
+    $cmp ~~ More ?? bisect @a, $x, $low, $mid !! bisect @a, $x, $mid+1, $high
+}
+
+# Exercise 9.11
+#my @words = '/usr/share/dict/words'.IO.lines;
+#put "$_ $(.flip)" if /^(.)$0*$/ ^ defined bisect @words, .flip for @words;
+
+# Exercise 9.12
+sub interlock(Str $word, @words) {
+    my ($evens, $odds);
+    for $word.comb -> $even, $odd = '' {
+        $evens ~= $even;
+        $odds ~= $odd
+    }
+    bisect(@words, $evens).defined && bisect(@words, $odds).defined
+}
+#my @words = '/usr/share/dict/words'.IO.lines;
+#.put for @words.grep:{ interlock($_, @words) };
+
+# Exercise 10.3
+sub hash-duplicates(@array) {
+    my %hash;
+    for @array {
+        return True if %hash{$_};
+        %hash{$_} = True
+    }
+    False
+}
+#put hash-duplicates <o o e r>;
+
+# Exercise 10.4
+sub rotations {
+    my %words = '/usr/share/dict/words'.IO.lines.grep(/^ <[a..z]>+ $/).Set;
+    my @result;
+    for %words.keys -> $word {
+        next unless %words{$word};
+        (%words{$word}, $_) = False, $word;
+        my $virgin = True;
+        loop (tr/a..z/b..za/; $_ cmp $word; tr/a..z/b..za/) {
+            next unless %words{$_};
+            %words{$_} = False;
+            if $virgin {
+                $virgin = False;
+                @result.push([$word, $_])
+            } else {
+                @result[*-1].push($_)
+            }
+        }
+    }
+    @result
+}
+#.put for rotations;
