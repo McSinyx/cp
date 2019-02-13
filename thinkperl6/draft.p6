@@ -102,7 +102,7 @@ sub bubble-sort(@seq is copy) {
         $done = True;
         for ^@seq.end -> $i {
             if @seq[$i] > @seq[$i+1] {
-                @seq[$i, $i + 1] = @seq[$i + 1, $i];
+                @seq[$i, $i + 1] .= reverse
                 $done = False
             }
         }
@@ -114,7 +114,7 @@ sub bubble-sort(@seq is copy) {
 sub select-sort(@seq is copy) {
     for ^@seq.end -> $i {
         for $i..@seq.end -> $j {
-            @seq[$i, $j] = @seq[$j, $i] if @seq[$i] > @seq[$j]
+            @seq[$i, $j] .= reverse if @seq[$i] > @seq[$j]
         }
     }
     @seq
@@ -124,7 +124,7 @@ sub select-sort(@seq is copy) {
 sub insert-sort(@seq is copy) {
     for 1..@seq.end -> $i {
         loop (my $j = $i; $j and @seq[$j] < @seq[$j - 1]; $j--) {
-            @seq[$j, $j - 1] = @seq[$j - 1, $j]
+            @seq[$j, $j - 1] .= reverse
         }
     }
     @seq
@@ -232,7 +232,7 @@ sub has-duplicates(@array) { @array.unique != @array }
 
 # Exercise 9.8
 sub birthday-paradox(Int $n, Int $T) {
-    sum(map { has-duplicates map { Int(rand * 365.25) }, ^$n }, ^$T) / $T
+    sum(map { has-duplicates map { 365.25.rand.Int }, ^$n }, ^$T) / $T
 }
 #put birthday-paradox 23, 10000;
 
@@ -240,9 +240,11 @@ sub birthday-paradox(Int $n, Int $T) {
 sub bisect(@a, $x, Int $low = 0, Int $high = @a.elems) {
     return unless $low < $high;
     my $mid = ($low + $high) div 2;
-    my $cmp = @a[$mid] cmp $x;
-    return $mid unless $cmp;
-    $cmp ~~ More ?? bisect @a, $x, $low, $mid !! bisect @a, $x, $mid+1, $high
+    given @a[$mid] cmp $x {
+        when Less { bisect @a, $x, $mid + 1, $high }
+        when Same { $mid }
+        when More { bisect @a, $x, $low, $mid }
+    }
 }
 
 # Exercise 9.11
@@ -293,4 +295,4 @@ sub rotations {
     }
     @result
 }
-#.put for rotations;
+.put for rotations;
