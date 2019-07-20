@@ -8,8 +8,10 @@ Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 | `COCI`                 | [Giải Tin học Croatia mở rộng][0]                 |
 | `NTU`                  | [Đại học Nha Trang][1]                            |
 | `THT`                  | Hội thi Tin học trẻ                               |
-| `codeforces`           | [Codeforces][2]                                   |
-| `daily`                | [/r/dailyprogrammer][3]                           |
+| `codechef`             | [Codechef][2]                                     |
+| `codeforces`           | [Codeforces][3]                                   |
+| `cpptour`              | A Tour of C++                                     |
+| `daily`                | [/r/dailyprogrammer][4]                           |
 | `others`               | Các đề bài không rõ nguồn                         |
 | `paip`                 | Paradigms of Artificial Intelligence Programming  |
 | `sicp`                 | Structure and Interpretation of Computer Programs |
@@ -18,8 +20,9 @@ Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 
 [0]: http://www.hsin.hr/coci/
 [1]: http://laptrinh.ntu.edu.vn/
-[2]: http://codeforces.com/
-[3]: https://www.reddit.com/r/dailyprogrammer
+[2]: http://codechef.com/
+[3]: http://codeforces.com/
+[4]: https://www.reddit.com/r/dailyprogrammer
 
 Ở mỗi thư mục con sẽ có tệp `README.md` ghi lại đề bài. Riêng `COCI`, `NTU` và
 `codeforces` sẽ chỉ có danh sách đường dẫn tới các đề bài. Đề bài sẽ được cập
@@ -31,7 +34,9 @@ Phiên bản các trình dịch sử dụng test:
 | ----------- | ------------------ |
 | C           | GNU GCC 4.9+       |
 | Common Lisp | SBCL 1.4.8+        |
+| Lua         | Lua 5.1+           |
 | Pascal      | Free Pascal 2.6.4+ |
+| Perl 6      | Rakudo 2018.12+    |
 | Python      | Python 3.5+        |
 | Scheme      | GNU Guile 2.0.11+  |
 
