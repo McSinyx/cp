@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <stdexcept>
 
@@ -13,8 +14,16 @@ neg_length ()
   catch (bad_alloc) { cout << "BIG OOF!" << endl; }
 }
 
+void
+init ()
+{
+  Vector v {7.4, 3.2, 5.2, 6.9, 9.5, 4.2, 21.7};
+  assert(v[5] == 4.2);
+}
+
 int
 main ()
 {
   neg_length ();
+  init ();
 }

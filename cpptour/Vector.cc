@@ -12,14 +12,27 @@ Vector::Vector (int s)
   sz = s;
 }
 
-double& Vector::operator[] (int i)
+Vector::Vector (initializer_list<double> lst)
+: elem {new double[lst.size()]}, sz {static_cast<int> (lst.size())}
+{
+  copy(lst.begin(), lst.end(), elem);
+}
+
+Vector::~Vector ()
+{
+  delete[] elem;
+}
+
+int
+Vector::size () noexcept
+{
+  return sz;
+}
+
+double&
+Vector::operator[] (int i)
 {
   if (i < 0 || size() <= i)
     throw out_of_range{"Vector::operator[]"};
   return elem[i];
-}
-
-int Vector::size () noexcept
-{
-  return sz;
 }
