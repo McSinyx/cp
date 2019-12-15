@@ -2,21 +2,22 @@
 
 Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 
-|         Thư mục        |                   Nguồn đề bài                    |
-| ---------------------- | ------------------------------------------------- |
-| `09`, `10`, `11`, `12` | Đề thi, kiểm tra phân theo lớp                    |
-| `COCI`                 | [Giải Tin học Croatia mở rộng][0]                 |
-| `NTU`                  | [Đại học Nha Trang][1]                            |
-| `THT`                  | Hội thi Tin học trẻ                               |
-| `codechef`             | [Codechef][2]                                     |
-| `codeforces`           | [Codeforces][3]                                   |
-| `cpptour`              | A Tour of C++                                     |
-| `daily`                | [/r/dailyprogrammer][4]                           |
-| `others`               | Các đề bài không rõ nguồn                         |
-| `paip`                 | Paradigms of Artificial Intelligence Programming  |
-| `sicp`                 | Structure and Interpretation of Computer Programs |
-| `thinkperl6`           | Think Perl 6                                      |
-| `toys`                 | Programs that don't deserve their own repo        |
+|    Thư mục   |                      Nguồn đề bài                      |
+| ------------ | ------------------------------------------------------ |
+| `\d{2}`      | Đề thi, kiểm tra phân theo lớp                         |
+| `COCI`       | [Giải Tin học Croatia mở rộng][0]                      |
+| `NTU`        | [Đại học Nha Trang][1]                                 |
+| `THT`        | Hội thi Tin học trẻ                                    |
+| `codechef`   | [Codechef][2]                                          |
+| `codeforces` | [Codeforces][3]                                        |
+| `cpptour`    | A Tour of C++                                          |
+| `daily`      | [/r/dailyprogrammer][4]                                |
+| `others`     | Các đề bài không rõ nguồn                              |
+| `paip`       | Paradigms of Artificial Intelligence Programming       |
+| `sicp`       | Structure and Interpretation of Computer Programs      |
+| `thinkperl6` | Think Perl 6                                           |
+| `toys`       | Programs that don't deserve their own repo             |
+| `usth`       | L'Université des Sciences et des Technologies de Hanoï |
 
 [0]: http://www.hsin.hr/coci/
 [1]: http://laptrinh.ntu.edu.vn/
@@ -34,6 +35,7 @@ Phiên bản các trình dịch sử dụng test:
 | ----------- | ------------------ |
 | C           | GNU GCC 4.9+       |
 | Common Lisp | SBCL 1.4.8+        |
+| Java        | OpenJDK 11+        |
 | Lua         | Lua 5.1+           |
 | Pascal      | Free Pascal 2.6.4+ |
 | Perl 6      | Rakudo 2018.12+    |
