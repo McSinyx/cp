@@ -1,0 +1,818 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usetikzlibrary{shapes.geometric,angles,quotes}
+
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\curl}{\mathrm{curl}}
+\newcommand{\del}{\mathrm{div}}
+\newcommand{\unit}[1]{\hat{\textbf #1}}
+\newcommand{\anonym}[2]{\left(#1 \mapsto #2\right)}
+\newcommand{\tho}[3][]{\dfrac{\partial #1 #2}{\partial #3 #1}}
+\newcommand{\leibniz}[3][]{\dfrac{\mathrm{d} #1 #2}{\mathrm{d} #3 #1}}
+\newcommand{\chain}[3]{\tho{#1}{#2}\tho{#2}{#3}}
+\newcommand{\exercise}[1]{\noindent\textbf{#1.}}
+
+\title{Cuculutu Review}
+\author{Nguyễn Gia Phong}
+\date{Summer 2019}
+
+\begin{document}
+\maketitle
+\setcounter{section}{13}
+\section{Partial Derivatives}
+\setcounter{subsection}{1}
+\subsection{Limits et Continuity}
+\exercise{37} Determine the set of points at which the function is continuous.
+\[f(x, y) = \begin{dcases}
+  \frac{x^2 y^3}{2x^2 + y^2} &\text{if }(x, y) \neq (0, 0)\\
+  1 &\text{if }(x, y) = (0, 0)
+\end{dcases}\]
+
+By AM-GM inequality,
+\[x^2 + x^2 + y^2 \geq 3x^2|y|
+\iff \frac{x^2|y^3|}{3x^2|y|} \geq \frac{x^2|y^3|}{2x^2 + y^2} \geq 0
+\iff \frac{-y^2}{3} \leq \frac{x^2 y^3}{2x^2 + y^2} \leq \frac{y^2}{3}\]
+
+Since $\pm y^2/3 \to 0$ as $y \to 0$, by the Squeeze Theorem,
+\[\lim_{x\to 0\atop y\to 0}f(x, y) = 0 \neq f(0, 0)\]
+
+Therefore $f$ is discontiuous at (0, 0). On $\mathbb R^2\backslash\{0\}$,
+$f$ is a rational function and thus is continuous on its domain.
+
+\exercise{44} Let
+\[f(x, y) = \begin{dcases}
+  0 &\text{if }y \leq 0\text{ or }y \geq x^4\\
+  1 &\text{if }0 < y < x^4
+\end{dcases}\]
+
+\begin{enumerate}[(a)]
+  \item For all paths of the form $y = mx^a$ with $a < 4 \iff 4 - a > 0$,
+    consider the function $g(x) = |y| - x^4 = |m|\cdot|x|^a - |x|^4$:
+    \[g(x) \geq 0 \iff |m|\cdot|x|^a \geq |x|^4 \iff |x| \leq \sqrt[4-a]{|m|}\]
+    When this condition is met, either $y \leq 0$ or $y = |y| \geq x^4$,
+    so $f(x, y) = 0$. Therefore $f(x, y) = 0 \to 0$ as $(x, y) \to (0, 0)$ on
+    \[\left\{(x, y)\,\Big|\,
+    x \in \left[-\sqrt[4-a]{|m|}, \sqrt[4-a]{|m|}\right] \cap D\right\}\]
+    which includes the point (0, 0) if the domain $D$ of $x \mapsto mx^a$ does.
+  \item It is trivial that $f(0, 0) = 0$. Along $y = x^4/2$, for $x \neq 0$,
+    \[x^4 - y = x^4 - \frac{x^4}{2} = \frac{x^4}{2} > 0
+    \iff y < x^4 \Longrightarrow f(x, y) = 1\]
+    Hence \[\lim_{x\to 0\atop y\to 0} f\left(x, \frac{x^4}{2}\right) = 1
+    \neq f(0, 0) = 0\] or $f$ is discontiuous on $y = x^4/2$ at (0, 0).
+  \item Using the same reasoning, one may also easily show that
+    $f$ is discontiuous on the entire curve $y = x^4/20$.
+\end{enumerate}
+
+\subsection{Partial Derivatives}
+\exercise{33} Find the first partial derivatives of the function.
+\begin{align*}
+  w &= \ln(x + 2y + 3z)\\
+  \tho{w}{x} &= \frac{1}{x + 2y + 3z}\cdot\tho{(x + 2y + 3z)}{x}
+              = \frac{1}{x + 2y + 3z}\\
+  \tho{w}{y} &= \frac{1}{x + 2y + 3z}\cdot\tho{(x + 2y + 3z)}{y}
+              = \frac{2}{x + 2y + 3z}\\
+  \tho{w}{z} &= \frac{1}{x + 2y + 3z}\cdot\tho{(x + 2y + 3z)}{z}
+              = \frac{3}{x + 2y + 3z}
+\end{align*}
+
+\exercise{50} Use implicit differentiation to find
+$\partial z/\partial x$ and $\partial z/\partial y$.
+\[yz + x\ln y = z^2
+\Longrightarrow \begin{dcases}
+  y\tho{z}{x} + \ln y &= 2z\tho{z}{x}\\
+  z + \frac{x}{y} &= 2z\tho{z}{y}\\
+\end{dcases}
+\iff \begin{dcases}
+  \frac{\ln y}{2z - y} &= \tho{z}{x}\\
+  2 + \frac{x}{2yz} &= \tho{z}{y}
+\end{dcases}\]
+
+\exercise{66} Find $g_{rst}$.
+\begin{multline*}
+  g(r, s, t) = e^r\sin(st) \Longrightarrow g_r = e^r\sin(st)\\
+  \Longrightarrow g_{rs} = se^r\cos(st) \Longrightarrow g_{rst} = -ste^r\sin(st)
+\end{multline*}
+
+\exercise{101} Let
+\[f(x, y) = \begin{dcases}
+  \frac{x^3y + xy^3}{x^2 + y^2} &\text{if } (x, y) \neq (0, 0)\\
+  0 &\text{if } (x, y) = (0, 0)
+\end{dcases}\]
+\begin{enumerate}[(a)]
+  \item Graph $f$.
+
+    \begin{tikzpicture}
+      \begin{axis}[xlabel={x}, ylabel={y}]
+        \addplot3[surf]{(x^3 * y - x * y^3) / (x^2 + y^2)};
+      \end{axis}
+    \end{tikzpicture}
+  \item Find the first partial derivatives of $f$ when $(x, y) \neq (0, 0)$.
+    \begin{align*}
+      \tho{f}{x} &= \frac{(x^2 + y^2)\tho{(x^3y - xy^3)}{x}
+      - (x^3y - xy^3)\tho{(x^2 + y^2)}{x}}{(x^2 + y^2)^2}\\
+      &= \frac{(x^2 + y^2)(3x^2y - y^3) - 2x(x^3y - xy^3)}{(x^2 + y^2)^2}\\
+      &= \frac{x^4y + 4x^2y^3 - y^5}{x^4 + 2x^2y^2 + y^4}
+    \end{align*}
+    \begin{align*}
+      \tho{f}{x}
+      &= \frac{(x^2 + y^2)(x^3 - 3xy^2) - 2y(x^3y - xy^3)}{(x^2 + y^2)^2}\\
+      &= \frac{x^5 - 4x^3y^2 - xy^4}{x^4 + 2x^2y^2 + y^4}
+    \end{align*}
+  \item Find $f_x$, $f_y$ at (0, 0).
+    \begin{align*}
+      f_x(0, 0) &= \lim_{h\to 0}\frac{f(h, 0) - f(0, 0)}{h}
+      = \lim_{h\to 0}\frac{\frac{h^30 - h0^3}{h^2 + 0^2} - 0}{h}
+      = \lim_{h\to 0}0 = 0\\
+      f_y(0, 0) &= \lim_{h\to 0}\frac{f(0, h) - f(0, 0)}{h}
+      = \lim_{h\to 0}\frac{0 - 0}{h}
+      = \lim_{h\to 0}0 = 0
+    \end{align*}
+  \item Show that $f_{xy}(0, 0) = -1$ and $f_{yx}(0, 0) = 1$.
+    \begin{align*}
+      f_{xy}(0, 0) &= \lim_{h\to 0}\frac{f_x(0, h) - f_x(0, 0)}{h}
+      = \lim_{h\to 0}\frac{\frac{0 + 0 - h^5}{0 + 0 + h^4} - 0}{h}
+      = \lim_{h\to 0}-1 = -1\\
+      f_{yx}(0, 0) &= \lim_{h\to 0}\frac{f_y(h, 0) - f_y(0, 0)}{h}
+      = \lim_{h\to 0}\frac{\frac{h^5 + 0 + 0}{h^4 + 0 + 0} - 0}{h}
+      = \lim_{h\to 0}1 = 1
+    \end{align*}
+  \item The result of part (d) does not contradict Clairaut's Theorem,
+    which only covers the case $f_{xy}$ and $f_{yx}$ are continuous at (0, 0).
+    Using GeoGebra we get the second derivatives of $f$ on
+    $\mathbb R\backslash\{0\}$ as followed:
+    \[f_{xy} = f_{yx} = \frac{x^6 + 9x^4y^2 - 9x^2y^4 - y^6}{(x^2 + y^2)^3}\]
+    Since $f_{xy}(x, 0) = x^6/x^6 \to 1$ while $f_{xy} = -y^6/y^6\to -1$
+    as $(x, y) \to (0, 0)$ the second derivative is discontinuous at origin.
+\end{enumerate}
+
+\setcounter{subsection}{5}
+\subsection{Directional Derivatives}
+\exercise{17} Find the directional derivative of $h(r,s,t) = \ln(3r + 6s + 9t)$
+at (1, 1, 1) in the direction of $\mathbf v = 4\unit\i + 12\unit\j + 6\unit k$.
+
+From gradient of $h$
+\[\nabla h = \frac{3\unit\i + 6\unit\j + 9\unit k}{3r + 6s + 9t}
+\Longrightarrow \nabla h(1, 1, 1)
+= \frac{\unit\i}{6} + \frac{\unit\j}{3} + \frac{\unit k}{2}\]
+and unit vector of $\mathbf v$
+\[\unit v = \frac{2\unit\i}{7} + \frac{6\unit\j}{7} + \frac{3\unit k}{7}\]
+we can compute the direction derivative as
+\[\mathrm D_{\unit v}(1, 1, 1) = \nabla h(1, 1, 1)\cdot\unit v
+= \frac{1}{21} + \frac{4}{7} + \frac{3}{14} = \frac{23}{42}\]
+
+\subsection{Maximum and Minimum Values}
+\exercise{18} Find the local maximum and minimum values and
+saddle point(s) of the function. If you have three-dimensional
+graphing software, graph the function with a domain and viewpoint
+that reveal all the important aspects of the function.
+\[f(x, y) = \sin x\sin y,\qquad -\pi < x < \pi,\qquad -\pi < y < \pi\]
+
+\begin{multicols}{2}
+  \begin{align*}
+    &\Longrightarrow\begin{cases}
+      f_x = \cos x\sin y\\
+      f_y = \sin x\cos y
+    \end{cases}\\
+    &\Longrightarrow\begin{cases}
+      f_{xx} = f_{yy} = -\sin x\sin y\\
+      f_{xy} = f_{yx} = \sin x\sin y
+    \end{cases}\\
+    &\Longrightarrow D = f_{xx}f_{yy} - f_{xy}^2 = 0
+  \end{align*}
+  For $f_x = f_y = 0$, either $x = y = 0$ or $x, y \in \{\pm\pi/2\}$.
+  $D$ does not indicate if $f$ has local extreme values
+  at these critical points.
+
+  \noindent\begin{tikzpicture}[domain=-pi:pi]
+    \begin{axis}[xlabel={x}, ylabel={y}]
+      \addplot3[surf]{sin(deg(x)) * sin(deg(y))};
+    \end{axis}
+  \end{tikzpicture}
+\end{multicols}
+
+It is clear that $f$ has 2 local maximums of 1 at $x = y = \pm\pi$
+and 2 local minimum of -1 at $x = -y = \pm\pi$, since these are
+its absolute extreme values as well.
+
+Suppose $f(0, 0)$ is a local minimum. Then, by definition,
+$f(a, b) \geq f(0, 0) = 0$ if $(a, b)$ is sufficiently close to origin
+(say, at most within $[-\pi/2, \pi/2]^2$). However, for all $a$, $b$
+satisfying $ab < 0$, $f(a, b) = \sin a\sin b < 0$, thus our assumption
+is incorrect. Similarly, $f$ does not has a local maximum at origin because
+\[\forall a, b \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]: ab > 0,
+\qquad f(a, b) = \sin a\sin b > 0 = f(0, 0)\]
+Therefore (0, 0) is a saddle point.
+
+\exercise{35} Find the absolute extreme values of $f(x, y) = 2x^3 + y^4$
+on the unit disc.
+
+The critical points of $f$ occur when
+\[f_x = f_y = 0 \iff 6x^2 = 4y^3 = 0 \iff x = y = 0\]
+at which $f(x, y) = f(0, 0) = 0$.
+
+On the unit circle, as $y^2 = 1 - x^2$, let
+\[g(x) = f(x, y) = 2x^3 + (1 - x^2)^2 = x^4 + 2x^3 - 2x^2 + 1\]
+Within $[-1, 1]$, $g'(x) = 4x^3 + 6x^2 - 4x = 0$ if and only if
+$x = 0$ or $x = 0.5$. Since $g(-1) = -2$, $g(0) = 1$, $g(0.5) = 0.8125$
+and $g(1) = 2$, the absolute minimum and maximum of $g$ on $[-1, 1]$
+are respectively $g(-1) = -2$ and $g(1) = 2$.
+
+Thus on the boundary, the minimum value of $f$ is -2 at $(-1, \pm 1)$
+and the maximum value is 2 at $(1, \pm 1)$.
+
+\exercise{46} Find the dimensions of the box with volume $1000\text{ cm}^3$
+that has minimal surface area.
+
+Let the dimensions of the box be $x, y, z$ in dm, $x, y, z$ are positive
+and $xyz = 1$. Total surface area of the box would then be
+\[S(x, y, z) = 2xy + 2yz + 2zx\]
+
+By AM-GM inequality,
+\[S(x, y, z) \geq 2\cdot 3\sqrt{xy\cdot yz\cdot zx} = 6\]
+
+Thus $S$ has its absolute minumum of 6 at $x = y = z = 1$.
+
+\exercise{53} If the length of the diagonal of a rectangular box must be $L$,
+what is the largest possible volume?
+
+Let the dimensions of the box be three positive numbers $x, y, z$,
+$x^2 + y^2 + z^2 = L^2$. The volume of the box would then be
+$V(x, y, z) = xyz$. By AM-GM inequality,
+\[V(x, y, z) = \sqrt{x^2 y^2 z^2} \leq \frac{x^2 + y^2 + z^2}{3}
+= \frac{L^2}{3}\]
+
+Thus $V$ has its absolute maximum of $L^2/3$ at $x = y = z = L/\sqrt 3$.
+
+\subsection{Lagrange Multipliers}
+\exercise{12} Use Lagrange multipliers to find the maximum and minimum values
+of $f(x, y, z) = x^4 + y^4 + z^4$ subject to $g(x, y, z) = x^2 + y^2 + z^2 = 1$.
+
+Extreme values of $f$ occur when
+\[\begin{cases}
+  \nabla f = \lambda\nabla g\\
+  g(x, y, z) = 1
+\end{cases}
+\iff\begin{cases}
+  \langle 4x^3, 4y^3, 4z^3\rangle
+  = \lambda\langle 2x, 2y, 2z\rangle \neq \mathbf 0\\
+  x^2 + y^2 + z^2 = 1
+\end{cases}\]
+
+\begin{enumerate}
+  \item For $\lambda = 2/3$, $x^2 = y^2 = z^2 = 1/3 = f(x, y, z)$.
+  \item For $\lambda = 1$ and $(x^2, y^2, z^2) \in \{(0, 1/2, 1/2),
+    (1/2, 0, 1/2), (1/2, 1/2, 0)\}$, $f(x, y, z) = 1/2$.
+  \item For $\lambda = 2$ and $(x^2, y^2, z^2) \in \{(1, 0, 0),
+    (0, 1, 0), (0, 0, 1)\}$, $f(x, y, z) = 1$.
+\end{enumerate}
+
+Therefore, subject to the given constrain, $f$ has absolute maximum of 1
+and minimum of 1/3.\pagebreak
+
+\exercise{42} Find the maximum and minimum volumes of a rectangular box
+whose surface area is $1500\text{ cm}^2$ and whose total edge length is 200 cm.
+
+Let the dimensions of the box be $x, y, z$ in dm, with $x, y, z$ are positive,
+$2xy + 2yz + 2zx = 15$ and $4x + 4y + 4z = 20$. From these constrains,
+we can easily obtain $x + y = 5 - z$ and
+\[xy + (x + y)z = \frac{15}{2} \iff xy = \frac{15}{2} - 5z + z^2\]
+
+Thus with $0 < z < 5$ the volume of the box is
+\[V = xyz = z^3 - 5z^2 + \frac{15z}{2}\]
+whose critical points are
+\[\leibniz{V}{z} = 3z^2 - 10z + \frac{15}{2} = 0
+\iff z = \frac{10 \pm \sqrt{10}}{6}\]
+at which $V = \dfrac{175 \pm 5\sqrt{10}}{54}$.
+
+On the other hand, the constrains are equivalent to
+\[\begin{cases}
+  x^2 + y^2 + z^2 = 10\\
+  x + y + z = 5
+\end{cases}\]
+or the intersection of a sphere and a plane, which result in a circle $C$.
+Hence the range of $z$ would be between $a$ and $b$, whereas each of $z = a$
+and $z = b$ only has one point in common with $C$. Since all surfaces
+$x^2 + y^2 + z^2 = 10$, $x + y + z = 5$, $z = a$ and $z = b$ has $x = y$
+as their plane of symmetry, these two points must be on $x = y$ as well:
+\begin{align*}
+  \begin{cases}
+    2x^2 + z^2 = 10\\
+    2x + z = 5
+  \end{cases}
+  \iff&\begin{cases}
+    2x^2 + (5 - 2x)^2 = 10\\
+    z = 5 - 2x
+  \end{cases}\\
+  \iff&\begin{cases}
+    6x^2 - 20x + 15 = 0\\
+    z = 5 - 2x
+  \end{cases}\\
+  \iff&\begin{dcases}
+    x = \frac{10 \pm \sqrt{10}}{6}\\
+    z = \frac{5 \pm \sqrt{10}}{3}
+  \end{dcases}\\
+  \Longrightarrow &\,V = \dfrac{175 \pm 5\sqrt{10}}{54}
+\end{align*}
+These are the maximum and minimum volumes of the given box.
+
+\section{Multiple Integrals}
+\setcounter{subsection}{1}
+\subsection{Interated Integrals}
+\exercise{19} Calculate the double integral.
+\begin{align*}
+   \int_0^{\pi/6}\int_0^{\pi/3}x\sin(x + y)\ud y\ud x
+&= \int_0^{\pi/6}\left[-x\cos(x + y)\right]_{y=0}^{y=\pi/3}\ud x\\
+&= \int_0^{\pi/6}x\left(\cos x - \cos\left(x + \frac\pi 3\right)\right)\ud x\\
+&= \int_0^{\pi/6}x\cos\left(x - \frac\pi 3\right)\ud x\\
+&= \int_0^{\pi/6}x\ud\cos\left(x - \frac\pi 3\right)\\
+&= \left[x\sin\left(x - \frac\pi 3\right)\right]_0^{\pi/6}
+ - \int_0^{\pi/6}\sin\left(x - \frac\pi 3\right)\ud x\\
+&= -\frac{\pi}{12} + \left[\cos\left(x - \frac\pi 3\right)\right]_0^{\pi/6}\\
+&= \frac{\sqrt 3}{2} - \frac{1}{2} - \frac{\pi}{12}
+\end{align*}
+
+\exercise{28} Find the volume of the solid enclosed by the surface
+$z = 1 + e^x\sin y$ and the planes $x = \pm 1$, $y = 0$, $y = \pi$ and $z = 0$.
+\begin{align*}
+   \int_0^\pi\int_{-1}^1(1 + e^x\sin y)\ud x \ud y
+&= \int_0^\pi\left[x + e^x\sin y\right]_{x=-1}^{x=1}\ud y\\
+&= \int_0^\pi\left(2 + \left(e - \frac{1}{e}\right)\sin y\right)\ud y\\
+&= \left[2x + \left(\frac{1}{e} - e\right)\cos y\right]_0^\pi\\
+&= 2\pi
+\end{align*}
+
+\subsection{Double Integrals over General Regions}
+\exercise{10} Evaluate the double integral.
+\begin{align*}
+   \int_1^e\int_0^{\ln x}x^3\ud y\ud x
+&= \int_1^e x^3\ln x\ud x\\
+&= \int_1^e\ln x\ud\frac{x^4}{4}\\
+&= \left.\frac{x^4\ln x}{4}\right]_1^e - \int_1^e\frac{x^4}{4}\ud\ln x\\
+&= e^4 - \int_1^e\frac{x^3}{4}\ud x\\
+&= e^4 - \left.\frac{x^4}{16}\right]_1^e\\
+&= \frac{15e^4 + 1}{16}
+\end{align*}
+
+\exercise{16} Set up iterated integrals for both orders of integration.
+Then evaluate the double integral using the easier order
+and explain why it’s easier.
+\begin{multline*}
+  I = \iint_D y^2 e^{xy}\ud A,\qquad D\text{ is bounded by }y = x, y = 4, x = 0\\
+  \Longrightarrow I = \int_0^4\int_x^4 y^2 e^{xy}\ud y\ud x
+  = \int_0^4\int_0^y y^2 e^{xy}\ud x\ud y
+\end{multline*}
+
+Since $y^2 e^{xy}$ is simply an exponential function of $x$,
+it would be easier to evaluate
+\begin{align*}
+I &= \int_0^4\int_0^y y^2 e^{xy}\ud x\ud y\\
+  &= \int_0^4\left[y^3 e^{xy}\right]_{x=0}^{x=y}\ud y\\
+  &= \int_0^4 y^3 e^{y^2}\ud y
+   = \int_0^4 y^2\ud\frac{e^{y^2}}{2}\\
+  &= \left.\frac{y^2 e^{y^2}}{2}\right]_0^4 - \int_0^4\frac{e^{y^2}}{2}\ud y^2\\
+  &= 8e^{16} - \int_0^{16}\frac{e^z}{2}\ud z\\
+  &= 8e^{16} - \left.\frac{e^z}{2}\right]_0^{16}
+   = \frac{15e^{16}}{2}
+\end{align*}
+
+\exercise{31} Find the volume of the solid bounded by the cylinder
+$x^2 + y^2 = 1$ and the plane $y = z$ in the first octant.
+\[\int_0^1\int_0^{\sqrt{1-x^2}}y\ud y\ud x
+= \int_0^1\frac{1 - x^2}{2}\ud x
+= \frac{1}{3}\]
+
+\subsection{Double Integrals in Polar Coordinates}
+\exercise{13} Evaluate the given integral by changing to polar coordinates.
+\[I = \iint_R\arctan\frac{y}{x}\ud A,\qquad
+\text{where }R = \{(x, y)\,|\,1 \leq x^2 + y^2 \leq 4, 0 \leq y \leq x\}\]
+
+In polar coordinates,
+\[R = [1, 2]\times \left[0, \frac\pi 4\right]\]
+thus
+\begin{align*}
+I &= \int_0^{\pi/4}\int_1^2\arctan\frac{r\sin\theta}{r\cos\theta}
+     r\ud r\ud\theta\\
+  &= \int_0^{\pi/4}\int_1^2\arctan\tan\theta r\ud r\ud\theta\\
+  &= \int_0^{\pi/4}\int_1^2\theta r\ud r\ud\theta\\
+  &= \int_0^{\pi/4}\frac{3\theta}{2}\ud r\ud\theta\\
+  &= \frac{3\pi^2}{64}
+\end{align*}
+
+
+\begin{multicols*}{2}
+  \noindent\begin{tikzpicture}[domain=-pi:pi]
+    \begin{axis}[legend pos=south east, xlabel={$\theta$}, ylabel={$r$},
+                 axis x line = middle, axis y line = middle,
+                 enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1}]
+      \addplot[color=magenta]{1};
+      \addplot[color=green]{2 * cos(deg(x))};
+      \legend{$r = 1$, $r = 2\cos\theta$}
+    \end{axis}
+  \end{tikzpicture}
+
+  \exercise{17} Use a double integral to find the area of the region
+  inside $C_1: (x - 1)^2 + y^2 = 1$ and outside $C_0: x^2 + y^2 = 1$.\\
+
+  In polar coordinates $C_1$ has the equation $r = 2\cos\theta$ and
+  the equation of $C_0$ is $r = 1$. Therefore the given region is within
+  $1 \leq r \leq 2\cos\theta$, whereas $\theta \in [-\pi, \pi]$.
+\end{multicols*}
+
+Since on $[-\pi, \pi]$, $2\cos\theta \geq 1 \iff -\pi/3 \leq \theta \leq \pi/3$,
+the area of the given region is
+\begin{align*}
+  \int_{-\pi/3}^{\pi/3}\int_1^{2\cos\theta}r\ud r\ud\theta
+  &= \int_{-\pi/3}^{\pi/3}\frac{4\cos^2\theta - 1}{2}\ud\theta\\
+  &= \int_{-\pi/3}^{\pi/3}\left(2\cos^2\theta - 1 + \frac{1}{2}\right)\ud\theta\\
+  &= \int_{-\pi/3}^{\pi/3}\left(\cos 2\theta + \frac{1}{2}\right)\ud\theta\\
+  &= \left[\frac{\sin 2\theta + \theta}{2}\right]_{-\pi/3}^{\pi/3}\\
+  &= \frac{\sqrt 3}{2} + \frac\pi 3
+\end{align*}
+
+\subsection{Applications of Double Integrals}
+\exercise{5} Find the mass and center of mass of the lamina that occupies
+the region triangular $D$ with vertices (0, 0), (2, 1), (0, 3)
+and has the given density function $\rho(x, y) = x + y$.
+\begin{align*}
+m &= \iint_D(x + y)\ud A\\
+  &= \int_0^2\int_{x/2}^{3-x}(x+y)\ud y\ud x\\
+  &= \int_0^2\frac{36 - 9x^2}{8}\ud x\\
+  &= 9 - 3 = 6
+\end{align*}
+
+\begin{align*}
+  \bar x &= \iint_D\frac{x(x + y)}{m}\ud A&
+  \bar y &= \iint_D\frac{y(x + y)}{m}\ud A\\
+  &= \int_0^2\int_{x/2}^{3-x}\frac{x^2 + xy}{6}\ud y\ud x&
+  &= \int_0^2\int_{x/2}^{3-x}\frac{xy + y^2}{6}\ud y\ud x\\
+  &= \int_0^2\frac{12x - 3x^3}{16}\ud x&
+  &= \int_0^2\frac{6 - 3x}{4}\ud x\\
+  &= \frac{3}{4}&
+  &= \frac{3}{2}
+\end{align*}
+
+\subsection{Surface Area}
+\exercise{7} Find the area of the part of
+the hyperbolic paraboloid $z = y^2 - x^2$
+that lies between the cylinders $x^2 + y^2 = 1$ and $x^2 + y^2 = 4$.
+\begin{align*}
+  &\iint_D\sqrt{1 + \left(\tho{(y^2 - x^2)}{x}\right)^2
+                  + \left(\tho{(y^2 - x^2)}{y}\right)^2}\ud A\\
+= &\iint_D\sqrt{1 + 4x^2 + 4y^2}\ud A\\
+= &\int_0^{2\pi}\int_1^2 r\sqrt{1 + 4r^2\cos^2\theta + 4r^2\sin^2\theta}
+   \ud r\ud\theta\\
+= &\int_1^2\pi\sqrt{1 + 4r^2}\ud r^2\\
+= &\int_1^4\pi\sqrt{1 + 4t}\ud t\\
+= &\,\pi\left[\frac{(1 + 4t)^{1.5}}{6}\right]_1^4\\
+= &\,\frac{17^{1.5} - 5^{1.5}}{6}\pi
+\end{align*}
+
+\section{Vector Calculus}
+\setcounter{subsection}{1}
+\subsection{Line Integrals}
+\exercise{12} Evaluate the integral, where $C$ is the given curve.
+
+\[I = \int_C(x^2 + y^2 + z^2)\ud s,\qquad
+C: x = t, y = \cos 2t, z = \sin 2t, 0 \leq t \leq 2\pi\]
+\begin{align*}
+  I &= \int_0^{2\pi}(x^2 + y^2 + z^2)\sqrt{\left(\leibniz{x}{t}\right)^2
+  + \left(\leibniz{z}{t}\right)^2 + \left(\leibniz{z}{t}\right)^2}\ud t\\
+  &= \int_0^{2\pi}(t^2 + \cos^2 2t + \sin^2 2t)
+  \sqrt{\left(\leibniz{t}{t}\right)^2 + \left(\leibniz{\cos 2t}{t}\right)^2
+  + \left(\leibniz{\sin 2t}{t}\right)^2}\ud t\\
+  &= \int_0^{2\pi}(t^2 + 1)\sqrt 2\ud t = \frac{8\pi\sqrt 2}{3} + 2\pi\sqrt 2
+\end{align*}
+
+\exercise{15} With $C$ is the line segment from (1, 0, 0) to (4, 1, 2),
+$x = 3t + 1$, $y = t$, $z = 2t$, whereas $0 \leq t \leq 1$ and
+\begin{align*}
+  J &= \int_C z^2\ud x + x^2\ud y + y^2\ud z\\
+  &= \int_0^1 z^2\leibniz{x}{t}\ud t + x^2\leibniz{y}{t}\ud t
+  + y^2\leibniz{z}{t}\ud t\\
+  &= \int_0^1(x^2 + 2y^2 + 3z^2)\ud t\\
+  &= \int_0^1(9t^2 + 6t + 1 + 2t^2 + 12t^2)\ud t\\
+  &= \int_0^1(23t^2 + 6t + 1)\ud t\\
+  &= \left[\frac{23t^3}{3} + 3t^2 + t\right]_0^1 = \frac{35}{3}
+\end{align*}
+
+\exercise{39} Find the work done by the force field
+$\mathbf F(x, y) = \langle x, y + 2\rangle$ is moving an object along an arch
+of the cycloid $\mathbf r(t) = \langle t-\sin t, 1-\cos t\rangle$,
+$0 \leq t \leq 2\pi$.
+\begin{align*}
+  W &= \int_C\mathbf F\cdot\ud\mathbf r\\
+  &= \int_0^{2\pi}\mathbf F\cdot\leibniz{\mathbf r}{t}\ud t\\
+  &= \int_0^{2\pi}\langle x, y+2\rangle\cdot
+  \left<\leibniz{x}{t}, \leibniz{y}{t}\right>\ud t\\
+  &= \int_0^{2\pi}\langle t-\sin t, 3-\cos t\rangle\cdot
+  \left<1-\cos t, \sin t\right>\ud t\\
+  &= \int_0^{2\pi}\left(t - t\cos t + 2\sin t\right)\ud t\\
+  &= \left[\frac{t^2}{2} - t\sin t - 3\cos t\right]_0^{2\pi} = 2\pi^2
+\end{align*}
+
+\subsection{The Fundamental Theorem for Line Integral}
+\exercise{19} Show that the line integral is independent
+from any path $C$ from (1, 0) to (2, 1) and evaluate the integral.
+\[\int_C\frac{2x}{e^y}\ud x + \left(2y - \frac{x^2}{e^y}\right)\ud y
+= \int_C\left(\frac{2x}{e^y}\unit\i + 2y\unit\j - \frac{x^2}{e^y}\unit\j\right)
+\cdot\ud(x\unit\i + y\unit\j)\]
+
+Since on $\mathbb R^2$
+\[\tho{}{y}\frac{2x}{e^y} = \frac{-2x}{e^y}
+= \tho{}{x}\left(2y - \frac{x^2}{e^y}\right)\]
+the function
+\[\mathbf F(x, y) = \frac{2x}{e^y}\unit\i + 2y\unit\j - \frac{x^2}{e^y}\unit\j\]
+is conservative and thus the given line integral is independent from path.
+
+Let $f$ be a differentiable of $(x, y)$ that $\nabla f = \mathbf F$.
+One function satisfying this is \[f(x, y) = y^2 + \frac{x^2}{e^y}\]
+By the fundamental theorem for line integrals,
+\[\int_C\mathbf F\cdot\ud\mathbf r = f(2, 1) - f(1, 0) = \frac{4}{e}\]
+
+\subsection{Green's Theorem}
+\exercise{6} Use Green’s Theorem to evaluate the line integral along the given
+positively oriented rectangle with vertices (0, 0), (5, 0), (5, 2) and (0, 2).
+\begin{align*}
+   \int_C\cos y\ud x + x^2\sin y\ud y
+&= \int_0^5\int_0^2\left(\tho{x^2\sin y}{x} - \tho{\cos y}{y}\right)\ud y\ud x\\
+&= \int_0^5\int_0^2(2x\sin y + \sin y)\ud y\ud x\\
+&= \int_0^5(2x + 1)(1 - \cos 2)\ud x\\
+&= 30 - 30\cos 2
+\end{align*}
+
+\begin{multicols}{2}
+  \noindent\begin{tikzpicture}[domain=-pi/2:pi/2]
+    \begin{axis}[legend pos=north east, xlabel={$x$}, ylabel={$y$},
+                 axis x line = middle, axis y line = middle,
+                 enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1}]
+      \addplot[->,>=stealth,color=blue]{cos(deg(x))};
+      \addplot[<-,>=stealth,color=orange]{0};
+      \legend{$r = \cos x$, $r = 0$}
+    \end{axis}
+  \end{tikzpicture}
+
+  \exercise{12} Use Green's Theorem to evaluate the line integral along the
+  path $C$ including the curve $y = \cos x$ from $(-\pi/2, 0)$ to $(\pi/2, 0)$
+  and the line segment connecting these two points.
+
+  Since the curve is negatively oriented, by Green's Theorem,
+\end{multicols}
+\begin{align*}
+  &\int_C(e^{-x} + y^2)\ud x + (e^{-y} + x^2)\ud y\\
+= &\,-\int_{-\pi/2}^{\pi/2}\int_0^{\cos x}\left(
+  \tho{}{x}(e^{-y} + x^2) - \tho{}{y}(e^{-x} + y^2)\right)\ud y\ud x\\
+= &\int_{\pi/2}^{-\pi/2}\int_0^{\cos x}(2x - 2y)\ud y\ud x\\
+= &\int_{\pi/2}^{-\pi/2}(2x\cos x - \cos^2 x)\ud x\\
+= &\,\frac 1 2\int_{-\pi/2}^{\pi/2}(\cos 2x + 1)\ud x
+  - \int_{-\pi/2}^{\pi/2}2x\ud\sin x\\
+= &\left[\frac{\sin 2x}{4} + \frac{x}{2}
+  - 2x\sin x - 2\cos x\right]_{-\pi/2}^{\pi/2} = \frac\pi 2
+\end{align*}
+
+\subsection{Curl and Divergence}
+
+This section is to aid my revision of Electromagnetism. First, on $\mathbb R^3$,
+we define
+\[\nabla = \unit\i\tho{}{x} + \unit\j\tho{}{y} + \unit k\tho{}{z}\]
+then the curl of vector field $\mathbf F = P\unit\i + Q\unit\j + R\unit k$ is
+\begin{multline*}
+  \curl\mathbf F
+= \nabla\times\mathbf F
+= \begin{vmatrix}
+  \unit\i & \unit\j & \unit k\\
+  \tho{}{x} & \tho{}{y} & \tho{}{z}\\
+  P & Q & R
+\end{vmatrix}\\
+= \unit\i\left(\tho{R}{y} - \tho{Q}{z}\right)
++ \unit\j\left(\tho{P}{z} - \tho{R}{x}\right)
++ \unit k\left(\tho{Q}{x} - \tho{P}{y}\right)
+\end{multline*}
+
+If $f$ is a function of three variables that has continuous second-order
+partial derivatives, then $\curl(\nabla f) = \mathbf 0$.
+
+On the other hand, if $\curl\mathbf F = \mathbf 0$
+then $\mathbf F$ is a conservative vector field (preconditions:
+$P$, $Q$ and $R$ must be partially differentiable).
+
+Similarly, the divergence of vector field $\mathbf F$ is defined as
+\[\del\mathbf{F} = \nabla\cdot\mathbf F
+= \unit\i\tho{P}{x} + \unit\j\tho{Q}{y} + \unit k\tho{R}{z}\]
+
+Trivially, $\nabla\cdot(\nabla\times\mathbf F) = 0$
+because the terms cancel in pairs by Clairaut's Theorem.
+
+The cool thing about operators is that they can be weirdly combined,
+e.g. $\del(\nabla f) = \nabla\cdot\nabla f = \nabla^2 f$
+and $\nabla^2 F = \nabla\cdot\nabla\cdot\mathbf F$.
+
+Now we are able to write Green's Theorem in the vector form
+\[\oint_{\partial S}\mathbf F\cdot\ud\mathbf r
+= \iint_S(\curl\mathbf F)\cdot\unit k\ud A\]
+whereas $\mathbf r(t) = x(t)\unit\i + y(t)\unit\j$.
+The outward normal vector to the contour is given by
+$\mathbf n(t) = \leibniz{y}{t}\unit\i - \leibniz{x}{t}\unit\j$.
+So we have the second vector form of Green's Theorem.
+\[\oint_{\partial S}\mathbf F\cdot\unit n\ud s = \iint_S\del\mathbf F\ud A\]
+
+\subsection{Parametric Surfaces and Their Areas}
+\exercise{42} Find the area of the part of the cone $z = \sqrt{x^2 + y^2}$
+that lies between the plane $y = x$ and the cylinder $y = x^2$.
+\begin{align*}
+  &\int_0^1\int_{x^2}^x\sqrt{
+    1 + \left(\tho{z}{x}\right)^2 + \left(\tho{z}{y}\right)_2}\ud y\ud x\\
+=&\int_0^1\int_{x^2}^x\sqrt 2\ud y\ud x
+= \int_0^1(x - x^2)\sqrt 2\ud y\ud x\\
+=&\,\frac{1}{2} - \frac{1}{3}
+= \frac{1}{6}
+\end{align*}
+
+\section{Second-Order Differential Equations}
+\subsection{Homogeneous Linear Equations}
+\exercise{11} Solve the differential equation.
+\[2\leibniz{^2 y}{t^2} + 2\leibniz{y}{t} - y = 0\]
+
+Since the auxiliary equation $2r^2 + 2x - 1 = 0$ has two real and distinct
+roots $\dfrac{\pm\sqrt 3 - 1}{2}$, the general solution is
+\[y = c_1\exp\frac{\sqrt 3 - 1}{2}t + c_2\exp\frac{-\sqrt 3 - 1}{2}t\]
+
+\exercise{21} Solve the initial value problem.
+\[y'' - 6y' + 10y = 0,\qquad y(0) = 2,\qquad y''(0) = 3\]
+
+Since the auxiliary equation $r^2 - 6x + 10 = 0$ has two complex roots
+$3\pm i$, the general solution is
+\[y = e^{3x}(c_1\cos x + c_2\sin x)
+\Longrightarrow y' = e^{3x}((3c_1 + c_2)\cos x + (3c_2 - c_1)\sin x)\]
+
+As $y(0) = 2$, $c_1 = 2$. Similarly, from $y'(0) = 3$,
+we can obtain $3c_1 - c_2 = 3 \Longrightarrow c_2 = 3$. Thus the solution
+of the initial value problem is $y = e^{3x}(3\cos x + 2\sin x)$.
+
+\subsection{Nonhomogeneous Linear Equations}
+Solve the differential equation or initial-value problem using the method of
+undetermined coefficients.
+
+\[y'' - 4y' + 5y = e^{-x}\tag{5}\]
+
+The auxiliary equation of $y'' - 4y' + 5y = 0$ is $r^2 - 4r + 5 = 0$ with roots
+$r = 2\pm i$. Hence the solution to the complementary equation is
+\[y_c = e^{2x}(c_1\cos x + c_2\sin x)\]
+
+Since $G(x) = e^{-x}$ is an exponential function, we seek a particular solution
+of an exponential function as well:
+\[y_p = Ae^{-x}
+\Longrightarrow y_p' = -Ae^{-x}
+\Longrightarrow y_p'' = Ae^{-x}\]
+
+Substituting these into the differential equation, we get
+\[Ae^{-x} - 4Ae^{-x} + 5Ae^{-x} = e^{-x} \iff A = \frac{1}{10}\]
+
+Thus the general solution of the exponential equation is
+\[y = y_c + y_p = e^{2x}(c_1\cos x + c_2\sin x) + \frac{1}{10e^x}\]
+
+\[y'' + y' - 2y = x + \sin 2x,\qquad y(0) = 1,\qquad y'(0) = 0\tag{10}\]
+
+The auxiliary equation of $y'' + y' - 2y = 0$ is $r^2 + r - 2 = 0$ with roots
+$r = -2, 1$. Thus the solution to the complementary equation is
+\[y_c = c_1 e^x + \frac{c_2}{e^{2x}}\]
+
+We seek a particular solution of the form
+\begin{multline*}
+  y_p = Ax + B + C\cos 2x + D\sin 2x\\
+  \Longrightarrow y_p' = A - 2C\sin 2x + 2D\cos 2x\\
+  \Longrightarrow y_p'' = -4C\cos 2x - 4D\sin 2x
+\end{multline*}
+
+Substituting these into the differential equation, we get
+\begin{multline*}
+  (-4C + 2D - 2C)\cos 2x + (-4D - 2C - 2D)\sin 2x + A - 2B - 2Ax = x + \sin 2x\\
+  \iff\begin{cases}
+    -4C + 2D - 2C = 0\\
+    -4D - 2C - 2D = 1\\
+    A - 2B = 0\\
+    -2A = 1
+  \end{cases}
+  \iff\begin{cases}
+    A = -1/2\\
+    B = -1/4\\
+    C = -1/20\\
+    D = -3/20
+  \end{cases}
+\end{multline*}
+
+Thus the general solution of the exponential equation is
+\begin{multline*}
+  y = y_c + y_p = c_1 e^x + \frac{c_2}{e^{2x}} - \frac{x}{2} - \frac{1}{4}
+    - \frac{\cos 2x}{20} - \frac{3\sin 2x}{20}\\
+  \Longrightarrow y' = c_1 e^x - \frac{2c_2}{e^{2x}} - \frac{1}{2}
+    + \frac{\sin 2x}{10} - \frac{3\cos 2x}{10}
+\end{multline*}
+
+Since $y(0) = 1$ and $y'(0) = 0$,
+\[\begin{dcases}
+  c_1 + c_2 - \frac{1}{4} - \frac{1}{20} = 1\\
+  c_1 - 2c_2 - \frac{3}{10} = 0
+\end{dcases}
+\iff \begin{dcases}
+  c_1 + c_2 = \frac{13}{10}\\
+  c_1 - 2c_2 = \frac{3}{10}
+\end{dcases}
+\iff \begin{dcases}
+  c_1 = \frac{29}{30}\\
+  c_2 = \frac{1}{3}
+\end{dcases}\]
+
+Therefore the solution to the initial value problem is
+\[y = \frac{29e^x}{30} + \frac{1}{3e^{2x}} - \frac{x}{2} - \frac{1}{4}
+    - \frac{\cos 2x}{20} - \frac{3\sin 2x}{20}\]
+
+\subsection{Applications}
+\exercise{3} A spring with a mass of 2 kg has damping constant 14, and a force
+of 6 N is required to keep the spring stretched 0.5 m beyond its natural
+length. The spring is stretched 1 m beyond its natural length and then
+released with zero velocity. Find the position of the mass at any time $t$.
+
+By Hooke's law, 
+\[k(0.5) = 6 \iff k = 12\]
+
+By Newton's second law of motion,
+\[2\leibniz{^2 x}{t^2} + 14\leibniz{x}{t} + 12x = 0\]
+
+Since the auxiliary equation $2r^2 + 14r + 12 = 0$ has two real
+and distinct roots $r = -6, -1$, the general solution is
+\[x = \frac{c_1}{e^t} + \frac{c_2}{e^{6t}}
+\Longrightarrow \leibniz{x}{t} = \frac{-c_1}{e^t} - \frac{6c_2}{e^{6t}}\]
+
+From $x(0) = 1$ and $x'(0) = 0$ we get
+\[\begin{cases}
+  c_1 + c_2 = 1\\
+  -c_1 - 6c_2 = 0
+\end{cases}
+\iff\begin{cases}
+  c_1 = 6/5\\
+  c_2 = -1/5
+\end{cases}\]
+
+Therefore the position at any time $t$ is
+\[x = \frac{6}{5e^t} - \frac{c_2}{5e^{6t}}\]
+
+\setcounter{section}{8}
+\section{First-Order Differential Equations}
+\setcounter{subsection}{2}
+\subsection{Separable Equations}
+\exercise{8} Solve the differential equation.
+\begin{align*}
+  \leibniz{y}{\theta} &= \frac{e^y\sin^2\theta}{y\sec\theta}\\
+  \iff \int\frac{y}{e^y}\ud y &= \int\sin\theta\cos\theta\ud\theta\\
+  \iff \int-y\ud e^{-y} &= \int\sin^2\theta\ud\sin\theta\\
+  \iff \int e^{-y}\ud y - \frac{y}{e^y} &= \frac{\sin^3\theta}{3}\\
+  \iff \frac{1 + y}{e^y} &= C - \frac{\sin^3\theta}{3}
+\end{align*}
+\setcounter{subsection}{4}
+\subsection{Linear Equations}
+\exercise{28} In a damped RL circuit, the generator supplies a voltage of
+$E(t) = 40\sin 60t$ volts, the inductance is 1 H, the resistance is 10 $\Omega$
+and $I(0) = 1$ A.
+\begin{align*}
+  &E - L\leibniz{I}{t} - RI = 0\\
+  \iff &\frac{40}{L}\sin 60t = \leibniz{I}{t} + \frac{RI}{L}\\
+  \iff &\frac{40e^{tR/L}}{L}\sin 60t
+    = \frac{RI}{L}e^{tR/L} + \leibniz{I}{t}e^{tR/L}\\
+  \iff &\frac{40}{L}\int e^{tR/L}\sin 60t\ud t = \int\ud Ie^{tR/L}\tag{$*$}
+\end{align*}
+
+Let $J = \int e^{tR/L}\sin 60t\ud t$,
+\begin{align*}
+J &= \frac{-1}{60}\int e^{tR/L}\ud\cos 60t\\
+  &= \frac{1}{60}\int\cos 60t\ud e^{tR/L} - \frac{e^{tR/L}\cos 60t}{60}\\
+  &= \frac{R}{3600L}\int e^{tR/L}\ud\sin 60t - \frac{e^{tR/L}\cos 60t}{60}\\
+  &= \frac{R}{3600L}e^{tR/L}\sin 60t - \frac{R}{3600L}\int\sin 60t\ud e^{tR/L}
+   - \frac{e^{tR/L}\cos 60t}{60}\\
+  &= \frac{R}{3600L}e^{tR/L}\sin 60t - \frac{R^2}{3600L^2}J
+   - \frac{e^{tR/L}\cos 60t}{60}
+\end{align*}
+
+Hence $J = \dfrac{e^{tR/L}(RL\sin 60t - 60L^2\cos 60t)}{R^2+3600L^2}$
+and $(*)$ is equivalent to
+\begin{multline*}
+  \frac{40e^{tR/L}(R\sin 60t - 60L\cos 60t)}{R^2+3600L^2} = Ie^{tR/L} - C\\
+  \iff I = \frac{40R\sin 60t - 2400L\cos 60t}{R^2+3600L^2}
+    + \frac{C}{e^{tR/L}}\\
+  \iff I = \frac{\sin 60t - 3\cos 60t}{5}
+    + \frac{C}{e^{t/20}}
+\end{multline*}
+
+Since $I = 1$ at $t = 0$,
+\[1 = \frac{\sin 0 - 3\cos 0}{5} + \frac{C}{e^0} \iff C = \frac 8 5\]
+and thus $I = \dfrac{\sin 60t - 3\cos 60t}{5} + \dfrac{8}{5}\exp\dfrac{-t}{20}$.
+
+At $t = 0.1$, $I = (\sin 6 - 3\cos 6)/5 + 1.6e^{-1/200} \approx 2.11$ A.
+\end{document}

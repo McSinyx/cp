@@ -1,0 +1,1826 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usetikzlibrary{shapes.geometric,angles,quotes}
+
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\unit}[1]{\hat{\textbf #1}}
+\newcommand{\anonym}[2]{\left(#1 \mapsto #2\right)}
+\newcommand{\tho}[3][]{\frac{\partial #1 #2}{\partial #3 #1}}
+\newcommand{\leibniz}[3][]{\frac{\mathrm{d} #1 #2}{\mathrm{d} #3 #1}}
+\newcommand{\chain}[3]{\tho{#1}{#2}\tho{#2}{#3}}
+\newcommand{\exercise}[1]{\noindent\textbf{#1.}}
+
+\title{Cuculutu Homework}
+\author{Nguyễn Gia Phong}
+\date{Summer 2019}
+
+\begin{document}
+\maketitle
+\setcounter{section}{11}
+\section{Vectors and the Geometry of Space}
+\subsection{Three-Dimenstional Coordinate Systems}
+
+\exercise{37} The region consisting of all points between the spheres of radius
+$r$ and $R$ centered at origin:
+\[r^2 < x^2 + y^2 + z^2 < R^2\qquad (r < R)\]
+
+\subsection{Vectors}
+\exercise{38} The gravitational force enacting the chain whose tension $T$ at
+each end has magnitude 25 N and angle \ang{37} to the horizontal is
+\[\mathbf{P} = 2\mathrm{proj}_{\unit P}\mathbf{T}
+  = 2T\sin\ang{37}\unit{P} \approx 30\unit{P}\]
+
+Therefore the weight of the chain is approximately 30 N.
+
+\exercise{47} Given $\mathbf{r_0} = \langle x_0, y_0, z_0 \rangle$.
+
+Let $\mathbf{r} = \langle x, y, z \rangle$,
+\[\left|\mathbf{r} - \mathbf{r_0}\right| = 1
+  \iff \left(x - x_0\right)^2 + \left(y - y_0\right)^2
+     + \left(z - z_0\right)^2 = 1\]
+
+Thus the set of all points $(x, y, z)$ is an unit sphere whose center is
+$\left(x_0, y_0, z_0\right)$.
+
+\subsection{The Dot Product}
+\exercise{25} Given a triangle with vertices $P(1, -3, -2)$, $Q(2, 0, -4)$,
+$R(6, -2, -5)$.
+
+Since $\overrightarrow{PQ}\cdot\overrightarrow{QR}
+= 1 \cdot 4 + 3(-2) + (-2)(-1) = 0$, $PQR$ is a right triangle.
+
+\exercise{26} Given $\mathbf{u} = \langle 2, 1, -1 \rangle$ and
+$\mathbf{v} = \langle 1, x, 0 \rangle$.
+\begin{align*}
+\frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\cdot|\mathbf{v}|} = \cos\ang{45}
+&\iff \frac{2 + x}{\sqrt{6\left(x^2 + 1\right)}} = \frac{1}{\sqrt 2}\\
+&\iff 2x^2 + 8x + 8 = 6x^2 + 6\\
+&\iff 4x^2 - 8x - 2 = 0\\
+&\iff x = 1 \pm \sqrt\frac{3}{2}
+\end{align*}
+
+\exercise{27} Find a unit vector that is orthogonal to both
+$\unit\i + \unit\j$ and $\unit\i + \unit k$.
+
+A vector that is orthogonal to both of these vectors:
+\[(\unit\i + \unit\j)\times(\unit\i + \unit k)
+= \unit\i\times\unit\i + \unit\i\times\unit k
++ \unit\j\times\unit\i + \unit\j\times\unit k
+= 0 - \unit\j - \unit k + \unit\i
+= \unit\i - \unit\j - \unit k\]
+
+Normalize the result we get the unit vector $\dfrac{1}{\sqrt 3}\left(\unit\i
+- \unit\j - \unit k\right)$ which is orthogonal to both $\unit\i + \unit\j$
+and $\unit\i + \unit k$.
+
+\exercise{28} Find two unit vectors that make an angle of \ang{60}
+with $\mathbf{v} = \langle 3, 4 \rangle$.
+
+Let $\mathbf{u} = \langle x, y \rangle$ be an unit vector,
+$|\mathbf{u}| = \sqrt{x^2 + y^2} = 1$.  \textbf{u} makes with
+\textbf{v} an angle of \ang{60} if and only if
+\[\frac{\mathbf{u}\cdot\mathbf{v}}{|\mathbf{u}|\cdot|\mathbf{v}|} = \cos\ang{60}
+\iff \frac{3x + 4y}{\sqrt{3^2 + 4^2}} = \frac{1}{2}
+\iff 6x + 8y = 5\]
+
+Since $x^2 + y^2 = 1$, $\mathbf{u} = \Bigl<0.3 \pm 0.4\sqrt 3,
+0.4 \mp 0.3\sqrt 3\Bigr>$.
+
+\exercise{53} Given a point $P_1\left(x_1, y_1\right)$ and a line
+$d: ax + by + c = 0$.
+
+Let $P\left(x_0, y_0\right)$ be any point satisfying $ax_0 + by_0 + c = 0$,
+$\mathrm{distance}\left(d, P_1\right)$ is component of $\mathbf{u} =
+\overrightarrow{PP_1} = \langle x_1 - x_0, y_1 - y_0 \rangle$ along the normal
+of the line $\mathbf{n} = \langle a, b \rangle$:
+\begin{multline*}
+  \mathrm{comp}_\mathbf{u}\mathbf{n}
+= \frac{|\mathbf{n}\cdot\mathbf{u}|}{|\mathbf{n}|}
+= \frac{\left|a\left(x_1 - x_0\right) + b\left(y_1 - y_0\right)\right|}
+       {\sqrt{a^2 + b^2}}
+= \frac{\left|ax_1 + by_1 + c\right|}{\sqrt{a^2 + b^2}}\\
+\Longrightarrow \mathrm{distance}\left(3x - 4y + 5 = 0, (-2, 3)\right)
+= \frac{\left|3(-2) + (-4)3 + 5\right|}{\sqrt{3^2 + (-4)^2}}
+= \frac{13}{5}
+\end{multline*}
+
+\subsection{The Cross Product}
+\exercise{18} Given $\mathbf{a} = \langle 1, 0, 1 \rangle$,
+$\mathbf{b} = \langle 2, 1, -1 \rangle$ and
+$\mathbf{c} = \langle 0, 1, 3 \rangle$.
+\begin{multline*}
+  \begin{cases}
+    \mathbf{a}\times(\mathbf{b}\times\mathbf{c})
+    = \langle 1, 0, 1 \rangle \times \langle 4, -6, 2 \rangle
+    = \langle 6, 2, -6 \rangle\\
+    (\mathbf{a}\times\mathbf{b})\times\mathbf{c}
+    = \langle -1, 3, 1 \rangle \times \langle 0, 1, 3 \rangle
+    = \langle 8, 3, -1 \rangle
+  \end{cases}\\
+  \Longrightarrow \mathbf{a}\times(\mathbf{b}\times\mathbf{c})
+             \neq (\mathbf{a}\times\mathbf{b})\times\mathbf{c}
+\end{multline*}
+
+\exercise{38} Given $A(1, 3, 2)$, $B(3, -1, 6)$, $C(5, 2, 0)$ and $D(3, 6, -4)$.
+\begin{align*}
+   \overrightarrow{AB}\cdot
+   \left(\overrightarrow{AC}\times\overrightarrow{AD}\right)
+&= \langle 2, -4, 4 \rangle \cdot
+   (\langle 4, -1, -2 \rangle \times \langle 2, 3, -6 \rangle)\\
+&= \langle 2, -4, 4 \rangle \cdot \langle 12, 20, 14 \rangle\\
+&= 24 - 80 + 56\\
+&= 0
+\end{align*}
+
+Thus $\overrightarrow{AB}$, $\overrightarrow{AC}$ and $\overrightarrow{AD}$
+are coplanar, which means $A$, $B$, $C$ and $D$ are coplanar.
+
+\exercise{39} The magnitude of the torque about $P$:
+\begin{align*}
+   |\boldsymbol\tau|
+&= |\mathbf{r}\times\mathbf{F}|\\
+&= |-\mathbf{r}\times-\mathbf{F}|\\
+&= |\mathbf{r}|\cdot|\mathbf{F}|\cdot\sin\left(\ang{70}+\ang{10}\right)\\
+&= 0.18 \cdot 60 \cdot \sin\ang{80}\\
+&\approx 10.6\qquad(\mathrm{N}\cdot\mathrm{m})
+\end{align*}
+
+\setcounter{section}{13}
+\section{Partial Derivatives}
+\setcounter{subsection}{1}
+\subsection{Limits et Continuity}
+Determine the set of points at which the function is continuous.
+
+\[F(x, y) = \frac{1 + x^2 + y^2}{1 - x^2 - y^2}\tag{31}\]
+
+$F$ is a rational function, hence it is continuous on its domain
+\[D_F = \left\{(x, y) \in \mathbb{R}^2 \,\middle|\, x^2 + y^2 \neq 1\right\}\]
+
+\[H(x, y) = \frac{e^x + e^y}{e^{xy} - 1}\tag{32}\]
+
+Since $H$ is a ratio of sums of exponential functions, it is continuous on its
+domain \[D_H = \left\{(x, y) \in \mathbb{R}^2 \,\middle|\, xy \neq 0\right\}\]
+
+\[f(x, y) = \begin{cases}
+            \frac{x^2 y^3}{2x^2 + y^2}&\text{if }(x, y) \neq (0, 0)\\
+            1&\text{if }(x, y) = (0, 0)
+\end{cases}\tag{37}\]
+
+On $\mathbb{R}^2 \backslash (0, 0)$, because $2x^2 + y^2 \geq 3x^2 |y|$
+(AM-GM inequality)
+\[0 \leq \left|\frac{x^2 y^3}{2x^2 + y^2}\right|
+    \leq \left|\frac{x^2 y^3}{3x^2 |y|}\right| = \frac{y^2}{3}\]
+
+Since $0 \to 0$ and $y^2 \to 0$ as $(x, y) \to (0, 0)$,
+by applying the Squeeze Theorem, $|f(x, y)| \to 0$ as
+$(x, y) \to (0, 0)$.
+
+It is trivial on $\mathbb{R}^2 \backslash (0, 0)$ that
+$-|f(x, y)| \leq f(x, y) \leq |f(x, y)|$. Thus by again applying the
+Squeeze Theorem, we get
+\[\lim_{x\to 0 \atop y\to 0}f(x, y) = 0 \neq 1 = f(0, 0)\]
+
+Therefore, the rational function $f$ is only continuous on
+$\mathbb{R}^2 \backslash (0, 0)$.
+
+\subsection{Partial Derivatives}
+\exercise{29} Find the first partial derivatives of the function
+\begin{align*}
+  F(x, y) &= \int_y^x\cos\left(e^t\right)\ud t\\
+          &= \int_y^x\frac{1}{e^t}\ud\sin\left(e^t\right)\\
+          &= \int_{e^y}^{e^x}\frac{1}{t}\ud\sin t\\
+          &= \int_{e^y}^{e^x}\frac{\cos t}{t}\ud t\\
+          &= \sum_{n=0}^\infty\int_{e^y}^{e^x}
+             (-1)^n\frac{t^{2n-1}}{(2n)!}\ud t\\
+          &= \left[\ln t + \sum_{n=1}^\infty
+             \frac{(-t)^{2n}}{2n(2n)!}\right]_{e^y}^{e^x}\\
+          &= x - y + \sum_{n=1}^\infty
+             \frac{\left(-e^x\right)^{2n} - \left(-e^y\right)^{2n}}{2n(2n)!}
+\end{align*}
+\begin{align*}
+  \tho{F}{x}&
+= -1 + \sum_{n=1}^\infty\frac{2n\left(-e^x\right)^{2n}}{2n(2n)!}
+= \sum_{n=0}^\infty\frac{\left(-e^x\right)^{2n}}{(2n)!}
+= \cos\left(-e^x\right)
+= \cos\left(e^x\right)\\
+  \tho{F}{y}&
+= 1 + \sum_{n=1}^\infty\frac{-2n\left(-e^y\right)^{2n}}{2n(2n)!}
+= -\sum_{n=0}^\infty\frac{\left(-e^x\right)^{2n}}{(2n)!}
+= -\cos\left(-e^x\right)
+= -\cos\left(e^x\right)
+\end{align*}
+
+\exercise{48} Use implicit differentiation to find $\partial z/\partial x$
+and $\partial z/\partial y$.
+\[x^2 - y^2 + z^2 - 2z = 4\]
+\begin{equation*}
+  \begin{cases}
+    \begin{aligned}
+      2x + 2z\tho{z}{x} - 2\tho{z}{x} &= 0\\
+      -2y + 2z\tho{z}{y} - 2\tho{z}{y} &= 0
+    \end{aligned}
+  \end{cases}
+  \Longrightarrow
+  \begin{cases}
+    \begin{aligned}
+      \tho{z}{x} &= \frac{x}{1 - z}\\
+      \tho{z}{y} &= \frac{y}{z - 1}
+    \end{aligned}
+  \end{cases}
+\end{equation*}
+
+\exercise{65\&67} Find the indicated partial derivative.
+\begin{align*}
+   \frac{\partial^3}{\partial z\partial y\partial x}e^{xyz^2}
+&= \frac{\partial^2}{\partial z\partial y}yz^2e^{xyz^2}\\
+&= \frac{\partial}{\partial z}xyz^4e^{xyz^2}\\
+&= 2x^2y^2z^5e^{xyz^2}\tag{65}
+\end{align*}
+\begin{align*}
+   \frac{\partial^3}{\partial r^2\partial\theta}e^{r\theta}\sin\theta
+&= \frac{\partial^2}{\partial r^2}
+   \left(re^{r\theta}\sin\theta + e^{r\theta}\cos\theta\right)\\
+&= \frac{\partial}{\partial r}
+   \left(r\theta e^{r\theta}\sin\theta + \theta e^{r\theta}\cos\theta\right)\\
+&= \theta^2e^{r\theta}(r\sin\theta + \cos\theta)\tag{67}
+\end{align*}
+
+\exercise{53} Find all the second partial derivatives of the function
+$f(x, y) = x^3 y^5 + 2x^4 y$.
+
+First partial derivatives of $f$:
+\begin{align*}
+  &f_x = 3x^2 y^5 + 8x^3 y\\
+  &f_y = 5x^3 y^4 + 2x^4
+\end{align*}
+
+Second partial derivatives:
+\begin{align*}
+  &f_{xx} = 6xy^5 + 24x^2 y\\
+  &f_{xy} = f_{yx} = 15x^2 y^4 + 8x^3\\
+  &f_{yy} = 20x^3 y^3
+\end{align*}
+
+\exercise{80} Given $u = \exp\left(\sum_{i=1}^n a_i x_i\right)$,
+where $\sum_{i=1}^n a_i^2 = 1$.
+\[\sum_{i=1}^n\tho[^2]{u}{x_i}
+= \sum_{i=1}^n\tho{a_i u}{x_i}
+= \sum_{i=1}^n a_i^2 u
+= u\]
+
+\subsection{Tangent Planes}
+Find an equation of the tangent plane to the given suface
+at the specified point.
+
+\[z = 3y^2 - 2x^2 + x,\qquad (2, -1, -3)\tag{1}\]
+\begin{align*}
+     &z + 3 = \tho{z}{x}(2,-1)(x-2) + \tho{z}{y}(2,-1)(y+1)\\
+\iff &z + 3 = \anonym{(x,y)}{1-4x}(2,-1)(x-2) + \anonym{(x,y)}{6y}(2,-1)(y+1)\\
+\iff &z + 3 = 17 - 8x - 6y - 6\\
+\iff &8x + 6y + z = 8
+\end{align*}
+
+\[z = 3(x - 1)^2 + 2(y + 3)^2 + 7,\qquad (2, -2, 12)\tag{2}\]
+\begin{align*}
+     &z - 12 = \tho{z}{x}(2, -2)(x - 2) + \tho{z}{y}(2, -2)(y + 2)\\
+\iff &z - 12 = \anonym{(x, y)}{6x - 6}(2, -2)(x - 2)
+             + \anonym{(x, y)}{4y + 12}(2, -2)(y + 2)\\
+\iff &z - 12 = 6x - 12 + 4y + 8\\
+\iff &6x + 4y - z + 8 = 0
+\end{align*}
+
+\[z = \sqrt{xy},\qquad (1, 1, 1)\tag{3}\]
+\begin{align*}
+     &z - 1 = \tho{z}{x}(1, 1)(x - 1) + \tho{z}{y}(1, 1)(y - 1)\\
+\iff &z - 1 = \anonym{(x, y)}{\sqrt\frac{y}{4x}}(1, 1)(x - 1)
+            + \anonym{(x, y)}{\sqrt\frac{x}{4y}}(1, 1)(y - 1)\\
+\iff &2z - 2 = x - 1 + y - 1\\
+\iff &x + y - 2z = 0
+\end{align*}
+
+\subsection{The Chain Rule}
+\exercise{4} Use the Chain Rule to find $\mathrm{d} z/\mathrm{d} t$.
+\[z = \arctan\frac{y}{x},\qquad x = e^t,\qquad y = 1-e^{-t}\]
+\begin{align*}
+   \leibniz{z}{t}
+&= \tho{z}{x}\cdot\leibniz{x}{t} + \tho{z}{y}\cdot\leibniz{y}{t}\\
+&= \tho{\arctan(y/x)}{x}\cdot\leibniz{e^t}{t}
+ + \tho{\arctan(y/x)}{y}\cdot\leibniz{\left(1 - e^{-t}\right)}{t}\\
+&= \frac{x^2}{y^2 + x^2}\left(\tho{(y/x)}{x}e^t + \tho{(y/x)}{y}e^{-t}\right)\\
+&= \frac{x^2}{y^2 + x^2}\left(\frac{-y}{x^2}e^t + \frac{1}{x}e^{-t}\right)\\
+&= \frac{xe^{-t} - ye^t}{y^2 + x^2}\\
+&= \frac{1 - e^t + 1}{e^{2t} + e^{-2t} - 2e^{-t} + 1}\\
+&= \frac{e^{2t} - e^{3t}}{e^{4t} +e^{2t} - 2e^t + 1}
+\end{align*}
+
+\exercise{9\&11} Use the Chain Rule to find $\partial z/\partial s$ and
+$\partial z/\partial t$.
+\[z = \sin\theta\cos\phi,\qquad \theta = st^2,\qquad \phi = s^2t\tag{9}\]
+\begin{align*}
+& \tho{z}{s}
+= \tho{z}{\theta}\tho{\theta}{s} + \tho{z}{\phi}\tho{\phi}{s}
+= t^2\cos\theta\cos\phi - 2st\sin\theta\sin\phi\\
+& \tho{z}{t}
+= \tho{z}{\theta}\tho{\theta}{t} + \tho{z}{\phi}\tho{\phi}{t}
+= 2st\cos\theta\cos\phi - t^2\sin\theta\sin\phi
+\end{align*}
+
+\[e^r\cos\theta,\qquad r = st,\qquad \theta = \sqrt{s^2 + t^2}\tag{11}\]
+\begin{align*}
+& \tho{z}{s}
+= \tho{z}{r}\tho{r}{s} + \tho{z}{\theta}\tho{\theta}{s}
+= e^rt\cos\theta - e^r\sin\theta\frac{s}{\sqrt{s^2 + t^2}}
+= e^{st}\left(t\cos\theta - \frac{s\sin\theta}{\sqrt{s^2 + t^2}}\right)\\
+& \tho{z}{t} = e^{st}\left(s\cos\theta - \frac{t\sin\theta}{\sqrt{s^2 + t^2}}\right)
+\end{align*}
+
+\exercise{13} Suppose $f$ is a differentiable function of $g(t)$ and $h(t)$,
+satisfying
+\begin{align*}
+  g(3) &= 2\\
+  \leibniz{g}{t}(3) &= 5\\
+  \tho{f}{g}(2, 7) &= 6\\
+  h(3) &= 7\\
+  \leibniz{h}{t}(3) &= -4\\
+  \tho{f}{h}(2, 7) &= -8
+\end{align*}
+\begin{align*}
+   \leibniz{f}{t}(3)
+&= \tho{f}{g}(g(3), h(3))\cdot\leibniz{g}{t}(3)
+ + \tho{f}{h}(g(3), h(3))\cdot\leibniz{h}{t}(3)\\
+&= \tho{f}{g}(2, 7) \cdot 5
+ + \tho{f}{h}(2, 7) \cdot (-4)\\
+&= 6 \cdot 5 + (-8)(-4)\\
+&= 62
+\end{align*}
+
+\exercise{14} Let $W(s, t) = F(u(s, t), v(s, t))$, where $F$, $u$ and $v$ are
+differentiable, and
+\begin{align*}
+  u(1, 0) &= 2\\
+  u_s(1, 0) &= -2\\
+  u_t(1, 0) &= 6\\
+  F_u(2, 3) &= -1\\
+  v(1, 0) &= 3\\
+  v_s(1, 0) &= 5\\
+  v_t(1, 0) &= 4\\
+  F_v(2, 3) &= 10
+\end{align*}
+\begin{align*}
+   W_s(1, 0)
+&= F_u(u(1, 0), v(1, 0)) u_s(1, 0) + F_v(u(1, 0), v(1, 0)) v_s(1, 0)\\
+&= F_u(2, 3) (-2) + F_v(2, 3) \cdot 5\\
+&= (-1)(-2) + 10 \cdot 5\\
+&= 22\\
+   W_t(1, 0)
+&= F_u(u(1, 0), v(1, 0)) u_t(1, 0) + F_v(u(1, 0), v(1, 0)) v_t(1, 0)\\
+&= F_u(2, 3) \cdot 6 + F_v(2, 3) \cdot 4\\
+&= -1 \cdot 6 + 10 \cdot 4\\
+&= 34
+\end{align*}
+
+\exercise{17} Assume all functions are differentiable, write out the Chain Rule.
+\[u = f(x(r, s, t), y(r, s, t))\]
+\[\begin{dcases}
+    \tho{u}{r} = \chain{u}{x}{r} + \chain{u}{y}{r}\\
+    \tho{u}{r} = \chain{u}{x}{s} + \chain{u}{y}{s}\\
+    \tho{u}{r} = \chain{u}{x}{t} + \chain{u}{y}{t}
+  \end{dcases}\]
+
+\exercise{23} Use the Chain Rule to find $\partial w/\partial r$ and
+$\partial w/\partial\theta$ when $r = 2$ and $\theta = \pi/2$, given
+\[w = xy + yz + zx,\qquad x = r\cos\theta,\qquad
+  y = r\sin\theta,\qquad z = r\theta\]
+\begin{align*}
+& \begin{dcases}
+    \tho{w}{r} = \chain{w}{x}{r} + \chain{w}{y}{r} + \chain{w}{z}{r}\\
+    \tho{w}{\theta} = \chain{w}{x}{\theta} + \chain{w}{y}{\theta}
+                    + \chain{w}{z}{\theta}
+  \end{dcases}\\
+\iff
+& \begin{dcases}
+    \tho{w}{r} = (y + z)\cos\theta + (x + z)\sin\theta + (y + x)\theta\\
+    \tho{w}{\theta} = -(y + z)r\sin\theta + (x + z)r\cos\theta
+                    + (y + x)r
+  \end{dcases}
+\end{align*}
+
+For $(r, \theta) = (2, \pi/2)$
+\begin{align*}
+& \begin{dcases}
+    \tho{w}{r} = x + z + (y + x)\frac{\pi}{2}\\
+    \tho{w}{\theta} = 2x - 2z
+  \end{dcases}\\
+\iff
+& \begin{dcases}
+    \tho{w}{r} = 2\cos\frac{\pi}{2} + 2\frac{\pi}{2} + 2\left(\sin\frac{\pi}{2}
+                 + \cos\frac{\pi}{2}\right)\frac{\pi}{2}\\
+    \tho{w}{\theta} = 4\cos\frac{\pi}{2} - 4\frac{\pi}{2}
+  \end{dcases}\\
+\iff& \tho{w}{r} = -\tho{w}{\theta} = 2\pi
+\end{align*}
+
+\exercise{27} Find $\mathrm{d}y/\mathrm{d}x$.
+\[y\cos x = x^2 + y^2
+  \Longrightarrow
+  \leibniz{y}{x}
+= -\frac{\tho{}{x}\left(x^2 + y^2 - y\cos x\right)}
+        {\tho{}{y}\left(x^2 + y^2 - y\cos x\right)}
+= \frac{y\sin x + 2x}{\cos x - 2y}\]
+
+\exercise{31} Find $\partial z/\partial x$ and $\partial z/\partial y$.
+\[x^2 + 2y^2 + 3z^2 = 1
+\Longrightarrow
+\begin{dcases}
+  \tho{z}{x} = -\frac{\tho{}{x}\left(x^2 + 2y^2 + 3z^2 - 1\right)}
+                     {\tho{}{z}\left(x^2 + 2y^2 + 3z^2 - 1\right)}
+             = -\frac{x}{3z}\\
+  \tho{z}{x} = -\frac{\tho{}{y}\left(x^2 + 2y^2 + 3z^2 - 1\right)}
+                     {\tho{}{z}\left(x^2 + 2y^2 + 3z^2 - 1\right)}
+             = -\frac{2y}{3z}
+\end{dcases}\]
+
+\exercise{36} Wheat production $W$ in a given year depends on the average
+temperature $T$ and the annual rainfall $R$. At current production levels,
+$\partial W/\partial T = -2$ and $\partial W/\partial R = 8$. Estimate the
+current rate of change of wheat production, given $\mathrm{d}T/\mathrm{d}t=0.15$
+and $\mathrm{d}R/\mathrm{d}t=-0.1$.
+\[\leibniz{W}{t}
+= \tho{W}{T}\leibniz{T}{t} + \tho{W}{R}\leibniz{R}{t}
+= (-1)0.15 + 8(-0.1)
+= -0.95\]
+
+\exercise{40} Use Ohm’s Law, $V = IR$, to find how the current $I$
+is changing at the moment when $R = 400\,\mathrm\Omega$, $I = 0.08$ A,
+$\mathrm{d}V/\mathrm{d}t = 0.01$ V/s,
+and $\mathrm{d}R/\mathrm{d}t = 0.03\,\mathrm{\Omega/s}$.
+\begin{align*}
+   \leibniz{I}{t}
+&= \tho{(V/R)}{V}\leibniz{V}{t} + \tho{(V/R)}{R}\leibniz{R}{t}\\
+&= \frac{1}{R}(-0.01) - \frac{V}{R^2}0.03\\
+&= \frac{-0.01}{400} - \frac{0.03I}{R}\\
+&= \frac{-1}{40000} - \frac{0.03 \cdot 0.08}{400}\\
+&= \frac{-31}{1000000}\,\mathrm{(A/t)}\\
+&= -31\,\mathrm{(\mu A/t)}
+\end{align*}
+
+\exercise{42} The rate of change of production:
+\begin{align*}
+\leibniz{P}{t} &= \tho{\left(1.47L^{0.65}K^{0.35}\right)}{L}\leibniz{L}{t}
+                + \tho{\left(1.47L^{0.65}K^{0.35}\right)}{K}\leibniz{K}{t}\\
+               &= 0.9555\left(\frac{K}{L}\right)^{0.35} (-2)
+                + 0.5145\left(\frac{L}{K}\right)^{0.65} \cdot 0.5\\
+               &= -1.911\left(\frac{8}{30}\right)^{0.35}
+                + 0.25725\left(\frac{30}{8}\right)^{0.65}\\
+               &\approx -0.595832\text{ million dollars}\\
+               &= -595832\text{ dollars}\\
+\end{align*}
+
+\exercise{47} Given $z = f(x - y)$.
+\[\tho{z}{x} + \tho{z}{y}
+= \leibniz{z}{(x - y)}\tho{(x - y)}{x} + \leibniz{z}{(x - y)}\tho{(x - y)}{y}
+= \leibniz{z}{(x - y)}(1 - 1)
+= 0\]
+
+\subsection{Directional Derivatives and the Gradient Vector}
+\exercise{5} Find the directional derivative of $f(x, y) = ye^{-x}$ at $(0, 4)$
+in the direction indicated by the angle $\theta = 2\pi/3$.
+
+Unit vector direction indicated by the angle $\theta = \frac{2\pi}{3}$
+is $\mathbf{u} = \langle -1/2, \sqrt{3}/2 \rangle$.
+\begin{align*}
+  \mathrm{D}_\mathbf{u}f(0, 4)
+&= \nabla f(0, 4)\cdot\mathbf{u}\\
+&= \left<\tho{\left(ye^{-x}\right)}{x}(0, 4),
+         \tho{\left(ye^{-x}\right)}{y}(0, 4)\right>
+   \cdot \left<\frac{-1}{2}, \frac{\sqrt 3}{2}\right>\\
+&= \left<\left((x, y) \mapsto -ye^{-x}\right)(0, 4),
+         \left((x, y) \mapsto e^{-x}\right)(0, 4)\right>
+   \cdot \left<\frac{-1}{2}, \frac{\sqrt 3}{2}\right>\\
+&= \left<-4, 1\right> \cdot \left<\frac{-1}{2}, \frac{\sqrt 3}{2}\right>\\
+&= 2 + \frac{\sqrt 3}{2}
+\end{align*}
+
+\exercise{7} Find the rate of change of $f(x, y) = \sin(2x + 3y)$ at $P(-6, 4)$
+in the direction of the vector $\mathbf{u} = \frac{1}{2}(\sqrt{3}\unit\i - \unit\j)$.
+\begin{align*}
+  \mathrm{D}_\mathbf{u}f(-6, 4)
+&= \nabla f(-6, 4)\cdot\mathbf{u}\\
+&= \left<\tho{\sin(2x + 3y)}{x}(-6, 4),
+         \tho{\sin(2x + 3y)}{y}(-6, 4)\right>
+   \cdot \left<\frac{\sqrt 3}{2}, \frac{-1}{2}\right>\\
+&= \left<2\cos(2(-6) + 3 \cdot 4),
+         3\cos(2(-6) + 3 \cdot 4)\right>
+   \cdot \left<\frac{\sqrt 3}{2}, \frac{-1}{2}\right>\\
+&= \sqrt 3 - \frac{3}{2}
+\end{align*}
+\pagebreak
+
+\exercise{11} Find the directional derivative of $f(x, y) = e^x\sin y$
+at point $(0, \pi/3)$ in the direction of the vector
+$\mathbf{v} = \langle -6, 8\rangle$
+\begin{align*}
+  \mathrm{comp}_\mathbf{v}\nabla f\left(0, \frac{\pi}{3}\right)
+&= \frac{\nabla f\left(0, \frac{\pi}{3}\right)\cdot\mathbf{v}}{|\mathbf{v}|}\\
+&= \left<\tho{(e^x\sin y)}{x}\left(0, \frac{\pi}{3}\right),
+         \tho{(e^x\sin y)}{y}\left(0, \frac{\pi}{3}\right)\right>
+   \cdot \frac{\langle -6, 8\rangle}{\sqrt{(-6)^2 + 8^2}}\\
+&= \left<\frac{\sqrt 3}{2}, \frac{1}{2}\right>
+   \cdot \left<\frac{-3}{5}, \frac{4}{5}\right>\\
+&= \frac{2}{5} - \frac{3\sqrt 3}{10}
+\end{align*}
+
+\exercise{17} Find the directional derivative of
+$h(r, s, t) = \ln(3r + 6s + 9t)$ at point $(1, 1, 1)$
+in the direction of the vector $\mathbf{v} = \langle 4, 12, 6\rangle$.
+\begin{align*}
+  \mathrm{comp}_\mathbf{v}\nabla f(1, 1, 1)
+&= \frac{\nabla f(1, 1, 1)\cdot\mathbf{v}}{|\mathbf{v}|}\\
+&= \left<\frac{3}{3+6+9},\frac{6}{3+6+9},\frac{9}{3+6+9}\right>
+   \cdot \left<\frac{2}{7},\frac{6}{7},\frac{3}{7}\right>\\
+&= \left<\frac{1}{6},\frac{1}{3},\frac{1}{2}\right>
+   \cdot \left<\frac{2}{7},\frac{6}{7},\frac{3}{7}\right>\\
+&= \frac{23}{42}
+\end{align*}
+
+\exercise{21\&25} Find the maximum rate of change of $f$ at the given point and
+the direction in which it occurs.
+\[f(x, y) = 4y\sqrt{x},\qquad(4, 1)\tag{21}\]
+\begin{align*}
+   |\nabla f(4, 1)|
+&= \left|\left<\tho{\left(4y\sqrt x\right)}{x}(4, 1),
+               \tho{\left(4y\sqrt x\right)}{y}(4, 1)\right>\right|\\
+&= \left|\left<1, 8\right>\right|\\
+&= \sqrt{65}
+\end{align*}
+
+\[f(x, y, z) = \sqrt{x^2 + y^2 + z^2},\qquad(3, 6, -2)\tag{25}\]
+\begin{align*}
+   |\nabla f(3, 6, -2)|
+&= \left|\left<\frac{3}{\sqrt{3^2 + 6^2 + (-2)^2}},
+               \frac{6}{\sqrt{3^2 + 6^2 + (-2)^2}},
+               \frac{-2}{\sqrt{3^2 + 6^2 + (-2)^2}}\right>\right|\\
+&= 1
+\end{align*}
+
+\exercise{29} Find all points at which the direction of fastest change of the
+function $f(x, y) = x^2 + y^2 - 2x - 4y$ is $\unit\i + \unit\j$.
+
+The rate of change at point $(a, b)$ is maximum in direction $\unit\i + \unit\j$
+if and only if $\nabla f(a, b)$ has the same direction:
+\begin{align*}
+  \nabla f(a, b) \times (\unit\i + \unit\j) = \mathbf{0}
+&\iff ((2x-2)\unit\i + (2y-4)\unit\j) \times (\unit\i + \unit\j) = \mathrm{0}\\
+&\iff 2(x - y + 1)\unit k = \mathrm{0}\\
+&\iff x - y + 1 = 0
+\end{align*}
+
+Thus the points satisfying given the requirement is the line whose equation is
+$x - y + 1 = 0$.
+
+\exercise{32} The temperature at a point $(x, y, z)$ is given by
+\[T(x, y, z) = 200e^{-x^2 - 3y^2 - 9z^2}\]
+
+The rate of change of temperature at the point $P(2, -1, 2)$ in direction
+$\mathbf{u}$ is
+\begin{align*}
+   \mathrm{D}_\mathbf{u}f(2, -1, 2)
+&= \nabla f(2, -1, 2)\cdot\mathbf{u}\\
+&= \left((x, y, z) \mapsto \frac{-400}{e^{x^2 + 3y^2 + 9z^2}}
+         \langle x, 3y, 9z \rangle\right)(2, -1, 2)\cdot\mathbf{u}\\
+&= \frac{-400}{e^{2^2 + 3(-1)^2 + 9 \cdot 2^2}}
+   \langle 2, 3(-1), 9 \cdot 2 \rangle\cdot\mathbf{u}\\
+&= \left<\frac{-800}{e^{43}}, \frac{1200}{e^{43}},
+         \frac{-7200}{e^{43}}\right> \cdot \mathbf{u}
+\end{align*}
+
+For $\mathbf{u} = \left<1/\sqrt 6, -2/\sqrt 6, 1/\sqrt 6\right>$,
+the rate of change is
+\[\frac{-800}{e^{43}\sqrt 6} + \frac{400\sqrt 6}{e^{43}}
++ \frac{-1200\sqrt 6}{e^{43}} = \frac{-10400}{e^{43}\sqrt 6}\tag{a}\]
+
+Temperature increases the fastest at the same direction as $\nabla f(2, -1, 2)$
+\[\mathbf{u} = \left<\frac{-2}{\sqrt{337}}, \frac{3}{\sqrt{337}},
+                     \frac{-18}{\sqrt{337}}\right>\tag{b}\]
+
+In this direction, the rate of increase is
+\[|\nabla f(2, -1, 2)| = \frac{400\sqrt{337}}{e^{43}}\tag{c}\]
+
+\exercise{41} Find equations of the tangent plane and the normal line to the
+surface $F(x, y, z) = 2(x - 2)^2 + (y - 1)^2 + (z - 3)^2 = 10$ at $(3, 3, 5)$.
+
+Equation of the tangent plane:
+\begin{align*}
+     F_x(3, 3, 5)(x - 3) + F_y(3, 3, 5)(y - 3) + F_z(3, 3, 5)(z - 5) &= 0\\
+\iff 4(3 - 2)(x - 3) + 2(3 - 1)(y - 3) + 2(5 - 3)(z - 5) &= 0\\
+\iff x + y + z &= 11
+\end{align*}
+
+Equation of the normal line:
+\[\frac{x - 3}{F_x(3, 3, 5)} = \frac{y - 3}{F_y(3, 3, 5)}
+                             = \frac{z - 5}{F_z(3, 3, 5)}
+\iff x - 3 = y - 3 = z - 5\]
+
+\exercise{51} Given an ellipsoid
+\[E(x, y, z) = \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1\]
+
+Its tangent plane at the point $(x_0, y_0, z_0)$ has the equation of
+\begin{align*}
+ &E_x(x_0, y_0, z_0)(x - x_0) + E_y(x_0, y_0, z_0)(y - y_0)
++ E_z(x_0, y_0, z_0)(z - z_0) = 0\\
+\iff &\frac{2x_0}{a^2}(x - x_0) + \frac{2y_0}{b^2}(y - y_0)
+    + \frac{2z_0}{c^2}(z - z_0) = 0\\
+\iff &\frac{2xx_0}{a^2} + \frac{2yy_0}{b^2} + \frac{2zz_0}{c^2}
+    = \frac{2x_0^2}{a^2} + \frac{2y_0^2}{b^2} + \frac{2z_0^2}{c^2}\\
+\iff &\frac{2xx_0}{a^2} + \frac{2yy_0}{b^2} + \frac{2zz_0}{c^2} = 2\\
+\iff &\frac{xx_0}{a^2} + \frac{yy_0}{b^2} + \frac{zz_0}{c^2} = 1
+\end{align*}
+
+\exercise{56} Consider an ellipsoid $3x^2 + 2y^2 + z^2 = 9$ and the sphere
+$x^2 + y^2 + z^2 - 8x - 6y - 8z + 24 = 0$. A point in their intersection must
+satisfy the following equation
+\begin{align*}
+     &x^2 + y^2 + z^2 - 8x - 6y - 8z + 24 = 9 - 3x^2 - 2y^2 - z^2\\
+\iff &4x^2 - 8x + 4 + 3y^2 - 6y + 3 + 2z^2 - 8z + 8 = 0\\
+\iff &4(x - 1)^2 + 3(y - 1)^2 + 2(z - 2)^2 = 0\\
+\iff &\begin{cases}x = y = 1\\z = 2\end{cases}
+\end{align*}
+
+Thus the intersection is a subset of $\{(1, 1, 2)\}$. Since $P(1, 1, 2)$ lies
+on both the ellipsoid and the sphere, it is the one and only intersection point
+of the two. Therefore, they are tangent to each other at $P$.
+
+\subsection{Minimum and Maximum Values}
+\exercise{1} Suppose (1, 1) is a critical point of a function f with continuous
+second derivatives.
+\begin{multline}
+  \begin{cases}
+    \begin{vmatrix}
+      f_{xx}(1, 1) & f_{xy}(1, 1)\\
+      f_{yx}(1, 1) & f_{yy}(1, 1)
+    \end{vmatrix} = 4 \cdot 2 - 1^2 = 7 > 0\\
+    f_{xx}(1, 1) = 4 > 0
+  \end{cases}\\
+  \Longrightarrow f(1, 1)\text{ is a local minumum}\tag{a}
+\end{multline}
+\begin{multline}
+  \begin{vmatrix}
+    f_{xx}(1, 1) & f_{xy}(1, 1)\\
+    f_{yx}(1, 1) & f_{yy}(1, 1)
+  \end{vmatrix} = 4 \cdot 2 - 3^2 = -1 < 0\\
+  \Longrightarrow (1, 1)\text{ is a saddle point of } f\tag{b}
+\end{multline}
+
+\exercise{7\&13\&15} Find the local maximum and minimum values and saddle points
+of the function and graph the function.
+
+For the next few exercises, $D$ is defined as
+\[D(x, y) =
+\begin{vmatrix}
+  f_{xx}(x, y) & f_{xy}(x, y)\\
+  f_{yx}(x, y) & f_{yy}(x, y)
+\end{vmatrix}\]
+
+\[f(x, y) = (x - y)(1 - xy) = xy^2 - x^2y + x - y\tag{7}\]
+\begin{align*}
+  f_x = f_y = 0
+  &\iff y^2 - 2xy + 1 = 2xy - x^2 - 1 = 0\\
+  &\iff x^2 = y^2 = 2xy - 1\\
+  &\iff x = y = \pm 1
+\end{align*}
+
+As $f_{xx} = -2y$, $f_{yy} = 2x$ and $f_{xy} = f_{yx} = 2y - 2x$,
+$D(x, y) = -4xy - (2y - 2x)^2$, thus $D(1, 1) = D(-1, -1) = -4 < 0$.
+Therefore $(\pm 1, \pm 1)$ are saddle points of $f$.
+
+\begin{tikzpicture}[domain=-2:2]
+  \begin{axis}[xlabel={x}, ylabel={y}, zmin=-2, zmax=2]
+    \addplot3[surf]{(x - y) * (1 - x*y)};
+  \end{axis}
+\end{tikzpicture}
+
+\[f(x, y) = e^x\cos y\tag{13}\]
+
+Since $f_x = f_y = 0 \iff e^x\cos y = -e^x\sin y = 0$ has no solution,
+$f$ does not have any local minumum or maximum value.
+
+\[f(x, y) = (x^2 + y^2)e^{y^2 - x^2}\tag{15}\]
+\begin{align*}
+  &f_x = f_y = 0\\
+  \iff &e^{y^2 - x^2}(2x + (x^2 + y^2)(-2x))
+      = e^{y^2 - x^2}(2y + (x^2 + y^2)2y) = 0\\
+  \iff &x^3 + xy^2 - x = x^2y + y^3 + y = 0\\
+  \iff &(x^2 + y^2 - 1)(x - y) = x^2y + y^3 + y = 0\\
+  \iff &(x, y) \in \{(-1, 0), (0, 0), (1, 0)\}
+\end{align*}
+
+Second derivatives of $f$
+\begin{align*}
+  f_{xx} &= (4x^4 + 4x^2y^2 - 10x^2 - 2y^2 + 2)e^{y^2 - x^2}\\
+  f_{xy} &= f_{yx} = -4xy(x^2 + y^2)e^{y^2 - x^2}\\
+  f_{yy} &= (4x^2y^2 + 4y^4 + 2x^2 + 10y^2 + 2)e^{y^2 - x^2}
+\end{align*}
+
+From these we can calculate $D(0, 0) = 4 > 0$ and $D(\pm 1, 0) = -16/e^2 < 0$
+and thus conclude that $f(0, 0) = 0$ is the only local minimum value of $f$.
+
+\exercise{29\&34} Find the absolute maximum and minimum values of $f$
+on the set $D$.
+\[f = x^2 + y^2 - 2x,\qquad
+D = \{(x, y) \,|\, x \geq 0, |x| + |y| \leq 2\}\tag{29}\]
+
+The critical points of $f$ occur when
+\[f_x = f_y = 0 \iff 2x - 2 = 2y = 0 \iff (x, y) = (1, 0)\]
+
+The value of $f$ at the only critical point $(1, 0)$ is $f(1, 0) = 0$.
+
+\begin{tikzpicture}
+  \begin{axis}[
+    axis x line=middle, axis y line=middle,
+    xmin=-1.5, xmax=4.5, xlabel={x}, ymin=-3, ymax=3, ylabel={y},
+    xlabel style={at=(current axis.right of origin), anchor=west},
+    ylabel style={at=(current axis.above origin), anchor=south}]
+    \addplot[red] plot coordinates {(0,-2) (0,2)};
+    \addplot[green] plot coordinates {(0,-2) (2,0)};
+    \addplot[blue] plot coordinates {(0,2) (2,0)};
+    \legend{$L_0$, $L_1$, $L_2$}
+  \end{axis}
+\end{tikzpicture}
+
+On $L_0$, we have $x = 0$ and
+\[f(x, y) = f(0, y) = y^2, -2 \leq y \leq 2
+\qquad\Longrightarrow 0 \leq f(x, y) \leq 4\]
+
+On $L_1$, we have $0 \leq y = x - 2 \leq 2$ and thus
+\[f(x, y) = f(x, x - 2) = 2x^2 - 6x + 4
+\Longrightarrow 0 \leq f(x, y) \leq 24\]
+
+On $L_2$, we have $0 \leq y = 2 - x \leq 2$ and thus
+\[f(x, y) = f(x, 2 - x) = 2x^2 - 6x + 4
+\Longrightarrow 0 \leq f(x, y) \leq 4\]
+
+Therefore, on the boundary, the minimum value of $f$ is 0
+and the maximum is 24.
+
+\[f(x, y) = xy^2,\qquad
+D = \{(x, y) \,|\, x \geq 0, y \geq 0, x^2 + y^2 \leq 3\}\tag{34}\]
+
+The critical points of $f$ occur when
+\[f_x = f_y = 0 \iff y^2 = 2xy = 0 \iff y = 0\]
+
+\begin{tikzpicture}
+  \begin{axis}[
+    axis x line=middle, axis y line=middle,
+    xmin=-1, xmax=3, xlabel={x}, ymin=-1, ymax=3, ylabel={y},
+    xlabel style={at=(current axis.right of origin), anchor=west},
+    ylabel style={at=(current axis.above origin), anchor=south}]
+    \addplot[domain=0:1.732, red]{sqrt(3 - x^2)};
+    \addplot[domain=0:1.732, red]{sin(x/pi*180)};
+    \addplot[green] plot coordinates {(0,0) (1.732,0)};
+    \addplot[blue] plot coordinates {(0,0) (0,1.732)};
+    \legend{$C$, $L_0$, $L_1$}
+  \end{axis}
+\end{tikzpicture}
+
+The critical points of $f$ are on $L_1$ and its values there are 0.
+On $L_0$, the value of $f(x, y)$ is also always 0.
+
+On $C$, $y^2 = 3 - x^2$ and $0 \leq x \leq \sqrt 3$, hence
+$0 \leq f(x, y) = 3x - x^3 \leq 2$.
+
+Thus, on the boundary, the minimum value of $f$ is 0
+and the maximum is 2.\pagebreak
+
+\exercise{41} Find all the points $P(a, b, c)$ on the cone $z^2 = x^2 + y^2$
+that are closest to the point $Q(4, 2, 0)$.
+
+Coordinates of $P$ satisfy $c = \sqrt{a^2 + b^2}$, thus
+\begin{align*}
+  PQ^2 &= (a - 4)^2 + (b - 2)^2 + a^2 + b^2\\
+  &= 2a^2 - 8a + 2b^2 - 4b + 20\\
+  &= 2(a - 2)^2 + 2(b - 1)^2 + 10 \leq 10
+\end{align*}
+
+Therefore the closest point to $Q$ on the cone is $\left(2, 1, \pm\sqrt 5\right)$.
+The minumum distance is $\sqrt{10}$.
+
+\exercise{49} Find the dimensions $(x, y, z)$ of a rectangular box of
+maximum volume such that the sum of the lengths of its 12 edges is a constant
+$c = 4(x + y + z)$.
+
+By AM-GM inequality, the volume of the box is
+\[V = xyz \leq \left(\frac{x + y + z}{3}\right)^2 = \frac{16c^2}{9}\]
+
+Equality occurs when $x = y = z = c/12$.
+
+\subsection{Lagrange Multipliers}
+\exercise{1} It is estimated that the minumum of $f$ is 30
+and the maximum value is 60.
+
+\exercise{5\&8\&13}. Use Lagrange multipliers to find the maximum and minimum
+values of the function subject to the given function.
+
+\[f(x, y) = y^2 - x^2,\qquad \frac{x^2}{4} + y^2 = 1\tag{5}\]
+\begin{align*}
+  \begin{cases}
+    \nabla f(x, y) = \lambda\nabla((x, y) \mapsto \frac{x^2}{4} + y^2)\\
+    \frac{x^2}{4} + y^2 = 1
+  \end{cases}
+  &\iff
+  \begin{cases}
+    \left<-2x, 2y\right> = \lambda\left<\frac{x}{2}, 2y\right>\\
+    \frac{x^2}{4} + y^2 = 1
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    -2x = \frac{\lambda x}{2}\\
+    2y = 2\lambda y\\
+    \frac{x^2}{4} + y^2 = 1
+  \end{cases}\\
+\end{align*}
+
+For $x = 0$, $\lambda = 1$ and $y = \pm 1$; for $y = 0$, $\lambda = -4$
+and $x = \pm 2$. Thus the minumum value of $f$ is $f(\pm 1, 0) = -1$
+and the maximum value is $f(0, \pm 2) = 4$.
+
+\[f(x, y, z) = x^2 + y^2 + z^2,\qquad x + y + z = 12\tag{8}\]
+\begin{align*}
+  \begin{cases}
+    \nabla f(x, y, z) = \lambda\nabla((x, y, z) \mapsto x + y + z)\\
+    x + y + z = 12
+  \end{cases}
+  &\iff
+  \begin{cases}
+    \left<2x, 2y, 2z\right> = \lambda\left<1, 1, 1\right>\\
+    x + y + z = 12
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = y = z = \frac{\lambda}{2}\\
+    x + y + z = 12
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = y = z = 4\\
+    \lambda = 8
+  \end{cases}
+\end{align*}
+
+Since $f(4, 4, 4) = 48 < f(12, 0, 0) = 144$, absolute minumum value of the
+function subject to $x + y + z = 12$ is $f(4, 4, 4) = 48$.
+
+\[f(x, y, z, t) = x + y + z + t,\qquad x^2 + y^2 + z^2 + t^2 = 1\tag{13}\]
+\begin{align*}
+  &\begin{cases}
+    \nabla f(x, y, z, t) = \lambda\nabla((x, y, z, t) \mapsto x^2 + y^2 + z^2 + t^2)\\
+    x^2 + y^2 + z^2 + t^2 = 1
+  \end{cases}\\
+  \iff
+  &\begin{cases}
+    \left<1, 1, 1, 1\right> = \lambda\left<2x, 2y, 2z, 2t\right>\\
+    x^2 + y^2 + z^2 + t^2 = 1
+  \end{cases}\\
+  \iff
+  &\begin{cases}
+    x = y = z = t = \frac{1}{2\lambda}\\
+    x^2 + y^2 + z^2 + t^2 = 1
+  \end{cases}\\
+  \iff
+  &\begin{cases}
+    x = y = z = t = \pm\frac{1}{2}\\
+    \lambda = 1
+  \end{cases}
+\end{align*}
+
+$f(-0.5, -0.5, -0.5, -0.5) = -2$ is the minumum value of $f$
+and $f(0.5, 0.5, 0.5, 0.5) = 4$ is the maximum value.\pagebreak
+
+\exercise{15} Find the extreme values of $f(x, y, z) = 2x + y$ subject to
+$x + y + z = 1$ and $y^2 + z^2 = 4$.
+
+Extreme values of $f$ occur when
+\begin{align*}
+  &\begin{cases}
+    \nabla f(x, y, z) = \lambda\nabla((x, y, z) \mapsto x + y + z)
+                      + \mu\nabla((x, y, z) \mapsto y^2 + z^2)\\
+    x + y + z = 1\\
+    y^2 + z^2 = 4
+  \end{cases}\\
+  \iff
+  &\begin{cases}
+    \left<2, 1, 0\right> = \lambda\left<1, 1, 1\right>
+                         + \mu\left<0, 2y, 2z\right>\\
+    x + y + z = 1\\
+    y^2 + z^2 = 4
+  \end{cases}\\
+  \iff
+  &\begin{cases}
+    \lambda = 1\\
+    \mu = \frac{1}{\sqrt 8}\\
+    x = 1\\
+    y = \pm \sqrt 2\\
+    z = \mp \sqrt 2
+  \end{cases}
+\end{align*}
+
+Thus the minumum value of $f$ on the given constraints is
+$f(1, -\sqrt 2) = 2 - \sqrt 2$ and the maximum value is
+$f(1, \sqrt 2) = 2 + \sqrt 2$.
+
+\exercise{21} Find the extreme values of $f(x, y) = e^{-xy}$
+on $x^2 + 4y^2 \leq 1$.
+
+Critical points of $f$ occur when $f_x = f_y = 0 \iff x = y = 0$,
+the value of $f$ there is $e^0 = 1$.
+
+On the boundary $x^2 + 4y^2 = 1$ the minimum and maximum values can be
+determined using the Lagrange Method:
+\begin{align*}
+  \begin{cases}
+    \left<-ye^{-xy}, -xe^{-xy}\right> = \lambda\left<2x, 8y\right>\\
+    x^2 + 4y^2 = 1
+  \end{cases}
+  &\Longrightarrow
+  \begin{cases}
+    x \in \left\{\frac{\pm 1}{\sqrt 2}\right\}\\
+    y \in \left\{\frac{\pm 1}{\sqrt 8}\right\}
+  \end{cases}
+\end{align*}
+
+Thus on the boundary the minumum value of $f$ is $e^{-1/4} = \sqrt[4]{1/e}$
+and the maximum value is $\sqrt[4] e$. These are also the absolute extreme
+values of $f$ in the ellipse.
+
+\exercise{37} Given function $f$ on $\mathbb{R}_+^n$
+\[f(x_1, x_2, \ldots, x_n) = \sqrt[n]{\prod_{i=1}^n x_i}\]
+
+By Lagrange Method, its extreme values subject to $\sum_{i=1}^n x_i = c$ satisfy
+\[\begin{cases}
+  \nabla f = \lambda\nabla\sum_{i=1}^n x_i\\
+  \sum_{i=1}^n x_i = c
+\end{cases}
+\iff
+\begin{cases}
+  \left<\frac{x_1^{1-2/n}}{n}, \ldots, \frac{x_i^{1-2/n}}{n}\right>f
+  = \lambda\left<x_1, x_2, \ldots, x_n\right>\\
+  \sum_{i=1}^n x_i = c
+\end{cases}\]
+
+\[\Longrightarrow
+\begin{cases}
+  x_1 = x_2 = \ldots = x_n\\
+  \sum_{i=1}^n x_i = c
+\end{cases}
+\iff x_1 = x_2 = \ldots = x_n = \frac{c}{n}\]
+
+At $x_1 = x_2 = \ldots = x_n = c/n$, $f(x_1, x_2, \ldots, x_n) = c/n$.
+As $c/n > 0 = f(c, 0, \ldots, 0)$, $c/n$ is the maximum value of $f$
+on the given constraint.
+
+\exercise{48} By AM-GM inequality,
+as $\sum_{i=1}^n x_i^2 = \sum_{i=1}^n y_i^2 = 1$,
+
+\[\sum_{i=1}^n x_i y_i \leq \sum_{i=1}^n\frac{x_i^2 + y_i^2}{2} = 1\]
+with equality when $\sum_{i=1}^n(x_i - y_i)^2 = 0$.
+
+\subsection*{Problem Plus}
+\exercise{1} A rectangle with length L and width W is cut into four smaller
+rectangles by two lines parallel to the sides.
+
+Let $x, y$ be two nonnegative numbers satisfying $x \leq L$ and $y \leq W$.
+The sum of the squares of the areas of the smaller rectangles would then be
+\begin{align*}
+  f(x, y) &= x^2y^2 + x^2(W-y)^2 + (L-x)^2y^2 + (L-x)^2(W-y)^2\\
+  &= (x^2 + (L-x)^2)(y^2 + (W-y)^2)\\
+\end{align*}
+
+By AM-GM inequality, $f(x, y) \geq 4x(L-x)y(W-y)$ with the equality
+$f(x, y) = L^2W^2/4$ if and only if $x = L - x = L/2$ and $y = W - y = y/2$.
+
+On the other hand,
+\begin{align*}
+  \begin{cases}
+    0 \leq x \leq L\\
+    0 \leq y \leq W
+  \end{cases}
+  &\Longrightarrow
+  \begin{cases}
+    2x(L - x) \geq 0\\
+    2y(W - y) \geq 0
+  \end{cases}
+  \iff
+  \begin{cases}
+    L^2 \geq x^2 + (L-x)^2\\
+    W^2 \geq y^2 + (W-y)^2
+  \end{cases}\\
+  &\Longrightarrow
+  f(x, y) \leq L^2W^2
+\end{align*}
+with equality when $(x, y) \in \{(0, 0), (0, W), (L, W), (L, 0)\}$.
+
+\exercise{3} A long piece of galvanized sheet metal with width $w$ is to be
+bent into a symmetric form with three straight sides to make a rain gutter.
+
+Cross-section area, with $0 \leq x \leq w/2$
+and $0 \leq \theta \leq \max\left(\arccos\frac{2x-w}{2x}, \pi\right)$
+\begin{align*}
+  A(x, \theta) &= (w - 2x + x\cos\theta)x\sin\theta\\
+  &= wx\sin\theta - x^2\left(2\sin\theta - \frac{\sin2\theta}{2}\right)
+\end{align*}
+
+First derivatives:
+\begin{align*}
+  A_x &= w\sin\theta - 2x\left(2\sin\theta - \frac{\sin2\theta}{2}\right)\\
+  A_\theta &= wx\cos\theta - x^2(2\cos\theta - \cos2\theta)
+\end{align*}
+
+Critical points occur when
+\[A_x = A_\theta = 0 \iff
+\begin{cases}
+  w\sin\theta = 2x\left(2\sin\theta - \dfrac{\sin2\theta}{2}\right)\\
+  wx\cos\theta = x^2(2\cos\theta - \cos2\theta)
+\end{cases}\tag{$*$}\]
+
+\begin{tikzpicture}
+  \begin{axis}[
+    axis x line=middle, axis y line=middle,
+    xmin=-0.15, xmax=0.75, xlabel={$\frac{x}{w}$},
+    ymin=-0.7, ymax=3.8, ylabel={$\theta$},
+    xlabel style={at=(current axis.right of origin), anchor=west},
+    ylabel style={at=(current axis.above origin), anchor=south}]
+    \addplot[domain=0.25:0.5, color=red]{acos(1 - 0.5/x)/57.3};
+    \addplot[magenta] plot coordinates {(0.5,1.57) (0.5,0)};
+    \addplot[blue] plot coordinates {(0,0) (0.5,0)};
+    \addplot[cyan] plot coordinates {(0,0) (0,3.14)};
+    \addplot[green] plot coordinates {(0,3.14) (0.25,3.14)};
+    \legend{$C$, $L_0$, $L_1$, $L_2$, $L_3$}
+  \end{axis}
+\end{tikzpicture}
+
+For $x = 0$ (along $L_2$), it is obvious that the area is 0. For $x \neq 0$,
+\begin{align*}
+  (*) &\iff
+  \begin{cases}
+    x = \frac{w\cos\theta}{2\cos\theta - \cos2\theta}\\
+    w\sin\theta(2\cos\theta-\cos2\theta) = w\cos\theta(4\sin\theta-\sin2\theta)
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = \frac{w\cos\theta}{2\cos\theta - \cos2\theta}\\
+    2\cos\theta - \cos2\theta = \cos\theta(4 - 2\cos\theta)
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = \frac{w\cos\theta}{2\cos\theta - \cos2\theta}\\
+    -\cos2\theta = 2\cos\theta - 2\cos^2\theta
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = \frac{w\cos\theta}{2\cos\theta - \cos2\theta}\\
+    1 = 2\cos\theta
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    x = \frac{w}{3}\\
+    \theta = \frac{\pi}{3}
+  \end{cases}
+\end{align*}
+At this point, $A(x, \theta) = w^2/4\sqrt3$.
+
+Along $C$, $A\left(x, \arccos\frac{2x-w}{2x}\right)
+= \frac{1}{4}\sqrt{w(4x-w)(w-2x)^2} \in \left[0, \frac{w^2}{12\sqrt3}\right]$.
+
+Along $L_0$, $A(w/2, \theta)
+= \frac{w^2}{8}\sin(\pi - 2\theta) \in [0, w^2/8]$.
+
+Along $L_1$ and $L_3$, $A(x, \theta) = A(x, 0) = A(x, \pi) = 0$.
+
+In conclusion, the maximum cross-section is $\frac{w^2}{4\sqrt3}$
+at $(x, \theta) = (w/3, \pi/3)$.
+
+\exercise{4} For what values of $r$ is the function
+\[f(x, y, z) =
+\begin{cases}
+  \dfrac{(x + y + z)^r}{x^2 + y^2 + z^2}&\text{if }(x, y, z) \neq (0, 0, 0)\\
+  0&\text{if }(x, y, z) = (0, 0, 0)\\
+\end{cases}\]
+continuous on $\mathbb{R}^3$?
+
+Along $y = z = 0$, as $x \to 0$, $f(x, 0, 0) = x^{r-2} \to \infty$
+(or the limit might not exist at all) for $r < 2$
+and $f(x, 0, 0) = 1$ for $r = 2$.
+Therefore for $r \leq 2$, $f$ is discontinuous at $(0, 0, 0)$.
+
+It is not difficult to show that for $r > 2$, $f$ is continuous.
+For every positive number $\varepsilon$,
+let $\delta = (\varepsilon/3^r)^{1/(2r-2)}$, then from
+\begin{align*}
+  &0 < \sqrt{(x-0)^2 + (y-0)^2 + (z-0)^2} < \delta\\
+  \iff &0 < \sqrt{x^2 + y^2 + z^2}
+          < \left(\frac{\varepsilon}{3^r}\right)^\frac{1}{2r-2}\\
+  \iff &0 < \frac{3^r(x^2 + y^2 + z^2)^r}{x^2 + y^2 + z^2} < \varepsilon
+\end{align*}
+and
+\[(x + y + z)^2 \leq 3(x^2 + y^2 + z^2)
+\iff |x + y + z|^r \leq 3^r(x^2 + y^2 + z^2)^r\]
+we get
+\[0 < \frac{|x + y + z|^r}{x^2 + y^2 + z^2} < \varepsilon
+\iff |f(x, y, z) - 0| < \varepsilon\]
+
+Thus by definition, for $r > 2$, $f(x, y, z) \to 0$ as $(x, y, z)\to(0, 0, 0)$,
+hence $f$ is continuous on $\mathbb{R}^3$.
+
+\exercise{5} Suppose $f$ is a differentiable function of one variable.
+Show that all tangent planes to the surface $z = xf(y/x)$
+intersect in a common point.
+
+Let $t = y/x$,
+\begin{align*}
+\tho{z}{x} &= f(t) + x\tho{f(t)}{x}
+            = f(t) + x\leibniz{f}{t}\tho{(y/x)}{x}
+            = f(t) - t\leibniz{f}{t}\\
+\tho{z}{y} &= x\tho{f(t)}{y}
+            = x\leibniz{f}{t}\tho{(y/x)}{y}
+            = \leibniz{f}{t}
+\end{align*}
+
+Equation of the tangent plane to the given surface at $P(a, b, af(b/a))$ is
+\begin{align*}
+     &z - af\left(\frac{b}{a}\right) = \left(f\left(\frac{b}{a}\right)
+        - \frac{b}{a}\cdot\leibniz{f}{t}\left(\frac{b}{a}\right)\right)(x - a)
+        + \leibniz{f}{t}\left(\frac{b}{a}\right)(y - b)\\
+\iff &z = xf\left(\frac{b}{a}\right) + \leibniz{f}{t}\left(\frac{b}{a}\right)
+          \left(y - \frac{bx}{a}\right)\\
+\iff &\left(f\left(\frac{b}{a}\right)
+            - \frac{b}{a}\cdot\leibniz{f}{t}\left(\frac{b}{a}\right)\right)x
+      + \leibniz{f}{t}\left(\frac{b}{a}\right)y - z = 0
+\end{align*}
+
+Since the equation is homogenous, the tangent plane always goes through origin
+$O(0, 0, 0)$.
+
+\section{Multiple Integrals}
+\subsection{Double Integrals over Rectangles}
+\exercise{1} Use a Riemann sum with $m=3$ and $n=2$ to estimate the volume
+of the solid that lies below the surface $z = xy$ and above the rectangle
+$R = [0, 6] \times [0, 4]$.
+
+Take the sample point to be the upper right corner of each square,
+\[V \approx \sum_{i=1}^3\sum_{j=1}^2 ij \cdot 4 = 288\tag{a}\]
+
+Take the sample point to be the center of each square,
+\[V \approx \sum_{i=1}^3\sum_{j=1}^2 (2i-1)(2j-1)4 = 144\tag{b}\]
+
+\exercise{13} Evaluate the double integral by first identifying it
+as the volume of a solid.
+\[\iint_{[-2,2]\times[1,6]}(4 - 2y)\ud A = 0\]
+
+\subsection{Integrated Integrals}
+Calculate the integrated integrals.
+\[\int_1^4\int_0^2(6x^2 - 2x)\ud y\ud x
+= \int_1^4(12x^2 - 4x)\ud x = 222\tag{3}\]
+\[\int_{-3}^3\int_0^{\pi/2}(y + y^2\cos x)\ud x\ud y
+= \int_{-3}^3 y^2\ud y = 0\tag{7}\]
+\[\iint_{[0,\pi/2]^2}\sin(x - y)\ud A
+= \int_0^{\pi/2}(\cos y - \sin y)\ud y = 0\tag{15}\]
+\begin{align*}
+  \iint_{[0,1]\times[-3,3]}\frac{xy^2}{x^2 + 1}\ud A
+  &= \int_0^1\frac{x}{x^2 + 1}\ud x \cdot \int_{-3}^3 y^2\ud y\\
+  &= \frac{1}{2}\int_0^1\frac{\ud x}{x+1}
+     \cdot \left[\frac{y^3}{3}\right]_{-3}^3\\
+  &= 9\ln(x + 1)\big]_0^1\\
+  &= 9\ln 2\tag{17}
+\end{align*}
+\begin{align*}
+  \iint_{[0,2]\times[0,3]}ye^{-xy}\ud A
+  &= \int_0^3\int_0^2 ye^{-xy}\ud x\ud y\\
+  &= \int_0^3(1 - e^{-2y})\ud y\\
+  &= \left[y + \frac{e^{-2y}}{2}\right]_0^3\\
+  &= \frac{1}{2e^6} + \frac{5}{2}\tag{21}
+\end{align*}
+\[\iint_{[-1,1]\times[-2,2]}\left(1-\frac{x^2}{4}-\frac{y^2}{9}\right)\ud A
+= \int_{-1}^1\left(\frac{92}{27} - x^2\right)\ud x = \frac{166}{27}\tag{27}\]
+\[\iint_{[0,4]\times[0,5]}(16 - x^2)\ud A
+= \int_0^4(80 - 5x^2)\ud x = \frac{640}{3}\tag{30}\]
+
+\exercise{40} Fubini's and Clairaut's theorems are similar in the way that
+for continuous functions, order of variables are interchangeable in integration
+and differentiation. By the Fundamental Theorem and these two theorems,
+if $f(x, y)$ is continuous on $[a, b]\times[c, d]$ and
+\[g(x, y) = \int_a^x\int_c^y g(s, t)\ud t\ud s\]
+for $a < x < b$ and $c < y < d$, then $g_{xy} = g_{yx} = f(x, y)$.
+
+\subsection{Double Integrals over General Regions}
+Evaluate the iterated integral.
+\[\int_0^1\int_0^{s^2}\cos s^3\ud t\ud s
+= \int_0^1 s^2\cos s^3\ud s
+= \left[\frac{\sin s^3}{3}\right]_0^1
+= \frac{\sin 1}{3}\tag{5}\]
+\[\int_0^\pi\int_0^{\sin x}x\ud y\ud x
+= \int_0^\pi x\sin x\ud x
+= [\sin x - x\cos x]_0^\pi
+= \pi\tag{9}\]
+\[\int_{-1}^2\int_{y^2}^{y+2}y\ud x\ud y
+= \int_{-1}^2(2y + y^2 - y^3)\ud y
+= \left[y^2 + \frac{y^3}{3} - \frac{y^4}{4}\right]_{-1}^2
+= \frac{9}{4}\tag{15}\]
+\[\int_{-2}^2\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}(2x - y)\ud y\ud x
+= \int_{-2}^2 4x\sqrt{4 - x^2}\ud x
+= 0\tag{21}\]
+\begin{align*}
+  \int_1^2\int_1^{7-3y}xy\ud x\ud y
+  &= \int_1^2\left(\frac{9y^3}{2} - 21y^2 + 24y\right)\ud y\\
+  &= \left[\frac{9y^4}{8} - 7y^3 + 12y^2\right]_1^2\\
+  &= \frac{31}{8}\tag{25}
+\end{align*}
+\[\int_1^2\int_0^{\ln x} f(x, y)\ud y\ud x
+= \int_0^{\ln 2}\int_{e^y}^2 f(x, y)\ud x\ud y\tag{47}\]
+\[\int_0^1\int_{3y}^3 e^{x^2}\ud x\ud y
+= \int_0^3\int_0^{x/3} e^{x^2}\ud y\ud x
+= \int_0^3\frac{xe^{x^2}}{3}\ud x
+= \left.\frac{e^{x^2}}{6}\right]_0^3
+= \frac{e^9 - 1}{6}\tag{49}\]
+
+\subsection{Double Integrals in Polar Coordinates}
+Evaluate the given integral.
+\[\int_0^{3\pi/2}\int_0^4 f(r\cos\theta, r\sin\theta)r\ud r\ud\theta\tag{1}\]
+\begin{align*}
+  \int_{\pi/4}^{\pi/2}\int_0^2(2\cos\theta - \sin\theta)r^2\ud r\ud\theta
+  &= \int_{\pi/2}^{\pi/4}\frac{8}{3}(2\cos\theta - \sin\theta)\ud\theta\\
+  &= \frac{8}{3}\left[2\sin\theta + \cos\theta\right]_{\pi/4}^{\pi/2}\\
+  &= \frac{16}{3} - 4\sqrt 2\tag{8}
+\end{align*}
+\begin{align*}
+  \int_{-\pi/2}^{\pi/2}\int_0^2 re^{-r^2}\ud r\ud\theta
+  &= \int_{-\pi/2}^{\pi/2}\frac{1 - e^{-4}}{2}\ud\theta\\
+  &= \pi\frac{1 - e^{-4}}{2}\tag{11}
+\end{align*}
+\begin{align*}
+  \int_0^{2\pi}\int_0^{\sqrt{1/2}}\left(\sqrt{1 - r^2} - r\right)r\ud r\ud\theta
+  &= \pi\int_0^{\sqrt{1/2}}\left(\sqrt{1 - r^2} - r\right)\ud r^2\\
+  &= \pi\int_0^{1/2}(\sqrt{1 - x} - \sqrt x)\ud x\\
+  &= \frac{\pi}{3}(2 - \sqrt 2)\tag{25}
+\end{align*}
+\begin{align*}
+  \int_0^\pi\int_0^3 r\sin r^2\ud r\ud\theta
+  &= \int_0^9\frac{\pi\sin x}{2}\ud x\\
+  &= \left.\frac{\pi\cos x}{-2}\right]_0^9\\
+  &= \frac{\pi}{2}(1 - \cos 9)\tag{29}
+\end{align*}
+
+\exercise{40} We define the improper integral
+(over the entire plane $\mathbb{R}^2$)
+\begin{align*}
+  I &= \iint_{\mathbb{R}^2}\exp(-x^2-y^2)\ud A\\
+  &= \int_{-\infty}^\infty\int_{-\infty}^\infty\exp(-x^2-y^2)\ud x\ud y\\
+  &= \lim_{a\to\infty}\iint_{D_a}\exp(-x^2-y^2)\ud A
+\end{align*}
+where $D_a$ is the disk with radius $a$ and center the origin.
+
+By changing to polar coordinates,
+\begin{align*}
+  I &= \lim_{a\to\infty}\int_0^{2\pi}\int_0^a\exp(-a^2)a\ud a\ud\theta\\
+  &= \lim_{a\to\infty}\int_0^a-\pi\exp(-a^2)\ud-a^2\\
+  &= -\pi\lim_{a\to\infty}\int_0^{-a^2}e^b\ud b\\
+  &= -\pi\lim_{a\to\infty}\left.e^b\right]_0^{-a^2}\\
+  &= \pi\lim_{a\to\infty}(1 - \exp(-a^2))\\
+  &= \pi\tag{a}
+\end{align*}
+
+As $\exp(-x^2-y^2)$ is continuous on $\mathbb{R}^2$,
+\[\int_{-\infty}^\infty\exp(-x^2)\ud x\int_{-\infty}^\infty\exp(-y^2)\ud y
+= I = \pi\tag{b}\]
+
+Thus $\int_{-\infty}^\infty\exp(-x^2)\ud x = \sqrt I = \sqrt\pi$ and
+$\int_{-\infty}^\infty\exp(-x^2/2)\ud x = \sqrt{2\pi}$.
+
+\subsection{Applications of Double Integrals}
+\exercise{2} The total charge on the disk is
+\[\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}\sqrt{x^2 + y^2}\ud y\ud x
+= \int_0^{2\pi}\int_0^1 r^2\ud r\ud\theta
+= \left.2\pi\frac{r^3}{3}\right]_0^1
+= \frac{2\pi}{3}\]
+
+\noindent Find the mass and center of mass of the lamina that occupies the
+regions $D$ and has the given density function $\rho$.
+\[D = [1, 3]\times[1, 4];\qquad\rho(x, y) = ky^2\tag{3}\]
+\[m = \int_1^3\ud x \cdot \int_1^4 ky^2\ud y = 42k\]
+\begin{align*}
+  \bar x &= \frac{k}{m}\int_1^3\int_1^4 xy^2\ud y\ud x
+= \frac{21k}{m}\int_1^3 x\ud x
+= \frac{84k}{m}
+= 2\\
+  \bar y &= \frac{k}{m}\int_1^3\int_1^4 y^3\ud y\ud x
+= \frac{2k}{m}\int_1^4 y^3\ud y
+= \frac{255k}{m}
+= \frac{85}{28}
+\end{align*}
+
+\[D = \{(x, y)\,|\,-1 \leq x \leq 1,\,0 \leq y \leq 1 - x^2\},\qquad
+\rho(x, y) = ky\tag{7}\]
+\[m = \int_{-1}^1\int_0^{1-x^2} ky\ud y\ud x
+= \frac{k}{2}\int_{-1}^1 (x^4 - 2x^2 + 1)\ud x
+= \frac{8k}{15}\]
+\begin{align*}
+  \bar x &= \frac{k}{m}\int_{-1}^1\int_0^{1-x^2} xy\ud y\ud x
+  = \frac{15}{8}\int_{-1}^1 (x^5 - 2x^3 + x)\ud x
+  = 0\\
+  \bar y &= \frac{k}{m}\int_{-1}^1\int_0^{1-x^2} y^2\ud y\ud x
+  = \frac{8}{45}\int_{-1}^1 (1 - x^2)^3\ud x
+  = \frac{4}{7}
+\end{align*}
+\pagebreak
+
+\[D = \left\{(x, y)\,\Big|\,0\leq y\leq\sin\frac{\pi x}{L},\,
+0\leq x\leq L\right\},\qquad\rho(x, y) = y\tag{9}\]
+\[m = \int_0^L\int_0^{\sin(\pi x/L)}y\ud y\ud x
+= \int_0^L\frac{\sin^2(\pi x/L)}{2}\ud x
+= \left[\frac{x}{4} - \frac{L}{8\pi}\sin\frac{2\pi x}{L}\right]_0^L
+= \frac{L}{4}\]
+\begin{align*}
+  \bar x &= \int_0^L\int_0^{\sin(\pi x/L)}\frac{xy}{m}\ud y\ud x
+= \int_0^L\frac{2x\sin^2(\pi x/L)}{L}\ud x
+= \frac{L}{2}\\
+  \bar y &= \int_0^L\int_0^{\sin(\pi x/L)}\frac{y^2}{m}\ud y\ud x
+= \int_0^L\frac{4\sin^3(\pi x/L)}{3L}\ud x
+= \frac{16}{9\pi}
+\end{align*}
+
+\[D = \{(x, y)\,|\,0\leq x\leq 1,\,0\leq y\leq\sqrt{1-x^2}\},\qquad
+\rho(x, y) = ky\tag{11}\]
+\[m = \int_0^1\int_0^{\sqrt{1-x^2}}ky\ud y\ud x
+= \int_0^{\pi/2}\sin\theta\ud\theta\cdot\int_0^1 kr^2\ud r
+= \frac{k}{3}\]
+\begin{align*}
+  \bar x &= \int_0^1\int_0^{\sqrt{1-x^2}}3xy\ud y\ud x
+= \int_0^{\pi/2}\cos\theta\sin\theta\ud\theta\cdot\int_0^1 3r^3\ud r
+  = \frac{3}{8}\\
+  \bar y &= \int_0^1\int_0^{\sqrt{1-x^2}}3y^2\ud y\ud x
+= \int_0^{\pi/2}\sin^2\theta\ud\theta\cdot\int_0^1 3r^3\ud r
+= \frac{3\pi}{16}
+\end{align*}
+
+\subsection{Surface area}
+Find the area of the surface.
+
+\exercise{3} The part of the plane $3x + 2y + z = 6$
+that lies in the first octant.
+\begin{align*}
+  A &= \int_0^2\int_0^{3-1.5x}\sqrt{1 + \left(\tho{z}{x}\right)^2
+     + \left(\tho{z}{y}\right)^2}\ud y\ud x\\
+    &= \int_0^2\int_0^{3-1.5x}\sqrt{14}\ud y\ud x\\
+    &= \int_0^2\left(3 - \frac{3}{2}x\right)\sqrt{14}\ud x\\
+    &= \left[3x\sqrt{14} - \frac{3x^2\sqrt{14}}{4}\right]_0^2\\
+    &= 3\sqrt{14}
+\end{align*}
+
+\exercise{9} The part of the surface $z = xy$
+that lies within the cylinder $x^2 + y^2 = 1$.
+\begin{align*}
+  A &= \iint_D\sqrt{1 + \left(\tho{xy}{x}\right)^2
+     + \left(\tho{xy}{y}\right)^2}\ud A\\
+    &= \int_0^{2\pi}\int_0^1 r\sqrt{1 + r^2}\ud r\ud\theta\\
+    &= \pi\int_0^1\sqrt{1 + t}\ud t\\
+    &= \left.\frac{2\pi\sqrt{(1 - t)^3}}{3}\right]_0^1\\
+    &= \frac{2\pi}{3}\left(2\sqrt{2} - 1\right)
+\end{align*}
+
+\exercise{12} The part of the sphere $x^2 + y^2 + z^2 = 4z$
+that lies inside the paraboloid $z = x^2 + y^2$,
+in which it has the equation $z = 2 + \sqrt{4 - x^2 - y^2}$.
+\begin{align*}
+  A &= \iint_D\sqrt{1 + \left(\tho{}{x}\left(2 + \sqrt{4 - x^2 - y^2}\right)\right)^2
+     + \left(\tho{}{y}\left(2 + \sqrt{4 - x^2 - y^2}\right)\right)^2}\ud A\\
+    &= \iint_D\sqrt\frac{4}{4 - x^2 - y^2}\ud A\\
+    &= \int_0^{2\pi}\int_0^{\sqrt 3}r\sqrt\frac{4}{4 - r^2}\ud r\ud\theta\\
+    &= 2\pi\int_0^3\sqrt\frac{1}{4 - t}\ud t\\
+    &= \left.-4\pi\sqrt{4 - t}\right]_0^3\\
+    &= 4\pi
+\end{align*}
+
+\subsection{Triple Integrals}
+Evaluate the integral.
+\[\int_0^1\int_0^3\int_{-1}^2 xyz^2\ud y\ud z\ud x
+= \int_0^1\int_0^3\frac{3xz^2}{2}\ud z\ud x
+= \int_0^1\frac{27x}{2}\ud x
+= \frac{27}{4}\tag{1}\]
+\begin{align*}
+  \int_0^2\int_0^{z^2}\int_0^{y-z}(2x - y)\ud x\ud y\ud z
+  &= \int_0^2\int_0^{z^2}(z^2 - yz)\ud y\ud z\\
+  &= \int_0^2\left(z^4 - \frac{z^5}{2}\right)\ud z\\
+  &= \frac{16}{15}\tag{3}
+\end{align*}
+\[\int_0^3\int_0^x\int_{x-y}^{x+y}y\ud z\ud y\ud x
+= \int_0^3\int_0^x 2y^2\ud y\ud x
+= \int_0^3\frac{2x^3}{3}\ud x
+= \frac{27}{2}\tag{9}\]
+\begin{align*}
+  \int_0^\pi\int_0^{\pi-x}\int_0^x\sin y\ud z\ud y\ud x
+  &= \int_0^\pi\int_0^{\pi-x}x\sin y\ud y\ud x\\
+  &= \int_0^\pi(x + x\cos y)\ud x\\
+  &= \frac{\pi^2}{2} - 2\tag{12}
+\end{align*}
+\begin{align*}
+  \int_0^1\int_0^{3x}\int_0^{\sqrt{9-y^2}}z\ud z\ud y\ud x
+  &= \int_0^1\int_0^{3x}\frac{9 - y^2}{2}\ud y\ud x\\
+  &= \int_0^1\frac{27x - 9x^3}{2}\ud x\\
+  &= \frac{45}{8}\tag{18}
+\end{align*}
+\begin{align*}
+  \int_0^2\int_0^{4-2x}\int_0^{4-2x-y}\ud z\ud y\ud x
+  &= \int_0^2\int_0^{4-2x}(4 - 2x - y)\ud y\ud x\\
+  &= \int_0^2\frac{(4 - 2x)^2}{2}\ud x\\
+  &= \frac{16}{3}\tag{19}
+\end{align*}
+\begin{align*}
+  \int_{-2}^2\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}\int_{-1}^{4-z}\ud y\ud z\ud x
+  &= \int_{-2}^2\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}(5 - z)\ud z\ud x\\
+  &= \int_{-2}^2 10\sqrt{4 - x^2}\ud x\\
+  &= 20\pi\tag{22}
+\end{align*}
+
+\subsection{Triple Integrals in Cylindrical Coordinates}
+\exercise{1} Change from cylindrical coordinates to rectangular coordinates.
+\begin{enumerate}[(a)]
+  \item $\left(4, \frac{\pi}{3}, -2\right)
+    \rightarrow \left(2, 2\sqrt 3, -2\right)$
+  \item $\left(2, \frac{-\pi}{2}, 1\right) \rightarrow \left(0, -2, 1\right)$
+\end{enumerate}
+
+\exercise{3} Change from rectangular coordinates to cylindrical coordinates.
+\begin{enumerate}[(a)]
+  \item $\left(-1, 1, 1\right)
+    \rightarrow \left(\sqrt 2, \frac{3\pi}{4}, 1\right)$
+  \item $\left(-2, 2\sqrt 3, 3\right)
+    \rightarrow \left(4, \frac{2\pi}{3}, 3\right)$
+\end{enumerate}
+
+\exercise{7} In cylindrical coordinates $(r, \theta, z)$, $z = 4 - r^2$
+is the paraboloid $z = 4 - x^2 - y^2$ in Cartesian coordinates.
+
+\exercise{15\&17\&21} Evaluate the integral.
+\[\int_{-\pi/2}^{\pi/2}\int_0^2\int_0^{r^2}r\ud z\ud r\ud\theta
+= \pi\int_0^2 r^3\ud r
+= 4\pi\tag{15}\]
+\[\iiint_E\sqrt{x^2 + y^2}\ud V
+= \int_0^{2\pi}\int_0^4\int_{-5}^4 r^2\ud z\ud r\ud\theta
+= 18\pi\left.\frac{r^3}{3}\right]_0^4
+= 384\pi\tag{17}\]
+\begin{align*}
+  \iiint_E x^2\ud V
+  &= \int_0^{2\pi}\int_0^2\int_{z/2}^1 r^3\cos^2\theta\ud r\ud z\ud\theta\\
+  &= \int_0^{2\pi}\cos^2\theta\ud\theta\int_0^2\int_{z/2}^1 r^3\ud r\ud z\\
+  &= \left[\frac{\theta}{2} + \frac{\sin\theta\cos\theta}{2}\right]_0^{2\pi}
+     \int_0^2\left(\frac{1}{4} - \frac{z^4}{64}\right)\ud z\\
+  &= \frac{2\pi}{5}\tag{21}
+\end{align*}
+
+\section{Vector Calculus}
+\setcounter{subsection}{1}
+\subsection{Line Integrals}
+Evaluate the integral.
+\begin{align*}
+&\int_{-\pi/2}^{\pi/2}4\cos t(4\sin t)^4
+ \sqrt{\left(\leibniz{4\cos t}{t}\right)^2
+     + \left(\leibniz{4\sin t}{t}\right)^2}\ud t\\
+=\,&4096\int_{-\pi/2}^{\pi/2}\sin^4 t\ud\sin t
+= 4096\int_{-1}^1 w^4\ud w
+= \frac{8192}{5}\tag{3}
+\end{align*}
+\begin{align*}
+  \int_{\left\{(x, y)\in[1,4]\times[1,2]\,|\,y=\sqrt x\right\}}
+  \left(x^2 y^3 - \sqrt x\right)\ud y
+  &= \int_1^2(t^7 - t)\leibniz{t}{t}\ud t\\
+  &= \left[\frac{t^8}{8} - \frac{t^2}{2}\right]_1^2\\
+  &= \frac{243}{8}\tag{5}
+\end{align*}
+\begin{align*}
+& \int_0^2(x + x)\ud x + \int_2^3(x + 6 - 2x)\ud x
++ \int_0^1(2y)^2\ud y + \int_1^0(3-x)^2\ud y\\
+=\,&4 + \frac72 + \frac43 - \frac{19}{3}
+=\frac{5}{2}\tag{7}
+\end{align*}
+\begin{align*}
+  &\int_2^0 x^2\ud x + \int_0^4 x^2\ud x + \int_0^2 y^2\ud y + \int_2^3\ud y\\
+= &\int_2^4 x^2\ud x + \int_0^3 y^2\ud y
+= \left.\frac{x^3}{3}\right]_2^4 + \left.\frac{y^3}{3}\right]_0^3
+= 13\tag{8}
+\end{align*}
+\begin{align*}
+   \int_0^1(11y^7\unit\i + 3t^6\unit\j)\ud(11t^4\unit\i + t^3\unit\j)
+&= \int_0^1(11y^7\unit\i + 3t^6\unit\j)\cdot(44t^3\unit\i + 3t^2\unit\j)\ud t\\
+  &= \int_0^1(484t^{10} + 9t^8)\ud t\\
+&= \left[44t^11 + t^9\right]_0^1\\
+&= 45\tag{19}
+\end{align*}
+\begin{align*}
+ &\int_0^1(\sin t^3\unit\i + \cos t^2\unit\j + t^4\unit k)
+  \ud(t^3\unit\i + t^2\unit\j + t\unit k)\\
+=&\int_0^1\sin x\ud x + \int_0^1\cos y\ud y + \int_0^1 z^4\ud z\\
+=&\,\frac{6}{5} - \cos 1 - \sin 1\tag{21}
+\end{align*}
+\begin{align*}
+  &\int_0^{2\pi}(t - \sin t)\ud(t - \sin t) + (3 - \cos t)\ud(1 - \cos t)\\
+= &\int_0^{2\pi}((t - \sin t)(1 - \cos t) + (3 - \cos t)\sin t)\ud t\\
+= &\int_0^{2\pi}(t - t\cos t + 2\sin t)\ud t\\
+=\,&\left[\frac{t^2}{2} - t\sin t - 3\cos t\right]_0^{2\pi}
+= 2\pi^2\tag{39}
+\end{align*}
+\begin{align*}
+  &\,2\int_0^{2\pi}\left(4 + \frac{x^2 - y^2}{100}\right)
+  \sqrt{(-10\sin t)^2 + (10\cos t)^2}\ud t\\
+= &\int_0^{2\pi}\left(800 + (10\cos t)^2 - (10\sin t)^2\right)\ud t\\
+= &\,100\int_0^{2\pi}(8 + \cos 2t)\ud t\\
+= &\,\left[8t - \frac{\sin 2t}{2}\right]_0^{2\pi}
+= 16\pi\tag{48}
+\end{align*}
+
+\subsection{The Fundamental Theorem for Line Integrals}
+Evaluate the integrals.
+\begin{align*}
+   &\int_C(x^2\unit\i + y^2\unit\j)\cdot\ud(x\unit\i + 2x^2\unit\j)\\
+=\,&(f\mapsto f(2, 8) - f(-1, 2))\left((x, y)\mapsto\frac{x^3 + y^3}{3}\right)
+= 513\tag{12}
+\end{align*}
+\begin{align*}
+   &\int_C(xy^2\unit\i + x^2y\unit\j)\cdot\ud\mathbf{r}\\
+=\,&(f\mapsto f(2, 1) - f(0, 1))\left((x, y)\mapsto\frac{x^2y^2}{2}\right)
+= 2\tag{13}
+\end{align*}
+
+\subsection{Green's Theorem}
+Evaluate the integrals.
+\begin{align*}
+  \int_C\left(y+e^{\sqrt x}\right)\ud x + (2x + \cos y^2)\ud y
+  &= \int_0^1\int_{y^2}^{\sqrt y}\ud x\ud y\\
+  &= \int_0^1(\sqrt y - y^2)\ud y\\
+  &= \left[\frac{2\sqrt{y^3}}{3} - \frac{y^3}{3}\right]_0^1\\
+  &= \frac{1}{3}\tag{7}
+\end{align*}
+\begin{align*}
+  \int_{x^2+y^2=4}y^3\ud x - x^3\ud y
+  &= \iint_{x^2+y^2=4}(-3x^2-3y^2)\ud A\\
+  &= -3\int_0^{2\pi}\int_0^2 r^3\ud r\ud\theta\\
+  &= -6\pi\left.\frac{r^4}{4}\right]_0^2\\
+  &= -24\pi\tag{9}
+\end{align*}
+\begin{align*}
+  \int_C(1-y^3)\ud x + (x^3+\exp y^2)\ud y
+  &= \iint_D(3x^2 + 3y^2)\ud A\\
+  &= 3\int_0^{2\pi}\int_2^3 r^3\ud r\ud\theta\\
+  &= 6\pi\left.\frac{r^4}{4}\right]_2^3\\
+  &= \frac{195}{8}\pi\tag{10}
+\end{align*}
+\begin{align*}
+  &\int_C(y\cos x - xy\sin x)\ud x + (xy + x\cos x)\ud y\\
+= &-\iint_D(y + \cos x - x\sin x - \cos x + x\sin x)\ud A\\
+= &-\int_0^2\int_0^{4-2x}y\ud y\ud x = \frac{16}{-3}\tag{11}
+\end{align*}
+\begin{align*}
+  &\int_C(\exp-x + y^2)\ud x + (\exp-y + x^2)\ud y\\
+  =&-\int_{-\pi/2}^{\pi/2}\int_0^{\cos x}(2x - 2y)\ud y\ud x\\
+  =&-\int_{-\pi/2}^{\pi/2}(2x\cos x - \cos^2 x)\ud x
+  =\frac\pi 2\tag{12}
+\end{align*}
+\[\int_0^1\int_0^{1-x}(y^2 - x)\ud y\ud x
+= \int_0^1\left(\frac{(1-x)^3}{3} + x^2 - x\right)\ud x
+= \frac{-1}{12}\tag{17}\]
+\begin{align*}
+  \int_\text{cycloid}y\ud x + \int_\text{segment}y\ud x
+  &= \int_{2\pi}^0(1-\cos t)\ud(t-\sin t) + 0\\
+  &= \int_{2\pi}^0\left(\frac{3}{2} - 2\cos t + \frac{\cos 2t}{2}\right)\ud t\\
+  &= \left[\frac{3t}{2} - 2\sin t + \frac{\sin 2t}{4}\right]_{2\pi}^0
+  = 3\pi\tag{19}
+\end{align*}
+
+\subsection{Curl and Divergence}
+\exercise{19} Since the divergence of curl of $\mathbf G$ is $1 \neq 0$,
+there does not exist a vector field $\mathbf G$ satisfying the given condition.
+
+\subsection{Parametric Surfaces and Their Areas}
+\exercise{19} One parametric representation for the surface $x + y + z = 0$ is
+$\mathbf{r}(u, v) = \langle u, v, -u-v\rangle$.
+
+\exercise{23} One parametric representation for the sphere $x^2 + y^2 + z^2 = 4$
+above the cone $\sqrt{x^2 + y^2}$ is $\mathbf{r}(u, v) =
+\langle 2\cos u\cos v, 2\cos u\sin v, 2\sin u\rangle$.
+
+\exercise{39} The plane intersects with $Ox$ at $A(2, 0, 0)$, with $Oy$
+at $B(0, 3, 0)$ and with $Oz$ at $C(0, 0, 6)$. The area of the triangle $ABC$
+is $|\mathbf{AB}\times\mathbf{AC}|/2 = 3\sqrt{14}$.
+
+\exercise{42} Surface of the cone $\sqrt{x^2 + y^2}$:
+\[\iint_D\sqrt{1 + \left(\frac{x}{\sqrt{x^2+y^2}}\right)^2
++ \left(\frac{x}{\sqrt{x^2 + y^2}}\right)^2}\ud A
+= \iint_D\sqrt 2\ud A\]
+
+For the part lying between $y = x$ and $y = x^2$, the area is
+\[\int_0^1\int_{x^2}^x\sqrt{2}\ud y\ud x
+= \sqrt 2\int_0^1(x - x^2)\ud x
+= \frac{\sqrt 2}{6}\]
+
+\exercise{43} Area of the surface:
+\[\int_0^1\int_0^1\sqrt{1 + x + y}\ud y\ud x
+= \frac{4 - 32\sqrt 2}{15} + \frac{12\sqrt 3}{5}\]
+
+\exercise{45} Area of $z = xy$ within $x^2 + y^2 = 1$:
+\[\iint_D\sqrt{1 + x^2 + y^2}\ud A
+= \int_0^{2\pi}\int_0^1\sqrt{1 + r^2}r\ud r\ud\theta
+= \pi\int_1^2\sqrt t\ud t
+= \frac{2\pi}{3}\left(\sqrt 8 - 1\right)\]
+
+\exercise{49} Area of the surface with given parametric equation
+$\mathbf{r}(u, v) = \langle u^2, uv, v^2/2\rangle$ within $0 \leq u \leq 1$ and
+$0 \leq v \leq 2$:
+\[\iint_D|\mathbf{r}_u\times\mathbf{r}_v|\ud A
+= \int_0^2\int_0^1(2u^2 + v^2)\ud u\ud v
+= \int_0^2\left(\frac{2}{3} + v^2\right)\ud v = 4\]
+
+\subsection{Surface Integrals}
+Evaluate the surface integrals.
+\begin{align*}
+   \iint_S(x + y + z)\ud S
+&= \int_0^2\int_0^1(4u + v + 1)\sqrt{14}\ud v\ud u\\
+&= \int_0^2\left(4u + \frac{3}{2}\right)\sqrt{14}\ud u\\
+&= 11\sqrt{14} \tag{5}
+\end{align*}
+\begin{align*}
+   \int_0^2\int_0^3 x^2y(1+2x+3y)\sqrt{1 + 4 + 9}\ud x\ud y
+&= \int_0^2\left(27y^2 + \frac{99}{2}y\right)\sqrt{14}\ud y\\
+&= 171\sqrt{14}\tag{9}
+\end{align*}
+\begin{align*}
+  &\int_0^1\int_0^1\left(xy\unit\i + yz\unit\j + zx\unit k\right)
+  \cdot\left(\unit\i + 0\unit\j - 2x\unit k\right)
+  \times\left(0\unit\i + \unit\j - 2y\unit k\right)\ud y\ud x\\
+= &\int_0^1\int_0^1\left(xz + 2y^2z + 2x^2y\right)\ud y\ud x\\
+= &\int_0^1\int_0^1((x + 2y^2)(4 - x^2 - y^2) + 2x^2y)\ud y\ud x\\
+= &\int_0^1\int_0^1(4x - x^3 - xy^2 + 8y^2 - 2x^2y^2 - 2y^4 + 2x^2y)\ud y\ud x\\
+= &\int_0^1\left(4x - x^3 - \frac{x}{3} + \frac{8}{3}
+  - \frac{2x^2}{3} - \frac{2}{5} + x^2\right)\ud x\\
+= &\,2 - \frac{1}{4} - \frac{1}{6} + \frac{8}{3}
+  - \frac{2}{9} - \frac{2}{5} + \frac{1}{3}
+= \frac{713}{180}\tag{23}
+\end{align*}
+
+\section{Second-Order Linear Equations}
+\subsection{Homogeneous Linear Equations}
+Solve the differential equation.
+
+\[y'' - y' - 6y = 0\tag{1}\]
+
+The auxiliary equation is $r^2 - r - 6 = 0$ whose roots are $r = -2, 3$.
+Therefore, the general solution of the given differential equation is
+\[y = \frac{c_1}{e^{2x}} + c_2 e^{3x}\]
+
+\[y'' + 16y = 0\tag{3}\]
+
+The auxiliary equation is $r^2 + 16 = 0$ whose roots are $r = \pm 4i$.
+Therefore, the general solution of the given differential equation is
+\[y = c_1\cos 4x + c_2\sin 4x\]
+
+\[9y'' - 12y' + 4y = 0\tag{5}\]
+
+The auxiliary equation is $9r^2 - 12r + 4 = 0$
+whose roots are $r_1 = r_2 = 2/3$.
+Therefore, the general solution of the given differential equation is
+\[y = (c_1 + c_2 x)e^{2x/3}\]
+
+\[2y'' = y'\tag{7}\]
+
+The auxiliary equation is $2r^2 = r$ whose roots are $r = 0, 1/2$.
+Therefore, the general solution of the given differential equation is
+$y = c_1 + c_2\sqrt{e^x}$.
+
+\[y'' - 6y' + 8y = 0,\qquad y(0) = 2,\qquad y'(0) = 2\tag{17}\]
+
+The auxiliary equation is $r^2 - 6r + 8 = 0$ whose roots are $r = 2, 4$.
+Therefore, the general solution of the given differential equation is
+\[y = c_1 e^{2x} + c_2 e^{4x} \Longrightarrow y' = 2c_1 e^{2x} + 4c_2 e^{4x}\]
+
+Since $y(0) = y'(0) = 2$,
+\[c_1 + c_2 = 2c_1 + 4c_2 = 2 \iff (c_1, c_2) = (3, -1)
+\iff y = 3e^{2x} - e^{4x}\]
+
+\[9y'' + 12y' + 4y = 0,\qquad y(0) = 1,\qquad y'(0) = 0\tag{19}\]
+
+The auxiliary equation is $9r^2 + 12r + 4 = 0$
+whose roots are $r_1 = r_2 = -2/3$.
+Therefore, the general solution of the given differential equation is
+\[y = \frac{c_1 + c_2 x}{e^{2x/3}}
+\Longrightarrow y' = \frac{c_2 - 2c_2 x/3 - 2c_1/3}{e^{2x/3}}\]
+
+As $y(0) = 1$, $c_1 = 1$ and as $y'(0) = 0$, $c_2 = 2/3$, thus
+\[y = \left(1 + \frac{2x}{3}\right)e^{-2x/3}\]
+
+\subsection{Nonhomogeneous Linear Equations}
+Solve the differential equation.
+
+\[y'' - 2y' - 3y = \cos 2x\tag{1}\]
+
+The auxiliary equation of $y'' - 2y' - 3y = 0$ is $r^2 - 2r - 3 = 0$
+with roots $r = -1, 3$. So the solution of the complementary equation is
+\[y_c = \frac{c_1}{e^x} + c_2 e^{3x}\]
+
+Since $G(x) = \cos 2x$ is cosine function, we seek a particular solution
+of the form $y_p = A\sin 2x + B\cos 2x$. Then $y_p' = 2A\cos 2x - 2B\sin 2x$
+and $y_p'' = -4y$ so, substituting into the given differential equation,
+we have
+\begin{multline*}
+  (4A - 7B)\cos 2x - (7A + 4B)\sin 2x = \cos 2x\\
+\iff\begin{cases}
+  4A - 7B = 1\\
+  7A + 4B = 0
+\end{cases}
+\iff\begin{dcases}
+  A = \frac{4}{65}\\
+  B = \frac{-7}{65}
+\end{dcases}
+\end{multline*}
+
+Thus the general solution of the given differential equation is
+\[y = y_c + y_p
+= \frac{c_1}{e^x} + c_2 e^{3x} + \frac{4\sin 2x}{65} - \frac{7\cos 2x}{65}\]
+
+\[y'' + 9y = \frac{1}{e^{2x}}\tag{3}\]
+
+The auxiliary equation of $y'' + 9y = 0$ is $r^2 + 9 = 0$
+whose roots are $r = \pm 3i$.
+Therefore, the general solution of the given differential equation is
+\[y_c = c_1\cos 3x + c_2\sin 3x\]
+
+Since $G(x) = e^{-2x}$ is an exponential function, we seek
+a particular solution of an exponential function as well:
+\[y_p = Ae^{-2x}
+\Longrightarrow y_p' = -2Ae^{-2x}
+\Longrightarrow y_p'' = 4Ae^{-2x}\]
+
+Substituting these into the differential equation, we get
+\[\frac{13A}{e^{2x}} = \frac{1}{e^{2x}}
+\iff A = \frac{1}{13}
+\iff y_p = \frac{1}{13e^{2x}}\]
+
+Thus the general solution of the given differential equation is
+\[y = y_c + y_p = c_1\cos 3x + c_2\sin 3x + \frac{1}{13e^{2x}}\]
+
+\[y'' - 4y = e^x\cos x,\qquad y(0) = 1,\qquad y'(0) = 2\tag{8}\]
+
+The auxiliary equation of $y'' + 4y = 0$ is $r^2 + 4 = 0$
+whose roots are $r = \pm 2i$.
+Therefore, the general solution of the given differential equation is
+\[y_c = c_1\cos 2x + c_2\sin 2x\]
+
+We seek a particular solution of the form $y_p = e^x(A\sin x + B\cos x)$.
+Substituting this into the given differential equation we get
+\begin{multline*}
+  2e^x(A\cos x - B\sin x) + 4e^x(A\sin x + B\cos x) = e^x\cos x\\
+  \iff\begin{cases}
+    2A + 4B = 1\\
+    4A - 2B = 0
+  \end{cases}
+  \iff\begin{cases}
+    A = 0.1\\
+    B = 0.2
+  \end{cases}
+\end{multline*}
+
+Thus the general solution of the given differential equation is
+\begin{align*}
+  y &= y_c + y_p = c_1\cos 2x + c_2\sin 2x + e^x(0.1\sin x + 0.2\cos x)\\
+  \Longrightarrow y' &= 2c_2\cos 2x - 2c_1\sin 2x + e^x(0.3\cos x - 0.1\sin x)
+\end{align*}
+
+From $y(0) = 1$ we obtain $c_1 = 0.8$ and from $y'(0) = 2$ we have $c_2 = 0.85$.
+Thus the solution of the initial-value problem is
+\[y = 0.8\cos 2x + 0.85\sin 2x + e^x(0.1\sin x + 0.2\cos x)\]
+
+\[y'' - y' = xe^x,\qquad y(0) = 2,\qquad y'(0) = 1\tag{9}\]
+
+The auxiliary equation of $y'' - y' = 0$ is $r^2 - r = 0$ with roots $r = 0, 1$.
+So the solution of the complementary equation is
+\[y_c = c_1 + c_2 e^x\]
+
+Base on instinct, we seek a particular solution of the form $y_p = (A + x)e^x$.
+Substituting this into the given differential equation we get
+\[(2 + A + x)e^x + (1 + A + x)e^x = xe^x
+\iff 3 + 2A = 0
+\iff A = \frac{-3}{2}\]
+
+Thus the general solution of the given differential equation is
+\begin{align*}
+y &= y_c + y_p
+   = c_1 + c_2 e^x + \left(x - \frac{3}{2}\right)e^x
+   = c_1 + (x + C)e^x\\
+\Longrightarrow y' &= (x + C + 1)e^x
+\end{align*}
+
+From $y'(0) = 1$ we get $C = 0$ and from $y(0) = 2$ we get $c_1 = 2$.
+Hence the solution of the initial-value problem is $y = c_1 + (x + C)e^x$.
+\end{document}

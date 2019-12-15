@@ -1,21 +1,23 @@
-# hsg
+# cp
 
-Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
+This used to be my competitive programming collection, now it is more of
+a warehouse for my computer programming journey.  For historical reasons,
+this README as well as commit messages are duolingo (Anglais et Vietnamien).
 
 |    Thư mục   |                      Nguồn đề bài                      |
 | ------------ | ------------------------------------------------------ |
 | `\d{2}`      | Đề thi, kiểm tra phân theo lớp                         |
-| `COCI`       | [Giải Tin học Croatia mở rộng][0]                      |
-| `NTU`        | [Đại học Nha Trang][1]                                 |
-| `THT`        | Hội thi Tin học trẻ                                    |
+| `coci`       | [Giải Tin học Croatia mở rộng][0]                      |
 | `codechef`   | [Codechef][2]                                          |
 | `codeforces` | [Codeforces][3]                                        |
 | `cpptour`    | A Tour of C++                                          |
 | `daily`      | [/r/dailyprogrammer][4]                                |
+| `ntu`        | [Đại học Nha Trang][1]                                 |
 | `others`     | Các đề bài không rõ nguồn                              |
 | `paip`       | Paradigms of Artificial Intelligence Programming       |
 | `sicp`       | Structure and Interpretation of Computer Programs      |
 | `thinkperl6` | Think Perl 6                                           |
+| `tht`        | Hội thi Tin học trẻ                                    |
 | `toys`       | Programs that don't deserve their own repo             |
 | `usth`       | L'Université des Sciences et des Technologies de Hanoï |
 
@@ -25,7 +27,7 @@ Bài tập luyện tập thi Olympic, học sinh giỏi Tin học, trong đó:
 [3]: http://codeforces.com/
 [4]: https://www.reddit.com/r/dailyprogrammer
 
-Ở mỗi thư mục con sẽ có tệp `README.md` ghi lại đề bài. Riêng `COCI`, `NTU` và
+Ở mỗi thư mục con sẽ có tệp `README.md` ghi lại đề bài. Riêng `coci`, `ntu` và
 `codeforces` sẽ chỉ có danh sách đường dẫn tới các đề bài. Đề bài sẽ được cập
 nhật dần.
 
@@ -38,7 +40,7 @@ Phiên bản các trình dịch sử dụng test:
 | Java        | OpenJDK 11+        |
 | Lua         | Lua 5.1+           |
 | Pascal      | Free Pascal 2.6.4+ |
-| Perl 6      | Rakudo 2018.12+    |
+| Raku        | Rakudo 2018.12+    |
 | Python      | Python 3.5+        |
 | Scheme      | GNU Guile 2.0.11+  |
 

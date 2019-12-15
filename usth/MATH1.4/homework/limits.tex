@@ -1,0 +1,1727 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\title{Calculus Homework}
+\author{Nguyễn Gia Phong}
+\date{Winter 2018}
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\leibniz}[3][]{\frac{\mathrm{d} #1 #2}{\mathrm{d} #3 #1}}
+\DeclareMathOperator{\erf}{erf}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+\section{Limits}
+
+\setcounter{subsection}{2}
+\subsection{Limit Laws}
+Evaluate the limit:
+\[\lim_{x \to 2}\sqrt{\frac{2x^2 + 1}{3x - 2}}
+= \sqrt{\lim_{x \to 2}\frac{2x^2 + 1}{3x - 2}}
+= \sqrt{\frac{2 \cdot 2^2 + 1}{3 \cdot 2 - 2}}
+= \frac{3}{2} \tag{9}\]
+
+\[\lim_{x \to 4}\frac{x^2 - 4x}{x^2 - 3x - 4}
+= \lim_{x \to 4}\frac{x}{x + 1}
+= \frac{4}{5} \tag{12}\]
+
+\begin{align*}
+   \lim_{t \to 0}\frac{\sqrt{1 + t} - \sqrt{1 - t}}{t}
+&= \lim_{t \to 0}\frac{2t}{t(\sqrt{1 + t} + \sqrt{1 - t})} \\
+&= \lim_{t \to 0}\frac{2}{(\sqrt{1 + t} + \sqrt{1 - t})} \\
+&= \frac{2}{\sqrt{1} + \sqrt{1}} \\
+&= 1 \tag{25}
+\end{align*}
+
+\noindent\textbf{40. }Prove that
+$\lim_{x \to 0^+}\sqrt{x}e^{\sin\frac{\pi}{x}} = 0$.
+
+Given $\varepsilon > 0$, let $\delta = \frac{1}{9}\varepsilon^2$.
+If $0 < x < 0 + \delta$ then \[0 < \sqrt{x}e^{\sin\frac{\pi}{x}}
+\leq e\sqrt{\delta} < 3\sqrt{\frac{\varepsilon^2}{9}}
+\Longrightarrow |\sqrt{x}e^{\sin\frac{\pi}{x}} - 0 | < \varepsilon\]
+
+Thus, by the definition of right-hand limit,
+\[\lim_{x \to 0^+}\sqrt{x}e^{\sin\frac{\pi}{x}} = 0\]
+
+\noindent\textbf{59. }Prove that $\lim_{x \to 0}f(x) = 0$ if
+\[f(x) = \begin{cases}
+           x^2\text{ if } x\text{ is rational} \\
+           0\text{ if } x\text{ is irrational}
+         \end{cases}\]
+
+Given $\varepsilon > 0$, let $\delta = \sqrt{\varepsilon}$.
+If $0 < |x - 0| < \delta$, then $0 < x^2 < \varepsilon$
+or $|f(x) - 0| < \varepsilon$. Thus, by the definition of a limit,
+\[\lim_{x \to 0}f(x) = 0\]
+
+\noindent\textbf{61. }If $f(x) = \begin{cases}
+                                   1\text{ if } x \geq 0 \\
+                                   0\text{ if } x < 0
+                                 \end{cases}$
+and $g(x) = \begin{cases}
+              0\text{ if } x \geq 0 \\
+              1\text{ if } x < 0
+            \end{cases}$
+then $f(x)g(x) = 0$. Thus $\lim_{x \to 0}f(x)g(x) = 0$ though neither
+$\lim_{x \to 0}f(x)$ nor $\lim_{x \to 0}g(x)$ exists.
+
+\subsection{The precise definition of a limit}
+\textbf{3. }Given $f(x) = \sqrt{x}$, if $|x - 4| < 1.44$ then
+$|\sqrt{x} - 2| < 0.4$.
+
+\noindent\textbf{21. }Prove that $\lim_{x \to 2}\frac{x^2 + x - 6}{x - 2} = 5$.
+
+Given $\varepsilon > 0$, let $\delta = \varepsilon$.
+If $0 < |x - 2| < \delta$, then \[|x + 3 - 5| < \varepsilon
+\iff \left|\frac{x^2 + x - 6}{x - 2} - 5\right| < \varepsilon\]
+
+Thus, by the definition of a limit,
+$\lim_{x \to 2}\frac{x^2 + x - 6}{x - 2} = 5$.
+
+\noindent\textbf{39. }Prove that $\lim_{x \to 0}f(x)$ does not exist if
+\[f(x) = \begin{cases}
+           0\text{ if } x\text{ is rational} \\
+           1\text{ if } x\text{ is irrational}
+         \end{cases}\].
+
+Suppose $\lim_{x \to 0}f(x) = L$, hence by the definition of limit,
+for every $\varepsilon > 0$, there exists $\delta > 0$ that
+\[0 < |x - 0| < \delta \Rightarrow |f(x) - L| < \varepsilon \tag{$*$}\]
+
+For $L = 0$, consider $\varepsilon = |L - 1|$. For every $\delta$, there is
+at least one irrational $x \in (0, \delta)$, which turns $(*)$ into a false
+statement: \[0 < |x| < \delta \Rightarrow |1 - L| < |L - 1|\]
+
+For $L \neq 0$, consider $\varepsilon = |L|$. For every $\delta$, there is
+at least one rational $x \in (0, \delta)$, which turns $(*)$ into a false
+statement: \[0 < |x| < \delta \Rightarrow |L| < |L|\]
+
+Conclusion: The assumption is incorrect; in other words, $\lim_{x \to 0}f(x)$
+does not exist.
+
+\subsection{Continuity}
+\textbf{22. }Explain why the function $f$ is discontinuous at the given number
+$a = 3$.
+\begin{align*}
+f(x) &= \begin{cases}
+          \frac{2x^2 - 5x - 3}{x - 3}\text{ if } x \neq 3 \\
+          6\text{ if } x = 3
+        \end{cases}\\
+     &= \begin{cases}
+          2x + 1\text{ if } x \neq 3 \\
+          6\text{ if } x = 3
+        \end{cases}
+\end{align*}
+
+Since $\lim_{x \to 3}f(x) = \lim_{x \to 3}(2x + 1) = 7 \neq 6 = f(3)$,
+$f$ is discontinuous at $3$.
+
+\begin{tikzpicture}
+  \begin{axis}[
+    axis x line=middle, axis y line=middle,
+    xlabel={$x$}, ylabel={$f(x)$},
+    xlabel style={at=(current axis.right of origin), anchor=west},
+    ylabel style={at=(current axis.above origin), anchor=south}]
+    \addplot[domain=-1:4,blue]{2*x + 1};
+    % This part is a bit hacky but it works XD
+    \addplot[white, mark=*, only marks] coordinates {(3,7)};
+    \addplot[blue, mark=o, only marks] coordinates {(3,7)};
+    \addplot[blue, mark=*, only marks] coordinates {(3,6)};
+  \end{axis}
+\end{tikzpicture}
+
+\noindent\textbf{26. }$G(x) = \frac{x^2 + 1}{2x^2 - x - 1}$ is a rational
+function so it is continuous at every number in its domain.
+
+\noindent\textbf{38. }Since $arctan$ is an inverse trigonometric function and
+thus continuous at every number in its domain and
+$\lim_{x \to 2}\frac{x^2 - 4}{3x^2 - 6x} = \lim_{x \to 2}\frac{x + 2}{3x} =
+\frac{2}{3}$, \[\lim_{x \to 2}\arctan\frac{x^2 - 4}{3x^2 - 6x} =
+\arctan\frac{2}{3}\]
+
+\subsection{To Infinity and Beyond!}
+Find the limit:
+\[\lim_{x \to -\infty}\frac{\sqrt{9x^6 - x}}{x^3 + 1}
+= \lim_{x \to -\infty}\frac{\sqrt{9 - \frac{1}{x^5}}}{-1 - \frac{1}{x^3}}
+= -3 \tag{24}\]
+
+\subsection{Derivatives}
+\textbf{24. }If $g(x) = x^4 - 2$,
+\begin{align*}
+g'(1) &= \lim_{h \to 0}\frac{g(1 + h) - g(1)}{h}\\
+      &= \lim_{h \to 0}\frac{(1 + h)^4 - 2 - (1^4 - 2)}{h}\\
+      &= \lim_{h \to 0}\frac{h^4 + 4h^3 + 6h^2 + 4h + 1 - 1}{h}\\
+      &= \lim_{h \to 0}(h^3 + 4h^2 + 6h + 4)\\
+\end{align*}
+
+An equation of the tangent line to $g$ at $(1, -1)$:
+\[y - g(1) = g'(1)(x - 1) \iff y = 4x - 5\]
+
+\noindent Determine whether $f'(0)$ exists.
+\[f(x) = \begin{cases}
+           x\sin\frac{1}{x}\text{ if } x \neq 0 \\
+           0\text{ if } x = 0
+         \end{cases}\tag{53}\]
+\begin{align*}
+f'(0) &= \lim_{h \to 0}\frac{f(0 + h) - f(0)}{h}\\
+      &= \lim_{h \to 0}\frac{h\sin\frac{1}{h}}{h}\\
+      &= \lim_{h \to 0}\sin\frac{1}{h}\tag{does not exist}\\
+\end{align*}
+
+\[f(x) = \begin{cases}
+           x^2\sin\frac{1}{x}\text{ if } x \neq 0 \\
+           0\text{ if } x = 0
+         \end{cases}\tag{54}\]
+\begin{align*}
+f'(0) &= \lim_{h \to 0}\frac{f(0 + h) - f(0)}{h}\\
+      &= \lim_{h \to 0}\frac{h^2\sin\frac{1}{h}}{h}\\
+      &= \lim_{h \to 0}h\sin\frac{1}{h}
+\end{align*}
+
+Since $\forall h \neq 0, -|h| \leq h\sin\frac{1}{h} \leq |h|$
+and $\lim_{h \to 0}(-|h|) = \lim_{h \to 0}|h| = 0$,
+according to the Squeeze Theorem, $f'(0) = 0$.
+
+\section{Differentiation}
+\setcounter{subsection}{3}
+\subsection{The chain rule}
+Find the derivative of the function.
+
+\[y = \cos\sqrt{\sin(\tan{\pi x})}\tag{45}\]
+\begin{align*}
+\dot{y} &= -\sqrt{\sin(\tan{\pi x})}' \cdot \sin\sqrt{\sin(\tan{\pi x})}\\
+        &= \frac{\sin'(\tan{\pi x}) \cdot \sin\sqrt{\sin(\tan{\pi x})}}
+                {2\sqrt{\sin(\tan{\pi x})}}\\
+        &= \frac{\tan'{\pi x} \cdot \cos(\tan{\pi x})
+                 \cdot \sin\sqrt{\sin(\tan{\pi x})}}
+                {2\sqrt{\sin(\tan{\pi x})}}\\
+        &= \frac{\pi\sec^2{\pi x} \cdot \cos(\tan{\pi x})
+                 \cdot \sin\sqrt{\sin(\tan{\pi x})}}
+                {2\sqrt{\sin(\tan{\pi x})}}
+\end{align*}
+
+\[y = [x + (x + \sin^2{x})^3]^4 \tag{46}\]
+\begin{align*}
+\dot{y} &= 4[x + (x + \sin^2{x})^3]' [x + (x + \sin^2{x})^3]^3\\
+        &= 4[1 + 3(x + \sin^2{x})' (x + \sin^2{x})^2]
+            [x + (x + \sin^2{x})^3]^3\\
+        &= 4[1 + 3(1 + \sin{2x})(x + \sin^2{x})^2]
+            [x + (x + \sin^2{x})^3]^3
+\end{align*}
+
+\setcounter{subsection}{6}
+\subsection{Applications in Sciences}
+\textbf{9. }A rock is thrown vertically upward from the surface of Mars, its
+height after $t$ seconds is $h = 15t - 1.86t^2$.
+\[\frac{\ud h}{\ud t}(2)
+= (t \mapsto 15 - 3.72t)(2)
+= 7.56\text{ (m/s)}\tag{a}\]
+\[h = 25 \iff 15t - 1.86t^2 = 25
+  \iff t = \frac{375 \mp 25\sqrt{39}}{93}\tag{b}\]
+
+So at $t \approx 2.35$ s or $t \approx 5.71$ the Rock's height is 25 m. Its
+velocity at this point is
+\[v = (t \mapsto 15 - 3.72t)\left(\frac{375 \mp 25\sqrt{39}}{93}\right)
+    = \pm 6.24\text{ (m/s)}\]
+
+\pagebreak\noindent\textbf{10. }A particle moves with position function
+\[s = t^4 - 4t^3 - 20t^2 + 20t \qquad t \geq 0\]
+\[v = 20 \iff \dot{s} = 20 \iff 4t^3 - 12t^2 - 40t + 20 = 20 \tag{a}\]
+
+Since $t$ is nonnegative, the particle has a velocity of 20 m/s at $t = 0$ and
+$t = 5$ s.
+\[a = 0 \iff \dot{v} = 0 \iff 12t^2 - 24t - 40 = 0 \tag{b}\]
+
+Since $t$ is nonnegative, the acceleration is 0 at $t = \sqrt\frac{13}{3} - 1$
+s. This is when the instantaneous speed of the particle ($|v|$) reaches its
+critical value.
+
+\noindent\textbf{21. }The force $F$ acting on a body with velocity $v$ and mass
+$m = m_0 \Big/ \sqrt{1 - \frac{v^2}{c^2}}$ (where $m_0$ is the mass of the particle
+at rest and $c$ is the speed of light) is the rate of change of momentum:
+\begin{align*}
+F &= \frac{\ud(mv)}{\ud t}\\
+  &= \frac{\ud}{\ud t}\left(\frac{m_0v}{\sqrt{1 - \frac{v^2}{c^2}}}\right)\\
+  &= m_0\frac{\ud v}{\ud t}\cdot
+     \frac{\ud}{\ud v}\left(\frac{v}{\sqrt{1 - \frac{v^2}{c^2}}}\right)\\
+  &= m_0a\frac{\ud}{\ud v}\left(\frac{v}{\sqrt{1 - \frac{v^2}{c^2}}}\right)\\
+  &= m_0a\frac{\sqrt{1 - \frac{v^2}{c^2}}
+               - v\frac{\ud\sqrt{1 - v^2/c^2}}{\ud v}}
+              {1 - \frac{v^2}{c^2}}\\
+  &= m_0a\frac{\sqrt{1 - \frac{v^2}{c^2}}
+               - \frac{v}{2}\cdot\frac{-2v}{c^2\sqrt{1 - v^2/c^2}}}
+              {1 - \frac{v^2}{c^2}}\\
+  &= m_0a\frac{\sqrt{1 - \frac{v^2}{c^2}} + \frac{v^2}{c^2\sqrt{1 - v^2/c^2}}}
+              {1 - \frac{v^2}{c^2}}\\
+  &= m_0a\frac{1 - \frac{v^2}{c^2} + \frac{v^2}{c^2}}
+              {\left(1 - \frac{v^2}{c^2}\right)^\frac{3}{2}}\\
+  &= \frac{m_0a}{\left(1 - \frac{v^2}{c^2}\right)^\frac{3}{2}}
+\end{align*}
+
+\noindent\textbf{30. }The frequency of vibrations a vibrating violin string is
+given by \[f = \frac{1}{2L}\sqrt{\frac{T}{\rho}} \qquad T \geq 0, \rho > 0\]
+\begin{enumerate}[(a)]
+  \item The rate of change of the frequency with respect to
+    \begin{enumerate}[(i)]
+      \item The length:
+        $\frac{\ud f}{\ud L} = \frac{-1}{L^2}\sqrt{\frac{T}{\rho}}$.
+      \item The tension: $\frac{\ud f}{\ud T} = \frac{1}{4L\sqrt{T\rho}}$.
+      \item The density:
+        $\frac{\ud f}{\ud L} = \frac{-1}{L2}\sqrt{\frac{T}{\rho^3}}$.
+    \end{enumerate}
+  \item The pitch of a note gets higher when the string is shorter and lower
+    when the tension or density is increased.
+\end{enumerate}
+
+\noindent\textbf{35. }Applying the gas law
+\[PV = nRT \iff T = \frac{PV}{nR}\]
+
+The rate of change of temperature can be easily calculated via differentiation:
+\begin{align*}
+   \frac{\ud T}{\ud t}
+&= \frac{\ud}{\ud t}\left(\frac{PV}{nR}\right)\\
+&= \frac{1}{nR}\left(P\frac{\ud V}{\ud t} + V\frac{\ud P}{\ud t}\right)\\
+&= \frac{8.0 \cdot 0.15 + 10 \cdot 0.10}{10 \cdot 0.0821}\\
+&= \frac{1.2 + 1}{10 \cdot 0.0821}\\
+&= \frac{2}{10 \cdot 0.0821}\\
+&= 2\text{ (K/s)}
+\end{align*}
+
+(In the calculation above, significant figures are taken into consideration.)
+
+\pagebreak\subsection{Exponential Growth and Decay}
+\textbf{4. }Let $P(t)$ be the bacteria count after $t$ hours. As the bacteria
+culture grows with constant relative growth rate,
+\[\frac{\ud P}{\ud t} = kP \Longrightarrow P(t) = P(0)e^{kt}\]
+
+Since $P(2) = 400$ and $P(6) = 25600$,
+\begin{align*}
+  \begin{cases}
+    P(0)e^{2k} = 400\\
+    P(0)e^{6k} = 25600
+  \end{cases}
+  &\iff
+  \begin{cases}
+    P(0)e^{2k} = 400\\
+    e^{4k} = 64
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    P(0)e^{2k} = 400\\
+    e^{2k} = 8
+  \end{cases}\\
+  &\iff
+  \begin{cases}
+    P(0) = 50\\
+    k = \frac{\ln 8}{2} \approx 104\%
+  \end{cases}
+\end{align*}
+
+Thus (a) the relative growth rate is 104\%, (b) the initial size of the culture
+is 50 and (c) the number of bacteria after $t$ hours is $50\sqrt{8^t}$.
+
+The number of cells after 4.5 hours:
+\[P(4.5) = 50\sqrt{8^{4.5}} \approx 5382\tag{d}\]
+
+The rate of growth after 4.5 hours:
+\begin{align*}
+   \frac{\ud P}{\ud t}(4.5)
+&= 50\frac{\ud \sqrt{8}^t}{\ud t}(4.5)\\
+&= 50\left(t \mapsto \sqrt{8^t}\ln\sqrt{8}\right)(4.5)\\
+&= 25\cdot8^{2.25}\ln 8\\
+&\approx 5596\text{ (bacteria per minute)}\tag{e}
+\end{align*}
+
+The population reach 50000 when
+\[50\sqrt{8^t} = 50000 \iff 8^t = 10^6 \iff t = \log_2{100}
+\approx 6.64\text{ (days)}\tag{f}\]
+
+\noindent\textbf{8. }Given 50 mg of $^{90}$Sr which has a half-life of 28 days.
+\begin{enumerate}[(a)]
+  \item Formula of the mass remaining after $t$ days: $m(t) = 50\cdot2^{-t/28}$.
+  \item The mass remaining after 40 days:
+    $m(40) = 50\cdot\frac{1}{2}^{10/7} \approx 19\text{ (mg)}$.
+  \item To decay to a mass of 2 mg, it takes
+    $-28\log_2\frac{2}{50} \approx 130\text{ (days)}$.
+  \item The graph of the mass function:\\
+    \begin{tikzpicture}
+      \begin{axis}[
+        axis x line=middle, axis y line=middle,
+        xlabel={$t$}, ylabel={$m$},
+        xlabel style={at=(current axis.right of origin), anchor=west},
+        ylabel style={at=(current axis.above origin), anchor=south},
+        enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1}]
+        \addplot[domain=0:130,magenta]{50*2^(-x/28)};
+      \end{axis}
+    \end{tikzpicture}
+\end{enumerate}
+
+\noindent\textbf{16. }Let $T(t)$ be the temperature of the coffee after $t$
+minutes. The surrounding temperature is \ang{20}C, so Newton's Law of Cooling
+states that \[\frac{\ud T}{\ud t} = k(T - 20)\]
+
+If we let $y = T - 20$, then $y(0) = T(0) - 20 = 95 - 20 = 75$, so $y$
+satisfies \[\frac{\ud y}{\ud t} = ky \iff y(t) = 75e^{kt}\]
+
+When the temperature of the coffee is \ang{70}C, its cooling rate is \ang{1}C
+per minute, i.e.
+\begin{align*}
+  \begin{cases}
+    y(t) + 20 = 70\\
+    ky(t) = -1
+  \end{cases}
+  &\iff\begin{cases}
+         y(t) = 50\\
+         k = \frac{-1}{50}
+       \end{cases}\\
+  \Longrightarrow 75e^{-t/50} = 50
+    &\iff t = 50\ln1.5 \approx 20\text{ (minutes)}
+\end{align*}
+
+\subsection{Related rates}
+\textbf{10. }A particle is moving along a hyperbola $xy = 8$
+\begin{align*}
+  \Longrightarrow \frac{\ud (xy)}{\ud t} = \frac{\ud 8}{\ud t}
+  &\iff y\frac{\ud x}{\ud t} + x\frac{\ud y}{\ud t} = 0\\
+  &\iff 2 \cdot \frac{\ud x}{\ud t} + 4 \cdot 3 = 0\\
+  &\iff \frac{\ud x}{\ud t} = -6\text{ (cm/s)}
+\end{align*}
+
+\noindent\textbf{12. }Let $D(t)$ (cm) be the diameter of the ball at minute
+$t$, its surface area is $A(D) = \pi D^2$ (cm$^2$).
+\[\frac{\ud A}{\ud t} = 1 \iff \frac{\ud A}{\ud D} \cdot \frac{\ud D}{\ud t} = 1
+  \iff 2\pi D \frac{\ud D}{\ud t} = 1 \iff \frac{\ud D}{\ud t}
+                                  = \frac{1}{2\pi D}\]
+
+Thus the decreasing rate of the diameter when it is 10 cm:
+\[\frac{\ud D}{\ud t}(10) = \frac{1}{20\pi}\text{ (cm/s)}\]
+
+\noindent\textbf{14. }
+
+\begin{tikzpicture}
+  \begin{axis}[nodes near coords align=right, xlabel={W -- E}, ylabel={S -- N}]
+    \node[label=A, shape=circle, fill, inner sep=1.5pt] at (0,0) {};
+    \addplot[->] plot coordinates {(0,0) (35,0)};
+    \node[label={180:B}, shape=circle, fill, inner sep=1.5pt] at (150,0) {};
+    \addplot[->] plot coordinates {(150,0) (150,25)};
+  \end{axis}
+\end{tikzpicture}
+\[\begin{cases}
+    \Delta x(t) = x_B(t) - x_A(t)\\
+    \Delta y(t) = y_B(t) - y_A(t)
+  \end{cases}
+\iff\begin{cases}
+      \Delta x(t) = 150 - 35t\\
+      \Delta y(t) = 25t
+  \end{cases}\]
+\[\Longrightarrow\Delta s(t) = \sqrt{1850t^2 - 10500t + 22500}
+  \Longrightarrow\frac{\ud s}{\ud t} = \frac{1850t - 5250}
+                                       {\sqrt{1850t^2 - 10500t + 22500}}\]
+\[\Longrightarrow\frac{\ud s}{\ud t}(4)
+               = \frac{1850\cdot4 - 5250}
+                      {\sqrt{1850\cdot16 - 10500\cdot4 + 22500}}
+               = \frac{2150}{\sqrt{10100}}
+               = \frac{215\sqrt{101}}{101}
+               \approx 21\text{ (km/h)}\]
+
+\noindent\textbf{27. }Let $h(t)$ (ft) be the height of the cone at minute $t$.
+Volume of the cone is
+\begin{align*}
+  V(h) = \frac{\pi h^2}{12}
+  &\Longrightarrow\frac{\ud V}{\ud t} = \frac{\pi h}{6}\cdot\frac{\ud h}{\ud t}
+                                      = 30
+  \iff\frac{\ud h}{\ud t} = \frac{180}{\pi h}\\
+  &\Longrightarrow\frac{\ud h}{\ud t}(10) = \frac{180}{10\pi} = \frac{18}{\pi}
+  \approx 5.7\text{ (ft/s)}
+\end{align*}
+
+\section{Applications of derivative}
+\subsection{Max and Min}
+Find the absolute min and max values of $f$.
+
+\[f(x) = 3x^4 - 4x^3 - 12x^2 + 1, \qquad [-2, 3]\tag{51}\]
+
+Since $f'(x) = 12x^3 - 12x^2 - 24x$, we have $f'(x) = 0$ when
+$x \in \{-1, 0, 2\}$. The values of $f$ at these critical numbers are
+\begin{align*}
+  f(-1) &= 3 + 4 - 12 + 1 = -4\\
+  f(0)  &= 1\\
+  f(2)  &= 48 - 32 - 48 + 1 = -31
+\end{align*}
+
+The values of $f$ at endpoints are
+\begin{align*}
+  f(-2) &= 48 + 32 - 48 + 1 = 33\\
+  f(3)  &= 243 - 108 - 108 + 1 = 28
+\end{align*}
+
+Comparing these five numbers and using the Closed Interval Method, we see that
+the absolute minimum value is $f(2) = -31$ and the absolute maximum value is
+$f(-2) = 33$.
+
+\[f(t) = t\sqrt{4 - t^2}, \qquad [-1, 2]\tag{55}\]
+
+Since $f'(t) = \frac{4 - 2t^2}{\sqrt{4 - t^2}}$, with $t \in [-1, 2]$, we have
+$f'(t) = 0$ when $t = \sqrt{2}$. The value of $f$ at this critical number is
+$f(\sqrt{2}) = 2$. The value of $f$ at endpoints are $f(-1) = -\sqrt{3}$ and
+$f(2) = 0$. Comparing these 3 numbers and using the Closed Interval Method, we
+see that the absolute minimum value is $f(-1) = -\sqrt{3}$ and the absolute
+maximum value is $f(\sqrt{2}) = 2$.
+
+\[f(x) = xe^{-x^2/8}, \qquad [-1, 4]\tag{59}\]
+
+With $x \in [-1, 4]$, we have $f'(x) =  \left(1-\frac{x^2}{4}\right)e^{-x^2/8}$
+when $x = 2$. Comparing values of $f$ at this critical number and endpoints,
+the minimum value is $f(-1) = -e^{-1/8}$ and
+the maximum value is $f(2) = 2e^{-1/2}$.
+
+\subsection{The Mean Theorem}
+\textbf{26. }Let $h$ be the function that $h(x) = f(x) - g(x)$. Since both $f$
+and $g$ are continuous on $[a, b]$ and differentiable on $(a, b)$, $h$ inherits
+the same properties. By applying the Mean Value Theorem to $h$ on the interval
+$[a, b]$, we get a number $c \in (a, b)$ such that
+\begin{align*}
+    &h(b) - h(a) = (b - a)h'(c)\\
+\iff&f(b) - g(b) - f(a) + g(a) = (b - a)(f'(c) - g'(c))\\
+\iff&f(b) - g(b) = (b - a)(f'(c) - g'(c))
+\end{align*}
+$b - a > 0$ and $f'(c) - g'(c) < 0$ so $f(b) - g(b) < 0$ or $f(b) < g(b)$.
+
+\begin{align*}
+x > 0 &\iff x + 1 > 1\\
+      &\iff \sqrt{x + 1} > 1\\
+      &\iff \sqrt{x + 1} - 1 > 0\\
+      &\Longrightarrow \left(\sqrt{x + 1} - 1\right)^2 > 0\\
+      &\iff x + 1 - 2\sqrt{x + 1} + 1 > 0\\
+      &\iff x + 2 > 2\sqrt{x + 1}\\
+      &\iff \sqrt{1 + x} < 1 + \frac{1}{2}x\tag{27}
+\end{align*}
+
+\noindent\textbf{33. }Prove the identity
+\[\arcsin\frac{x - 1}{x + 1} = 2\arctan\sqrt{x} - \frac{\pi}{2}\]
+
+Let $\frac{-\pi}{2} \leq y = \arcsin\frac{x - 1}{x + 1} \leq \frac{\pi}{2}$ and
+$z = \arctan\sqrt{x}$, then
+\begin{align*}
+\begin{cases}
+  \sin{y} = \frac{x - 1}{x + 1}\\
+  \tan{z} = \sqrt{x}
+\end{cases}
+\Longrightarrow&
+\begin{cases}
+  \frac{\ud\sin{y}}{\ud x} = \frac{\ud}{\ud x}\left(\frac{x - 1}{x + 1}\right)\\
+  \frac{\ud\tan{z}}{\ud x} = \frac{\ud\sqrt{x}}{\ud x}
+\end{cases}\\
+\iff&
+\begin{cases}
+  \cos{y}\cdot\frac{\ud y}{\ud x} = \frac{2}{(x + 1)^2}\\
+  \left(\tan^2{z} + 1\right)\frac{\ud z}{\ud x} = \frac{1}{2\sqrt{x}}
+\end{cases}\\
+\iff&
+\begin{cases}
+  \sqrt{1 - \sin^2{y}}\cdot\frac{\ud y}{\ud x} = \frac{2}{(x + 1)^2}\\
+  \left(\sqrt{x}^2 + 1\right)\frac{\ud z}{\ud x} = \frac{1}{2\sqrt{x}}
+\end{cases}\\
+\iff&
+\begin{cases}
+  \sqrt{\frac{4x}{(x + 1)^2}}\cdot\frac{\ud y}{\ud x} = \frac{2}{(x + 1)^2}\\
+  (x + 1)\frac{\ud z}{\ud x} = \frac{1}{2\sqrt{x}}
+\end{cases}\\
+\iff&
+\begin{cases}
+  \frac{\ud y}{\ud x} = \frac{1}{|x + 1|\sqrt{x}}\\
+  \frac{\ud z}{\ud x} = \frac{1}{2(x + 1)\sqrt{x}}
+\end{cases}\\
+\end{align*}
+
+For all $x \geq 0$ or $x + 1 \geq 1 > 0$
+\begin{align*}
+   \frac{\ud}{\ud x}\left(2\arctan\sqrt{x} - \arcsin\frac{x - 1}{x + 1}\right)
+&= 2\frac{\ud z}{\ud x} - \frac{\ud y}{\ud x}\\
+&= \frac{2}{2(x + 1)\sqrt{x}} - \frac{1}{(x + 1)\sqrt{x}}\\
+&= 0
+\end{align*}
+
+Thus the function
+$x \mapsto 2\arctan\sqrt{x} - \arcsin\frac{x - 1}{x + 1}$ is constant on its
+domain $[0, \infty)$. Consequently, in $[0, \infty)$
+\begin{align*}
+   2\arctan\sqrt{x} - \arcsin\frac{x - 1}{x + 1}
+&= \left(x \mapsto 2\arctan\sqrt{x} - \arcsin\frac{x - 1}{x + 1}\right)(0)\\
+&= 2\arctan\sqrt{0} - \arcsin\frac{-1}{1}\\
+&= 0 - \frac{-\pi}{2}\\
+&= \frac{\pi}{2}\\
+\iff \arcsin\frac{x - 1}{x + 1} &= 2\arctan\sqrt{x} - \frac{\pi}{2}
+\end{align*}
+
+\subsection{Shape of a graph}
+\textbf{75. }Given two funtions $f$ and $g$ which are positive and concave
+upward on $I$, i.e. for all $x$ in $I$
+\[\begin{cases}
+    f(x) > 0\\
+    f''(x) > 0\\
+    g(x) > 0\\
+    g''(x) > 0
+  \end{cases}\]
+
+Second derivative of the product function $fg$:
+\[(f(x)g(x))'' = (f'(x)g(x) + f(x)g'(x))'
+  = f''(x)g(x) + 2f'(x)g'(x) + f(x)g''(x)\]
+
+If $f$ and $g$ are both increasing or decreasing, then $f'(x)g'(x) > 0$, which
+means $\forall x \in I, (f(x)g(x))'' > 0$, or $fg$ is concave upward on $I$.
+Otherwise, $f$ is increasing and $g$ is decreasing for instance, $fg$ may be
+either concave upward, concave downward or linear:
+
+\begin{center}
+  \begin{tikzpicture}[domain=0:8]
+    \begin{axis}[
+      axis x line = middle, axis y line = middle,
+      xlabel={$x$}, ylabel={$y$}, ymin=-8,
+      xlabel style={at=(current axis.right of origin), anchor=west},
+      ylabel style={at=(current axis.above origin), anchor=south},
+      enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1},
+      legend pos=south east]
+      \addplot[color=blue, samples=100, smooth]{-1/x};
+      \addplot[color=cyan, samples=100, smooth]{-x^(3/2)};
+      \addplot[color=red, samples=100, smooth]{sqrt(x)};
+      \legend{$f(x) = \frac{-1}{x}$, $g(x) = -x\sqrt{x}$,
+              $f(x)g(x) = \sqrt{x}$}
+    \end{axis}
+  \end{tikzpicture}
+
+  \begin{tikzpicture}[domain=0:4]
+    \begin{axis}[
+      axis x line = middle, axis y line = middle,
+      xlabel={$x$}, ylabel={$y$}, ymin=-8,
+      xlabel style={at=(current axis.right of origin), anchor=west},
+      ylabel style={at=(current axis.above origin), anchor=south},
+      enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1}]
+      \addplot[color=blue, samples=100, smooth]{-1/x};
+      \addplot[color=cyan, samples=100, smooth]{-x^3};
+      \addplot[color=red, samples=100, smooth]{x^2};
+      \legend{$f(x) = \frac{-1}{x}$, $g(x) = -x^3$, $f(x)g(x) = x^2$}
+    \end{axis}
+  \end{tikzpicture}
+
+  \begin{tikzpicture}[domain=0:4]
+    \begin{axis}[
+      axis x line = middle, axis y line = middle,
+      xlabel={$x$}, ylabel={$y$}, ymin=-8,
+      xlabel style={at=(current axis.right of origin), anchor=west},
+      ylabel style={at=(current axis.above origin), anchor=south},
+      enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1},
+      legend pos=south east]
+      \addplot[color=blue, samples=100, smooth]{-1/x};
+      \addplot[color=cyan, samples=100, smooth]{-x^2};
+      \addplot[color=red, samples=100, smooth]{x};
+      \legend{$f(x) = \frac{-1}{x}$, $g(x) = -x^2$, $f(x)g(x) = x$}
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\pagebreak\noindent\textbf{76. }In order for $h = f(g(x))$ to be concave
+upward on $\mathbb R$
+\begin{align*}
+  h'' > 0 &\iff (f \circ g)'' > 0\\
+          &\iff ((f' \circ g) \cdot g')' > 0\\
+          &\iff (f' \circ g)' \cdot g' + (f' \circ g) \cdot g'' > 0\\
+          &\iff (f'' \circ g) \cdot (g')^2 + (f' \circ g) \cdot g'' > 0
+\end{align*}
+
+Because $f$ and $g$ are given to be concave upward on $\mathbb R$, i.e.
+$f'' > 0$ and $g'' > 0$, and $\forall x \in \mathbb R, g^2(x) \geq 0$, so if
+$f' > 0$ or $f$ is an increasing function, $h$ will be concave upward.
+
+\noindent\textbf{77. }Show that $\tan{x} > x$ for $0 < x < \frac{\pi}{2}$.
+
+Let $f$ be the function that $f(x) = \tan{x} - x$. On $(0, \frac{\pi}{2})$,
+$\sin{x}\cos{x} \neq 0$ thus $\tan{x}$ exists and is nonzero. Therefore,
+$f'(x) = \tan^2(x) > 0$ or $f$ is increasing on $[0, \frac{\pi}{2}]$, which
+means for all x in $(0, \frac{\pi}{2})$,
+\[f(x) > f(0) \iff \tan{x} - x > \tan0 - 0 \iff \tan{x} > x\]
+
+\noindent\textbf{78. } Use mathematical induction to prove that for all
+positive integer $n$,
+\[\forall x \geq 0, \qquad e^x \geq 1 + \sum_{i=1}^n\frac{x^i}{i!}\tag{$*$}\]
+
+Let $f$ be the function of domain $[0, \infty)$ that $f(x) = e^x - x$, then
+for all $x \geq 0$, $f'(x) = e^x - 1 > f'(0) = 0$ (since it is obvious that $f'$
+is an increasing function). Hence
+$\forall x \geq 0, e^x - x > e^0 - 0 = 1 \iff \forall x \geq 0, e^x > 1 + x$,
+i.e.  $(*)$ is true for $n = 1$.
+
+Suppose that $(*)$ is also true for $n = k$ ($k \in \mathbb N^*$). For all
+nonnegative $x$,
+\[e^x \geq 1 + \sum_{i=1}^k\frac{x^i}{i!}
+  \iff e^x - 1 - \sum_{i=1}^k\frac{x^i}{i!} \geq 0\]
+
+Let $g$ be the function of domain $[0, \infty)$ that
+$g(x) = e^x - \sum_{i=1}^{k+1}\frac{x^{i}}{i!}$, then for all positive $x$
+\[g'(x) = e^x - \sum_{i=1}^{k+1}\frac{ix^{i-1}}{i!}
+        = e^x - 1 - \sum_{i=2}^{k+1}\frac{x^{i-1}}{(i - 1)!}
+        = e^x - 1 - \sum_{i=1}^{k}\frac{x^{i}}{i!} \geq 0\]
+
+This means $g$ in a non-decreasing function on $[0, \infty)$
+\[e^x - \sum_{i=1}^{k+1}\frac{x^{i}}{i!}
+  \geq e^0 - \sum_{i=1}^{k+1}\frac{0^{i}}{i!} = 1\]
+
+This expression shows that $(*)$ is true for $n = k + 1$. Therefore, by
+mathematical induction, it is true for all positive integers $n$.
+
+\subsection{Rule of the Hospital}
+Find the limit
+
+\noindent\textbf{54. }Since $\lim_{x \to 0^+}\ln x = -\infty$
+and $\lim_{x \to 0^+}\frac{1}{\sqrt x} = \infty$
+\[\lim_{x \to 0^+}x^{\sqrt x}
+= \lim_{x \to 0^+}e^{\sqrt{x}\cdot\ln{x}}
+= e^{\lim_{x \to 0^+}\frac{\ln x}{1/\sqrt x}}
+= e^{\lim_{x \to 0^+}\frac{-2x\sqrt x}{x}}
+= e^{-2\lim_{x \to 0^+}\sqrt x}
+= e^0
+= 1\]
+
+\noindent\textbf{60. }Since
+$\lim_{x \to \infty}\ln{2}\ln x = \lim_{x \to \infty}(1 + \ln x) = \infty$
+\[\lim_{x \to \infty}x^\frac{\ln 2}{1 + \ln x}
+= e^{\lim_{x \to \infty}\frac{\ln{2}\ln x}{1 + \ln x}}
+= e^{\lim_{x \to \infty}\ln{2}}
+= e^{\ln 2}
+= 2\]
+
+\setcounter{subsection}{6}
+\subsection{Optimization Problems}
+\textbf{44. }Given $E(v) = \frac{aLv^3}{v - u}$
+\[\frac{\ud E}{\ud v}
+= aL\frac{3v^2(v - u) - v^3}{(v - u)^2}
+= aL\frac{2v^3 - 3uv^2}{(v - u)^2}\]
+
+Since $v > u > 0$, $E$ has only one absolute extreme value, at the only
+critical number $v = 1.5u$. Applying the First Derivative Test for Absolute
+Extreme Values, $v = 1.5u$ is shown to be the value of $v$ that minimizes $E$.
+
+\noindent\textbf{45. }Given
+$S = 6sh + \frac{3}{2}s^2(\sqrt{3}\cdot\csc\theta - \cot\theta)$.
+\[\frac{\ud S}{\ud\theta}
+= \frac{3}{2}s^2\frac{\ud}{\ud\theta}(\sqrt{3}\cdot\csc\theta - \cot\theta)
+= \frac{3s^2(1 - {\sqrt{3}\cdot\cos\theta})}{2\sin^2\theta}\]
+
+We have $\frac{\ud S}{\ud\theta} = 0$ when $\theta = \arccos\frac{\sqrt 3}{3}$.
+Applying the First Derivative Test for Absolute Extreme Values, this value of
+$\theta$ is shown to minimize $S$ to $6sh + \frac{3s^2}{\sqrt 2}$.
+
+\noindent\textbf{76. }Using Poiseuille's Law, we have the total resistance of
+the blood along the path ABC is
+\begin{multline*}
+R = R_{AB} + R_{BC}
+  = C\frac{a - b\cot\theta}{r_1^4} + C\frac{b}{r_2^4 \sin\theta}
+  = C\left(\frac{a - b\cot\theta}{r_1^4} + \frac{b\csc\theta}{r_2^4}\right)\\
+\Longrightarrow\frac{\ud R}{\ud\theta}
+= \frac{Cb}{r_1^4 \sin^2\theta} - \frac{Cb\cos\theta}{r_2^4\sin^2\theta}
+= \frac{Cb}{sin^2\theta}\left(\frac{1}{r_1^4} - \frac{\cos\theta}{r_2^4}\right)
+\end{multline*}
+
+We have $\frac{\ud R}{\ud\theta} = 0$ when $\cos\theta = (r_2/r_1)^4$. At this
+angle, the resistance is minimized (can be shown using the First Derivative
+Test for Absolute Extreme Values, but like in the two previous exercises, I'm
+too lazy to evaluate it). When $\frac{r_2}{r_1} = \frac{2}{3}$, the optimal
+branching angle is $\theta \approx \ang{79}$.
+
+\section{Integral}
+\subsection{Areas}
+\textbf{4. }Estimate the area under the graph of $f(x) = \sqrt{x}$ from $x = 0$
+to $x = 4$.
+\[\lim_{n \to \infty}R_n
+= \lim_{n \to \infty}\frac{4 - 0}{n}\sum_{i = 1}^n\sqrt\frac{4i}{n}
+= \lim_{n \to \infty}\frac{8}{n}\sum_{i = 1}^n\sqrt\frac{i}{n}\]
+\[\lim_{n \to \infty}L_n
+= \lim_{n \to \infty}\frac{4 - 0}{n}\sum_{i = 0}^{n - 1}\sqrt\frac{4i}{n}
+= \lim_{n \to \infty}\frac{8}{n}\sum_{i = 0}^{n - 1}\sqrt\frac{i}{n}\]
+
+For estimation, consider $n \to 4$:
+\[\lim_{n \to 4}R_n
+= \frac{8}{4}\sum_{i = 1}^4\sqrt\frac{i}{4}
+= \sum_{i = 1}^4\sqrt i
+= 1 + \sqrt 2 + \sqrt 3 + 2
+\approx 6.1463\]
+\[\lim_{n \to 4}L_n
+= \frac{8}{4}\sum_{i = 0}^3\sqrt\frac{i}{4}
+= \sum_{i = 0}^3\sqrt i
+= 0 + 1 + \sqrt 2 + \sqrt 3
+\approx 4.1463\]
+
+\noindent\textbf{5. }Estimate the area under the graph of $f(x) = 1 + x^2$ from
+$x = -1$ to $x = 2$.
+\begin{align*}
+  \lim_{n \to \infty}R_n
+=&\lim_{n \to \infty}\frac{2 + 1}{n}\sum_{i = 1}^n
+  f\left(-1 + i\frac{2 + 1}{n}\right)\\
+=&\lim_{n \to \infty}\frac{3}{n}\sum_{i = 1}^n
+  \left(1 + \left(\frac{3i}{n} - 1\right)^2\right)
+\end{align*}
+
+Similarly,
+\begin{align*}
+  \lim_{n \to \infty}L_n
+=&\lim_{n \to \infty}\frac{3}{n}\sum_{i = 0}^{n - 1}
+  \left(1 + \left(\frac{3i}{n} - 1\right)^2\right)\\
+  \lim_{n \to \infty}M_n
+=&\lim_{n \to \infty}\frac{3}{n}\sum_{i = 1}^n
+  \left(1 + \left(\frac{3i - 3/2}{n} - 1\right)^2\right)
+\end{align*}
+
+For $n \to 3$,
+\begin{align*}
+  \lim_{n \to 3}R_n
+=&\sum_{i = 1}^3\left(1 + (i - 1)^2\right)
+= 1 + 2 + 5
+= 8\\
+  \lim_{n \to 3}M_n
+=&\sum_{i = 1}^3\left(1 + \left(i - \frac{3}{2}\right)^2\right)
+= \frac{5}{4} + \frac{5}{4} + \frac{13}{4}
+= 5.75\\
+  \lim_{n \to 3}L_n
+=&\sum_{i = 0}^2\left(1 + (i - 1)^2\right)
+= 2 + 1 + 2
+= 5
+\end{align*}
+
+For $n \to 6$,
+\begin{align*}
+  \lim_{n \to 6}R_n
+=&\frac{1}{2}\sum_{i = 1}^6\left(1 + \left(\frac{i}{2} - 1\right)^2\right)
+= \frac{1}{2}\left(\frac{5}{4} + 1 + \frac{5}{4} + 2 + \frac{13}{4} + 5\right)
+= 6.875\\
+  \lim_{n \to 6}M_n
+=&\frac{1}{2}\sum_{i = 1}^6\left(1 + \left(\frac{2i - 5}{4}\right)^2\right)
+= \frac{1}{2}\left(\frac{25}{16} + \frac{17}{16} + \frac{17}{16} +
+                   \frac{25}{16} + \frac{41}{16} + \frac{65}{16}\right)
+= 5.9375\\
+  \lim_{n \to 6}L_n
+=&\frac{1}{2}\sum_{i = 0}^5\left(1 + \left(\frac{i}{2} - 1\right)^2\right)
+= \frac{1}{2}\left(2 + \frac{5}{4} + 1 + \frac{5}{4} + 2 + \frac{13}{4}\right)
+= 5.375
+\end{align*}
+
+\noindent\textbf{16. }The height (in feet) above the earth's surface of the
+\textit{Endeavour}, 62 seconds after liftoff, can be estimated with the assist
+of Python (which, coincidentally, has been utilized by NASA recently):
+\begin{verbatim}
+>>> time = 0, 10, 15, 20, 32, 59, 62, 125
+>>> velocity = 0, 185, 319, 447, 742, 1325, 1445, 4151
+>>> sum(map(int.__mul__, velocity,
+...         map(int.__sub__, time[1:], time[:-1])))
+122928
+\end{verbatim}
+
+\subsection{The Definite Integral}
+Evaluate the integral.
+\begin{align*}
+  \int_2^5(4 - 2x)\ud x &= \left.4x\right]_2^5 - \left.x^2\right]_2^5
+= 12 - 21 = -9\tag{21}\\
+  \int_0^2(2x - x^3)\ud x &= \left.x^3\right]_0^2 - \left.\frac{x^4}{4}\right]_0^2
+= 9 - 16 = -7\tag{24}
+\end{align*}
+
+\noindent\textbf{33. }Evaluate integral by interpreting it in terms of areas.
+\begin{align*}
+  \int_0^2 f(x)\ud x &= 4\tag{a}\\
+  \int_0^5 f(x)\ud x &= 10\tag{b}\\
+  \int_5^7 f(x)\ud x &= -3\tag{c}\\
+  \int_0^9 f(x)\ud x &= \int_0^5 f(x)\ud x + \int_5^9 f(x)\ud x
+                      = 10 - 8 = 2\tag{d}
+\end{align*}
+
+\noindent\textbf{50. }Given $f(x) = \begin{cases}
+                                      3\text{ for } x < 3\\
+                                      x\text{ for } x \geq 3
+                                    \end{cases}$
+\[\int_0^5 f(x)\ud x = \int_0^3 3\ud x + \int_3^5 x\ud x
+= \left.3x\right]_0^3 + \left.\frac{x^2}{2}\right]_3^5
+= 9 + 8 = 17\]
+
+\subsection{The Fundamental Theorem of Calculus}
+\textbf{3. }Let $g(x) = \int_0^x f(t)\ud t$.
+\begin{enumerate}[(a)]
+\item By interpreting the above integral in terms of areas, we get $g(0) = 0$,
+  $g(1) = 2$, $g(2) = 5$, $g(3) = 7$ and $g(6) = 3$.
+\item $g$ is increasing on $(0, 3)$.
+\item $g$ has a maximum value of 7 at $x = 3$.
+\item \begin{tikzpicture}
+        \begin{axis}[
+          axis x line = middle, axis y line = middle,
+          xlabel={$x$}, ylabel={$y$},
+          xlabel style={at=(current axis.right of origin), anchor=west},
+          ylabel style={at=(current axis.above origin), anchor=south},
+          enlarge y limits={rel=0.1}, enlarge x limits={rel=0.1}]
+          \addplot[color=magenta, domain=0:1]{2};
+          \addplot[color=blue, domain=0:1]{2*x};
+          \addplot[color=magenta, domain=1:2]{2*x};
+          \addplot[color=blue, domain=2:3]{-2*x^2 + 12*x -11};
+          \addplot[color=magenta, domain=2:3]{-4*x + 12};
+          \addplot[color=blue, domain=1:2]{x^2 + 1};
+          \addplot[color=magenta, domain=3:5]{-x + 3};
+          \addplot[color=blue, domain=3:5]{-x^2/2 + 3*x + 2.5};
+          \addplot[color=magenta, domain=5:6]{-2};
+          \addplot[color=blue, domain=5:6]{-2*x + 15};
+          \addplot[color=magenta, domain=6:7]{2*x - 14};
+          \addplot[color=blue, domain=6:7]{x^2 - 14*x + 51};
+          \legend{$f(x)$, $g(x)$}
+        \end{axis}
+      \end{tikzpicture}
+\end{enumerate}
+
+\noindent Find the derivative of the function.
+\begin{align*}
+   \frac{\ud}{\ud x}\int_1^{\sqrt x}\frac{z^2}{z^4 + 1}\ud z
+&= \frac{\ud}{\ud\sqrt x}\left(\int_1^{\sqrt x}\frac{z^2}{z^4 + 1}dz\right)
+   \frac{\ud\sqrt x}{\ud x}\\
+&= \frac{x}{x^2 + 1} \cdot \frac{1}{2\sqrt x}\\
+&= \frac{\sqrt x}{2x^2 + 2}\tag{14}
+\end{align*}
+
+\begin{align*}
+   \frac{\ud}{\ud x}\int_0^{\tan x}\sqrt{t + \sqrt t}\ud t
+&= \frac{\ud}{\ud\tan x}\left(\int_0^{\tan x}\sqrt{t + \sqrt t}\ud t\right)
+   \frac{\ud\tan x}{\ud x}\\
+&= \frac{\sqrt{\tan x + \sqrt{\tan x}}}{\cos^2 x}\tag{15}
+\end{align*}
+
+\noindent\textbf{64. }Given the \textbf{error function}
+\[\erf(x) = \frac{2}{\sqrt\pi}\int_0^x e^{-t^2}\ud t
+  \Longrightarrow \erf'(x) = \frac{2e^{-x^2}}{\sqrt\pi}\]
+
+\[\int_a^b e^{-t^2}\ud t = \frac{\sqrt\pi}{2}\int_a^b \erf'(t)\ud t
+                      = \frac{\sqrt\pi}{2}[\erf(b) - \erf(a)]\tag{a}\]
+
+With $y = e^{x^2}\erf(x)$
+\begin{align*}
+y' &= \left(e^{x^2}\right)'\erf(x) + e^{x^2}\erf'(x)\\
+   &= 2xe^{x^2}\erf(x) + e^{x^2}\frac{2e^{-x^2}}{\sqrt\pi}\\
+   &= 2xe^{x^2}\erf(x) + \frac{2}{\sqrt\pi}\\
+   &= 2xy + \frac{2}{\sqrt\pi}\tag{b}
+\end{align*}
+
+\subsection{Infinite Integral}
+\textbf{56. }Let $y(x)$ be the vertical postion at a distance of $x$ miles from
+the start of the trail, then $y'(x) = f(x)$.
+Thus, $\int_3^5 f(x)\ud x = y(5) - y(3)$, which is the vertical displacement from
+3 to 5 miles.
+
+\noindent\textbf{63. }Total mass of the rod:
+\[\int_0^4 (9 + 2\sqrt x)\ud x
+= \left.9x\right]_0^4 + \left.\frac{2\sqrt{x^3}}{3}\right]_0^4
+= 36 + \frac{16}{3} = 41\frac{1}{3}\text{ (kg)}\]
+
+\noindent\textbf{64. }Amount of water flowing from the tank during the first 10
+minutes:
+\[\int_0^{10} (200 - 4t)\ud t
+= \left.200t\right]_0^{10} - \left.2t^2\right]_0^{10}
+= 2000 - 200 = 1800\text{ (l)}\]
+
+\subsection{The Substitution Rule}
+\textbf{74. }Given $f(x) = \sin\sqrt[3]x$.
+
+Since $f(-x) = \sin\sqrt[3]{-x} = \sin-\sqrt[3]x = -\sin\sqrt[3]x = -f(x)$,
+$f$ is an odd function. Hence $\int_{-2}^3 f(x)\ud x = \int_2^3 f(x)\ud x$.
+
+For $2 \leq x \leq 3$, $0 \leq \sqrt[3]2 \leq \sqrt[3]x \leq \sqrt[3]3 \pi$,
+thus $\sin\sqrt[3]x \geq 0$ and $\int_2^3 f(x)\ud x \geq 0$. Futhermore,
+$\sin\sqrt[3]x \leq 1$ so $\int_2^3 f(x)\ud x \leq \int_2^3 \ud x = 1$.
+
+\noindent Evaluate the integral.
+\begin{align*}
+   \int_{-2}^2(x + 3)\sqrt{4 - x^2}\ud x
+&= \int_{-2}^2 x\sqrt{4 - x^2}\ud x + 3\int_{-2}^2\sqrt{4 - x^2}\ud x\\
+&= 0 + 3 \cdot 2\pi\\
+&= 6\pi\tag{77}
+\end{align*}
+
+\begin{align*}
+   \int_0^{24}\left(85 - 0.18\cos\frac{\pi t}{12}\right)\ud t
+&= \left.85t\right]_0^{24}
+ - \frac{54}{25\pi}\int_0^{24}\frac{\pi t}{12}'\cos\frac{\pi t}{12}\ud t\\
+&= 2040 - \frac{54}{25\pi}\int_0^{2\pi}\cos x \ud x\\
+&= 2040 - \left.\frac{54\sin x}{25\pi}\right]_0^{2\pi}\\
+&= 2040\tag{80}
+\end{align*}
+
+\begin{align*}
+   400 + \int_0^3 450.268e^{1.12567t}\ud t
+&= 400 + 400\int_0^3 1.12567e^{1.12567t}\ud t\\
+&= 400 + \left.400e^{1.12567t}\right]_0^3\\
+&= 400e^{1.12567 \cdot 3}\\
+&\approx 11713\tag{82}
+\end{align*}
+
+\section{Applications of Integration}
+\subsection{Areas Between Curves}
+Evaluate the integral
+
+\begin{align*}
+  \int_{-1}^1\left|e^x - x^2 + 1\right|\ud x
+&=\int_{-1}^1\left(e^x - x^2 + 1\right)\ud x\\
+&=\left[e^x - \frac{x^3}{3} + x\right]_{-1}^1\\
+&=e - \frac{1}{3} + 1 - \frac{1}{e} - \frac{1}{3} + 1\\
+&=e - \frac{1}{e} + \frac{4}{3}\tag{5}
+\end{align*}
+
+\begin{align*}
+  \int_1^4\left|x^2 - 3x + 4\right|\ud x
+&=\int_1^4\left(x^2 - 3x + 4\right)\ud x\\
+&=\left[\frac{x^3}{3} - \frac{3x^2}{2} + 4x\right]_1^4\\
+&=\frac{64 - 1}{3} - \frac{48 - 3}{2} + 16 - 4\\
+&=\frac{21}{2}\tag{7}
+\end{align*}
+
+\begin{align*}
+  \int_1^2\left|\frac{1}{x} - \frac{1}{x^2}\right|\ud x
+&=\int_1^2\left(\frac{1}{x} - \frac{1}{x^2}\right)\ud x\\
+&=\left[\frac{1}{3x^3} - \frac{1}{2x^2}\right]_1^2\\
+&=\frac{1}{24} - \frac{1}{8} - \frac{1}{3} + \frac{1}{2}\\
+&=\frac{1}{12}\tag{9}
+\end{align*}
+
+\noindent\textbf{53. }Find the values of $c$ such that
+\begin{align*}
+      \int_{-|c|}^{|c|}\left|x^2 - c^2 - c^2 + x^2\right|\ud x = 576
+&\iff \int_{-|c|}^{|c|}\left(c^2 - x^2\right)\ud x = 288\\
+&\iff \left[c^2 x - \frac{x^3}{3}\right]_{-|c|}^{|c|} = 288\\
+&\iff \frac{4\left|c^3\right|}{3} = 288\\
+&\iff |c| = 6\\
+&\iff c = \pm 6
+\end{align*}
+
+\noindent\textbf{54. }Find the area of the region enclosed by the line $y = mx$
+and the curve $y = \frac{x}{x^2 + 1}$.
+
+Those two curves enclose a region if and only if the following equations has
+two unique solutions, i.e. $m \in (0, 1)$
+\[mx = \frac{x}{x^2 + 1} \iff mx^3 + (m - 1)x = 0
+  \iff x \in \left\{0, \pm\frac{1 - m}{m}\right\}\]
+
+The area of the region would then be
+\begin{align*}
+A&=\int_{\frac{m-1}{m}}^{\frac{1-m}{m}}\left|mx - \frac{x}{x^2 + 1}\right|\ud x\\
+ &=\int_{\frac{m-1}{m}}^0\left(\frac{x}{x^2 + 1} - mx\right)\ud x +
+   \int_0^{\frac{1-m}{m}}\left(mx - \frac{x}{x^2 + 1}\right)\ud x\\
+ &=\int_{\frac{m-1}{m}}^0\left(\frac{x}{x^2 + 1} - mx\right)\ud x +
+   \int_0^{\frac{1-m}{m}}\left(mx - \frac{x}{x^2 + 1}\right)\ud x\\
+ &=\int_{\frac{m-1}{m}}^0\frac{1}{x^2 + 1}\cdot\frac{\ud x^2}{\ud x}\ud x -
+   \left.\frac{mx^2}{2}\right]_{\frac{m-1}{m}}^0 +
+   \left.\frac{mx^2}{2}\right]_0^{\frac{1-m}{m}} -
+   \int_0^{\frac{1-m}{m}}\frac{1}{x^2 + 1}\cdot\frac{\ud x^2}{\ud x}\ud x\\
+ &=\frac{(m - 1)^2}{m} +
+   2\int_{\left(\frac{m-1}{m}\right)^2}^0\frac{1}{x + 1}\ud x\\
+ &=\frac{m^2 - 2m + 1}{m} +
+   2\left.\ln(|x + 1|)\right]_{\frac{m^2 - 2m + 1}{m^2}}^0\\
+ &=\frac{m^2 - 2m + 1}{m} -
+   2\ln\left(\frac{2m^2 - 2m + 1}{m^2}\right)
+\end{align*}
+
+\subsection{Volumes}
+Evaluate the integral
+
+\begin{align*}
+  \int_1^2\pi\left(2 - \frac{x}{2}\right)^2 \ud x
+&=\pi\int_1^2\left(4 - x + \frac{x^2}{4}\right)\ud x\\
+&=\pi\left[4x - x^2 + \frac{x^3}{12}\right]_1^2\\
+&=\pi\left(4 - 3 + \frac{7}{12}\right)\\
+&=\frac{19\pi}{12}\tag{1}
+\end{align*}
+
+\[\int_1^5\pi(x - 1)\ud x
+= \pi\left[\frac{x^2}{2} - x\right]_1^5
+= \pi(12 - 4)
+= 8\pi\tag{3}\]
+
+\[\int_0^9 4\pi y \ud y = \left.2\pi y^2\right]_0^9 = 162\pi\tag{5}\]
+
+\[\int_0^1\pi\left|x^2 - x^6\right|\ud x
+= \pi\left[\frac{x^3}{3} - \frac{x^7}{7}\right]_0^1
+= \frac{4\pi}{21}\tag{7}\]
+
+\begin{align*}
+   \int_{-2}^2\pi\left|\frac{x^4}{16} - 25 + 10x^2 - x^4\right|\ud x
+&= 2\pi\int_0^2\left(\frac{15x^4}{16} - 10x^2 + 25\right)\ud x\\
+&= 2\pi\left[-\frac{10x^3}{3} + 25x + \frac{3x^5}{16}\right]_0^2\\
+&= \frac{88\pi}{3}\tag{8}
+\end{align*}
+
+\begin{align*}
+   \int_0^1\pi\left|\left(\sqrt x - 1\right)^2 - \left(x^2 - 1\right)^2\right|\ud x
+&= \int_0^1\pi\left|x - 2\sqrt x - x^4 + 2x^2\right|\ud x\\
+&= \int_0^1\pi\left(x^4 - 2x^2 - x + 2\sqrt x\right)\ud x\\
+&= \pi\left[\frac{x^5}{5} - \frac{2x^3}{3}
+            - \frac{x^2}{2} + \frac{4\sqrt x^3}{3}\right]_0^1\\
+&= \pi\left(\frac{1}{5} - \frac{2}{3} - \frac{1}{2} + \frac{4}{3}\right)\\
+&= \frac{11\pi}{30}\tag{11}
+\end{align*}
+
+\begin{align*}
+   \int_0^h\left(a + \frac{x}{h}(b-a)\right)^2\ud x
+&= \int_0^h\left(a^2 - \frac{ax}{h}(b-a) + \frac{x^2}{h^2}(b-a)^2\right)\ud x\\
+&= \left[a^2 x - \frac{ax^2}{2h}(b-a) + \frac{x^3}{3h^2}(b-a)^2\right]_0^h\\
+&= ha^2 - \frac{ha}{2}(b-a) + \frac{h}{3}(b-a)^2\\
+&= ha^2 - \frac{hab}{2} + \frac{ha^2}{2}
+ + \frac{ha^2}{3} - \frac{2hab}{3} + \frac{hb^2}{3}\\
+&= \frac{11ha^2 - 7hab + 2hb^2}{6}\tag{50}
+\end{align*}
+
+\begin{align*}
+A&=\int_{-r}^r\left(\pi\left(R + \sqrt{r^2 - x^2}\right)^2 -
+                    \pi\left(R - \sqrt{r^2 - x^2}\right)^2\right)\ud x\\
+ &=\int_{-r}^r 4\pi R\sqrt{r^2 - x^2}\ud x\\
+ &=2\pi R\int_{-r}^r 2\sqrt{r^2 - x^2}\ud x\\
+ &=2\pi R \cdot \pi r^2\\
+ &=2\pi^2 R r^2\tag{61}
+\end{align*}
+
+\setcounter{subsection}{3}
+\subsection{Work}
+\textbf{7. }Spring constant: $k = F(4) / 4 = 10g / 4 = 2.5g$ (lbf/in)
+
+Work done by stretching the spring from its natural length to 6 in:
+\[\int_0^6 kx\ud x = \left.k\frac{x^2}{2}\right]_0^6 = 18k = 45g\text{ (lbf.in)}\]
+
+\noindent\textbf{9. }Suppose that 2 J of work is needed to stretch a spring from its
+natural length of 30 cm to a length of 42 cm.
+
+\begin{align*}
+      \int_0^{0.12}kx\ud x = 2
+&\iff \left.\frac{kx^2}{2}\right]_0^{0.12} = 2\\
+&\iff 0.0072k = 2\\
+&\iff k = \frac{2500}{9}\text{ (N/m)}
+\end{align*}
+
+\begin{align*}
+  \int_{0.05}^{0.1}kx\ud x
+&=\int_{0.05}^{0.1}\frac{2500x}{9}\ud x\\
+&=\left.\frac{1250x^2}{9}\right]_{0.05}^{0.1}\\
+&=\frac{1250(0.01 - 0.0025)}{9}\\
+&=\frac{25}{24}\text{ (J)}\tag{a}
+\end{align*}
+
+\[x = \frac{F}{k} = \frac{30 \cdot 9}{2500} = \frac{27}{250}\text{ (m)}\tag{b}\]
+
+\noindent Evaluate the integral
+\[\int_0^{50}mgx\ud x = \left.\frac{25gx^2}{2}\right]_0^{50} = 31250g\text{ (ft.lbf)}\tag{13}\]
+
+\begin{align*}
+W&=\lim_{n \to \infty}\sum_{i = 1}^n F_i\frac{3i}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n m_i g\frac{3i}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n A_i\frac{3}{n}\rho g\frac{3i}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n
+   3\left(1 - \frac{i}{n}\right)8\left(1 - \frac{i}{n}\right)
+   1000g\frac{3i}{n}\cdot\frac{3}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n
+   \frac{80000}{3}\left(3 - \frac{3i}{n}\right)^2\frac{3i}{n}\cdot\frac{3}{n}\\
+ &=\int_0^3 \frac{80000}{3}\left(9x - 6x^2 + x^3\right)\ud x\\
+ &=\frac{80000}{3}\left[\frac{9x^2}{2} - 2x^3 + \frac{x^4}{4}\right]_0^3\\
+ &=180000\text{ (J)}\tag{21}
+\end{align*}
+
+\begin{align*}
+W&=\lim_{n \to \infty}\sum_{i = 1}^n m_i g\frac{8i}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n A_i\frac{8}{n}\rho g\frac{8i}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n
+   \pi\left(6 - 3\frac{i}{n}\right)^2 62.5g\frac{8i}{n}\cdot\frac{8}{n}\\
+ &=\lim_{n \to \infty}\sum_{i = 1}^n
+   \frac{1125\pi g}{128}\left(16 - \frac{8i}{n}\right)^2\frac{8i}{n}\cdot\frac{8}{n}\\
+ &=\frac{1125\pi g}{128}\int_0^8\left(16 - x\right)^2 x\ud x\\
+ &=\frac{1125\pi g}{128}\left[128x^2 - \frac{32x^3}{3} + \frac{x^4}{4}\right]_0^8\\
+ &=33000\pi g\text{ (ft.lbf)}\tag{23}
+\end{align*}
+
+\subsection{Average Value of a Function}
+\textbf{9. }Given the function $f(x) = (x - 3)^2$ on $[2, 5]$.
+\[f_{ave}
+= \frac{1}{5 - 2}\int_2^5 (x - 3)^2 \ud x
+= \frac{1}{3}\left[\frac{x^3}{3} - 3x^2 + 9x\right]_2^5
+= 1\tag{a}\]
+
+Since $x \in [2, 5]$,
+\[f(c) = f_{ave} \iff (c - 3)^2 = 1 \iff c = 4\tag{b}\]
+
+\begin{tikzpicture}
+  \begin{axis}[
+    axis x line=middle, axis y line=middle,
+    xlabel={$x$}, ylabel={$y$}, area style,
+    xlabel style={at=(current axis.right of origin), anchor=west},
+    ylabel style={at=(current axis.above origin), anchor=south}]
+    \addplot[domain=2:5,blue]{x^2 - 6*x + 9};
+    \addplot[domain=2:5]{1};
+  \end{axis}
+\end{tikzpicture}
+
+\noindent\textbf{12. }Given $f(x) = 2\sin x - \sin 2x$ on $[0, \pi]$.
+\begin{align*}
+f_{ave} &= \frac{1}{\pi}\int_0^\pi\left(2\sin x - \sin 2x\right)\ud x\\
+        &= \frac{1}{\pi}\left[\frac{\cos 2x}{2} - 2\cos x\right]_0^\pi\\
+        &= \frac{4}{\pi}
+\end{align*}
+
+$f(c) = f_{ave} \iff 2\sin x - \sin 2x = \frac{4}{\pi}$, i.e.
+$x \approx 1.24$ or $x \approx 2.81$ on $[0, \pi]$.
+
+\noindent\textbf{13. }Since $f$ is continuous, apply Mean Value Theorem on
+$[1, 3]$,
+
+\[\exists c \in [1, 3], f(c) = \frac{1}{3 - 1}\int_1^3 f(x)\ud x
+= \frac{8}{2} = 4\]
+
+\section{Techniques of Integration}
+\subsection{Integration by Parts}
+Evaluate the integral
+\begin{align*}
+   \int x \cos 5x \ud x
+&= \int\frac{x}{5} \ud\sin 5x\\
+&= \frac{x\sin 5x}{5} - \int\sin 5x \ud\frac{x}{5}\\
+&= \frac{x\sin 5x}{5} + \frac{x\cos 5x}{25} + C\tag{3}
+\end{align*}
+
+\begin{align*}
+   \int e^{2\theta}\sin 3\theta \ud\theta
+&= \int\frac{\sin 3\theta}{2} \ud e^{2\theta}\\
+&= \frac{e^{2\theta}\sin 3\theta}{2}
+ - \int\frac{3}{2}e^{2\theta}\cos 3\theta \ud\theta\\
+&= \frac{e^{2\theta}\sin 3\theta}{2}
+ - \frac{3}{2}\int\frac{\cos 3\theta}{2} \ud e^{2\theta}\\
+&= \frac{e^{2\theta}\sin 3\theta}{2}
+ - \frac{3e^{2\theta}\cos 3\theta}{4}
+ - \frac{9}{4}\int e^{2\theta}\sin 3\theta \ud\theta\\
+&= \frac{4}{13}e^{2\theta}
+   \left(\frac{\sin 3\theta}{2} - \frac{\cos 3\theta}{4}\right) + C\\
+&= \frac{e^{2\theta}}{13}(2\sin 3\theta - 3\cos 3\theta) + C\tag{17}
+\end{align*}
+
+\setcounter{section}{8}
+\section{Differential Equations}
+\setcounter{subsection}{2}
+\subsection{Separable Equations}
+Solve the equation.
+\begin{align*}
+  \leibniz{y}{x} = xy^2
+  &\iff y^{-2}\ud y = x\ud x\\
+  &\;\Longrightarrow \int\frac{\ud y}{y^2} = \int x\ud x
+  \qquad\text{(for $y\neq 0$)}\\
+  &\iff C_y - \frac{1}{y} = C_x + \frac{x^2}{2}\\
+  &\iff \frac{C - x^2}{2} = \frac{1}{y}\\
+  &\iff y = \frac{2}{C - x^2}\tag{1}
+\end{align*}
+\begin{align*}
+  (y + \sin y)\leibniz{y}{x} = x + x^3
+  &\iff \int(y + \sin y)\ud y = \int(x + x^3)\ud x\\
+  &\iff \frac{y^2}{2} - \cos y = \frac{x^2}{2} + \frac{x^4}{4} + C\tag{5}\\
+\end{align*}
+\begin{align*}
+  \leibniz{y}{t} = \frac{t}{y\exp(y + t^2)}
+  &\iff \int ye^y\ud y = \int te^{-t^2}\ud t\\
+  &\iff (y - 1)e^y = C - \frac{1}{2e^{t^2}}\tag{7}
+\end{align*}
+\begin{align*}
+  \leibniz{u}{t} = \frac{2t + \sec^2 t}{2u}
+  &\iff \int 2u\ud u = \int(2t + \sec^2 t)\ud t\\
+  &\iff u^2 = t^2 + \tan t + C\tag{13}
+\end{align*}
+Since $u(0) = -5$, $u = -\sqrt{t^2 + \tan t + 25}$.
+\begin{align*}
+  \leibniz{y}{x} = xy
+  &\iff \int\frac{\ud y}{y} = \int x\ud x\qquad\text{(since $y\neq 0$)}\\
+  &\iff \ln|y| = \frac{x^2}{2} + C\\
+  &\iff |y| = \exp\left(\frac{x^2}{2} + C\right)\tag{19}
+\end{align*}
+Since $y(0) = 1$, $y = \exp(x^2/2)$.\pagebreak
+\begin{align*}
+  y(x) = 2 + \int_2^x[t - ty(t)]\ud t
+  &\;\Longrightarrow y - 2 = \int(x - xy)\ud x\\
+  &\iff \leibniz{(y - 2)}{x} = x - xy\\
+  &\iff \int\frac{\ud y}{1 - y} = \int x\ud x\\
+  &\iff C - \frac{x^2}{2} = \ln|1 - y|\\
+  &\iff y = 1 \pm \exp\left(C - \frac{x^2}{2}\right)\tag{33}
+\end{align*}
+Since $y(2) = 2$ (which can be trivially obtained from the original condition),
+$y = 1 + \exp(2 - x^2/2)$.
+
+\subsection{Models for Population Growth}
+\textbf{3.} The Pacific halibut fishery has been modeled
+by the differential equation
+\begin{align*}
+  \leibniz{y}{t} = ky\left(1 - \frac{y}{M}\right)
+  &\;\Longrightarrow \int\left(\frac{1}{y} + \frac{1}{M-y}\right)\ud y
+  = \int k\ud t\\
+  &\iff \ln|y| - \ln|M - y| = kt + C\\
+  &\iff \left|\frac{M}{y} - 1\right| = e^{-kt-C}\\
+  &\iff \frac{M}{y} = 1 \pm e^{-kt-C}\\
+  &\iff y = \frac{M}{1 \pm e^{-kt-C}}
+  \tag{$*$}
+\end{align*}
+
+As $M = 8\times 10^7$, $k = 0.71$ and $y(0) = 2\times 10^7$,
+from $(*)$ we get $\pm e^{-C} = 3$ and thus
+\[y = \frac{M}{1 + 3e^{-kt}}\]
+
+For $t = 1$, $y \approx 3.2\times 10^7$.
+For $y = 4\times 10^7$, $t = (\ln 3)/0.71$.
+
+\noindent\textbf{5.} Suppose a population grows according to a logistic model
+\[\leibniz{P}{t} = kP\left(1 - \frac{P}{M}\right)
+\iff P(t) = \frac{M}{1 \pm e^{-kt-C}}\]
+with initial population $P(0) = 1000$ and carrying capacity $M = 10000$.
+
+Suppose $P(1) = 2500$,
+\[\begin{dcases}
+  \frac{10000}{1\pm e^{-C}} &= 1000\\
+  \frac{10000}{1\pm e^{-k-C}} &= 2500
+\end{dcases}
+\iff\begin{cases}
+  \pm e^{-C} &= 9\\
+  \pm e^{-k-C} &= 3
+\end{cases}
+\iff\begin{cases}
+  \pm := +\\
+  C = -\ln 9\\
+  k = \ln 3
+\end{cases}\]
+
+After another 3 years, the population will be
+\[P(3) = \left(t\mapsto\frac{10000}{1+3^{2-t}}\right)(1+3) = 9000\]
+
+\subsection{Linear Equations}
+Solve the differential equation.
+\begin{align*}
+  \leibniz{y}{x} + y = x
+  &\iff e^x\leibniz{y}{x} + y\leibniz{e^x}{x} = xe^x\\
+  &\iff \int\ud ye^x = \int x\ud e^x\\
+  &\iff ye^x = e^x(x - 1) + C\\
+  &\iff y = x - 1 + Ce^{-x}\tag{7}
+\end{align*}
+\begin{align*}
+  x\leibniz{y}{x} + y = \sqrt x
+  &\iff \int\ud xy = \int\sqrt x\ud x\\
+  &\iff xy = \frac{2x\sqrt x}{3} + C\\
+  &\iff y = \frac{2\sqrt x}{3} + \frac{C}{x}\tag{9}
+\end{align*}
+\begin{align*}
+  x^2\leibniz{y}{x} + 2xy = \ln x
+  &\iff \int\ud yx^2 = \int\ln x\ud x\\
+  &\iff yx^2 = x(\ln x - 1) + C\\
+  &\iff y = \frac{\ln x - 1}{x} + \frac{C}{x^2}
+\end{align*}
+Since $y(1) = 2$, $C = 3$.
+\begin{align*}
+  L\leibniz{I}{t} + RI = \mathcal E
+  &\iff e^{Rt/L}\left(\leibniz{I}{t} + \frac{R}{L}I\right)
+  = \frac{\mathcal E}{L}e^{Rt/L}\\
+  &\iff \int\ud Ie^{Rt/L} = \frac{\mathcal E}{L}\int e^{Rt/L}\ud t\\
+  &\iff Ie^{Rt/L} = \frac{\mathcal E}{R}e^{Rt/L} + C\\
+  &\iff I = \frac{\mathcal E}{R} + \frac{C}{\exp(Rt/L)}
+\end{align*}
+Since $\mathcal E = 40$ V, $L = 2$ H, $R = 10\,\Omega$ and $I(0) = 0$,
+$I(t) = 4 - 4/\exp 5t$ and $I(0.1) = 4 - 4/\sqrt e$.
+
+\allowdisplaybreaks
+\setcounter{section}{10}
+\section{Lazy Evaluation}
+\setcounter{subsection}{2}
+\subsection{The Integral Test and Estimates of Sums}
+\textbf{34. }Using Leonhard Euler's calculation of the exact sum of
+the $p$-series with $p = 2$:
+\[\zeta(2) = \sum_{n=1}^\infty\frac{1}{n^2}
+= \lim_{n\to\infty}\sum_{i=1}^n\frac{1}{i^2} = \frac{\pi^2}{6}\]
+\[\sum_{n=2}^\infty\frac{1}{n^2} = \lim_{n\to\infty}\sum_{i=2}^n\frac{1}{i^2}
+= \lim_{n\to\infty}\sum_{i=1}^n\frac{1}{i^2} - \frac{1}{1^2}
+= \frac{\pi^2}{6} - 1\tag{a}\]
+\[\sum_{n=3}^\infty\frac{1}{(n + 1)^2}
+= \lim_{n\to\infty}\sum_{i=4}^{n+1}\frac{1}{i^2}
+= \lim_{n\to\infty}\sum_{i=1}^n\frac{1}{i^2} - \sum_{i=1}^3\frac{1}{i^2}
+= \frac{\pi^2}{6} - \frac{49}{36}\tag{b}\]
+\[\sum_{n=1}^\infty\frac{1}{(2n)^2}
+= \lim_{n\to\infty}\sum_{i=1}^n\frac{1}{4i^2}
+= \frac{1}{4}\lim_{n\to\infty}\sum_{i=1}^n\frac{1}{i^2}
+= \frac{\pi^2}{24}\tag{c}\]
+
+\noindent Determine if the series is convergent or divergent using
+the Integral Test.
+
+\[\sum_{n=2}^\infty \frac{1}{n(\ln n)^2}\tag{22}\]
+
+\begin{align*}
+  \int_2^\infty\frac{1}{x(\ln x)^2}
+&= \lim_{t\to\infty}\int_2^t\frac{1}{x(\ln x)^2}\ud x\\
+&= \lim_{t\to\infty}\int_2^t\frac{1}{(\ln x)^2}\ud\ln x\\
+&= \lim_{t\to\infty}\int_{\ln 2}^{\ln t}\frac{1}{x^2}\ud x\\
+&= \lim_{t\to\infty}\left.\frac{-1}{x}\right]_{\ln 2}^{\ln t}\\
+&= \lim_{t\to\infty}\left(\frac{1}{\ln{2}} - \frac{1}{\ln t}\right)\\
+&= \frac{1}{\ln 2}
+\end{align*}
+
+Thus by the Integral Test, the given series is convergent.
+
+\[\sum_{n=3}^\infty\frac{n^2}{e^n}\tag{24}\]
+
+\begin{align*}
+  \int_3^\infty\frac{x^2}{e^x}
+&= \lim_{t\to\infty}\int_3^t\frac{x^2}{e^x}\ud x\\
+&= \lim_{t\to\infty}\int_3^t -x^2 \ud e^{-x}\\
+&= \lim_{t\to\infty}\left(\int_3^t e^{-x}\ud x^2
+ - \left.x^2 e^{-x}\right]_3^t\right)\\
+&= \lim_{t\to\infty}\left(-\int_3^t 2x\ud e^{-x}
+ + \left.\frac{x^2}{e^x}\right]_t^3\right)\\
+&= \lim_{t\to\infty}\left(\int_3^t e^{-x}\ud 2x
+ + \left[\frac{2x}{e^x} + \frac{x^2}{e^x}\right]_t^3\right)\\
+&= \lim_{t\to\infty}\left(2\int_3^t e^{-x}\ud x
+ + \left.\frac{2x + x^2}{e^x}\right]_t^3\right)\\
+&= \lim_{t\to\infty}\left.\frac{2 + 2x + x^2}{e^x}\right]_t^3\\
+&= \lim_{t\to\infty}\left(\frac{17}{e^3} - \frac{2 + 2t + t^2}{e^t}\right)\\
+&= \frac{17}{e^3}
+\end{align*}
+
+Thus by the Integral Test, the given series is convergent.\pagebreak
+
+\[\sum_{n=1}^\infty\frac{\cos(\pi n)}{\sqrt n}\tag{27}\]
+
+Since $x \mapsto \cos(\pi x)/\sqrt n$ is neither positive
+(e.g. $\cos 3\pi/\sqrt 3 = -1$) nor ultimately decreasing, the Integral Test
+cannot be used to determine whether the series is convergent.
+
+\subsection{The Comparison Test}
+Determine whether the series is convergent or divergent.
+\[\sum_{n=1}^\infty\frac{\sqrt{n^4 + 1}}{n^3 + n^2}\tag{25}\]
+
+We use the Limit Comparison Test with
+\[a_n = \frac{\sqrt{n^4 + 1}}{n^3 + n^2} \qquad b_n = \frac{1}{n}\]
+and obtain
+\[\lim_{n\to\infty}\frac{a_n}{b_n}
+= \lim_{n\to\infty}\frac{\sqrt{n^4 + 1}}{n^2 + n}
+= \lim_{n\to\infty}\frac{\sqrt{1 + \frac{1}{n^4}}}{1 + \frac{1}{n}}
+= 1 > 0\]
+
+Since this limit exists and $\sum\frac{1}{n}$ is divergent ($p$-series with
+$p = 1$), the given series diverges by the Limit Comparison Test.
+
+\[\sum_{n=1}^\infty\frac{1}{n!}\tag{29}\]
+\[\lim_{n\to\infty}\frac{1/(n+1)!}{1/n!}
+= \lim_{n\to\infty}\frac{1}{n + 1} = 0 < 1\]
+
+Thus by the Ratio Test, the given series is absolutely convergent.
+
+\[\sum_{n=1}^\infty\frac{n!}{n^n}\tag{30}\]
+\[\frac{n!}{n^n} = \frac{2}{n^2}\cdot\frac{n!}{2n^{n-2}} \leq \frac{2}{n^2}\]
+
+Since both $\sum n!/n^n$ and $\sum 2/n^2$ are series with positive terms and
+$\sum 2/n^2$ converges because it is a constant time of $p$-series with
+$p = 2$, by the Comparison Test, $\sum n!/n^n$ is convergent.
+
+\[\sum_{n=1}^\infty\frac{1}{n\sqrt[n]n}\tag{32}\]
+
+We use the Limit Comparison Test with
+\[a_n = \frac{1}{n\sqrt[n]n} \qquad b_n = \frac{1}{n}\]
+and obtain
+\[\lim_{n\to\infty}\frac{a_n}{b_n} = \lim_{n\to\infty}\frac{1}{\sqrt[n]n}\]
+
+Since $\frac{1}{\sqrt[n]n}' = \frac{1 - \ln n}{n^2\sqrt[n]n}$ is negative on
+$(e, \infty)$, $n \mapsto \frac{1}{\sqrt[n]n}$ is ultimately decreasing.
+Additionally, $\frac{1}{\sqrt[n]n} \geq \frac{1}{\sqrt[n]1} = 1$ on this
+interval, thus
+\[\lim_{n\to\infty}\frac{1}{\sqrt[n]n}
+= \inf\left\{\frac{1}{\sqrt[n]n}: n \in \mathbb N_3\right\} = 1 > 0\]
+
+Therefore, the given series diverges by the Limit Comparison Test,
+as $\sum\frac{1}{n}$ is divergent ($p$-series with $p = 1$).
+
+\subsection{Alternating Series}
+Test the series for convergence or divergence.
+
+\[\sum_{n=1}^\infty (-1)^n\frac{n^n}{n!}\tag{19}\]
+
+Since $\frac{(n + 1)^{n + 1}}{(n + 1)!} > \frac{n^n}{n!}$, the given
+alternating series diverges.
+
+\[\sum_{n=1}^\infty (-1)^n\left(\sqrt{n + 1} - \sqrt n\right)\tag{20}\]
+
+For all $n$,
+\begin{align*}
+      n^2 + 2n < n^2 + 2n + 1
+&\iff \sqrt{n(n + 2)} < n + 1\\
+&\iff n + \sqrt{n(n + 2)} + n + 2 < 4n + 4\\
+&\iff \sqrt{n + 2} + \sqrt n < 2\sqrt{n + 1}\\
+&\iff \sqrt{n + 2} - \sqrt{n + 1} < \sqrt{n + 1} - \sqrt n\tag{i}
+\end{align*}
+\[\lim_{n\to\infty}\left(\sqrt{n + 1} - \sqrt n\right)
+= \lim_{n\to\infty}\frac{1}{\sqrt{n + 1} + \sqrt n}
+= \lim_{n\to\infty}\frac{1/\sqrt n}{\sqrt{1 + 1/\sqrt{n}} + 1}
+= 0\tag{ii}\]
+
+Thus, by the Alternating Series Test, the given series is convergent.
+
+\subsection{Absolute Convergence}
+Determine whether the series is absolutely convergent,
+conditionally convergent, or divergent.
+
+\[\sum_{n=2}^\infty\left(\frac{-2n}{n + 1}\right)^{5n}\tag{22}\]
+\[\lim_{n\to\infty}\sqrt[n]{\left(\frac{2n}{n + 1}\right)^{5n}}
+= \lim_{n\to\infty}\left(\frac{2n}{n + 1}\right)^5\\
+= \left(\lim_{n\to\infty}\frac{2}{1 + 1/n}\right)^5\\
+= 32 > 1\]
+
+Thus the given series diverges by the Root Test.
+
+\[\sum_{n=1}^\infty\prod_{i=1}^n\frac{2i}{3i + 2}\tag{30}\]
+\[\lim_{n\to\infty}\frac{\prod_{i=1}^{n+1}\frac{2i}{3i + 2}}
+                        {\prod_{i=1}^n\frac{2i}{3i + 2}}
+= \lim_{n\to\infty}\frac{2n + 2}{3n + 5}
+= \lim_{n\to\infty}\frac{2 + 2/n}{3 + 5/n}
+= \frac{2}{3} < 1\]
+
+Thus by the Ratio Test, the given series is absolutely convergent.
+
+\setcounter{subsection}{7}
+\subsection{Power Series}
+Find the radius of convergence and the interval of convergence of the series.
+
+\[\sum_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{(2n + 1)!}\tag{14}\]
+
+Let $a_n = (-1)^n x^{2n+1}/(2n + 1)!$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\left|\frac{x^2}{4n^2 + 10n + 6}\right|
+= 0 < 1\]
+
+Thus by the Ratio Test, the series is convergent for all $x$ and the radius of
+convergence is $R = \infty$.
+
+\[\sum_{n=1}^\infty\frac{3^n (x+4)^n}{\sqrt n}\tag{17}\]
+
+Let $a_n = 3^n (x+4)^n / \sqrt n$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\left|\frac{3(x + 4)\sqrt n}{\sqrt{n + 1}}\right|
+= 3|x + 4|\]
+
+Using the Ratio Test, we see that the series converges if $|x + 4| < 1/3$ and
+it diverges if $|x + 4| > 1/3$, thus the radius of convergence is $R = 1/3$.
+
+When $|x + 4| = 1/3$, the series is either $\sum (-3)^n / \sqrt n$ or
+$\sum 3^n / \sqrt n$, both of which diverge by the Test for Divergence.
+Therefore the interval of convergence is $(-13/3, -11/3)$.
+
+\[\sum_{n=1}^\infty\frac{b^n}{\ln n}(x - a)^n,\qquad b > 0\tag{22}\]
+
+Let $a_n = b^n (x - a)^n / \ln n$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\left|\frac{b(x - a)\ln n}{\ln(n + 1)}\right|
+= b|x - a|\]
+
+Using the Ratio Test, we see that the series converges if $|x - a| < b^{-1}$
+and it diverges if $|x - a| > b^{-1}$, thus the radius of convergence is
+$R = b^{-1}$.
+
+When $|x - a| = b^{-1}$, the series is $\sum (\pm b)^n / \ln n$, which diverges
+by the Test for Divergence. Therefore the interval of convergence is
+$(a - b^{-1}, a + b^{-1})$.
+
+\[\sum_{n=2}^\infty\frac{x^{2n}}{n(\ln n)^2}\tag{26}\]
+
+Let $a_n = x^{2n} / n / (\ln n)^2$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\left|\frac{x^2 n \ln^2 n}{(n + 1)\ln^2(n + 1)}\right|
+= x^2\]
+
+Using the Ratio Test, we see that the series converges if $|x| < 1$ and it
+diverges if $|x| > 1$, therefore the radius of convergence is $R = 1$.
+
+When $x = \pm 1$, $a_n = n^{-1}/(\ln n)^2$, which is defined by a continuous,
+positive and decreasing function $x \mapsto x^{-1}/(\ln x)^2$ on $[2, \infty)$.
+\begin{align*}
+   \int_2^\infty\frac{1}{x(\ln x)^2}\ud x
+&= \lim_{t\to\infty}\int_2^t\frac{1}{(\ln x)^2}\ud\ln x\\
+&= \lim_{t\to\infty}\int_{\ln 2}^{\ln t}\frac{1}{x^2}\ud x\\
+&= \lim_{t\to\infty}\left.\frac{1}{3x^3}\right]_{\ln t}^{\ln 2}\\
+&= \frac{1}{3(\ln 2)^3}
+\end{align*}
+
+By the Integral Test, $\sum_{n=2}^\infty n^{-1}/(\ln n)^2$ converges, and thus
+the interval if of convergence of the given power series is $[-1, 1]$.
+
+\subsection{Representations of Functions as Power Series}
+Find a power series representation for the function and determine the interval
+of convergence.
+
+\[f(x) = \frac{5}{1 - 4x^2}
+       = 5\sum_{n=0}^\infty\left(4x^2\right)^n
+       = \sum_{n=0}^\infty 5 \cdot 2^{2n} x^{2n}\tag{4}\]
+
+Interval of convergence is $(-1, 1)$.
+
+\[f(x) = \frac{x^2}{a^3 - x^3}
+       = \frac{x^2}{a^3}\sum_{n=0}^\infty\left(\frac{x}{a}\right)^{3n}
+       = \sum_{n=0}^\infty\frac{x^{3n + 2}}{a^{3n + 3}}\tag{10}\]
+
+Interval of convergence is $(-a, a)$.
+
+\begin{align*}
+f(x) &= \frac{x + 2}{2x^2 - x - 1}\\
+     &= \frac{1}{x - 1} - \frac{1}{2x + 1}\\
+     &= -\sum_{n=0}^\infty x^n - \sum_{n=0}^\infty (-2x)^n\\
+     &= \sum_{n=0}^\infty (-1 - (-2)^n)x^n\tag{12}
+\end{align*}
+
+Interval of convergence is $(-1, 1) \cap (-1/2, 1/2) = (-1/2, 1/2)$.
+
+\noindent\textbf{40. }Find the sum of the series when $|x| < 1$.
+\begin{align*}
+   \sum_{n=1}^\infty nx^{n - 1}
+&= \sum_{n=1}^\infty x^{n - 1} + \sum_{n=1}^\infty (n - 1)x^{n - 1}\\
+&= \sum_{n=0}^\infty x^n + \sum_{n=0}^\infty nx^n\\
+&= \frac{1}{1 - x} + x\sum_{n=1}^\infty nx^{n - 1}\\
+&= \frac{1}{(1 - x)^2}\tag{a}
+\end{align*}
+
+\[\sum_{n=1}^\infty nx^n
+= x\sum_{n=1}^\infty nx^{n - 1}
+= \frac{x}{(1 - x)^2}\tag{b.i}\]
+
+\[\sum_{n=1}^\infty \frac{n}{2^n}
+= \left(x \mapsto \frac{x}{(1 - x)^2}\right)\left(\frac{1}{2}\right)
+= 2\tag{b.ii}\]
+
+\begin{align*}
+   \sum_{n=2}^\infty n(n - 1)x^n
+&= \sum_{n=2}^\infty 2(n - 1)x^n + \sum_{n=2}^\infty (n - 1)(n - 2)x^n\\
+&= 2\sum_{n=1}^\infty (n - 1)x^n + x\sum_{n=1}^\infty n(n - 1)x^n\\
+&= 2\left(\sum_{n=1}^\infty nx^n + 1 - \sum_{n=0}^\infty x^n\right) : (1 - x)\\
+&= 2\left(\frac{x}{(1 - x)^2} + 1 - \frac{1}{1 - x}\right) : (1 - x)\\
+&= \frac{2x^2}{(1 - x)^3}\tag{c.i}
+\end{align*}
+
+\[\sum_{n=2}^\infty \frac{n^2 - n}{2^n}
+= \left(x \mapsto \frac{2x^2}{(1 - x)^3}\right)\left(\frac{1}{2}\right)
+= 4\tag{c.ii}\]
+
+\[\sum_{n=1}^\infty \frac{n^2}{2^n}
+= \sum_{n=2}^\infty \frac{n^2 - n}{2^n} + \sum_{n=1}^\infty nx^n
+= 4 + 2 = 6\tag{c.iii}\]
+
+\subsection{Taylor and Maclaurin Series}
+Find the Taylor series for $f$ centered at the given value of $a$ and the
+associative radius of convergence.
+
+\[f(x) = \ln x,\qquad a = 2\tag{15}\]
+\begin{align*}
+   f(x)
+&= \sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x - a)^n\\
+&= \ln 2 + \sum_{n=1}^\infty\left(x\mapsto\binom{-1}{n-1}\frac{1}{nx^n}\right)
+                            (2)\cdot(x - 2)^n\\
+  &= \ln 2 + \sum_{n=1}^\infty(-1)^{n-1}\frac{(x - 2)^n}{n2^n}
+\end{align*}
+
+Let $a_n = (-1)^{n-1}(x - 2)^n/(n2^n)$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\frac{n}{2n + 2}|x - 2|
+= \frac{|x - 2|}{2}\]
+
+Using the Ratio Test, we see $f(x) = \ln 2 + \sum a_n$ converges if
+$|x - 2| < 2$ and it diverges if $|x - 2| > 2$, therefore the associative
+radius of convergence is $R = 2$.
+
+\[f(x) = \frac{1}{x},\qquad a = -3\tag{16}\]
+\begin{align*}
+   f(x)
+&= \sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x - a)^n\\
+&= \sum_{n=0}^\infty
+   \left(x\mapsto\binom{-1}{n}\frac{1}{x^{n+1}}\right)(-3)\cdot(x + 3)^n\\
+&= \sum_{n=0}^\infty(-1)^n\frac{(x + 3)^n}{(-3)^{n+1}}\\
+&= \sum_{n=0}^\infty\frac{-(x + 3)^n}{3^{n+1}}
+\end{align*}
+
+Let $a_n = (x + 3)^n/3^{n+1}$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\frac{|x + 3|}{3}
+= \frac{|x + 3|}{3}\]
+
+Using the Ratio Test, we see that the series converges if $|x + 3| < 3$ and it
+diverges if $|x + 3| > 3$, therefore the associative radius of convergence is
+$R = 3$.
+
+\[f(x) = \sin x,\qquad a = \frac{\pi}{2}\tag{18}\]
+\begin{align*}
+f(x) &= \sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x - a)^n\\
+     &= \sum_{n=0}^\infty\frac{\cos\frac{n\pi}{2}}{n!}
+                         \left(x - \frac{\pi}{2}\right)^n\\
+     &= \sum_{n=0}^\infty\frac{(-1)^n}{(2n)!}
+                         \left(x - \frac{\pi}{2}\right)^{2n}
+\end{align*}
+
+Let $a_n = (-1)^n(x - \pi/2)^{2n}/(2n)!$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\frac{(x - \pi/2)^2}{(2n + 2)(2n + 1)}
+= 0 < 1\]
+
+Using the Ratio Test, we see that the series converges for all $x$, thus the
+associative radius of convergence is $R = \infty$.
+
+\[f(x) = \sqrt x,\qquad x = 16\tag{20}\]
+\begin{align*}
+   f(x)
+&= \sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x - a)^n\\
+&= \sum_{n=0}^\infty\left(x\mapsto\binom{\frac{1}{2}}{n}x^{1/2-n}\right)(16)
+                    \cdot (x - 16)^n\\
+&= \sum_{n=0}^\infty\binom{\frac{1}{2}}{n}\frac{4(x - 16)^n}{16^n}
+\end{align*}
+
+Let $a_n = 4\binom{1/2}{n}(x - 16)^n/16^n$,
+\[\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|
+= \lim_{n\to\infty}\left|\frac{1/2 - n}{n + 1}\right|\frac{|x - 16|}{16}
+= \frac{|x - 16|}{16}\]
+
+Using the Ratio Test, we see that the series converges if $|x - 16| < 16$ and
+it diverges if $|x - 16| > 16$, therefore the associative radius of convergence
+is $R = 16$.
+
+\noindent\textbf{55. }Use series to evaluate the limit.
+\begin{align*}
+   \lim_{x \to 0}\frac{x - \ln(1 + x)}{x^2}
+&= \lim_{x \to 0}\frac{x - \sum_{n=1}^\infty (-1)^{n-1}\frac{x^n}{n}}{x^2}\\
+&= \lim_{x \to 0}\frac{\sum_{n=2}^\infty (-1)^n\frac{x^n}{n}}{x^2}\\
+&= \lim_{x \to 0}\sum_{n=0}^\infty (-1)^n\frac{x^n}{n + 2}\\
+&= \lim_{x \to 0}\frac{1}{2}
+ + \lim_{x \to 0}\sum_{n=1}^\infty (-1)^n\frac{x^n}{n + 2}\\
+&= \frac{1}{2}
+\end{align*}
+
+\newpage\noindent Find the sum of the series.
+\begin{align*}
+   \sum_{n=0}^\infty\frac{(-\ln 2)^n}{n!}
+&= \left(x \mapsto \sum_{n=0}^\infty\frac{x^n}{n!}\right)(-\ln 2)\\
+&= (x \mapsto e^x)\left(\ln\frac{1}{2}\right)\\
+&= \exp\left(\ln\frac{1}{2}\right)\\
+&= \frac{1}{2}\tag{68}
+\end{align*}
+
+\begin{align*}
+\sum_{n=0}^\infty\frac{(-1)^n}{(2n + 1)2^{2n + 1}}
+&= \left(x \mapsto \sum_{n=0}^\infty(-1)^n\frac{2^{2n + 1}}{2n + 1}\right)
+   \left(\frac{1}{2}\right)\\
+&= \left(x \mapsto \tan^{-1}x\right)\left(\frac{1}{2}\right)\\
+  &= \tan^{-1}\frac{1}{2}\tag{70}
+\end{align*}
+
+\noindent\textbf{72. }If $f(x) = \left(1 + x^3\right)^{30}$, what is
+$f^{(58)}(0)$?
+\begin{align*}
+  f(x) = \sum_{n=0}^{30}\binom{30}{n}x^{3n}
+&\Longrightarrow f'(x) = \sum_{n=0}^{30}\binom{30}{n}x^{3n - 1}3n\\
+&\Longrightarrow f''(x) = \sum_{n=1}^{30}\binom{30}{n}x^{3n - 2}3n(3n - 1)\\
+&\Longrightarrow f^{(58)}(x) = \sum_{n=20}^{30}\binom{30}{n}x^{3n - 58}
+                                               \prod_{i=0}^{57}(3n - i)\\
+&\Longrightarrow f^{(58)}(0) = \sum_{n=20}^{30}\binom{30}{n}0^{3n - 58}
+                                               \prod_{i=0}^{57}(3n - i) = 0
+\end{align*}
+\end{document}
