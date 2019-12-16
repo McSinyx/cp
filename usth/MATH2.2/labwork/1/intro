@@ -1,0 +1,62 @@
+#!/usr/bin/env octave
+% Exercise I.1.1
+x = 1 : 5
+printf ("x (3) + x (2) = %f\n", x (3) + x (2));
+
+% Exercise I.1.2
+x = x'
+
+% Exercise I.2.1
+A = zeros (3, 3)
+A += eye (3)
+A += [0 0 0; 2 0 0; 3 4 0]
+B = A'
+A + B
+A - B
+A * B  % matmul
+A .* B % element-wise mul
+A(1:2, 1:2)
+A(1:3)
+A(1:3, 1) % col
+A(:, 1) % col
+
+% Exercise I.3
+function avg = mean (v)
+  avg = sum (v) / numel (v);
+end
+mean (x)
+
+% Exercise I.4
+function price = ebill (kwh)
+  l = [50 50 100 100 100 Inf];
+  p = [1.484 1.533 1.786 2.242 2.503 2.587];
+  for i = 1 : 6
+    if (kwh > l(i))
+      kwh -= l(i);
+    else
+      l(i) = kwh;
+      kwh = 0;
+    end
+  end
+  price = sum (l .* p);
+end
+
+% Exercise I.5.1
+a = (@(x) x*x') (1 : 1000)
+b = sum (arrayfun (@(x) (-1)^x / (1 + x*2), [0 : 501]))
+c = sum (arrayfun (@(x) 1 / (1 + x*2)^2 / (3 + x*2)^2, [0 : 420])) - (pi^2 - 8)/16
+
+% Exercise I.5.2
+function p = permutations (n, k)
+  p = factorial (n) / factorial (n - k);
+end
+function c = combinations (n, k)
+  c = permutations (n, k) / factorial (k);
+end
+
+% Exercise I.6
+log (2) / log (1.1)
+
+% Exercise I.7
+x = linspace(-5, 5);
+plot (x, x + 1, 'color', 'green');

@@ -1,0 +1,123 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{lmodern}
+\usepackage{tikz}
+
+\newcommand{\exercise}[1]{\noindent\textbf{#1.}}
+
+\title{Numerical Methods: Labwork 4 Report}
+\author{Nguyễn Gia Phong--BI9-184}
+\date{\dateenglish\today}
+
+\begin{document}
+\maketitle
+\section{Curve Fitting Problems}
+\exercise{3}  From the given table, we define the two vectors
+\begin{verbatim}
+octave> x = [0.00000 0.78540 1.57080 2.35620 ...
+>            3.14159 3.92699 4.71239 5.49779 6.28319];
+octave> fx = [0.00000 0.70711 1.00000 0.70711 ...
+>             0.00000 -0.70711 -1.00000 -0.70711 0.00000];
+\end{verbatim}
+
+\begin{enumerate}[(a)]
+  \item \verb|f(3.00000)| and \verb|f(4.50000)| can be interpolated by
+\begin{verbatim}
+octave> points = [3.00000 4.50000];
+octave> linear = interp1 (x, fx, points)
+linear =
+   0.12748  -0.92080
+\end{verbatim}
+    To further illustrate this, we can then plot these point along
+    with the linearly interpolated line:
+    \verb|plot (points, linear, "o", x, fx)|
+    \begin{figure}[!h]
+      \centering
+      \scalebox{0.36}{\input{linear.tikz}}
+    \end{figure}
+
+  \item For convenience purposes, we define a thin wrapper around \verb|interp1|
+\begin{verbatim}
+octave> interpolate = @(X, method) interp1 (
+> x, fx, X, method, "extrap");
+\end{verbatim}
+    Anonymous function had to be used because named functions somehow do not
+    support closure.  Now we can use \verb|interpolate (points, method)|
+    to approximate \verb|f(3.00000)| and \verb|f(4.50000)|
+    and obtain the table below
+    \begin{center}
+      \begin{tabular}{c r r r}
+        \toprule
+        method & nearest & cubic & spline \\
+        \midrule
+        f(3.00000) & 0 & 0.13528 & 0.14073 \\
+        f(4.50000) & -1 & -0.96943 & -0.97745\\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+
+    Next, we use some plots to better visualize these interpolation methods.
+\begin{verbatim}
+octave> interplot = @(mark, line, method) plot (
+> mark, interpolate (mark, method), "o",
+> line, interpolate (line, method));
+octave> B = linspace (x(1), x(end));
+octave> interplot (points, B, "nearest")
+\end{verbatim}
+\scalebox{0.61}{\input{nearest.tikz}}
+\begin{verbatim}
+octave> interplot (points, B, "cubic")
+\end{verbatim}
+\scalebox{0.61}{\input{cubic.tikz}}
+\begin{verbatim}
+octave> interplot (points, B, "spline")
+\end{verbatim}
+\scalebox{0.61}{\input{spline.tikz}}
+
+    One can easily notice while \verb|nearest| simply chooses the nearest
+    neighbor, \verb|cubic| and \verb|spline| both try to \textit{smoothen}
+    the curve.  This leads to the fact that \verb|nearest|'s approximations
+    strays from \verb|linear|'s in the opposite dirrection when compared to
+    the other two's.  It also explains why \verb|cubic|'s and \verb|spline|'s
+    results are quite close to each other.
+
+  \item Since we are already extrapolating (by providing the \verb|extrap|
+    argument to \verb|interp1|), interpolating for \verb|f(10)| is rather
+    straightforward:
+\begin{verbatim}
+octave> interpolate (10, "spline")
+ans =  1.4499
+octave> C = linspace (0, 10);
+octave> interplot (10, C, "spline")
+\end{verbatim}
+\scalebox{0.39}{\input{f10-spline.tikz}}
+\begin{verbatim}
+octave> interpolate (10, "linear")
+ans =  3.3463
+octave> interplot (10, C, "linear")
+\end{verbatim}
+\scalebox{0.39}{\input{f10-linear.tikz}}
+
+    From the existing data, we can make a guess that \verb|f|
+    is a cubic function and regression fits quite well:
+\begin{verbatim}
+octave> p = polyfit (x, fx, 3)
+p =
+   0.084488  -0.796282   1.681694  -0.043870
+octave> polyval (p, 10)
+ans =  21.633
+octave> plot (x, fx, "o", C, polyval (p, C))
+\end{verbatim}
+\scalebox{0.62}{\input{f10-poly.tikz}}
+
+    In all these cases, due to the missing data, the value of \verb|f| at 10
+    tends to go \textit{wild}, i.e. far away from the given data in \verb|fx|.
+    If anything, the interpolated/extrapolated ones looks more harmonic,
+    while regression simply fit the curve into the function of the given form.
+    It is not obvious that either technique is better is this case,
+    since the amount of given data is too small.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,133 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{lmodern}
+\usepackage{siunitx}
+\usepackage{tikz}
+
+\newcommand{\exercise}[1]{\noindent\textbf{#1.}}
+
+\title{Numerical Methods: Linear Programming}
+\author{Nguyễn Gia Phong--BI9-184}
+\date{\dateenglish\today}
+
+\begin{document}
+\maketitle
+
+Given the production contraints and profits of two grades of heating gas
+in the table below.
+\begin{center}
+  \begin{tabular}{l c c c}
+    \toprule
+    & \multicolumn{2}{c}{Product}\\
+    Resource & Regular & Premium & Availability\\
+    \midrule
+    Raw gas (\si{\cubic\metre\per\tonne}) & 7 & 11 & 77\\
+    Production time (\si{\hour\per\tonne}) & 10 & 8 & 80\\
+    Storage (\si{\tonne}) & 9 & 6\\
+    \midrule
+    Profit (\si{\per\tonne}) & 150 & 175\\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\begin{enumerate}[(a)]
+  \item Let two nonnegative numbers $x_1$ and $x_2$ respectively be
+    the quantities in tonnes of regular and premium gas to be produced.
+    The constraints can then be expressed as
+    \[\begin{cases}
+      7x_1 + 11x^2 &\le 77\\
+      10x_1 + 8x_2 &\le 80\\
+      x_1 &\le 9\\
+      x_2 &\le 6
+    \end{cases}
+    \iff \begin{bmatrix}
+      7 & 11\\
+      10 & 8\\
+      1 & 0\\
+      0 & 1
+    \end{bmatrix}\begin{bmatrix}
+      x_1\\ x_2
+    \end{bmatrix}
+    \le \begin{bmatrix}
+      77\\ 80\\ 9\\ 6
+    \end{bmatrix}\]
+
+    The total profit is the linear function to be maximized:
+    \[\Pi(x_1, x_2) = 150x_1 + 175x_2 = \begin{bmatrix}
+      150\\ 175
+    \end{bmatrix}\cdot\begin{bmatrix}
+      x_1\\ x_2
+    \end{bmatrix}\]
+
+    Let $\mathbf x = \begin{bmatrix}
+      x_1\\ x_2
+    \end{bmatrix}$, $A = \begin{bmatrix}
+      7 & 11\\
+      10 & 8\\
+      1 & 0\\
+      0 & 1
+    \end{bmatrix}$, $\mathbf b = \begin{bmatrix}
+      77\\ 80\\ 9\\ 6
+    \end{bmatrix}$ and $\mathbf c = \begin{bmatrix}
+      150\\ 175
+    \end{bmatrix}$, the canonical form of the problem is
+    \[\max\left\{\mathbf c^\mathrm T
+                 \mid A\mathbf x\le b\land\mathbf x\ge 0\right\}\]
+  \item Due to the absense of \verb|linprog| in Octave, we instead use GNU GLPK:
+\begin{verbatim}
+octave> x = glpk (c, A, b, [], [], "UUUU", "CC", -1)
+x =
+   4.8889
+   3.8889
+\end{verbatim}
+    Contraint type \verb|UUUU| is used because all contraints are inequalities
+    with an upper bound and \verb|CC| indicates continous values of $\mathbf x$.
+    With the sense of -1, GLPK looks for the maximization\footnote{I believe
+    \emph{minimization} was a typo in the assignment, since it is trivial that
+    $\Pi$ has the minimum value of 0 at $\mathbf x = \mathbf 0$.} of
+    $\Pi(4.8889, 3.8889) = 1413.9$.
+
+    The two blank arguments are for the lower and upper bounds of $\mathbf x$,
+    default to zero and infinite respectively.  Alternatively we can use
+    the following to obtain the same result
+\begin{verbatim}
+glpk (c, [7 11; 10 8], [77; 80], [], [9 6], "UU", "CC", -1)
+\end{verbatim}
+
+  \item Within the constrains, the profit can be calculated using the following
+    function, which takes two meshes of $x$ and $y$ as arguments
+\begin{verbatim}
+function z = profit (x, y)
+  A = [7 11; 10 8];
+  b = [77; 80];
+  c = [150; 175];
+  [m n] = size (x);
+  z = -inf (m, n);
+  for s = 1 : m
+    for t = 1 : n
+      r = [x(s, t); y(s, t)];
+      if A * r <= b
+        z(s, t) = dot (c, r);
+      endif
+    endfor
+  endfor
+endfunction
+\end{verbatim}
+
+    Using this, the solution space is then plotted using \verb|ezsurf|,
+    which color each grid by their relative values (the smallest is dark purple
+    and the largest is bright yellow):
+\begin{verbatim}
+ezsurf (@(x1, x2) constraints (x1, x2), [0 9 0 6], 58)
+\end{verbatim}
+\pagebreak
+
+    Since the plot is just a part of a plane, we can rotate it for a better view
+    without losing any information about its shape.
+
+    \scalebox{0.69}{\input{profit.tikz}}
+\end{enumerate}
+\end{document}

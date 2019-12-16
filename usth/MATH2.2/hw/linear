@@ -1,0 +1,11 @@
+#!/usr/bin/env octave
+disp ("Solve quadratic equation ax + b = 0");
+a = input ("a = ");
+while (a == 0)
+  disp ("a must be nonzero");
+  a = input ("a = ");
+end
+b = input ("b = ");
+
+disp ("The two solutions of the given linear equation is:");
+x = -b / a

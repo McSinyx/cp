@@ -1,0 +1,22 @@
+#!/usr/bin/env octave
+[cp lambda rho] = deal (900, 237, 2700);
+[Tg Td T0] = deal (100, 50, 0);
+[L dx dt N] = deal (0.4, 0.01, 0.5, 841);
+T = heatrans (cp, lambda, rho, Tg, Td, T0, L, dx, dt, N);
+[X Y Z] = deal (0:dx:L, 0:dt:420, T');
+
+figure (1);   # mesh
+mesh (X, Y, Z);
+title ("Temperature of the bar during the first 420 seconds");
+xlabel ("x (m)");
+ylabel ("t (s)");
+zlabel ("T (°C)");
+
+figure (2);   # contour
+contourf (X, Y, Z, 0:7:100, "showtext", "on");
+title ("Temperature of the bar during the first 420 seconds");
+xlabel ("x (m)");
+ylabel ("t (s)");
+
+disp ("Press any key to coninue...");
+kbhit;

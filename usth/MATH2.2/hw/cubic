@@ -1,0 +1,25 @@
+#!/usr/bin/env octave
+disp ("Solve quadratic equation a*x^3 + b*x^2 + c*x + d = 0");
+a = input ("a = ");
+while (a == 0)
+  disp ("a must be nonzero");
+  a = input ("a = ");
+end
+b = input ("b = ");
+c = input ("c = ");
+d = input ("d = ");
+
+% Using the trigonometric and hyperbolic solutions on Wikipedia:
+% https://en.wikipedia.org/wiki/Cubic_function
+p = (3*a*c - b^2) / (3*a^2);
+q = (2*b^3 - 9*a*b*c + 27*a^2*d) / (27*a^3);
+if (p == 0)
+  disp ("The given cubic equation has only one distinct solution:");
+  x = cbrt(-q) - b/a/3
+else
+  r = 2 * sqrt(-p/3);
+  disp ("The three solutions of the given quadratic equation are:");
+  for k = 0 : 2
+    x = r * cos((acos(3*q/p/r) - 2*pi*k) / 3) - b/a/3
+  end
+end

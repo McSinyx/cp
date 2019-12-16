@@ -1,0 +1,14 @@
+#!/usr/bin/env octave
+disp ("Solve quadratic equation a*x^2 + b*x + c = 0");
+a = input ("a = ");
+while (a == 0)
+  disp ("a must be nonzero");
+  a = input ("a = ");
+end
+b = input ("b = ");
+c = input ("c = ");
+
+sd = sqrt(b*b - a*c*4);
+disp ("The two solutions of the given quadratic equation are:");
+x0 = (-b - sd) / a / 2
+x1 = (-b + sd) / a / 2
