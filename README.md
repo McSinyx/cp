@@ -40,8 +40,8 @@ Phiên bản các trình dịch sử dụng test:
 | Java        | OpenJDK 11+        |
 | Lua         | Lua 5.1+           |
 | Pascal      | Free Pascal 2.6.4+ |
-| Raku        | Rakudo 2018.12+    |
 | Python      | Python 3.5+        |
+| Raku        | Rakudo 2018.12+    |
 | Scheme      | GNU Guile 2.0.11+  |
 
 SICP không chỉ dùng Guile để chạy Scheme mà còn sử dụng Racket (`#lang sicp`)
