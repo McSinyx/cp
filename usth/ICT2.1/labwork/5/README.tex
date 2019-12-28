@@ -1,0 +1,143 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{mathtools}
+
+\title{Algorithms and Data Structures\\ Searching and Sorting}
+\author{Nguyễn Gia Phong---BI9-184}
+\date{\dateenglish\today}
+
+\begin{document}
+\maketitle
+\section{Cocktail Shaker Sort}
+The code is implemented following the cocktail shaker sort's
+pseudocode\footnote{\url{https://en.wikipedia.org/wiki/Cocktail\_shaker\_sort\#Pseudocode}}
+with bubble sort's optimization\footnote{\url{https://en.wikipedia.org/wiki/Bubble\_sort\#Optimizing\_bubble\_sort}}
+whose time complexity is analyzed as follows
+
+\subsection{Best Case}
+For the matter of brevity, we consider all operations on the array's $n$ members
+are in constant time ($\Theta(1)$).  If the array is already sorted, after
+the first \verb|while| loop (line 25), \verb|h| is still \verb|low| and thus
+the \verb|do|--\verb|while| loop is broken.  Since the while loop runs from
+\verb|low + size| to \verb|high - size| by \verb|size| steps, the running time
+is \verb|(high - low - size*2)/size + 1| or \verb|nmemb - 1|.  Therefore
+the best case time complexity is $\Omega(n - 1) = \Omega(n)$.
+
+\subsection{Average Case}
+Assume the average case is when the array is uniformly shuffled, that is,
+every permutation has the equal probability to occur.
+
+Given a permutation of an $n$-element array, consider the positive integer
+$k \le n$ that exactly the last $n - k$ members are continuously in the
+correct positions (as in the ascendingly sorted array).  It is obvious that
+for $k = 1$, the array is sorted and the probability of the permutation
+to appear is $1/n!$.  For $1 < k \le n$, if we fix the last $n - k$ members
+in their right places, out of the $k!$ permutations of the first $k$ elements,
+$(k - 1)!$ ones has the $k$-th greatest at the correct place.  Therefore,
+let $X$ be the number that exactly $n - X$ last elements are in
+the right positions, we have
+\[p_X(k) = \begin{dcases}
+  \frac{1}{n!} &\text{if }k = 1\\
+  \frac{k! - (k - 1)!}{n!} &\text{otherwise}
+\end{dcases}\]
+
+Applying this to the first \verb|while| (line 25) with $n$ and $X - 1$ being
+the number of steps from \verb|low| to \verb|high|, before and after
+\verb|high = h| respectively, the expectation of $X$ is
+\begin{align*}
+  \mathbf E[X] &= \sum_{k=1}^n k p_X(k)\\
+  &= \frac{1}{n!} + \sum_{k=2}^n\frac{k!k - k!}{n!}\\
+  &= \frac{1}{n!} + \sum_{k=3}^{n+1}\frac{k!}{n!}
+   - \sum_{k=2}^n\frac{k!}{n!} - \sum_{k=2}^n\frac{k!}{n!}\\
+  &= \frac{1}{n!} + \frac{(n+1)!}{n!}
+   - \frac{2!}{n!} - \sum_{k=2}^n\frac{k!}{n!}\\
+  &= n + 1 - \sum_{k=1}^n\frac{k!}{n!}\\
+  &= n - \sum_{k=1}^{n-1}\frac{k!}{n!}
+\end{align*}
+
+Hence after line 28, the newly sorted length of the array is
+\[n - \mathbf E[X - 1] = n - \mathbf E[X] + 1
+  = 1 + \sum_{k=1}^{n-1}\frac{k!}{n!} = \Theta(1)\]
+
+Similarly, line 31 to 35 also sort $\Theta(1)$ element(s), thus each iteration
+of the \verb|do|--\verb|while| loop to sort $\Theta(1)$ members. The overall
+average-case time complexity is
+\begin{align*}
+  T(n) &= \begin{dcases}
+    (n - \Theta(1)) + (n - \Theta(1)) + T(n - \Theta(1)) &\text{if }n > 0\\
+    \Theta(1) &\text{otherwise}
+  \end{dcases}\\
+  &= \begin{dcases}
+    2n - \Theta(1) + T(n - \Theta(1)) &\text{if }n > 0\\
+    \Theta(1) &\text{otherwise}
+  \end{dcases}\\
+  &= \Theta(1) + \sum_{k=1}^m(2k - \Theta(1))
+  = 2\sum_{k=1}^m k - \sum_{k=1}^m\Theta(1)
+  = m^2 + m - \sum_{k=1}^m\Theta(1)
+\end{align*}
+where $m$ satisfies
+\begin{multline*}
+  \exists\{f_k\mid k\in 1\,..\,m\} \subset \Theta(1),\,
+  \sum_{k=1}^m f_k(n) = n
+  \Longrightarrow \sum_{k=1}^m\Theta(1) = \Theta(n)
+  \Longrightarrow m = \Theta(n)\\
+  \Longrightarrow T(n) = \Theta\left(n^2\right) + \Theta(n) - \Theta(n)
+  = \Theta\left(n^1\right)
+\end{multline*}
+
+\subsection{Worst Case}
+If the array is reversely sorted, after each first \verb|while| (line 25),
+\verb|high| is decreased by \verb|size|; and after each second
+\verb|while| (line 32), \verb|low| is increased by \verb|size|.
+For \verb|low + size >= high|, it takes \verb|(high-low-size)/size + 1 >> 1|
+or \verb|nmemb / 2| iterations of the \verb|do|--\verb|while| loop (line 23).
+The overall complexity would then be
+\begin{align*}
+  \sum_{k=1}^{\lfloor n/2\rfloor}(n - 2k + 1 + n - 2k)
+  &= \sum_{k=1}^{\lfloor n/2\rfloor}(2n - 4k + 1)\\
+  &= n^2 + 2\left\lfloor\frac{n}{2}\right\rfloor
+  \left(\left\lfloor\frac{n}{2}\right\rfloor + 1\right)
+  + \left\lfloor\frac{n}{2}\right\rfloor\\
+  &= O\left(n^2\right)
+\end{align*}
+
+\section{Merge Sort}
+As usual, the linked list is implemented using classic Lisp's \verb|cons|-cells.
+The program is thus compiled by
+\begin{verbatim}
+cc construct.c Ex2.c -o Ex2
+\end{verbatim}
+
+To keep the implementation concise, memory safety as well as stack limit
+was not considered.
+
+It is trivial that the time complexity of \verb|merge| is $\Theta(n)$ with
+$n$ being the total length of \verb|left| and \verb|right|.  For \verb|msort|,
+the running time of the \verb|while| loop at line 27 is also $\Theta(n)$, where
+n is the length of the input \verb|list|.  The overall time complexity is
+\[T(n) = \begin{dcases}
+  \Theta(1) &\text{if }n \le 1\\
+  \Theta(n) + T\left(\left\lfloor\frac{n}{2}\right\rfloor\right)
+  + T\left(\left\lceil\frac{n}{2}\right\rceil\right) &\text{otherwise}
+\end{dcases}\]
+
+The recurrence can be stated as
+\[T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n)\]
+\pagebreak
+
+By the master theorem\footnote{Let $a \ge 1$ and $b > 1$ be constants,
+and let $T(n)$ be defined on the nonnegative integers by the recurrence
+\[T(n) = aT\left(\frac{n}{b}\right) + \Theta\left(n^{\log_b a}\right)\]
+where $n/b$ is interpreted as either $\lfloor n/b\rfloor$ or $\lceil n/b\rceil$,
+then \[T(n) = \Theta\left(n^{\log_b a}\lg n\right)\]},
+\[T(n) = 2T\left(\frac{n}{2}\right) + \Theta\left(n^{\log_2 2}\right)
+= \Theta\left(n^{\log_2 2}\lg n\right) = \Theta(n\lg n)\]
+
+\section{Copying}
+This report along with the source files are licensed under a
+\href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+Attribution-ShareAlike 4.0 International License}.
+\end{document}

@@ -2,7 +2,7 @@
 
 This used to be my competitive programming collection, now it is more of
 a warehouse for my computer programming journey.  For historical reasons,
-this README as well as commit messages are duolingo (Anglais et Vietnamien).
+this README as well as commit messages are duolingo (anglais et vietnamien).
 
 |    Thư mục   |                      Nguồn đề bài                      |
 | ------------ | ------------------------------------------------------ |
@@ -39,6 +39,7 @@ Phiên bản các trình dịch sử dụng test:
 | Common Lisp | SBCL 1.4.8+        |
 | Java        | OpenJDK 11+        |
 | Lua         | Lua 5.1+           |
+| Octave      | Octave 6+          |
 | Pascal      | Free Pascal 2.6.4+ |
 | Python      | Python 3.5+        |
 | Raku        | Rakudo 2018.12+    |
