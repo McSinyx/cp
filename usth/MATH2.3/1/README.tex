@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{mathtools}
+
+\title{Discrete Mathematics: Algorithm}
+\author{Nguyễn Gia Phong---BI9-184}
+\date{\dateenglish\today}
+
+\begin{document}
+\maketitle
+\section{Problem 3}
+The program \verb|coin.c| takes an integer $n$ from \verb|stdin| and print
+the least coin exchange of $n$ cents to \verb|stdout|.
+
+\section{Problem 4}
+The program \verb|schedule.c| take an integer $n$ and $n$ integral
+time intervals from \verb|stdin| and print to \verb|stdout| the chosen talks
+intervals in chronological order.
+
+\section{Problem 5}
+\verb|search.c| contains two searching implementations, linear search
+(\verb|lsearch|) and binary search (\verb|bsearch|).
+
+It is trivial that \verb|lsearch| has \verb|nmemb| or $\Theta(n)$
+time complexity.
+
+For \verb|binary_search| (which is wrapped by \verb|bsearch|),
+the time complexity (in term of number of comparisons) is can be seen as
+\begin{align*}
+  T(n) &= T\left(\frac{n}{2}\right) + \Theta(1)\\
+  &= T\left(\frac{n}{2}\right) + \Theta\left(n^{\log_2 1}\right)
+\end{align*}
+since \verb|mid = (lo + high) / 2)|.
+\pagebreak
+
+By the master theorem\footnote{Let $a \ge 1$ and $b > 1$ be constants,
+and let $T(n)$ be defined on the nonnegative integers by the recurrence
+\[T(n) = aT\left(\frac{n}{b}\right) + \Theta\left(n^{\log_b a}\right)\]
+where $n/b$ is interpreted as either $\lfloor n/b\rfloor$ or $\lceil n/b\rceil$,
+then \[T(n) = \Theta\left(n^{\log_b a}\lg n\right)\]},
+\[T(n) = \Theta\left(n^{\log_2 1}\lg n\right) = \Theta(\lg n)\]
+
+\section{Copying}
+This report along with the source files are licensed under a
+\href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+Attribution-ShareAlike 4.0 International License}.
+\end{document}
