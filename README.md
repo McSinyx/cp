@@ -12,6 +12,7 @@ this README as well as commit messages are duolingo (anglais et vietnamien).
 | `codeforces` | [Codeforces][3]                                        |
 | `cpptour`    | A Tour of C++                                          |
 | `daily`      | [/r/dailyprogrammer][4]                                |
+| `mips`       | MIPS Assembly Language Programming                     |
 | `ntu`        | [Đại học Nha Trang][1]                                 |
 | `others`     | Các đề bài không rõ nguồn                              |
 | `paip`       | Paradigms of Artificial Intelligence Programming       |
@@ -39,6 +40,7 @@ Phiên bản các trình dịch sử dụng test:
 | Common Lisp | SBCL 1.4.8+        |
 | Java        | OpenJDK 11+        |
 | Lua         | Lua 5.1+           |
+| MIPS ASM    | SPIM 8.0           |
 | Octave      | Octave 6+          |
 | Pascal      | Free Pascal 2.6.4+ |
 | Python      | Python 3.5+        |
