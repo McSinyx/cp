@@ -18,6 +18,5 @@ main:
 	li	$a0,	10		# newline
 	syscall
 
-
 	li	$v0,	10		# terminate
 	syscall
