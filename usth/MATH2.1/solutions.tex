@@ -1,0 +1,1633 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{venndiagram}
+
+\newcommand{\E}{\mathbf E}
+\newcommand{\C}{\mathrm C}
+\newcommand{\N}{\mathcal N}
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\exercise}[1]{\noindent\textbf{#1.}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\title{Probability Homework}
+\author{Nguyễn Gia Phong}
+\date{Fall 2019}
+
+\begin{document}
+\maketitle
+\section{Basic Probability 1}
+
+\exercise 1  Problems regarding de Morgan's law
+\begin{enumerate}[(a)]
+  \item Consider rolling a six-sided die, where
+    \begin{align*}
+      &\begin{cases}
+        A = \{2, 4, 6\}\iff A^\C = \{1, 3, 5\}\\
+        B = \{4, 5, 6\}\iff B^\C = \{1, 2, 3\}
+      \end{cases}\\
+      \Longrightarrow &\begin{cases}
+        (A \cup B)^\C = \{2, 4, 5, 6\}^\C = \{1, 3\} = A^\C \cap B^\C\\
+        (A \cap B)^\C = \{4, 6\}^\C = \{1, 2, 3, 5\} = A^\C \cup B^\C\\
+      \end{cases}
+    \end{align*}
+  \item By de Morgan's law,
+    \begin{align*}
+      P\left(A^\C \cap B^\C\right) &= P\left((A \cup B)^\C\right)\\
+      &= 1 - P\left(A \cup \left(A^\C \cap B\right)\right)\\
+      &= 1 - P(A) - P\left(A^\C \cap B\right)
+      \tag{since $A \cap \left(A^\C \cap B\right) = \varnothing$}\\
+      &= 1 -P(A) -P\left((A\cap B)\cup\left(A^\C\cap B\right)\right) +P(A\cap B)
+      \tag{since $(A\cap B)\cap\left(A^\C\cap B\right) = \varnothing$}\\
+      &= 1 - P(A) - P(B) + P(A\cap B)
+    \end{align*}\label{1.b}
+  \item Consider events A and B such that $P(A) = 1/2$, $P(A\cup B) = 3/4$,
+    $P\left(B^\C\right) = 5/8$.
+
+    \begin{align*}
+      & P\left(A^\C\cap B\right) = P(A\cup B) - P(A)
+      = \frac 3 4 - \frac 1 2 = \frac 1 4\\
+      & P\left(A^\C\cap B^\C\right) = P\left((A\cup B)^\C\right)
+      = P(\Omega) - P(A\cup B) = 1 - \frac 3 4 = \frac 1 4\\
+      & P\left(A\cap B^\C\right) = P\left(B^\C\right)-P\left((A\cup B)^\C\right)
+      = \frac 5 8 - \frac 1 4 = \frac 3 8\\
+      & P(A\cap B) = P(A) - P\left(A\cap B^\C\right)
+      = \frac 1 2 - \frac 3 8 = \frac 1 8\\
+      & P\left(A^\C\cup B^\C\right) = P\left((A\cap B)^\C\right)
+      = P(\Omega) - P(A\cap B) = 1 - \frac 1 8 = \frac 7 8
+    \end{align*}
+\end{enumerate}
+
+\exercise 2  A four-sided die is rolled repeatedly,
+until the first time (if ever) that an even number is obtained.
+What is the sample space for this experiment?
+
+Let the outcome be a n-dimensional vector, whose elements are values
+of each roll in chronological order.  The sample space would then be
+\[\Omega = \{v \in \{1, 3\}^m\times\{2, 4\} \mid m \in \mathbb N\}\]
+
+\exercise 3  A ball is drawn at random from a box containing 6 red balls,
+4 white balls, and 5 blue balls.
+
+Let $\Omega$ be the sample space then $n(\Omega) = 6 + 4 + 5 = 15$.
+Let the R, W and B be the event where a red, white and blue ball is drawn
+respectively, each of these events are mutually exclusive.  Suppose each ball
+is equally likely to be drawn, we get
+\[\begin{cases}
+  n(R) = 6\\
+  n(W) = 4\\
+  n(B) = 5
+\end{cases}
+\Longrightarrow\begin{dcases}
+  P(R) = \frac{n(R)}{n(\Omega)} = \frac{2}{5}\\
+  P(W) = \frac{n(W)}{n(\Omega)} = \frac{4}{15}\\
+  P(B) = \frac{n(B)}{n(\Omega)} = \frac{1}{3}
+\end{dcases}\]
+
+\begin{enumerate}[(a)]
+  \item For a ball that is not red to be drawn, the probability is
+    \[P\left(R^\C\right) = P(\Omega) - P(R) = 1 - \frac 2 5 = \frac 3 5\]
+  \item For a ball that is either red or white to be drawn, the probability is
+    \[P(R\cup W) = P(R) + P(W) = \frac{2}{5} + \frac{4}{15} = \frac 2 3\]
+\end{enumerate}
+
+\exercise 4  Given $P(C_a) = 0.8$, $P(C_b) = 0.6$ and $P(C_a\cap C_b) = 0.5$.
+
+We can easily prove that $P(C_a\cup C_b) = P(C_a) + P(C_b) - P(C_a\cap C_b)$
+(similar to what we did in exercise 1.b).  Thus the probability that the student
+will get at least one offer from these two companies is $0.8 + 0.6 - 0.5 = 0.9$.
+
+\exercise 5  Let G and C be the events that the selected student is a genius and
+is a chocolate lover, respectively, then $P(G) = 0.6$, $P(C) = 0.7$ and
+$P(G\cap C) = 0.4$.  The probability that a randomly selected student is
+neither a genius nor a chocolate lover is
+\[P\left((G\cup C)^\C\right) = 1 - P(G) - P(C) + P(G\cap C)
+= 1 - 0.6 - 0.7 + 0.4 = 0.1\]
+
+\exercise 6  First, consider Rick's choice of entrance.  We denote
+the outcome that he chooses each gate as $R_A$, $R_B$, $R_C$ and $R_D$,
+then $P\{R_A\} = 1/3$ and $P\{R_B\} = P\{R_C\} = P\{R_D\} = 2/9$.
+The sample space is $\Omega_R = \{R_A, R_B, R_C, R_D\}$.
+
+Similarly, denote Brenda's and Ali's choices as $B_Y$ and $A_X$ respectively,
+where $X$, $Y$ (and later $Z$) are one of the four entrances
+$\omega = \{A, B, C, D\}$, we get
+\[\begin{dcases}
+  P\{B_A\} = P\{B_B\} = P\{B_C\} = P\{B_D\} = \frac 1 4\\
+  P\{A_A\} = P\{A_B\} = \frac{2}{35}\\
+  P\{A_C\} = \frac 2 7\\
+  P\{A_D\} = \frac 3 5
+\end{dcases}\]
+The sample spaces of these two models are $\Omega_B = \{B_A, B_B, B_C, B_D\}$
+and $\Omega_A = \{A_A, A_B, A_C, A_D\}$.
+
+Now consider the probability model of the choices of the three friends.
+The sample space is $\Omega = \Omega_R\times\Omega_B\times\Omega_A$.
+Since the three friends chooses their entrance independently,
+for all $\mathbf v = \langle R_Z, B_Y, A_X\rangle$ in $\Omega$,
+\[P\{\mathbf v\} = P\{R_Z\} \cdot P\{B_Y\} \cdot P\{A_X\}\]
+
+\begin{enumerate}[(a)]
+  \item The event that at least two friends choose entrance B is
+    \[a = (\Omega_R \times \{B_B\} \times \{A_B\})
+    \cup (\{R_B\} \times \Omega_B \times \{A_B\})
+    \cup (\{R_B\} \times \{B_B\} \times \Omega_A)\]
+
+    Notice that 
+    \begin{align*}
+      &(\Omega_R \times \{B_B\} \times \{A_B\})
+      \cap (\{R_B\} \times \Omega_B \times \{A_B\})\\
+      =\,&(\Omega_R \times \{B_B\} \times \{A_B\})
+      \cap (\{R_B\} \times \Omega_B \times \{A_B\})
+      \cap (\{R_B\} \times \{B_B\} \times \Omega_A)\\
+      =\,&\{R_B, B_B, A_B\}
+    \end{align*}
+
+    Therefore the probability of this event is
+    \begin{align*}
+      P(a) &= P(\Omega_A \times \{B_B\} \times \{A_B\})\\
+      &+ P(\{R_B\} \times \Omega_B \times \{A_B\})\\
+      &- P\{R_B, B_B, A_B\}\\
+      &+ P(\{R_B\} \times \{B_B\} \times \Omega_A)\\
+      &- P\{R_B, B_B, A_B\}\\
+      &= P\{B_B\} \cdot P\{A_B\}\\
+      &+ P\{R_B\} \cdot P\{A_B\}\\
+      &+ P\{R_B\} \cdot P\{B_B\}\\
+      &- 2 \cdot P\{R_B\} \cdot P\{B_B\} \cdot P\{A_B\}\\
+      &= \frac{1}{4} \cdot \frac{2}{35}
+       + \frac{2}{9} \cdot \frac{2}{35}
+       + \frac{2}{9} \cdot \frac{1}{4}
+       - \frac{2}{9} \cdot \frac{1}{4} \cdot \frac{2}{35}
+       = \frac{8}{105}
+    \end{align*}
+  \item The only four cases where all friends choose the same entrance are
+    $\{\langle R_X, B_X, A_X\rangle \mid X = \omega\}$.
+    Hence the probability of this event is
+    \begin{align*}
+      P(b) &= \sum_{X \in \omega} P\{R_X\}\cdot P\{B_X\}\cdot P\{A_X\}\\
+      &= \frac{1}{3} \cdot \frac{1}{4} \cdot \frac{2}{35}
+       + \frac{2}{9} \cdot \frac{1}{4} \cdot \frac{2}{35}
+       + \frac{2}{9} \cdot \frac{1}{4} \cdot \frac{2}{7}
+       + \frac{2}{9} \cdot \frac{1}{4} \cdot \frac{3}{5}
+       = \frac{2}{35}
+    \end{align*}
+\end{enumerate}
+
+\exercise 7  We roll two fair six-sided dice.
+\begin{enumerate}[(a)]
+  \item The event that doubles are rolled has six outcomes, thus its probability
+    is 6/36 = 1/6.
+  \item Among the six outcomes where the result is four or less
+    (\{(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (3, 1)\}),
+    there are two that are doubles, hence the probability would then be 1/3.
+  \item Let $\omega = \{1, 2, 3, 4, 5, 6\}$,
+    the sample space is $\Omega = \omega^2$.  For one die roll is a six,
+    the event is $C = (\{6\}\times\omega) \cup (\omega\times\{6\})$.
+    Since $(\{6\}\times\omega) \cap (\omega\times\{6\}) = \{(6, 6)\}$,
+    \begin{align*}
+      P(C) &= P(\{6\}\times\omega) + P(\omega\times\{6\}) - P\{(6, 6)\}\\
+      &= \frac{n(\{6\}\times\omega) + n(\omega\times\{6\}) - n\{(6, 6)\}}
+              {n(\Omega)}\\
+      &= \frac{6 + 6 - 1}{36} = \frac{11}{36}
+    \end{align*}
+\end{enumerate}
+
+\exercise 8  A baby rolls two six-sided dice.  Assumed that the dice are fair.
+Let $\omega = \{1, 2, 3, 4, 5, 6\}$, the sample space is $\Omega = \omega^2$.
+\begin{enumerate}[(a)]
+  \item There are six outcomes where the result of seven:
+    \[A = \{(m, 7 - m) \mid m \in \omega\}\]
+    hence this event's probability is
+    \[P(A) = \frac{n(A)}{n(\Omega)} = \frac{6}{36} = \frac{1}{6}\]
+  \item There are two outcomes where the result of eleven:
+    $B = \{(5, 6), (6, 5)\}$, thus $P(B) = 1/18$.
+    As $A$ and $B$ are disjoint, the probability of not getting
+    a sum of seven or eleven is
+    \begin{align*}
+      P\left((A\cup B)^\C\right) &= P(\Omega) - P(A\cup B)\\
+      &= 1 - (P(A) + P(B))\\
+      &= 1 - \frac{1}{6} - \frac{1}{18} = \frac{7}{9}
+    \end{align*}
+\end{enumerate}
+
+\exercise 9  Given $n(\Omega) = 25$, $n(C) = 9$, $n(D) = 8$
+and $n\left((C\cup D)^\C\right) = 10$.
+
+By the Venn diagram, $a = C\cap D^\C$, $b = C\cap D$ and $c = C^\C\cap D$.
+Let $E = C\cup D$ and $d = E^\C$, $n(d) = 10$ and $n(E) = n(\Omega)-n(d) = 15$.
+Assume that the boy fairly randomly selected,
+\begin{align*}
+  P(E) &= \frac{n(E)}{n(\Omega)}
+  = \frac{15}{25}
+  = \frac{3}{5}\\
+  P(a) &= P\left((D\cap d)^\C\right)
+  = 1 - P(D\cap d)
+  = 1 - P(D) - P(d)\\
+  &= 1 - \frac{n(D) + n(d)}{n(\Omega)}
+  = 1 - \frac{8 + 10}{25}
+  = \frac{7}{25}\\
+  P(c) &= P\left((C\cap d)^\C\right)
+  = 1 - P(C\cap d)
+  = 1 - P(C) - P(d)\\
+  &= 1 - \frac{n(C) + n(d)}{n(\Omega)}
+  = 1 - \frac{9 + 10}{25}
+  = \frac{6}{25}\\
+  P(b) &= \frac{n(b)}{n(\Omega)}
+  = \frac{n(E) - n(a) - n(c)}{n(\Omega)}
+  = P(E) - P(a) - P(c)\\
+  &= \frac{3}{5} - \frac{7}{25} - \frac{6}{25}
+  = \frac{2}{25}
+\end{align*}
+\pagebreak
+
+\exercise{10}
+\begin{enumerate}[(a)]
+  \item Venn diagram:
+    \begin{venndiagram3sets}[
+      labelOnlyB={5},
+      labelABC={2},
+      labelNotABC={0},
+      overlap=1cm]
+      \setpostvennhook{
+        \draw[-stealth] (labelA) -- ++(135:2.5cm) node[left]{15};
+        \draw[-stealth] (labelB) -- ++(45:2.5cm) node[right]{8};
+        \draw[-stealth] (labelC) -- ++(-90:2cm) node[below]{12};
+        \draw[-stealth] (0,0) -- ++(-135:1.5cm) node[below]{27};
+        \draw[-stealth] (1.4,1.9) -- ++(180:2.5cm) node[left]{4};
+        \draw[-stealth] (2.4,3.6) -- ++(-157:3.8cm);
+        \draw[-stealth] (4,3) -- ++(-70:4cm) node[below]{21};
+        \draw[-stealth] (1,2.5) -- ++(-40:5.3cm);
+        \draw[-stealth] (3.3,1.5) -- ++(-50:3cm);
+      }
+    \end{venndiagram3sets}
+  \item The number of tourists who had not visited Burundi:
+    \[n\left(B^\C\right) = n(\Omega) - n(B) = 27 - 8 = 19\]
+  \item The number of tourists who had not visited Cameroon
+    unless they had visited all three countries:
+    \[n\left((A\cap B)\cup C^\C\right)
+    = n(\Omega) - n(C) + n(A\cap B\cap C)
+    = 27 - 12 + 2 = 17\]
+  \item For the randomly selected tourist to have visited at least
+    two countries, that person must not visited only one country.
+    Thus the event can be denoted as
+    \[d = \Omega\setminus((A\setminus B\setminus C)\cup
+    (B\setminus C\setminus A)\cup(C\setminus A\setminus B))\]
+    Since the selection is random, the event's probability can be calculated as
+    \[P(d) = 1 - \frac{n((A\setminus B\setminus C)\cup
+    (B\setminus C\setminus A)\cup(C\setminus A\setminus B))}{n(\Omega)}
+    = 1 - \frac{21}{27} = \frac{2}{9}\]
+\end{enumerate}
+\pagebreak
+
+\section{Basic Probability 2}
+\exercise 1  Let $A$ be the event that the chosen transistor is defective,
+$B$ be the event that the chosen one is partially defective
+and $C$ be the event that the chosen one is acceptable.
+$A$, $B$ and $C$ are disjoint and $A\cup B\cup C = \Omega$, thus
+\[n(\Omega) = n(A) + n(B) + n(C) = 5 + 10 + 25 = 40\]
+
+The probability that the chosen transistor does not immediately fail is
+$P\left(A^\C\right) = 1 - P(A) = 1 - n(A)/n(\Omega) = 1 - 5/40 = 7/8$.
+
+Given this condition, the probability the chosen transistor is acceptable is
+\[P\left(C|A^\C\right) = \frac{P\left(C\cap A^\C\right)}{P\left(A^\C\right)}
+= \frac{P(C)}{7/8}
+= \frac{8n(C)}{7n(\Omega)} = \frac{8\cdot 25}{7\cdot 40} = \frac 5 7\]
+
+\exercise 2  Denote the outcomes of tossing a coin as $H$ (head) and $T$ (tail).
+\begin{enumerate}[(a)]
+  \item Consider tossing a coin $n$ times, the sample space is
+    $\Omega = \{H, T\}^n$.  Let $A$ be the event of getting at least a head,
+    $A^\C$ would then be getting all tails ($\{T\}^n$).  Suppose the chance of getting
+    head and tail are equal,
+    \[P\left(A^\C\right) = \frac{n\left(A^\C\right)}{n(\Omega)} = \frac{1}{2^n}
+    \Longrightarrow P(A) = 1 - P\left(A^\C\right) = \frac{2^n - 1}{2^n}\]
+  \item For $n = 4$, $P(A) = \dfrac{2^4 - 1}{2^4} = \dfrac{15}{16}$.
+  \item Consider rolling a six-sided die $n$ times, the sample space is
+    \[\Omega = \{1, 2, 3, 4, 5, 6\}^n\]
+    Let $B$ be the event of getting a six, $B^\C = \{1, 2, 3, 4, 5\}^n$.
+    Therefore the probability of $B$ is
+    \[P(B) = 1 - P\left(B^\C\right)
+    = 1 - \frac{n\left(B^\C\right)}{n(\Omega)} = 1 - \frac{5^n}{6^n}\]
+    For $n = 4$, $P(B) = 671/1296$.
+  \item For $P(B) = 0.99$,
+    \[1 - \left(\frac{5}{6}\right)^n = 0.99
+    \iff \left(\frac{5}{6}\right)^n = 0.01
+    \iff n = \log_{5/6}0.01 \approx 25\]
+\end{enumerate}
+
+\exercise 3  Let $B$ be the event that the woman rides the bicycle to work,
+$B^\C$ would be that she ride the scooter.  Let $L$ be that she is late,
+\begin{align*}
+  P(B) &= 0.7\\
+  P\left(B^\C\right) &= 0.3\\
+  P(L|B) &= 0.03\\
+  P\left(L|B^\C\right) &= 0.02
+\end{align*}
+\begin{enumerate}[(a)]
+  \item By Total Probability Theorem, the probability the woman
+    is late for work is
+    \[P(L) = P(B)\cdot P(L|B) + P\left(B^\C\right)\cdot P\left(L|B^\C\right)
+    = 0.7\cdot 0.03 + 0.3\cdot 0.02 = 0.027\]
+  \item The probability she is not late for work is
+    \[P\left(L^\C\right) = 1 - P(L) = 1 - 0.027 = 0.973\]
+    Since the woman is expected to be on time roughly 223 days a year,
+    she goes to work $223 / P\left(L^\C\right) \approx 229$ days a year.
+\end{enumerate}
+
+\exercise 4  Consider flipping the coin twice, the sample space is
+\[\Omega = \{(H, H), (H, T), (T, H), (T, T)\}\]
+where $H$ stands for head and $T$ stands for tail.
+
+Denote getting a head from the first flip as $H_1$ and getting a head
+from the second one as $H_2$.  Assume that $P(H_1) = P(H_2) = 0.6$.
+It is obvious that these two events are independent, or in other words
+\[P(H_1\cap H_2) = P(H_1)\cdot P(H_2)\]
+
+Similarly,
+\begin{align*}
+  P\{(H, T)\} &= P\left(H_1\cap H_2^\C\right)
+  = P\left(H_1\right)\cdot\left(1 - P\left(H_2\right)\right) = 0.24\\
+  P\{(T, H)\} &= P\left(H_1^\C\cap H_2\right)
+  = \left(1 - P\left(H_1\right)\right)\cdot P\left(H_2\right) = 0.24
+\end{align*}
+
+Therefore if Minh and Nam flip the coin twice for both head and tail
+and choose K-pop when they get a head first and US music otherwise,
+the genre would be chosen equally even.
+
+\exercise 5  Place three maths, two history and four biology book on a shelf.
+\begin{enumerate}[(a)]
+  \item There would be $(3 + 2 + 4)! = 362880$ ways to do it
+    without any further restriction.
+  \item If each subject needs to stay together,
+    there are $3! 2! 4! 3! = 1728$ ways.
+  \item If only biology books must stay together,
+    we can do it in $4!(3 + 2 + 1)!$ or 17280 ways.
+\end{enumerate}
+
+\exercise 6  Seat six people around a table.
+\begin{enumerate}[(a)]
+  \item If they can sit anywhere, there are $6!/6 = 120$ arrangements.
+  \item If two particular people must sit next to each other,
+    there are $2\cdot 5!/5$ or 48 arrangements; thus if those two cannot
+    sit side-by-side, the figure is $120 - 48 = 72$.
+\end{enumerate}
+
+\exercise 7  Let $\omega$ be the set of cards in a standard 52-card deck.
+Shuffle the deck an draw seven cards,
+the sample space of this probability model is $\Omega = \binom{\omega}{7}$,
+$n(\Omega) = \binom{52}{7}$.
+\begin{enumerate}[(a)]
+  \item Let $A$ be the event that exactly three of the drawn ones are aces,
+    \[n(A) = \binom{4}{3}\binom{48}{4}
+    \Longrightarrow P(A) = \frac{n(A)}{n(\Omega)} = \frac{9}{1547}\]
+  \item Let $K$ be the event that exactly two of the drawn ones are kings,
+    \[n(K) = \binom{4}{2}\binom{48}{5}
+    \Longrightarrow P(K) = \frac{n(K)}{n(\Omega)} = \frac{594}{7735}\]
+  \item The probability that exactly three aces and two kings are drawn is
+    \[n(A\cap K) = \binom{4}{3}\binom{4}{2}\binom{44}{2}
+    \Longrightarrow P(A\cap K) = \frac{n(A\cap K)}{n(\Omega)}
+    = \frac{1419}{8361535}\]
+
+    Thus probability that either exactly three aces or two kings are drawn is
+    \[P(A\cup K) = P(A) + P(K) - P(A\cap K) = \frac{137868}{1672307}\]
+\end{enumerate}
+
+\exercise 8  Let $M$ be the event that a red marble is picked
+and $C$ be the event of getting head from tossing the coin, we have
+\begin{align*}
+  P(M|C) &= 0.6\\
+  P\left(M|C^\C\right) &= 0.2\\
+  P(C) = P\left(C^\C\right) &= 0.5
+\end{align*}
+
+\begin{enumerate}[(a)]
+  \item By Total Probability Theorem, the probability a red marble is picked is
+    \[P(M) = P(C)\cdot P(M|C) + P\left(C^\C\right)\cdot P\left(M|C^\C\right)
+    = 0.4\]
+  \item The probability that a blue marble is picked is
+    \[P\left(M^\C\right) = 1 - P(M) = 0.6\]
+  \item The probability of getting a head if the red marble is picked is
+    \[P(C|M) = \frac{P(C\cap M)}{P(M)} = \frac{P(C)\cdot P(M|C)}{P(M)}
+    = \frac{0.5\cdot 0.6}{0.4} = 0.75\]
+\end{enumerate}
+
+\exercise 9  Consider $n$ random people and their birthdays, assuming
+that all 366 birthdays are equally likely\footnote{If you are wondering
+how one could be equally likely to be born on the leap day, then well,
+the distribution of birthdays on other days is in fact not uniform either.
+\textit{Don't complicate it, don't drive yourself insane!}}.
+The size of the sample space is $n(\Omega_n) = 366^n$.
+
+Let $A_n$ be the event that no two of these $n$ people to celebrate
+their birthday on the same day, $n(A_n) = \prod_{i=0}^{n-1}(366-i)$.
+Thus the probability of this is
+\[P(A_n) = \frac{n(A_n)}{n(\Omega_n)} = \prod_{i=1}^{n-1}\frac{366 - i}{366}\]
+
+Since $P(A_{23}) < 0.5 < P(A_{22})$, $n$ needs to be at least 23
+for the probability to be less than 0.5.
+
+\exercise{10} The reasoning is not correct because:
+\begin{itemize}
+  \item If he is not to be released, the answer from the guard will be
+    both of other prisoners, and everyones' fate will be known.
+  \item Otherwise, in case the guard only gives one name,
+    our protagonist will sure be released.
+\end{itemize}
+\pagebreak
+
+\section{Discrete Random Variable 1}
+\subsection{Discrete Random Variable and PMF}
+\exercise 1  Consider a fair coin.
+\begin{enumerate}[(a)]
+  \item Toss it twice and let $X$ be the number of heads,
+    $X$ would be a binomial random variable
+    \begin{align*}
+      X\colon \Omega &\to \{0, 1, 2\}\\
+      \omega &\mapsto x
+    \end{align*}
+    whose probability mass function is
+    \[p_X(x) = \binom{2}{x}\cdot 0.5^x\cdot 0.5^{2-x}
+    = \frac{1}{2x!(2-x)!}\]
+
+    Therefore PMF of $X$ for each case is
+    \begin{align*}
+      p_X(0) = p_X(2) &= \frac{1}{2\cdot 0!2!} = \frac{1}{4}\\
+      p_X(1) &= \frac{1}{2\cdot 1!1!} = \frac{1}{2}
+    \end{align*}
+  \item Toss it thrice and let $Y$ be the number of heads,
+    $Y$ would be a binomial random variable
+    \begin{align*}
+      Y\colon \Omega &\to \{0, 1, 2, 3\}\\
+      \omega &\mapsto y
+    \end{align*}
+    whose probability mass function is
+    \[p_Y(y) = \binom{3}{y}\cdot 0.5^y\cdot 0.5^{3-y}
+    = \frac{3}{4y!(3-y)!}\]
+
+    Therefore PMF of $Y$ for each case is
+    \begin{align*}
+      p_Y(0) = p_Y(3) &= \frac{3}{4\cdot 0!3!} = \frac{1}{8}\\
+      p_Y(1) = p_Y(2) &= \frac{3}{4\cdot 1!2!} = \frac{3}{8}
+    \end{align*}
+\end{enumerate}
+
+\exercise 2  Toss a pair of fair siz-sided dice
+and let $X$ be the sum of the points
+\begin{align*}
+  X\colon \Omega &\to [2, 12]\cap\mathbb Z\\
+  \omega &\mapsto x
+\end{align*}
+with $\Omega = S^2 = \{1, 2, 3, 4, 5, 6\}^2 \Longrightarrow n(\Omega) = 36$.
+
+\begin{enumerate}[(a)]
+  \item $X$ is a random variable whose PMF is
+    \begin{align*}
+      p_X(2) &= P\{(1,1)\} = \frac{1}{36}\\
+      p_X(3) &= P\{(1,2), (2,1)\} = \frac{1}{18}\\
+      p_X(4) &= P\{(1,3), (2,2), (3,1)\} = \frac{1}{12}\\
+      p_X(5) &= P\{(1,4), (2,3), (3,2), (4,1)\} = \frac{1}{9}\\
+      p_X(6) &= P\{(1,5), (2,4), (3,3), (4,2), (5,1)\} = \frac{5}{36}\\
+      p_X(7) &= P\{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)\} = \frac{1}{6}\\
+      p_X(8) &= P\{(2,6), (3,5), (4,4), (5,3), (6,2)\} = \frac{5}{36}\\
+      p_X(9) &= P\{(3,6), (4,5), (5,4), (6,3)\} = \frac{1}{9}\\
+      p_X(10) &= P\{(4,6), (5,5), (6,4)\} = \frac{1}{12}\\
+      p_X(11) &= P\{(5,6), (6,5)\} = \frac{1}{18}\\
+      p_X(12) &= P\{(6,6)\} = \frac{1}{36}
+    \end{align*}
+  \item The graph of $p_X(x)$:
+
+    \begin{tikzpicture}
+      \begin{axis}[xlabel={$x$}, ylabel={$p_X(x)$}]
+        \addplot[ycomb, samples at={2,3,...,12}]{1/6-abs(x-7)/36};
+      \end{axis}
+    \end{tikzpicture}
+\end{enumerate}
+\pagebreak
+
+\exercise 3  Denote the event of winning, tying and losing the first game as
+$A_2$, $A_1$ and $A_0$ respectively, we get $P(A_2) = P(A_1) = 0.2$
+and $P(A_0) = 0.6$.  Similarly, let $B_2$, $B_1$ and $B_0$ in that order
+be the event MIT soccer team winning, tying and losing the second game,
+we get $P(B_2) = P(B_1) = 0.35$ and $P(B_0) = 0.3$.
+
+Let $A$ and $B$ be the random variable satisfying
+\begin{align*}
+  A &= \begin{cases}
+    2\text{ if }A_2\\
+    1\text{ if }A_1\\
+    0\text{ if }A_0
+  \end{cases}
+  \Longrightarrow\begin{cases}
+    p_A(2) = p_A(1) = 0.2\\
+    p_A(0) = 0.6
+  \end{cases}\\
+  B &= \begin{cases}
+    2\text{ if }B_2\\
+    1\text{ if }B_1\\
+    0\text{ if }B_0
+  \end{cases}
+  \Longrightarrow\begin{cases}
+    p_B(2) = p_B(1) = 0.35\\
+    p_B(0) = 0.3
+  \end{cases}
+\end{align*}
+then the number of points the team earns over the weekend is $X = A + B$.
+
+Since the outcome of the two games are independent,
+\begin{align*}
+  p_X(0) &= p_A(0)\cdot p_B(0) = 0.18\\
+  p_X(1) &= p_A(0)\cdot p_B(1) + p_A(1)\cdot p_B(0) = 0.27\\
+  p_X(2) &= p_A(0)\cdot p_B(2) + p_A(1)\cdot p_B(1) + p_A(2)\cdot p_B(0)
+          = 0.34\\
+  p_X(3) &= p_A(1)\cdot p_B(2) + p_A(2)\cdot p_B(1) = 0.14\\
+  p_X(4) &= p_A(2)\cdot p_B(2) = 0.07
+\end{align*}
+
+\subsection{Expectation of Random Variables}
+\exercise 4  Given a random variable
+\[X = \begin{cases}
+  -2&\text{ with probability of 1/3}\\
+  3&\text{ with probability of 1/2}\\
+  1&\text{ with probability of 1/6}
+\end{cases}\]
+\begin{align*}
+  \E[X] &= \sum_{x\in\{-2, 1, 3\}}xp_X(x) = 1\\
+  \E[2X+5] &= \sum_{x\in\{-2, 1, 3\}}(2x + 5)p_X(x) = 7\\
+  \E\left[X^2\right] &= \sum_{x\in\{-2, 1, 3\}}x^2 p_X(x) = 6
+\end{align*}
+
+\exercise 5  Consider the genders of the three children, and assume
+that both genders\footnote{You SJWs really need to calm down.
+This is just a mathematical problem.} are equally likely.
+
+Let $X$ be the number of girls, $X$ is a binomial random variable
+whose probability mass function is
+\begin{multline*}
+  p_X(x) = \binom{3}{x}\cdot 0.5^x\cdot 0.5^{3-x} = \frac{3}{4x!(3-x)!}\\
+  \Longrightarrow \E[X] = \sum_{x=0}^3\frac{3x}{4x!(3-x)!} = \frac 3 2
+\end{multline*}
+
+\exercise 6  Consider rolling a fair six-sided die, the sample space is
+$\Omega = \{1, 2, 3, 4, 5, 6\}$.  Let $X$ be a random variable given by
+\begin{multline*}
+  X(\omega) = \begin{cases}
+    -1&\text{ if }\omega \in \{1, 2, 3\}\\
+    2&\text{  if }\omega \in \{4, 5\}\\
+    8&\text{  if }\omega = 6
+  \end{cases}
+  \Longrightarrow\begin{dcases}
+    p_X(-1) = \frac{3}{6} = \frac{1}{2}\\
+    p_X(2) = \frac{2}{6} = \frac{1}{3}\\
+    p_X(8) = \frac{1}{6}
+  \end{dcases}\\
+  \Longrightarrow \E[X] = \frac{-1}{2} + \frac{2}{3} + \frac{4}{3} = \frac{3}{2}
+\end{multline*}
+
+Practically, this means that at the end of the day,
+it is very unlikely that the house will win.
+
+\exercise 7  Let $X$ be the prize in dollars on a randomly chosen
+lottery ticket, its PMF is
+\begin{align*}
+  p_X(100) &= \frac{5}{10\,000} = \frac{1}{2\,000}\\
+  p_X(25) &= \frac{20}{10\,000} = \frac{1}{5\,000}\\
+  p_X(5) &= \frac{200}{10\,000} = \frac{1}{500}\\
+  p_X(0) &= \frac{10\,000-200-20-5}{10\,000} = \frac{391}{400}
+\end{align*}
+
+Thus the expected value for a ticket's value in dollars is
+\[\E[X] = \sum_x x\cdot p_X(x) = \frac{13}{200}\]
+or 6.5 cents.
+
+\exercise 8  Let $X$ be the prize in dollars on a randomly chosen
+raffle ticket, its PMF is
+\begin{align*}
+  & p_X(1998) = p_X(999) = \frac{1}{5000}\\
+  & p_X(498) = \frac{2}{5000} = \frac{1}{2500}\\
+  & p_X(98) = \frac{5}{5000} = \frac{1}{1000}\\
+  & p_X(-2) = \frac{5000-5-2-1-1}{5000} = \frac{4991}{5000}
+\end{align*}
+
+Thus the expected value in dollars to get when buying a ticket is
+\[\E[X] = \sum_x x\cdot p_X(x) = \frac{-11}{10}\]
+or to lose \$1.1.
+
+\subsection{Variance and Standard Deviation}
+\exercise{9} Given the outcome $X$ from rolling a fair six-sided die.
+\begin{align*}
+  \E[X] &= \frac{1+2+3+4+5+6}{6} = \frac{7}{2}\\
+  \Longrightarrow \var(X) &= \E\left[(X - \E[X])^2\right]
+  = \sum_x \frac{(x - \frac{7}{2})^2}{6} = \frac{35}{24}\\
+  \Longrightarrow \sigma_X &= \sqrt{\var(X)} = \sqrt\frac{35}{24}
+\end{align*}
+
+\exercise{10} Based on the result of exercise 2,
+\[E[X] = 7,\qquad\var(X) = \frac{35}{6},\qquad\sigma_X = \sqrt\frac{35}{6}\]
+
+\exercise{11} Given the integral random variable $X$ with PMF
+\[p_X(x) = \begin{dcases}
+  \frac{1}{9} &\text{ if } x \in [-4, 4]\\
+  0 &\text{ otherwise}
+\end{dcases}\]
+
+Let $S = \{-4, -3, -2, -1, 0, 1, 2, 3, 4\}$,
+\begin{multline*}
+  \E[X] = \sum_{x\in\mathbb Z}x\cdot p_X(x)
+  = \sum_{x\in S}\frac{x}{9} + \sum_{x\in\mathbb Z\setminus S}x\cdot 0 = 0\\
+  \Longrightarrow \var(X) = \E\left[X^2\right]
+  = \sum_{x\in S}\frac{x^2}{9} = \frac{20}{3}
+\end{multline*}
+
+\exercise{12} Given the integral random variable $X$ with PMF
+\[p_X(x) = \begin{dcases}
+  \frac{x^2}{a} &\text{ if } x \in [-3, 3]\\
+  0 &\text{ otherwise}
+\end{dcases}\]
+\begin{enumerate}[(a)]
+  \item Let $S = \{-3, -2, -1, 0, 1, 2, 3\}$. Since
+    \begin{multline*}
+      \sum_{x\in\mathbb Z}p_X(x) = 1
+      \iff \sum_{x\in S}\frac{x^2}{a} + \sum_{x\in\mathbb Z\setminus S}0 = 1
+      \iff a = \sum_{x\in S}x^2 = 28\\
+      \Longrightarrow \E[X] = \sum_{x\in S}\frac{x^3}{28} = 0
+    \end{multline*}
+  \item Let $Z = (X - \E[X])^2 = X^2$,
+    the range of $Z$ is $\{z^2\mid z\in\mathbb Z\}$.
+    For all $z > 9$, it is trivial that $p_Z(z) = 0$.  Otherwise,
+    \begin{align*}
+      p_Z(0) &= P(Z = 0) = P(X=0) = p_X(0) = \frac{0^2}{28} = 0\\
+      p_Z(1) &= P(X = \pm 1) = p_X(-1) + p_X(1)
+      = \frac{(-1)^2}{28} + \frac{1^2}{28} = \frac{1}{14}\\
+      p_Z(4) &= P(X = \pm 2) = p_X(-2) + p_X(2)
+      = \frac{(-2)^2}{28} + \frac{2^2}{28} = \frac{2}{7}\\
+      p_Z(9) &= P(X = \pm 3) = p_X(-3) + p_X(3)
+      = \frac{(-3)^2}{28} + \frac{3^2}{28} = \frac{9}{14}
+    \end{align*}
+  \item The variance of $X$ is
+    \[\var(X) = \E\left[(X - \E[X])^2\right]
+    = \E[Z] = 1\cdot\frac{1}{14} + 4\cdot\frac{2}{7} + 9\cdot\frac{9}{14} = 7\]
+\end{enumerate}
+\pagebreak
+
+\section{Discrete Random Variable 2}
+\subsection{Conditional PMF and Expectation}
+\exercise 1  Compute conditional PMF:
+\begin{enumerate}[(a)]
+  \item Let $X$ be the roll if a fair six-sided die and $A$ be the event that
+    the roll is an number greater or equal to 4, we have $A = \{X \ge 4\}$
+    and $P(A) = 0.5$, thus
+    \[p_{X|A}(x) = \frac{P(\{X = x\}\cap\{X \ge 4\})}{P(A)}\]
+
+    For $x \in \{1, 2, 3\}$, $\{X = x\}\cap\{X \ge 4\} = \varnothing$
+    so $p_{X|A}(x) = 0/0.5 = 0$.
+
+    For $x \in \{4, 5, 6\}$, $\{X = x\}\cap\{X \ge 4\} = \{x\}$,
+    \[p_{X|A}(x) = \frac{1/6}{0.5} = \frac{1}{3}\]
+  \item Let $X$ represent number of heads from the three-time toss
+    of a fair coin and $B = \{X \ge 2\}$,
+    $P(B) = \binom{3}{2}0.5^3 + \binom{3}{3}0.5^3 = 0.5$.
+    \begin{multline*}
+      p_{X|B}(x) = \frac{P(\{X = x\}\cap B)}{P(B)}
+      = \frac{P(\{X = x\}\cap\{X \ge 2\})}{0.5}\\
+      \Longrightarrow\begin{dcases}
+        p_{X|B}(0) = p_{X|B}(1) = 0\\
+        p_{X|B}(2) = \frac{\binom{3}{2}0.5^3}{0.5} = \frac{3}{4}\\
+        p_{X|B}(3) = \frac{\binom{3}{3}0.5^3}{0.5} = \frac{1}{4}
+      \end{dcases}
+    \end{multline*}
+  \item Let $X$ be the roll of a pair of fair dice and $C = \{X = 7\}$.
+    As shown in the previous section, $P(C) = 1/6$ and thus
+    \[p_{X|C}(x) = \begin{cases}
+      1\text{ if }x = 7\\
+      0\text{ if }x \neq 7
+    \end{cases}\]
+\end{enumerate}
+
+\exercise 2  Consider the destination of the message and denote the event
+it arrives at Liberty City, Chicago and San Fierro as $B$, $C$ and $F$
+respectively, we have $B\cup C\cup F = \Omega$.  The expected transit time is
+\begin{align*}
+  \E[X] &= P(B)\E[X|B] + P(C)\E[X|C] + P(F)\E[X|F]\\
+  &= 0.5\cdot 0.05 + 0.3\cdot 0.1 + 0.2\cdot 0.3 = 0.115
+\end{align*}
+
+\exercise 3  Let $V$ and $T$ be respectively the speed (in mph) and time
+(in hours) Alyssa get to class.  Denote the event she walk to class as $W$,
+$P(W) = 0.6$,
+\[\begin{cases}
+  \E[V|W] = 5\\
+  \E\left[V|W^\C\right] = 30
+\end{cases}
+\Longrightarrow\begin{dcases}
+  \E[T|W] = \frac{2}{5}\\
+\E\left[T|W^\C\right] = \frac{1}{15}
+\end{dcases}\]
+\begin{enumerate}[(a)]
+  \item The expected value of Alyssa's speed is
+    \[\E[V] = P(W)\E[V|W] + P\left(W^\C\right)\E\left[V|W^\C\right]
+    = 0.6\cdot 5 + (1 - 0.6)30 = 15\]
+  \item The expected value of the time Alyssa she takes to get to class is
+    \[\E[T] = P(W)\E[T|W] + P\left(W^\C\right)\E\left[T|W^\C\right]
+    = 0.6\cdot\frac{2}{5} + (1 - 0.6)\frac{1}{15} = \frac{4}{15}\]
+\end{enumerate}
+
+\exercise 4  With $X$ being the number of tries until the program works
+correctly and $p$ being the probability each try succeed,
+we have $\mathrm{range}(X) = \mathbb N^*$ and $p_X(x) = (1 - p)^{x - 1}p$.
+The mean of $X$ is
+\begin{align*}
+  \E[X] &= \sum_{x\in\mathbb N^*}x\cdot p_X(x)\\
+  &= \sum_{x\in\mathbb N^*}x(1 - p)^{x - 1}p\\
+  &= -p\sum_{x\in\mathbb N^*}\frac{\ud (1 - p)^x}{\ud p}\\
+  &= -p\frac{\ud}{\ud p}\left(\sum_{x\in\mathbb N}(1 - p)^{x} - 1\right)\\
+  &= -p\frac{\ud}{\ud p}\left(\frac{1}{p} - 1\right)\\
+  &= \frac{1}{p}
+\end{align*}
+
+Similarly,
+\begin{align*}
+  \E\left[X^2\right] &= p\sum_{x\in\mathbb N^*}x^2(1 - p)^{x - 1}\\
+  &= -p\frac{\ud}{\ud p}
+  \left(\frac{1 - p}{p}\sum_{x\in\mathbb N^*}x(1 - p)^{x - 1}p\right)\\
+  &= -p\frac{\ud}{\ud p}\left(\frac{1}{p^2} - \frac{1}{p}\right)\\
+  &= \frac{2}{p^2} - \frac{1}{p}
+\end{align*}
+
+Therefore the variance of $X$ is
+\[\var(X) = \E\left[X^2\right] - (\E[X])^2 = \frac{1}{p^2} - \frac{1}{p}\]
+
+\subsection{Joint PMF and independent variables}
+\exercise 5  Consider two independent coin tosses,
+each with a 3/4 probability of a head,
+and let $X$ be the number of heads obtained,
+$X$ is a binomial random variable.
+\[\E[X] = 0p_X(0) + 1p_X(1) + 2p_X(2)
+= \binom{2}{1}\frac{3}{4}\left(1 - \frac{3}{4}\right)
++ 2\binom{2}{2}\left(\frac{3}{4}\right)^2
+= \frac{3}{2}\]
+
+\exercise 6  Let $X$ be the number of red traffic lights Alyssa encounters,
+$X$ is a binomial random variable whose PMF is
+\[p_X(x) = \binom{4}{x}0.5^4\]
+
+The mean of $X$ is
+\[\E[X] = \frac{1}{16}\sum_{x=0}^4 x\binom{4}{x} = 2\]
+
+The variance of $X$ is
+\[\var(X) = \E\left[X^2\right] - (\E[X])^2
+= \frac{1}{16}\sum_{x=0}^4 x^2\binom{4}{x} - 4 = 1\]
+
+\exercise 7  Let $X_i$ be 1 if the $i$th person gets his or her own hat and 0
+otherwise, then for all positive integer $i \le n$
+\[\E[X_i] = p_{X_i}(1) = \frac{(n - 1)!}{n!} = \frac{1}{n}\]
+since if we fix one hat to its owner, there are $(n - 1)!$ arrangements
+for the rest.  Due to the linearity property of expectation,
+\[\E[X] = \E\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n\E[X_i] = 1\]
+
+\exercise 8  Consider four independent rolls of a six-sided die.
+Let $X$ and $Y$ be the number of ones and twos obtained respectively,
+both are binomial random variables:
+\[p_X(k) = p_Y(k)
+= \binom{4}{k}\left(\frac{1}{6}\right)^k\left(\frac{5}{6}\right)^{4 - k}
+= \binom{4}{k}\frac{5^{4 - k}}{1296}\]
+
+Given $Y = y$, $X$ is the number of ones in the remaining $4 - y$ rolls,
+each of which can take the values other than two equally likely:
+\[p_{X|Y}(x|y)
+= \binom{4 - y}{x}\left(\frac{1}{5}\right)^x\left(\frac{4}{5}\right)^{4 - y - x}
+= \binom{4 - y}{k}\frac{4^{4 - y - x}}{625}\]
+
+Thus the joint PMF of $X$ and $Y$ is
+\[p_{X,Y}(x, y) = p_Y(y)p_{X|Y}(x|y)
+= \binom{4}{x}\binom{4 - y}{k}\frac{5^{4 - x}4^{4 - y - x}}{810\,000}\]
+
+\exercise 9  Given the joint PMF of two discrete random variables $X$ and $Y$
+\[p_{X,Y}(x, y) = \begin{cases}
+  c(2x + y) &\text{where }(x, y)\in\{0, 1, 2\}\times\{0, 1, 2, 3\}\\
+  0 &\text{otherwise}
+\end{cases}\]
+\begin{enumerate}[(a)]
+  \item Consider all cases:
+    \begin{align*}
+      \sum_x\sum_y p_{X,Y}(x, y) = 1
+      &\iff \sum_{x=0}^2\sum_{y=0}^3 c(2x + y) = 1\\
+      &\iff \sum_{x=0}^2 c(8x + 6) = 1\\
+      &\iff c(24 + 18) = 1\\
+      &\iff c = \frac{1}{42}
+    \end{align*}
+  \item $P(X = 2, Y = 1) = (2\cdot 2 + 1)/42 = 5/42$.
+  \item Similarly, $P(X \ge 1, Y \le 2) = 4/7$.
+  \item The marginal PMF of $X$:
+    \[p_X(x) = \sum_y p_{X,Y}(x, y)
+    = \sum_{y=0}^3\frac{2x + y}{42} = \frac{4x + 3}{21}\]
+  \item The marginal PMF of $Y$:
+    \[p_Y(y) = \sum_x p_{X,Y}(x, y)
+    = \sum_{x=0}^2\frac{2x + y}{42} = \frac{2 + y}{14}\]
+  \item Since $p_X(2)p_Y(1) \neq p_{X,Y}(2, 1)$,
+    the two variables are dependent.
+  \item Given $X = 2$,
+    \[p_{Y|X}(y|2) = \frac{p_{X,Y}(2, y)}{p_X(2)} = \frac{4 + y}{22}
+    \Longrightarrow p_{Y|X}(1|2) = \frac{5}{22}\]
+  \item Given $Y = 2$,
+    \[p_{X|Y}(x|2) = \frac{p_{X,Y}(x, 2)}{p_Y(2)} = \frac{x + 1}{6}
+    \Longrightarrow p_{X|Y}(3|2) = \frac{2}{3}\]
+\end{enumerate}
+
+\exercise{10} Given the joint PMF of two discrete random variables $X$ and $Y$
+\[p_{X,Y}(x, y) = \begin{cases}
+  cxy &\text{where }(x, y)\in\{1, 2, 3\}\times\{1, 2, 3\}\\
+  0 &\text{otherwise}
+\end{cases}\]
+\begin{enumerate}[(a)]
+  \item Consider all cases:
+    \begin{align*}
+      \sum_x\sum_y p_{X,Y}(x, y) = 1
+      &\iff \sum_{x=1}^3\sum_{y=1}^3 cxy = 1\\
+      &\iff 36c = 1\\
+      &\iff c = \frac{1}{36}
+    \end{align*}
+  \item $P(X = 2, Y = 3) = 1/6$.
+  \item Similarly, $P(1\le X\le 2, Y\le 2) = 1/4$.
+  \item By the result of (e), $P(X\ge 2) = 5/6$,
+    $P(Y < 2) = P(Y = 1) = P(X = 1) = 1/6$ and $P(Y = 3) = 1/2$.
+  \item The marginal PMF of $X$:
+    \[p_X(x) = \sum_y p_{X,Y}(x, y)
+    = \sum_{y=1}^3\frac{xy}{36} = \frac{x}{6}\]
+    The marginal PMF of $Y$:
+    \[p_Y(y) = \sum_x p_{X,Y}(x, y)
+    = \sum_{x=1}^3\frac{xy}{36} = \frac{y}{6}\]
+  \item Since $p_{X,Y}(x, y) = p_X(x)p_Y(y)$, $X$ and $Y$ are independent.
+\end{enumerate}
+\pagebreak
+
+\section{Continuous Random Variable 1}
+\subsection{PDF and CDF}
+\exercise 1  Given a PDF such that
+\[f_X(x) = \begin{cases}
+  cx^2 &\text{if }0 < x < 3\\
+  0 &\text{otherwise}
+\end{cases}\]
+\begin{enumerate}[(a)]
+  \item By the normalization property,
+    \[1 = \int_{-\infty}^{\infty}f_X(x)\ud x = \int_0^3 cx^2\ud x = 9c
+    \Longrightarrow c = \frac{1}{9}\]
+  \item $\displaystyle P(1 < X < 2) = \int_1^2\frac{x^2}{9}\ud x = \frac{7}{27}$
+  \item The CDF of $X$:
+    \[F_X(x) = \begin{dcases}
+      0 &\text{if }x \le 0\\
+      1 &\text{if }x \ge 3\\
+      \int_0^x\frac{t^2}{9}\ud t = \frac{x^3}{27} &\text{otherwise}
+    \end{dcases}\]
+  \item $P(1 < X \le 2) = F_X(2) - F_X(1)
+    = \dfrac{8}{27} - \dfrac{1}{27} = \dfrac{7}{27}$
+\end{enumerate}
+
+\exercise 2  Denote the event that the day is sunny as $A$, $P(A) = 2/3$.
+\begin{align*}
+  f_{X|A}(x) &= \begin{cases}
+    b &\text{if }15 \le x \le 20\\
+    0 &\text{otherwise}
+  \end{cases}
+  \Longrightarrow \int_{15}^{20}b\ud x = 1
+  \iff b = \frac{1}{5}\\
+  f_{X|A^\C}(x) &= \begin{cases}
+    c &\text{if }20 \le x \le 25\\
+    0 &\text{otherwise}
+  \end{cases}
+  \Longrightarrow \int_{20}^{25}c\ud x = 1
+  \iff c = \frac{1}{5}
+\end{align*}
+
+By the total probability theorem,
+\[f_X(x) = P(A)f_{X|A}(x) + P\left(A^\C\right)f_{X|A^\C}(x)
+  = \begin{dcases}
+    \frac{2}{15} &\text{if }15 \le x < 20\\
+    \frac{1}{15} &\text{if }20 \le x < 25\\
+    0 &\text{otherwise}
+  \end{dcases}\]
+\pagebreak
+
+\exercise 3  Given a random variable $X$ with the PDF
+$f_X(x) = \dfrac{c}{x^2 + 1}$.
+\begin{enumerate}[(a)]
+  \item By the normalization property,
+    \[\int_{-\infty}^\infty\frac{c}{x^2 + 1}\ud x = 1
+      \iff \left.c\arctan x\right|_{-\infty}^\infty = 1
+      \iff c\pi = 1 \iff c = \frac{1}{\pi}\]
+  \item The probability that $X^2$ to lie between 1/3 and 1 is
+    \begin{align*}
+      P\left(\frac{1}{3} < X^2 < 1\right)
+      &= P\left(-1 < X < \frac{-1}{\sqrt 3}\right)
+       + P\left(\frac{1}{\sqrt 3} < X < 1\right)\\
+      &= \left.\frac{\arctan x}{\pi}\right|_{-1}^{\frac{-1}{\sqrt 3}}
+       + \left.\frac{\arctan x}{\pi}\right|_{\frac{1}{\sqrt 3}}^{1}
+       = \frac{1}{6}
+    \end{align*}
+  \item The CDF of $X$:
+    \[F_X(x) = \int_{-\infty}^{x}\frac{1}{\pi\left(x^2 + 1\right)}\ud t
+      = \frac{\arctan x}{\pi} + \frac{1}{2}\]
+\end{enumerate}
+
+\exercise 4 Given a random variable $X$ with the CDF
+\[F_X(x) = \begin{cases}
+    1 - \exp(-2x) &\text{if } x \ge 0\\
+    0 &\text{otherwise}
+  \end{cases}\]
+\begin{enumerate}[(a)]
+  \item Let $g$ be the antiderivative of $f_X$, $g$ is a constant function
+    in $(-\infty, 0)$ and for all positive $x$
+    \[g(x) = g(0) + 1 - \exp(-2x)
+      \Longrightarrow f_X(x) = 2\exp(-2x)\]
+  \item The probability that $X > 2$ is
+    \[P(X > 2) = P(\Omega) - P(X \le 2) = 1 - F_X(2) = \frac{1}{e^4}\]
+  \item The probability that $-3 < X \le 4$ is
+    \[P(-3 < X \le 4) = F_X(4) - F_X(-3) = 1 - \frac{1}{e^8}\]
+\end{enumerate}
+
+\exercise 5  Given random variable with the following PDF:
+\[f_X(x) = \begin{dcases}
+  \frac{10}{x^2} &\text{if }x > 10\\
+  0 &\text{otherwise}
+\end{dcases}
+\Longrightarrow F_X(x) = \begin{dcases}
+  1 - \frac{10}{x} &\text{if }x > 10\\
+  0 &\text{otherwise}
+\end{dcases}\tag{b}\]
+
+\[P(X > 20) = P(\Omega) - F_X(20) = 1 - 1 + \frac{10}{20} = \frac{1}{2}\tag{a}\]
+
+Let $Y$ be the number out of six devices that will function for at least
+15 hours, $Y$ is a binomial random variable whose PMF is
+\begin{align*}
+  p_Y(y) &= \binom{6}{y} P^y(X \ge 15) P^{6-y}(X < 15)\\
+  &= \binom{6}{y} \left(1 - F_X(15)\right)^y F_X^{6-y}(15)\\
+  &= \binom{6}{y} \left(\frac{10}{15}\right)^y
+     \left(1 - \frac{10}{15}\right)^{6-y}\\
+  &= \binom{6}{y} \frac{2^y}{3^6}
+\end{align*}
+
+Denote $A$ as the event that at least three out of six devices will function
+for at least 15 hours,
+\[P(A) = \sum_{y=3}^6 p_Y(y) = \frac{656}{729}\tag{c}\]
+
+\subsection{Expectation, Variance and STD\protect\footnote{No, not that STD.}}
+\exercise 6  Given a random variable $X$ with the PDF
+$f_X(x) = \frac{\lambda}{2}\exp(-\lambda|x|)$.
+\begin{align*}
+  \int_{-\infty}^\infty f_X(x)\ud x
+  &= \int_{-\infty}^0 \frac{\lambda}{2}\exp(\lambda x)\ud x
+   + \int_0^\infty \frac{\lambda}{2}\exp(-\lambda x)\ud x\\
+  &= \frac{1}{2}\left(\int_{-\infty}^0\ud\exp(\lambda x)
+   - \int_0^\infty\ud\exp(-\lambda x)\right)\\
+  &= \frac{1 - (-1)}{2} = 1
+\end{align*}
+
+Let $g(x) = x f_X(x)$, the mean of $X$ is
+$\E[X] = \displaystyle\int_{-\infty}^\infty g(x)\ud x$.  Since $g(-x) = -g(x)$
+for all $x$, $\E[X] = 0$.
+
+The variance of $X$ can be calculated as
+$\var(X) = \E\left[X^2\right] - \E^2[X] = \E\left[X^2\right]$
+or $\var(X) = \displaystyle\int_{-\infty}^\infty x^2 f_X(x)\ud x$.
+
+Let $h(x) = x^2 f_X(x)$, we have $h(-x) = h(x)$ for all $x$ and thus
+\begin{align*}
+  \E\left[X^2\right] &= 2\int_{-\infty}^\infty h(x)\ud x\\
+  &= 2\int_0^\infty\frac{\lambda x^2}{2}\exp(-\lambda x)\ud x\\
+  &= 2\int_0^\infty\frac{x^2}{-2}\ud\exp(-\lambda x)\\
+  &= 2\int_0^\infty\exp(-\lambda x)\ud\frac{x^2}{2}
+   - \int_0^\infty\ud x^2\exp(-\lambda x)\\
+  &= 2\int_0^\infty x\exp(-\lambda x)\ud x\\
+  &= \frac{-2}{\lambda}\int_0^\infty x\ud\exp(-\lambda x)\\
+  &= \frac{2}{\lambda}\left(\int_0^\infty\exp(-\lambda x)\ud x
+   - \int_0^\infty\ud x\exp(-\lambda x)\right)\\
+  &= \frac{-2}{\lambda^2}\int_0^\infty\ud\exp(-\lambda x)
+   = \frac{2}{\lambda^2}
+\end{align*}
+
+\exercise 7  Given a random variable $X$ with PDF
+\[f_X(x) = \begin{cases}
+  2\exp(-2 x) &\text{if }x > 0\\
+  0 &\text{otherwise}
+\end{cases}\]
+
+Since $X$ is exponentially distributed with the parameter $\lambda = 2$,
+\[\E[X] = \sigma_X = \frac{1}{\lambda} = \frac{1}{2},\,
+\var(X) = \frac{1}{\lambda^2} = \frac{1}{4}\]
+
+Thus $\E\left[X^2\right] = \var(X) + \E^2[X] = 1/2$.
+
+\exercise 8  Given a random variable $X$ with PDF
+\[f_X(x) = \begin{cases}
+  a + bx^2 &\text{if }0 \le x \le 1\\
+  0 &\text{otherwise}
+\end{cases}\]
+
+By the normalization probability,
+\[\int_0^1\left(a + bx^2\right)\ud x = 1 \iff a + \frac{b}{3} = 1\]
+
+Since $\E[X] = 3/5$,
+$\displaystyle\int_0^1\left(ax + 3x^3\right)\ud x = \frac{3}{5}$
+or $a/2 + b/4 = 0.6$
+and thus $a = 0.6$ and $b = 1.2$.
+
+\exercise 9  The expectation is
+\begin{align*}
+  \E[X] &= \int_0^\infty\frac{x^2}{e^x}\ud x\\
+  &= -\int_0^\infty x^2\ud e^{-x}\\
+  &= \int_0^\infty e^{-x}\ud x^2 - \int_0^\infty\ud\frac{x^2}{e^x}\\
+  &= \int_0^\infty\frac{2x}{e^x}\ud x\\
+  &= -2\int_0^\infty x\ud e^{-x}\\
+  &= 2\int_0^\infty e^{-x}\ud x - 2\int_0^\infty\ud\frac{x}{e^x}\\
+  &= -2\int_0^\infty\ud e^{-x} = 2
+\end{align*}
+
+\exercise{10} The $X$ is exponentially distributed by the PDF
+$f_X(x) = \dfrac{1}{3}\exp\dfrac{-x}{3}$.
+\begin{enumerate}[(a)]
+  \item $\E[X] = \sigma_X = 3$ and $\var(X) = 9$.
+  \item The CDF of $X$ is $F_X(x) = 1 - \exp(-x/3)$ and thus
+    \[P(2 < X \le 4) = F_X(4) - F_X(2) 
+    = \exp\frac{-2}{3} - \exp\frac{-4}{3}\]
+\end{enumerate}
+\pagebreak
+
+\section{Continuous Random Variable 2}
+\exercise 1  Let $X$ be the time to repair the machine,
+\begin{align*}
+  f_X(x) &= \begin{dcases}
+    \frac{1}{2}\exp\frac{-x}{2} &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{dcases}\\
+  \Longrightarrow F_X(x) &= \begin{dcases}
+    1 - \exp\frac{-x}{2} &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{dcases}
+\end{align*}
+\begin{enumerate}[(a)]
+  \item $P(X > 2) = 1 - F_X(2) = \exp\dfrac{-2}{2} = \dfrac{1}{e}$
+  \item Let $A = \{X > 10\}$ and $B = \{X > 8\}$, we have
+    $P(B) = \exp\dfrac{-8}{2} = \dfrac{1}{e^4}$ and
+    $P(A\cap B) = P(A) = \exp\dfrac{-10}{2} = \dfrac{1}{e^5}$.
+    Hence the conditional probability that a repair exceeding eight hours
+    takes at least 10 hours is
+    \[P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{1}{e}\]
+\end{enumerate}
+
+\exercise 2  Denote the event that the day is sunny as $A$, $P(A) = 2/3$.
+\begin{align*}
+  f_{X|A}(x) &= \begin{cases}
+    b &\text{if }15 \le x \le 23\\
+    0 &\text{otherwise}
+  \end{cases}
+  \Longrightarrow \int_{15}^{20}b\ud x = 1
+  \iff b = \frac{1}{8}\\
+  f_{X|A^\C}(x) &= \begin{cases}
+    c &\text{if }20 \le x \le 25\\
+    0 &\text{otherwise}
+  \end{cases}
+  \Longrightarrow \int_{20}^{25}c\ud x = 1
+  \iff c = \frac{1}{5}
+\end{align*}
+
+By the total probability theorem,
+\[f_X(x) = P(A)f_{X|A}(x) + P\left(A^\C\right)f_{X|A^\C}(x)
+  = \begin{dcases}
+    \frac{1}{12} &\text{if }15 \le x < 20\\
+    \frac{3}{20} &\text{if }20 \le x < 23\\
+    \frac{1}{15} &\text{if }23 \le x < 25\\
+    0 &\text{otherwise}
+  \end{dcases}\]
+
+\exercise 3  Let $X$ be the waiting time
+and $A$ be the event that one arrives at the station before 7:15,
+we have $P(A) = 0.25$, $P\left(A^\C\right) = 0.75$.
+
+\begin{align*}
+  f_{X|A}(x) &= \begin{dcases}
+    \frac{1}{5} &\text{if }0 \le x < 5\\
+    0 &\text{otherwise}
+  \end{dcases}\\
+  f_{X|A^\C}(x) &= \begin{dcases}
+    \frac{1}{15} &\text{if }5 \le x \le 15\\
+    0 &\text{otherwise}
+  \end{dcases}
+\end{align*}
+
+By the total probability theorem,
+\[f_X(x) = P(A)f_{X|A}(x) + P\left(A^\C\right)f_{X|A^\C}(x)
+  = \begin{dcases}
+    \frac{1}{10} &\text{if }0 \le x < 5\\
+    \frac{1}{20} &\text{if }5 \le x < 15\\
+    0 &\text{otherwise}
+  \end{dcases}\]
+
+\exercise 4  Let $X$ be a random variable with PDF
+\[f_X(x) = \begin{dcases}
+  \frac{x}{4} &\text{if }1 < x \le 3\\
+  0 &\text{otherwise}
+\end{dcases}\]
+and $A = \{X \ge 2\}$.
+\begin{enumerate}[(a)]
+  \item $X$ has the mean of
+    $\displaystyle\E[X] = \int_1^3\frac{x^2}{4}\ud x = \frac{13}{6}$.
+    The CDF of $X$ is
+    \[F_X(x) = \begin{dcases}
+      0 &\text{if }x \le 1\\
+      \frac{x^2 - 1}{8} &\text{if }1 < x \le 3\\
+      1 &\text{otherwise}
+    \end{dcases}\]
+    thus $P(A) = P(\Omega) - P(X < 2) = 1 - F_X(2) = \dfrac{5}{8}$.
+    \[f_{X|A}(x) = \frac{P(\{X = x\}\cap A)}{P(A)}
+    = \frac{8}{5}P(\{X = x\}\cap A)\]
+    It is trivial that $\{X = x\}\cap A = \varnothing$ if $x < 2$
+    and $P(\{X = x\}\cap A) = f_X(x)$ otherwise, so
+    \[f_{X|A}(x) = \begin{dcases}
+      \frac{2x}{5} &\text{if }2 \le x \le 3\\
+      0 &\text{otherwise}
+    \end{dcases}
+    \Longrightarrow \E[X|A] = \int_2^3\frac{2x^2}{5}\ud x = \frac{38}{15}\]
+  \item Let $Y = X^2$, the $Y$ has the expectation of
+    \[\E[Y] = \E\left[X^2\right] = \int_1^3\frac{x^3}{4}\ud x = 5\]
+
+    The variance of $Y$ is
+    \[\var(Y) = \E\left[Y^2\right] - \E^2[Y] = \E\left[X^4\right] - 5^2
+    = \int_1^3\frac{x^5}{4}\ud x - 25 = \frac{16}{3}\]
+\end{enumerate}
+
+\exercise 5  Let $X$ be Alyssa's waiting time and $A$ be the event there is
+a customer ahead, then $P(A) = P\left(A^\C\right) = 0.5$ and
+\begin{align*}
+  f_{X|A}(x) &= \begin{cases}
+    \lambda\exp(-\lambda x) &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{cases}\\
+  \Longrightarrow F_{X|A}(x) &= \begin{cases}
+    1 - \exp(-\lambda x) &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{cases}\\
+  p_{X|A^\C}(x) &= \begin{cases}
+    1 &\text{if }x = 0\\
+    0 &\text{otherwise}
+  \end{cases}\\
+  \Longrightarrow F_{X|A^\C}(x) &= \begin{cases}
+    1 &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{cases}
+\end{align*}
+
+Therefore
+\begin{align*}
+  F_X(x) &= P(A)F_{X|A}(x) + P\left(A^\C\right)F_{X^\C}(x)\\
+  &= \begin{dcases}
+    1 - 0.5\exp(-\lambda x) &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{dcases}
+\end{align*}
+
+\exercise 6  Given the joint PDF of $X$ and $Y$
+\[f_{X,Y}(x, y) = \begin{cases}
+  cxy &\text{if }0 < x < 4\text{ and }1 < y < 5\\
+  0 &\text{otherwise}
+\end{cases}\]
+\begin{enumerate}[(a)]
+  \item By the normalization probability
+    \[\int_0^4\int_1^5 cxy\ud y\ud x = 1 \iff 96c = 1 \iff c = \frac{1}{96}\]
+  \item $\displaystyle P(1 < X < 2, 2 < Y < 3)
+    = \int_1^2\int_2^3\frac{xy}{96}\ud y\ud x = \frac{5}{128}$
+  \item $\displaystyle P(X \ge 3, Y \le 2)
+    = \int_3^4\int_1^2\frac{xy}{96}\ud y\ud x = \frac{7}{128}$
+  \item The marginal PDF of $X$ is $\displaystyle f_X(x)
+    = \int_1^5\frac{xy}{96}\ud y = \frac{x}{8}$ and that of $Y$ is
+    $\displaystyle f_Y(y) = \int_0^4\frac{xy}{96}\ud x = \frac{y}{12}$.
+  \item The region with nonzero probability where $X + Y < 3$ is
+    $\{(x, y) \in \mathbb R^2 \mid 0 < x < 2, 1 < y < 3 - x\}$, thus
+    \[P(X + Y < 3) = \int_0^2\int_1^{3-x}\frac{xy}{96}\ud y\ud x
+    = \int_0^2\frac{x^3 - 6x^2 + 8x}{192}\ud x = \frac{1}{48}\]
+  \item Let $C_u$ be the line $X + 2Y = u$, then the PDF of $U = X + 2Y$ is
+    \[f_U(u) = P(X + 2Y = u) = \int_{C_u}f_{X,Y}(x, y)\ud s\]
+    where $\ud s$ is the infinitesimal length of $C_u$.
+
+    Let $t$ satisfy $x = u - 2t$ and $y = t$ we get
+    \begin{align*}
+      f_U(u) &= \int_{-\infty}^\infty f_{X,Y}(u - 2t, t)
+      \sqrt{\left(\frac{\ud x}{\ud t}\right)^2
+      + \left(\frac{\ud y}{\ud t}\right)^2}\ud t\\
+      &= \int_{-\infty}^\infty f_{X,Y}(u - 2t, t)\sqrt 5\ud t
+    \end{align*}
+
+    For $u < 2$, with $x \in (0, 4)$,
+    \[0 < u - 2t < 4 \Longrightarrow 2t < u < 2 \iff y = t < 1\]
+    and thus $f_{X,Y}(u - 2t, t) = 0$.  Similarly, the joint PDF of $X$ and $Y$
+    also equals zero when $u > 15$, so $f_U(u) = 0$
+    for $u \in \mathbb R \setminus [2, 14]$.
+
+    For $u \in [2, 6]$,
+    \begin{align*}
+      \begin{cases}
+        0 < x < 4\\
+        1 < y < 5
+      \end{cases}
+      &\iff \begin{cases}
+        0 < u - 2t < 4\\
+        1 < t < 5
+      \end{cases}\\
+      &\iff \frac{u}{2} - 2 \le 1 < t < \frac{u}{2} < 5\\
+      &\iff 1 < t < \frac{u}{2}
+    \end{align*}
+    so $\displaystyle f_U(u) = \frac{\sqrt 5}{96}\int_1^{u/2}(ut - 2t^2)\ud t
+    = \frac{\sqrt 5}{2304}(u^3 - 12u + 16)$.
+
+    For $u \in (6, 10)$,
+    \begin{align*}
+      \begin{cases}
+        0 < x < 4\\
+        1 < y < 5
+      \end{cases}
+      &\iff 1 < \frac{u}{2} - 2 < t < \frac{u}{2} < 5\\
+      &\iff \frac{u}{2} - 2 < t < \frac{u}{2}
+    \end{align*}
+    so $\displaystyle f_U(u) = \frac{\sqrt 5}{96}
+    \int_{u/2-2}^{u/2}(ut - 2t^2)\ud t
+    = \frac{\sqrt 5}{288}(u^2 - 2u)$.
+
+    For $u \in [10, 14]$,
+    \begin{align*}
+      \begin{cases}
+        0 < x < 4\\
+        1 < y < 5
+      \end{cases}
+      &\iff 1 < \frac{u}{2} - 2 < t < 5 \le \frac{u}{2}\\
+      &\iff \frac{u}{2} - 2 < t < 5
+    \end{align*}
+    so $\displaystyle f_U(u) = \frac{\sqrt 5}{96}\int_{u/2-2}^5(ut - 2t^2)\ud t
+    = \frac{\sqrt 5}{2304}(348u - u^3 - 2128)$.
+\end{enumerate}
+
+\exercise 7  Given the joint PDF of $X$ and $Y$
+\[f_{X,Y}(x, y) = \begin{cases}
+  8xy &\text{if }0 \le y \le x \le 1\\
+  0 &\text{otherwise}
+\end{cases}\]
+\begin{enumerate}[(a)]
+  \item The marginal PDFs are
+    \begin{align*}
+      f_X(x) &= \begin{dcases}
+        \int_0^x 8xy\ud y = 4x^3 &\text{if }0 \le x \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}\\
+      f_Y(y) &= \begin{dcases}
+        \int_y^1 8xy\ud x = 4y - 4y^3 &\text{if }0 \le y \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}
+    \end{align*}
+  \item The conditional PDFs are
+    \begin{align*}
+      f_{X|Y}(x|y) = \frac{f_{X,Y}(x, y)}{f_Y(y)} &= \begin{dcases}
+        \frac{2x}{1 - y^2} &\text{if }0 \le y \le x \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}\\
+      f_{Y|X}(y|x) = \frac{f_{X,Y}(x, y)}{f_X(x)} &= \begin{dcases}
+        \frac{2y}{x^2} &\text{if }0 \le y \le x \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}
+    \end{align*}
+  \item The conditional expectations are
+    \begin{align*}
+      \E[X|Y=y] &= \int_{-\infty}^\infty xf_{X|Y}(x|y)\ud x\\
+      &= \begin{dcases}
+        \int_y^1\frac{2x^2}{1-y^2}\ud x = \frac{2x^2 + 2x + 2}{3x + 3}
+        &\text{if }0 \le y \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}\\
+      \E[Y|X=x] &= \int_{-\infty}^\infty yf_{Y|X}(y|x)\ud y\\
+      &= \begin{dcases}
+        \int_0^x\frac{2y^2}{x^2}\ud y = \frac{2x}{3} &\text{if }0 \le x \le 1\\
+        0 &\text{otherwise}
+      \end{dcases}
+    \end{align*}
+  \item It is trivial that given $X = x \in \mathbb R \setminus [0, 1]$,
+    $\var(Y|X=x) = 0$. Otherwise,
+    \begin{align*}
+      \var(Y|X=x) &= \E\left[Y^2|X=x\right] - \E^2[Y|X=x]\\
+      &= \int_0^x\frac{2y^3}{x^2}\ud y - \left(\frac{2x}{3}\right)^2
+      = \frac{x^2}{2} - \frac{4x^2}{9} = \frac{x^2}{16}
+    \end{align*}
+\end{enumerate}
+
+\exercise 8  Given the joint PDF of $X$ and $Y$
+\[f_{X,Y}(x, y) = \begin{cases}
+  \exp(-x-y) &\text{if }x \ge 0\text{ and }y \ge 0\\
+  0 &\text{otherwise}
+\end{cases}\]
+
+The marginal PDFs are
+\begin{align*}
+  f_X(x) &= \begin{dcases}
+    \int_0^\infty\exp(-x-y)\ud y = \exp(-x) &\text{if }x \ge 0\\
+    0 &\text{otherwise}
+  \end{dcases}\\
+  f_Y(y) &= \begin{dcases}
+    \int_0^\infty\exp(-x-y)\ud x = \exp(-y) &\text{if }y \ge 0\\
+    0 &\text{otherwise}
+  \end{dcases}
+\end{align*}
+
+It is noticeable that $X$ and $Y$ are independent,
+thus $f_{X|Y}(x|y) = f_X(x)$ and $f_{Y|X}(y|x) = f_Y(y)$.
+\pagebreak
+
+\section{Continuous Random Variable 3}
+\subsection{PDF and CDF}
+\exercise 1  Given $Z \sim \N(0, 1)$.
+\begin{enumerate}[(a)]
+  \item $P(Z > 1.2) = 1 - \Phi(1.2) = 1 - 0.8849 = 0.1101$
+  \item $P(-2 < Z < 2) = \Phi(2) - \Phi(-2) = 2\Phi(2) - 1
+    = 2\cdot 0.9772 - 1 = 0.9544$
+  \item $P(-1.2 < Z < 1) = \Phi(1) + \Phi(1.2) - 1
+    = 0.8413 + 0.8849 - 1 = 0.7262$
+\end{enumerate}
+
+\exercise 2  Given $X \sim \N(4, 9)$.  Let $Y = \dfrac{X - 4}{3}$,
+$Y$ is a standard normal random variable
+and $F_X(x) = \Phi\left(\dfrac{x - 4}{3}\right)$.
+\begin{enumerate}[(a)]
+  \item $P(X > 6) = 1 - F_X(6) = 1 - \Phi\left(\dfrac{6 - 4}{3}\right)
+    \approx 1 - \Phi(0.67) = 0.2514$
+  \item $P(X > 1) = 1 - F_X(6) = 1 - \Phi\left(\dfrac{1 - 4}{3}\right)
+    = 1 - \Phi(-1) =  \Phi(1) = 0.8413$
+\end{enumerate}
+
+\exercise 3  Let $X$ be the annual snowfall in inches
+and $Y = \dfrac{X - 60}{20}$, we have $Y \sim \N(0, 1)$
+and $F_X(x) = \Phi\left(\dfrac{x - 60}{20}\right)$.
+The probability that snowfall will be at least 80 inches is
+\[P(X \ge 80) = 1 - F_X(80) = 1 - \Phi\left(\frac{80 - 60}{20}\right)
+= 1 - \Phi(1) = 1 - 0.8413 = 0.1587\]
+
+\exercise 4  Let $X$ be the number of customers arriving during an one-hour
+period, $X$ is a Poisson random variable whose PMF is
+\begin{multline*}
+  p_X(x) = \frac{24^x}{e^{24}x!},\qquad x \in \mathbb N\\
+  \Longrightarrow P(X < 15) = \sum_{x=0}^{14}p_X(x)
+  = \sum_{x=0}^{14}\frac{24^x}{e^{24}x!} \approx 0.019825332823463673
+\end{multline*}
+
+\subsection{Covariance and Correlation Coefficient}
+\exercise 5  Given the joint PMF of $X$ and $Y$
+\[p_{X,Y}(x, y) = \begin{cases}
+  c(2x + y) &\text{where }x \in \{0, 1, 2\}\text{ and }y \in \{0, 1, 2, 3\}\\
+  0 &\text{otherwise}
+\end{cases}\]
+
+By the normalization property,
+\[\sum_{x=0}^2\sum_{y=0}^3 c(2x + y) = 1 \iff c = \frac{1}{42}\]
+\begin{enumerate}[(a)]
+  \item The maginal PMFs are
+    \begin{align*}
+      p_X(x) &= \sum_{y=0}^3 p_{X,Y}(x, y) = \begin{dcases}
+        \frac{4x + 3}{21} &\text{if }x \in \{0, 1, 2\}\\
+        0 &\text{otherwise}
+      \end{dcases}\\
+      p_Y(y) &= \sum_{x=0}^2 p_{X,Y}(x, y) = \begin{dcases}
+        \frac{y + 2}{14} &\text{if }y \in \{0, 1, 2, 3\}\\
+        0 &\text{otherwise}
+      \end{dcases}
+    \end{align*}
+
+    Therefore we can compute these expectations:
+    \begin{align*}
+      \E[X] &= \sum_{x=0}^2 x p_X(x)
+      = \sum_{x=0}^2\frac{4x^2 + 3x}{21} = \frac{29}{21}\\
+      \E[Y] &= \sum_{y=0}^3 y p_Y(y)
+      = \sum_{y=0}^3\frac{y^2 + 2y}{14} = \frac{13}{7}\\
+      \E[XY] &= \sum_{x=0}^2\sum_{y=0}^3 xy p_{X,Y}(x,y)
+      = \sum_{x=0}^2\sum_{y=0}^3\frac{2x^2 y + xy^2}{42} = \frac{17}{7}
+    \end{align*}
+  \item The variances of these variables can be calculated as
+    \begin{align*}
+      \var(X) &= \E\left[X^2\right] - \E^2[X] = \frac{230}{21}\\
+      \var(Y) &= \E\left[Y^2\right] - \E^2[Y] = \frac{25}{7}
+    \end{align*}
+    where
+    \begin{align*}
+      \E\left[X^2\right] &= \sum_{x=0}^2 x^2 p_X(x)
+      = \sum_{x=0}^2\frac{4x^3 + 3x^2}{21} = \frac{17}{7}\\
+      \E\left[Y^2\right] &= \sum_{y=0}^3 y^2 p_Y(y)
+      = \sum_{y=0}^3\frac{y^3 + 2y^2}{14} = \frac{32}{7}
+    \end{align*}
+  \item $\cov(X, Y) = \E[XY] - \E[X]\E[Y] = \dfrac{-20}{147}$ so
+    \[\rho(X, Y) = \dfrac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}} \approx -0.027\]
+\end{enumerate}
+
+\exercise 6  Given the joint PDF of $X$ and $Y$ as followed
+\[f_{X,Y}(x, y) = \begin{cases}
+  c(2x + y) &\text{where }(x, y) \in (2, 6) \times (0, 5)\\
+  0 &\text{otherwise}
+\end{cases}\]
+
+By the normalization property,
+\[\int_2^6\int_0^5 c(2x + y)\ud y\ud x = 1 \iff c = \frac{1}{210}\]
+\begin{enumerate}[(a)]
+  \item The maginal PMFs are
+    \begin{align*}
+      f_X(x) &= \int_0^5 f_{X,Y}(x, y)\ud y = \begin{dcases}
+        \frac{4x + 5}{84} &\text{if }2 < x < 6\\
+        0 &\text{otherwise}
+      \end{dcases}\\
+      f_Y(y) &= \int_2^6 f_{X,Y}(x, y)\ud x = \begin{dcases}
+        \frac{2y + 16}{105} &\text{if }0 < y < 5\\
+        0 &\text{otherwise}
+      \end{dcases}
+    \end{align*}
+
+    Therefore we can compute these expectations:
+    \begin{align*}
+      \E[X] &= \int_2^6 x f_X(x)\ud x
+      = \int_1^6\frac{4x^2 + 5x}{84}\ud x = \frac{268}{63}\\
+      \E[Y] &= \int_0^5 y f_Y(y)\ud y
+      = \int_0^5\frac{2y^2 + 16y}{105}\ud y = \frac{170}{63}\\
+      \E[XY] &= \int_2^6\int_0^5 xy f_{X,Y}(x,y)\ud y\ud x
+      = \int_2^6\int_0^5\frac{2x^2 y + xy^2}{210}\ud y\ud x = \frac{80}{7}
+    \end{align*}
+  \item The variances of these variables can be calculated as
+    \begin{align*}
+      \var(X) &= \E\left[X^2\right] - \E^2[X] = \frac{5036}{3969}\\
+      \var(Y) &= \E\left[Y^2\right] - \E^2[Y] = \frac{16225}{7938}
+    \end{align*}
+    where
+    \begin{align*}
+      \E\left[X^2\right] &= \int_2^6 x^2 f_X(x)
+      = \int_2^6\frac{4x^3 + 5x^2}{84} = \frac{1220}{63}\\
+      \E\left[Y^2\right] &= \int_0^5 y^2 f_Y(y)
+      = \int_0^5\frac{2y^3 + 16y^2}{105} = \frac{1175}{126}
+    \end{align*}
+  \item $\cov(X, Y) = \E[XY] - \E[X]\E[Y] = \dfrac{-200}{3969}$ so
+    \[\rho(X, Y) = \dfrac{\cov(X, Y)}{\sqrt{\var(X)\var(Y)}} \approx -0.0313\]
+\end{enumerate}
+
+\subsection{Derived Distribution}
+\exercise 7  With $X$ being uniform on $[0, 1]$, by the normalization property,
+$f_X(x) = 1$ $\Longrightarrow F_X(x) = x$ on this interval.  Given $Y = \sqrt X$,
+\[F_Y(y) = P(Y \le y) = P\left(\sqrt X \le y\right) = F_X\left(y^2\right) = y^2
+\Longrightarrow f_y(y) = \frac{\ud F_Y}{\ud y} = 2y\]
+if $0 < Y < 1$, otherwise $f_Y(y) = 0$.
+
+\exercise 8  Let $X$ be the speed in miles per hour,
+\[f_X(x) = \begin{dcases}
+  \frac{1}{30} &\text{if }30 \le x \le 60\\
+  0 &\text{otherwise}
+\end{dcases}
+\Longrightarrow F_X(x) = \begin{dcases}
+  0 &\text{if }x < 30\\
+  \frac{x}{30} - 1 &\text{if }30 \le x < 60\\
+  1 &\text{otherwise}
+\end{dcases}\]
+then the duration of the trip is $Y = 180/X$.  Where $3 \le Y \le 6$,
+\begin{multline*}
+  F_Y(y) = P\left(\frac{180}{X} \le y\right)
+  = P\left(X \ge \frac{180}{y}\right)
+  = 1 - F_X\left(\frac{180}{y}\right) = 2 - \frac{6}{y}\\
+  \Longrightarrow f_Y(y) = \frac{\ud F_Y}{\ud y} = \frac{6}{y^2}
+\end{multline*}
+
+Otherwise, it is obvious that $f_Y(y) = 0$.
+
+\exercise{9}\footnote{IMHO this is a really poor example to demonstrate
+the usefulness of this method.} Let $A$ be the event that one arrives at
+the station before 7:15, we have $P(A) = 0.25$ and $P\left(A^\C\right) = 0.75$.
+The probability that $X = x$ is 0.05 for all $x \in [0, 20)$
+and is 0 otherwise, thus
+\begin{align*}
+  F_{X|A}(x) &= \begin{dcases}
+    0 &\text{if }x < 0\\
+    \frac{\int_0^x 0.05\ud t}{0.25} = \frac{0.05x}{0.25}
+    &\text{if }0 \le x < 5\\
+    1 &\text{otherwise}
+  \end{dcases}\\
+  F_{X|A^\C}(x) &= \begin{dcases}
+    0 &\text{if }x < 5\\
+    \frac{\int_5^x 0.05\ud t}{0.25} = \frac{0.05x - 0.25}{0.75}
+    &\text{if }5 \le x < 20\\
+    1 &\text{otherwise}
+  \end{dcases}
+\end{align*}
+
+With $Y = 5 - X$ if $A$ and $Y = 20 - X$ otherwise,
+\begin{multline*}
+  \begin{aligned}
+    F_Y(y) &= P(Y \le y)\\
+    &= 1 - P(Y > y)\\
+    &= P(A)P(5 - X > y|A) + P\left(A^\C\right)P\left(20 - X > y|A^\C\right)\\
+    &= 1 - 0.25P(X < 5 - y|A) - 0.75P\left(X < 20 - y|A^\C\right)\\
+    &= 1 - 0.25F_{X|A}(5 - y) - 0.75F_{X|A^\C}(20 - y)\\
+    &= \begin{dcases}
+      0 &\text{if }y < 0\\
+      1 - 0.05(5 - y) - 0.05(20 - y) + 0.25 = 0.1y &\text{if }0 \le y < 5\\
+      1 - 0.05(20 - y) + 0.25 = 0.05y + 0.25 &\text{if }5 \le y < 15\\
+      1 &\text{otherwise}
+    \end{dcases}
+  \end{aligned}\\
+  \Longrightarrow f_Y(y) = \frac{\ud F_Y}{\ud y} = \begin{dcases}
+    0.1 &\text{if }0 \le y < 5\\
+    0.05 &\text{if }5 \le y < 15\\
+    0 &\text{otherwise}
+  \end{dcases}
+\end{multline*}
+\pagebreak
+
+\setcounter{section}{8}
+\section{Limit Theorem}
+\exercise 1  Let $S_{100} = \sum_{i=1}^{100}X_i$, $M_{100} = S_{100}/100$
+is the sample mean.  We have
+\[Z_{100} = \frac{S_{100} - 100\cdot 10}{4\sqrt{100}} = 2.5M_{100} - 25\]
+
+Since 100 is large, we can use the approximation
+$P(Z_{100} \le z) \approx \Phi(z)$:
+\begin{multline*}
+  P(S_{100} \le 900) = P(M_{100} \le 9) = P(2.5M_{100} - 25 \le 22.5 - 25)\\
+  = P(Z_n \le -2.5) \approx \Phi(-2.5) = 1 - \Phi(2.5) = 0.0062
+\end{multline*}
+
+\exercise 2  Let $X$ be the weight of a box in lbs, and denote
+\[Z_{49} = \frac{\sum_{i=1}^{49}X_i - 49\cdot 205}{15\sqrt{49}}
+= \frac{S_{49}}{105} - \frac{287}{3}\]
+
+Since 49 is large, we can use the following approximation
+to compute the probability that all 49 boxes can be
+safely loaded onto the freight elevator and transported
+\[P(S_{49} \le 9800) = P\left(Z_{49} \le \frac{-7}{3}\right)
+\approx 1 - \Phi\left(\frac 7 3\right) = 0.0099\]
+
+\exercise 3  Let $X$ be the number of tickets to be purchased by a student,
+and denote
+\[Z_{100} = \frac{\sum_{i=1}^{100}X_i - 100\cdot 2.4}{2\sqrt{100}}
+= \frac{S_{100}}{20} - 12\]
+
+Since 100 is large, we can use the following approximation
+to compute the probability that all 100 students will be able to purchase
+the tickets they desire from the 250 that is left:
+\[P(S_{100} \le 250) = P(Z_{100} \le 0.5)
+\approx \Phi(0.5) = 0.6915\]
+
+\exercise 4  Let $X$ be the time in minutes to complete one problem,
+and denote
+\[Z_{40} = \frac{\sum_{i=1}^{40}X_i - 40\cdot 5}{2\sqrt{40}}
+= \frac{S_{40} - 200}{4\sqrt{10}}\]
+
+Since 40 is large, we can use the following approximation
+to compute the probability that all 40 problems within 3 hours
+\[P(S_{40} \le 180) = P\left(Z_{49} \le -\sqrt\frac{5}{2}\right)
+\approx 1 - \Phi(1.58) = 0.0571\]
+
+\exercise 5  Let $X$ be the size in MB of an image and denote
+\[Z_{80} = \frac{\sum_{i=1}^{80}X_i - 80\cdot 0.6}{0.4\sqrt{80}}
+= \frac{5S_{40} - 240}{8\sqrt{5}}\]
+
+Since 80 is large, we can use the following formula to approximate
+the probability that the total size is between 47 and 56 MB
+\[P(47 \le S_{80} \le 56)
+= P\left(\frac{\sqrt 5}{-8} \le Z_{49} \le \sqrt 5\right)
+\approx \Phi(2.23) - 1 + \Phi(0.28) = 0.5974\]
+
+\exercise 6  After 11 weeks, the station is supplied
+\[74\,000 + 47\,000 \cdot 11 = 591\,000\text{ (gallons)}\]
+
+Let $X$ be the gasoline consumption in gallons a week and denote
+\[Z_{11} = \frac{\sum_{i=1}^{11}X_i - 11\cdot 50\,000}{10\,000\sqrt{11}}
+= \frac{S_{11} - 550\,000}{10\,000\sqrt{11}}\]
+
+While 11 is not exactly large, for the ease of calculation,
+we still use the approximation $P(Z_{11} \le z) \approx \Phi(z)$.
+
+\begin{enumerate}[(a)]
+  \item The probability that the remain will be below 20\,000 gallons is
+    \begin{multline*}
+      P(591\,000 - S_{11} < 20\,000)
+      = P(S_{11} > 571\,000)
+      = P\left(Z_{11} > \frac{21}{10\sqrt{11}}\right)\\
+      \approx 1 - \Phi(0.63) = 0.2643
+    \end{multline*}
+  \item Let $w$ be the weekly delivery satisfying the probability
+    that below 20\,000 gallons will be remained is 0.5\%, we have
+    \begin{align*}
+      &P(74\,000 + 11w - S_{11} < 20\,000) = 0.005\\
+      \iff &P(S_{11} > 54\,000 + 11w) = 0.005\\
+      \iff &P\left(Z_{11}>\frac{11w-496\,000}{10\,000\sqrt{11}}\right) = 0.005\\
+      \iff &1 - \Phi\left(\frac{11w-496\,000}{10\,000\sqrt{11}}\right) = 0.005\\
+      \iff &\Phi\left(\frac{11w-496\,000}{10\,000\sqrt{11}}\right) = 0.995\\
+      \iff &\frac{11w-496\,000}{10\,000\sqrt{11}} = 2.57\\
+      \iff &w = 52840
+    \end{align*}
+\end{enumerate}
+\end{document}
