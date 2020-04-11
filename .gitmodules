@@ -1,3 +1,7 @@
 [submodule "paip/book"]
 	path = paip/book
 	url = https://github.com/norvig/paip-lisp.git
+
+[submodule "usth/ICT2.8"]
+	path = usth/ICT2.8
+	url = https://github.com/McSinyx/os2020.git
