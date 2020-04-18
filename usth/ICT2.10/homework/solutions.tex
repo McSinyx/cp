@@ -1,0 +1,405 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{circuitikz}
+\usepackage{enumerate}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\newcommand{\N}{\mathcal N}
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\SIR}{\mathrm{SIR}}
+\newcommand{\baud}{\mathrm{Bd}}
+\newcommand{\bit}{\mathrm{b}}
+\newcommand{\chip}{\mathrm{c}}
+\newcommand{\problem}[1]{\noindent\textbf{#1.}}
+
+\title{Mobile Wireless Communication}
+\author{Nguyễn Gia Phong}
+\date{Spring 2020}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+\section{Characteristics of Radio Environment}
+\subsection{Propagation Models}
+\problem 1  Consider radio waves propagating by two-slope model over the
+distance under \SI{200}{\metre} in Orlando.  The average receive power is given by
+\[\bar P_R = g(d) P_T G_T G_R\]
+
+Assume the attenna gains are both 1 and apply the inverse variation of power
+with distance for two-slope model we get
+\begin{align*}
+  &\bar P_R = d^{-n_1}\left(1 + \frac{d}{d_b}\right)^{-n_2} P_T\\
+  \iff &P_T = d^{n_1}\left(1 + \frac{d}{d_b}\right)^{n_2}\bar P_R
+\end{align*}
+
+Substituting $d_b = \SI{90}{\metre}$, $n_1 = 1.3$ and $n_2 = 3.5$ gives us
+\[P_T = d^{1.3}\left(1 + \frac{d}{90}\right)^{3.5}\bar P_R\]
+
+With average power effect experienced, $P_{R,\si{\deci\bel}} = 10\lg P_R
+= 10\lg \bar P_R$ and $P_{T,\si{\deci\bel}} = 10\lg P_T$ and thus
+\begin{align*}
+  &P_{T,\si{\deci\bel}} - P_{R,\si{\deci\bel}}
+  = 13\lg d + 35\lg\frac{d + 90}{90}\\
+  \iff &P_{R,\si{\deci\bel}} - P_{T,\si{\deci\bel}}
+  = 35\lg\frac{90}{d + 90} - 13\lg d
+\end{align*}
+\pagebreak
+
+This is plotted in the figure below
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel={$d$ (\si{\metre})},
+      ylabel={$P_{R,\si{\deci\bel}}-P_{T,\si{\deci\bel}}$ (\si{\deci\bel})}]
+      \addplot[domain=0:200]{35*ln(90/(x+90))/ln(10) - 13*ln(x)/ln(10)};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\problem 2  Consider a log-normal shadow fading propagation, the receive power
+is given by \[P_R = \sqrt[10]{10^X} g(d) P_T G_T G_R\] where $X$ is a zero-mean
+normal random variable with STD $\sigma = \SI{6}{\deci\bel}$.
+\begin{enumerate}[(a)]
+  \item Given $\bar P_R = \SI{1}{\milli\watt}$ at $d = \SI{100}{\metre}$.
+    \[P_R > \bar P_R \iff \sqrt[10]{10^X} > 1 \iff X > 0\]
+    Since $X$ is zero-mean and normally distributed, the probability
+    the received power at a mobile at that distance from the base station
+    will exceed \SI{1}{\milli\watt} is \SI{50}{\percent}, and so is the
+    probability it is less than \SI{1}{\milli\watt}.
+
+  \item Let $Y = X/\sigma$, $Y \sim \N(0, 1)$
+    and $F_X(x) = \Phi(X/\sigma) = \Phi(X/6)$.
+
+    The probability a mobile has an acceptable received signal at
+    \SI{10}{\milli\watt} or higher is
+    \begin{align*}
+      P\left(P_R \ge 10\bar P_R\right)
+      &= P\left(\sqrt[10]{10^X} \ge 10\right) = P(X \ge 10)\\
+      &= 1 - F_X(10) = 1 - \Phi\left(\frac{10}{6}\right) = \SI{4.78}{\percent}
+    \end{align*}
+
+  \item For $\sigma = \SI{10}{\deci\bel}$, $F_X(x) = \Phi(X/10)$.
+    The probability a mobile has an acceptable received signal at
+    \SI{10}{\milli\watt} or higher is
+    \[P\left(P_R \ge 10\bar P_R\right) = 1 - F_X(10)
+    = 1 - \Phi(1) = \SI{15.87}{\percent}\]
+
+  \item If the lower limit for an acceptable received signal is
+    \SI{6}{\milli\watt}, with $\sigma = 6$, the probability a received signal
+    is acceptable is
+    \begin{align*}
+      P\left(P_R \ge 6\bar P_R\right)
+      &= P\left(\sqrt[10]{10^X} \ge 6\right)
+       = P\left(X \ge \lg{6^{10}}\right)\\
+      &= 1 - F_X\left(\lg{6^{10}}\right)
+       = 1 - \Phi\left(\frac{\lg{6^{10}}}{6}\right) = \SI{9.73}{\percent}
+    \end{align*}
+    With $\sigma = 10$, the probability a received signal is acceptable is
+    \[P\left(P_R \ge 6\bar P_R\right) = 1 - F_X\left(\lg{6^{10}}\right)
+      = 1 - \Phi\left(\frac{\lg{6^{10}}}{10}\right) = \SI{21.82}{\percent}\]
+\end{enumerate}
+
+\subsection{Random Channel Characterization}
+Given $x(t) = e^t * (\Pi(t - 1) - \Pi(t - 3))$ and $h(t) = \delta(t - 1)$,
+where $\Pi$ is the rectangular function:
+\[\Pi(t) = \begin{dcases}
+  0, &\text{if }|t| > \frac{1}{2}\\
+  \frac{1}{2}, &\text{if }|t| = \frac{1}{2}\\
+  1, &\text{if }|t| < \frac{1}{2}\\
+\end{dcases}\]
+
+The convolution sum of $x$ and $h$ is
+\begin{align*}
+  y(t) &= x(t - 1)\\
+  &= \int_{-\infty}^\infty e^{t-z-1}(\Pi(z-2) - \Pi(z-4))\ud z\\
+  &= \int_{-\infty}^\infty e^{t-z-1}\Pi(z-2)\ud z
+   - \int_{-\infty}^\infty e^{t-z-1}\Pi(z-4)\ud z\\
+  &= \int_{1.5}^{2.5} e^{t-z-1}\ud z
+   - \int_{3.5}^{4.5} e^{t-z-1}\ud z\\
+  &= e^{t-1}\left(e^{2.5} - e^{1.5} - e^{4.5} + e^{3.5}\right)
+\end{align*}
+
+\subsection{Fading}
+\problem 1  Consider several delay spreeds $D$ of \SI{0.5}{\micro\second},
+\SI{1}{\micro\second} and \SI{6}{\micro\second}.
+
+\begin{itemize}
+  \item For IS-95 and cdma2000 which uses the transmission bandwidth of
+    \SI{1.25}{\mega\hertz}, their symbol interval is \SI{0.8}{\micro\second}.
+    For the multipath rays to be resolvable, the delay spread must be
+    greater than this (\SI{1}{\micro\second} and \SI{6}{\micro\second}).
+  \item For WCDMA which uses the bandwidth of \SI{5}{\mega\hertz},
+    the symbol interval is \SI{0.2}{\micro\second}, thus symbols
+    are resolvable in all cases.
+\end{itemize}
+
+\problem 2  Indicate the condition for flat fading for each of the following
+data rates with transmission in binary form: \SI{8}{kbps}, \SI{40}{kbps},
+\SI{100}{kbps}, \SI{6}{Mbps}.
+
+Assume information is transmitted in rectangular waves, the symbol interval
+are \SI{125}{\micro\second}, \SI{25}{\micro\second}, \SI{10}{\micro\second}
+and \SI{1/6}{\micro\second} respectively.  For flat fading to occur,
+the delay spread must be significantly less than the symbol interval.
+Since no data is provided or found, no conclusion is drawn on which
+radio environments would result in flat fading for each of these data rates.
+
+\section{Cellular Concept}
+\subsection{Channel Allocation}
+\problem 1  Assume the simplest path-loss model of $g(d) = d^{-3}$, calculate
+down-link SIR at point P at the corner of a hexagonal cell in a 3-reuse case.
+
+Using to path-loss model, the signal-to-interference ratio
+can be approximated from the six first-tier interferers as follows
+\[\SIR \approx \frac{1}{\left(\frac{R}{D-R}\right)^3
+                        + \left(\frac{R}{D+R}\right)^3
+                        + 4\left(\frac{R}{D}\right)^3}\]
+
+In a 3-reuse case, $D = \sqrt{3C}R = 3R$, and thus
+\[\SIR \approx \frac{1}{\left(\frac{R}{2R}\right)^3
+                        + \left(\frac{R}{4R}\right)^3
+                        + 4\left(\frac{R}{3R}\right)^3} = \frac{1728}{499}\]
+
+\problem 2  Calculate the worst-case uplink SIR assuming the co-channel
+interference is caused only by the closest interfering mobiles in radio cells
+a distance $D = 3.46R$ away from the cell.  Assume the simplest path-loss model
+of $g(d) = d^{-4}$, the signal-to-interference ratio is approximated by
+\[\SIR \approx \frac{P_t/R^4}{6P_t/\left(\frac{3D}{4}\right)^4}
+= \frac{(3D/4)^4}{6R^4}\]
+
+With $D = 3.46R$ (4-reuse), this becomes
+\[\SIR \approx \frac{(3\cdot3.46/4)^4}{6} = 7.56\]
+
+\subsection{Erlang-B Formula and Sizing a Cell}
+\problem 1  An user who makes a call attempt every 15 minutes, with each call
+lasts an average of 2 minutes, generate the load of 2/15 erlangs.
+
+\problem 2  Consider a mobile system supporting 832 frequency channels
+and 7-reuse, there are over 118 channels per cell.  With the probility of
+call blocking of $P_B \le \SI{1}{\percent}$, the traffic is around 101 erlangs.
+Given the average call-holding time $h = \SI{200}{\second}$, the arrival rate
+can be calculated to be $\lambda = \SI{0.505}{\mathrm{calls}\per\second}$.
+Since an user makes a call every \SI{900}{\second} on average, there are
+approximately 454.5 users.  As the density of mobile terminals is
+\SI{2}{\mathrm{terminals}\per\square{\kilo\metre}}, the area is
+\SI{227.25}{\square{\kilo\metre}}, which indicates a cell radius
+of $R = \SI{9.35}{\kilo\metre}$, assuming a hexagonal topology.
+
+\section{Modulation Techniques}
+\problem 1  Consider communication system operating at the transmission
+bandwidth of \SI{1}{\mega\hertz} with the rolloff factor of 0.25.
+\begin{itemize}
+  \item  Achievable data traffic rate is
+    \[R_s = \frac{B}{1 + \beta} = \frac{10^6}{1 + 0.25}
+    = \SI{800}{\kilo\baud\per\second}\]
+  \item  Delay spread that no ISI occurs is much less than the symbol interval,
+    which is $T = B^{-1} = \SI{1}{\micro\second}$.
+  \item  Using OFDM with $N = 16$ equally spead carriers, for each subcarrier,
+    $\Delta f = \SI{62.5}{\kilo\hertz}$, $R_s = \SI{50}{\kilo\baud\per\second}$
+    and $T = \SI{16}{\micro\second}$.
+  \item  Additionally use 16-QAM, the bit rate is
+    $R_\bit = \SI{800}{\kilo\bit\per\second}$.
+\end{itemize}
+
+\problem 2  Given $B = \SI{1}{\mega\hertz}$, $\beta = 0.25$,
+$R_\bit = \SI{4.8}{\mega\bit\per\second}$ and $T = \SI{25}{\micro\second}$.
+
+$R_s = B/(1+\beta) = \SI{0.8}{\mega\baud\per\second}$, thus 64-QAM is used.
+
+For OFDM, $N = R_s/\Delta f = R_\bit T \approx 128$.
+
+\problem 3  Consider a transmission of bandwidth $B = \SI{2}{\mega\hertz}$,
+where phase-shift keying and Nyquist rolloff shaping is used.
+
+For rolloff factors of 0.2, 0.25, 0.5, the traffic rates are respectively
+\SI{1.67}{\mega\baud\per\second}, \SI{1.6}{\mega\baud\per\second} and
+\SI{1.33}{\mega\baud\per\second}.
+
+In order to transmit at a rate of $R_\bit = \SI{6.4}{\mega\bit\per\second}$
+when $\beta = 0.25$, 16-QAM should be used.
+
+\problem 4  Given the input sequence 1001111010
+and the following QPSK signal pairs
+\begin{center}
+  \begin{tabular}{c c c}
+    \toprule
+    Successive Signal & $a_i$ & $b_i$\\
+    \midrule
+    0 0 & $-1$ & $-1$\\
+    0 1 & $-1$ & $+1$\\
+    1 0 & $+1$ & $-1$\\
+    1 1 & $+1$ & $+1$\\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+Let the carrier frequency be some multiple of 1/T
+
+\begin{tikzpicture}
+  \begin{axis}[scale only axis, width=0.8\textwidth, height=0.16\textwidth,
+               xlabel=In-phase Carrier, xtick={0,1,2,3,4,5},
+               xticklabels={0,T,2T,3T,4T,5T}, ymin=-2, ymax=2, samples=420]
+    \addplot[domain=0:5]{cos(x*720)};
+  \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \begin{axis}[scale only axis, width=0.8\textwidth, height=0.16\textwidth,
+               xlabel=Quadrature-phase Carrier, xtick={0,1,2,3,4,5},
+               xticklabels={0,T,2T,3T,4T,5T}, ymin=-2, ymax=2, samples=420]
+    \addplot[domain=0:5]{sin(x*720)};
+  \end{axis}
+\end{tikzpicture}
+
+The output QPSK signal would then be
+
+\begin{tikzpicture}
+  \begin{axis}[scale only axis, width=0.8\textwidth, height=0.16\textwidth,
+               xlabel=In-phase Component, xtick={0,1,2,3,4,5},
+               xticklabels={0,T,2T,3T,4T,5T}, ymin=-2, ymax=2, samples=69]
+    \addplot[domain=0:1]{+cos(x*720)};
+    \addplot[domain=1:2]{-cos(x*720)};
+    \addplot[domain=2:3]{+cos(x*720)};
+    \addplot[domain=3:4]{+cos(x*720)};
+    \addplot[domain=4:5]{+cos(x*720)};
+  \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \begin{axis}[scale only axis, width=0.8\textwidth, height=0.16\textwidth,
+               xlabel=Quadrature-phase Component, xtick={0,1,2,3,4,5},
+               xticklabels={0,T,2T,3T,4T,5T}, ymin=-2, ymax=2, samples=69]
+    \addplot[domain=0:1]{-sin(x*720)};
+    \addplot[domain=1:2]{+sin(x*720)};
+    \addplot[domain=2:3]{+sin(x*720)};
+    \addplot[domain=3:4]{-sin(x*720)};
+    \addplot[domain=4:5]{-sin(x*720)};
+  \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+  \begin{axis}[scale only axis, width=0.8\textwidth, height=0.16\textwidth,
+               xlabel=Output Signal, xtick={0,1,2,3,4,5},
+               xticklabels={0,T,2T,3T,4T,5T}, ymin=-2, ymax=2, samples=69]
+    \addplot[domain=0:1]{+cos(x*720)-sin(x*720)};
+    \addplot[domain=1:2]{-cos(x*720)+sin(x*720)};
+    \addplot[domain=2:3]{+cos(x*720)+sin(x*720)};
+    \addplot[domain=3:4]{+cos(x*720)-sin(x*720)};
+    \addplot[domain=4:5]{+cos(x*720)-sin(x*720)};
+  \end{axis}
+\end{tikzpicture}
+
+\section{Multiple Access Techniques}
+\subsection{Time-Division Multiple Access}
+Transmission bit rate is the rate at which the bits are transmitted, while
+the user information bit rate is the rate at which per data are transmitted.
+
+In particular, GSM gives each time slot \SI{576.92}{\micro\second},
+minus \SI{30.46}{\micro\second} guard time.  During this duration,
+\SI{148}{\bit} are tramsmitted, thus the transmission bit rate is
+$\SI{148}{\bit}/(\SI{576.92}{\micro\second}-\SI{30.46}{\micro\second})
+= \SI{270.834}{\kilo\bit\per\second}$.  Of the \SI{148}{\bit},
+\SI{114}{\bit} are data bits.  Furthermore, only one slot per GSM eight-slot
+frame and 24 out of 26 frames are used to carry information.  Therefore,
+the user bit rate is $\SI{114}{\bit}/\SI{4.615}{\milli\second}\cdot 24/26
+= \SI{22.8}{\kilo\bit\per\second}$.
+
+Similarly, IS-136 has the transmission bit rate of $\SI{1944}{\bit}
+/ \SI{40}{\milli\second} = \SI{48.6}{\kilo\bit\per\second}$ and $\SI{520}{\bit}
+/ \SI{40}{\milli\second} = \SI{13}{\kilo\bit\per\second}$.
+
+\subsection{Code-Division Multiple Access}
+Consider IS-95 with the bit rate of \SI{9.6}{\kilo\bit\per\second}
+and the chip rate of \SI{1.2288}{\mega\chip\per\second}, the speading gain
+is 128 chips per bit.
+
+\section{Channel Coding Techniques}
+
+\subsection{Block Coding}
+Consider the generator matrix
+\[\mathbf G = [\mathbf I_k \mathbf P] = \begin{pmatrix}
+  1&0&0&0&1&0&1\\
+  0&1&0&0&1&1&1\\
+  0&0&1&0&1&1&0\\
+  0&0&0&1&0&1&1
+\end{pmatrix}\]
+it is trivial that $n = 7$, $k = 4$ and
+\[\mathbf P = \begin{pmatrix}
+  1&0&1\\
+  1&1&1\\
+  1&1&0\\
+  0&1&1
+\end{pmatrix}\]
+
+The parity check matrix is then given by
+\[\mathbf H = [\mathbf P^T \mathbf I_{n-k}] = \begin{pmatrix}
+  1&0&0&1&1&1&0\\
+  0&1&0&0&1&1&1\\
+  0&0&1&1&1&0&1
+\end{pmatrix}\]
+
+\subsection{Convolutional Coding}
+Consider a $K = 3$, rate \textonehalf{} convolution encoder with generators
+$g_1 = [101]$ and $g_2 = [011]$.
+\begin{center}
+  \begin{circuitikz}
+    \draw (0,3) node (input) {input}
+          (1,3) node[inputarrow] (in) {}
+          (2,3) node[circ] (m1) {}
+          (3.5,3) node[twoportshape] (port1) {}
+          (5,3) node[circ] (m2) {}
+          (6.5,3) node[twoportshape] (port2) {}
+          (8,3) node[circ] (m3) {}
+          (input) -- (in) -- (m1) -- (port1) -- (m2) -- (port2) -- (m3)
+
+          (5,5.5) node[xor port, rotate=90] (xor1) {}
+          (9,6) node[flowarrow] (out1) {}
+          (10,6) node{$n_1$}
+          (m1) |- (xor1.in 1)
+          (m3) |- (xor1.in 2)
+          (xor1.out) |- (out1)
+
+          (6.5,0.5) node[xor port, rotate=270] (xor2) {}
+          (9,0) node[flowarrow] (out2) {}
+          (10,0) node{$n_2$}
+          (m3) |- (xor2.in 1)
+          (m2) |- (xor2.in 2)
+          (xor2.out) |- (out2);
+  \end{circuitikz}
+\end{center}
+
+Initialize the encoder with 01, we get the following state diagram
+\begin{center}
+  \begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=42mm]
+    \node[initial,state] (01) {01};
+    \node[state] (00) [above right of=01] {00};
+    \node[state] (11) [below right of=01] {11};
+    \node[state] (10) [below right of=00] {10};
+
+    \path (00) edge [dashed, loop above] node {00} (00)
+               edge node {10} (10)
+          (01) edge [dashed] node {11} (00)
+               edge [bend left] node {01} (10)
+          (10) edge [dashed, bend left] node {01} (01)
+               edge node {11} (11)
+          (11) edge [dashed] node {10} (01)
+               edge [loop below] node {00} (11);
+
+    \node [below of=10] {%
+      \begin{tabular}{c c}
+        \raisebox{2pt}{\tikz{\draw[dashed] (0,0) -- (10mm,0);}} & 0\\
+        \raisebox{2pt}{\tikz{\draw (0,0) -- (10mm,0);}} & 1
+      \end{tabular}};
+  \end{tikzpicture}
+\end{center}
+Given the input bit sequence of 10011011, the output would be
+0101111011100111.
+\end{document}
