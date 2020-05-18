@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{lmodern}
+
+\title{System Cascade Connection}
+\author{{\selectlanguage{vietnamese}Nguyễn Gia Phong}}
+
+\begin{document}
+\selectlanguage{english}\maketitle
+Given two discrete-time systems $A$ and $B$ connected in cascade to form
+a new system $C = x \mapsto B(A(x))$.
+
+\section{Linearity}
+If $A$ and $B$ are linear, i.e. for all signals $x_i$ and scalars $a_i$,
+\begin{align*}
+  A\left(n \mapsto \sum_i a_i x_i[n]\right) &= n \mapsto \sum_i a_i A(x_i)[n]\\
+  B\left(n \mapsto \sum_i a_i x_i[n]\right) &= n \mapsto \sum_i a_i B(x_i)[n]
+\end{align*}
+then $C$ is also linear
+\begin{align*}
+  C\left(n \mapsto \sum_i a_i x_i[n]\right)
+  &= B\left(A\left(n \mapsto \sum_i a_i x_i[n]\right)\right)\\
+  &= B\left(n \mapsto \sum_i a_i A(x_i)[n]\right)\\
+  &= n \mapsto \sum_i a_i B(A(x_i))[n]\\
+  &= n \mapsto \sum_i a_i C(x_i)[n]
+\end{align*}
+
+\section{Time Invariance}
+If $A$ and $B$ are time invariant, i.e. for all signals $x$ and integers $k$,
+\begin{align*}
+  A(n \mapsto x[n - k]) &= n \mapsto A(x)[n - k]\\
+  B(n \mapsto x[n - k]) &= n \mapsto B(x)[n - k]\\
+\end{align*}
+then $C$ is also time invariant
+\begin{align*}
+  C(n \mapsto x[n - k])
+  &= B(A(n \mapsto x[n - k]))\\
+  &= B(n \mapsto A(x)[n - k])\\
+  &= n \mapsto B(A(x))[n - k]\\
+  &= n \mapsto C(x)[n - k]
+\end{align*}
+
+\section{LTI Ordering}
+If $A$ and $B$ are linear and time-invariant, there exists signals $g$ and $h$
+such that for all signals $x$, $A = x \mapsto x * g$ and $B = x \mapsto x * h$,
+thus \[B(A(x)) = B(x * g) = x * g * h = x * h * g = A(x * h) = A(B(x))\]
+or interchanging $A$ and $B$ order does not change $C$.
+
+\section{Causality}
+If $A$ and $B$ are causal, i.e. for all signals $x$, $y$ and integers $k$,
+\begin{multline*}
+  x[n] = y[n]\quad\forall n < k
+  \Longrightarrow\begin{cases}
+    A(x)[n] = A(y)[n]\quad\forall n < k\\
+    B(x)[n] = B(y)[n]\quad\forall n < k
+  \end{cases}\\
+  \Longrightarrow B(A(x))[n] = B(A(y))[n]\quad\forall n < k
+  \iff C(x)[n] = C(y)[n]\quad\forall n < k
+\end{multline*}
+then $C$ is also causal.
+
+\section{BIBO Stability}
+If $A$ and $B$ are stable, i.e. there exists a signal $x$
+and scalars $a$, $b$ that
+\begin{align*}
+  |x[n]| < a\quad\forall n \in \mathbb Z
+  &\Longrightarrow |A(x)[n]| < b\quad\forall n \in \mathbb Z\\
+  |x[n]| < a\quad\forall n \in \mathbb Z
+  &\Longrightarrow |B(x)[n]| < b\quad\forall n \in \mathbb Z
+\end{align*}
+then $C$ is also stable, i.e. there exists a signal $x$
+and scalars $a$, $b$, $c$ that
+\begin{align*}
+  |x[n]| < a\;\forall n \in \mathbb Z
+  &\Longrightarrow |A(x)[n]| < b\;\forall n \in \mathbb Z\\
+  &\Longrightarrow |B(A(x))[n]| < c\;\forall n \in \mathbb Z
+  \iff |C(x)[n]| < c\;\forall n \in \mathbb Z
+\end{align*}
+\end{document}
