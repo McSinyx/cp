@@ -1,0 +1,111 @@
+1
+00:00:00,170 --> 00:00:02,920
+So, let's see how this affects the concept of software
+
+2
+00:00:02,920 --> 00:00:05,620
+quality. Another way to express what we just said is
+
+3
+00:00:05,620 --> 00:00:08,220
+to say that the software runs on some hardware and
+
+4
+00:00:08,220 --> 00:00:11,750
+is developed for a purpose that is related to human
+
+5
+00:00:11,750 --> 00:00:14,870
+activities. And given this perspective, we can define what we
+
+6
+00:00:14,870 --> 00:00:18,440
+mean by software quality in this light. Software quality is
+
+7
+00:00:18,440 --> 00:00:22,290
+not just a function of the software. So, the software
+
+8
+00:00:22,290 --> 00:00:25,610
+itself does not define the quality of the overall system.
+
+9
+00:00:25,610 --> 00:00:28,880
+Rather, software quality is a function of both the
+
+10
+00:00:28,880 --> 00:00:32,259
+software and its purpose. Where purpose has to do with
+
+11
+00:00:32,259 --> 00:00:34,840
+the way in which the software will be used. So
+
+12
+00:00:34,840 --> 00:00:37,950
+a software system can be of low quality not only
+
+13
+00:00:37,950 --> 00:00:40,580
+because it does not work well. So, for example, not
+
+14
+00:00:40,580 --> 00:00:43,620
+only because it crashes. Of course, that's an issue. But
+
+15
+00:00:43,620 --> 00:00:47,000
+just as importantly, a software can also be of low
+
+16
+00:00:47,000 --> 00:00:50,720
+quality because it does not fulfill its purpose, and this
+
+17
+00:00:50,720 --> 00:00:53,960
+happens quite often. It is unfortunately not rare for
+
+18
+00:00:53,960 --> 00:00:57,310
+the software producers to have an inadequate understanding, or even
+
+19
+00:00:57,310 --> 00:01:00,450
+a complete misunderstanding of the purpose of the software,
+
+20
+00:01:00,450 --> 00:01:03,200
+of what the users want to do and will do
+
+21
+00:01:03,200 --> 00:01:05,770
+with it. Turning these around, we can therefore define
+
+22
+00:01:05,770 --> 00:01:09,890
+the quality of software in terms of fitness for purpose.
+
+23
+00:01:09,890 --> 00:01:12,990
+The more the software fulfills its purpose, the more
+
+24
+00:01:12,990 --> 00:01:16,040
+the software is on target, the higher is its quality.
+
+25
+00:01:16,040 --> 00:01:19,600
+And identifying the purpose of the software, so hitting
+
+26
+00:01:19,600 --> 00:01:23,550
+this target, is exactly the goal of requirements engineering.
+
+27
+00:01:23,550 --> 00:01:25,970
+And it is the reason why requirements engineering is
+
+28
+00:01:25,970 --> 00:01:29,370
+such a fundamental activity in the context of software engineering.

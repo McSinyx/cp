@@ -1,0 +1,31 @@
+1
+00:00:00,290 --> 00:00:03,220
+Now let's do another quiz considering a slightly different piece
+
+2
+00:00:03,220 --> 00:00:05,050
+of code. In this case we have five layers of
+
+3
+00:00:05,050 --> 00:00:08,684
+code. We have a variable i, a variable j. Variable
+
+4
+00:00:08,684 --> 00:00:11,620
+j is read from the input. And then based on
+
+5
+00:00:11,620 --> 00:00:14,500
+this predicate, we either print the value of i or
+
+6
+00:00:14,500 --> 00:00:16,850
+simply exit. And what I want to know from you is
+
+7
+00:00:16,850 --> 00:00:19,990
+whether you can create a test suite to achieve statement
+
+8
+00:00:19,990 --> 00:00:22,660
+coverage for this simple piece of code. Yes or no?

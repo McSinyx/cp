@@ -1,0 +1,91 @@
+1
+00:00:00,160 --> 00:00:02,750
+As I just told you, tools are fundamental in
+
+2
+00:00:02,750 --> 00:00:06,050
+software engineering. And I will stress this concept over and
+
+3
+00:00:06,050 --> 00:00:08,240
+over, throughout the class. And today we're going to talk
+
+4
+00:00:08,240 --> 00:00:11,310
+about a tool that is especially important, which is integrated
+
+5
+00:00:11,310 --> 00:00:15,060
+development environments, or IDEs. And you're probably familiar with
+
+6
+00:00:15,060 --> 00:00:18,060
+IDEs. So IDEs are environments that give you support for
+
+7
+00:00:18,060 --> 00:00:21,580
+your development activities. For example, for writing code, editing code,
+
+8
+00:00:21,580 --> 00:00:25,320
+compiling code, and so on. And we will focus specifically
+
+9
+00:00:25,320 --> 00:00:28,890
+on one particular IDE, which is called Eclipse. And
+
+10
+00:00:28,890 --> 00:00:31,450
+what I'm showing here is the two splash screens for
+
+11
+00:00:31,450 --> 00:00:35,350
+two versions of eclipse, Helios and Kepler. Eclipse is an
+
+12
+00:00:35,350 --> 00:00:39,200
+open, extensible development environment that was initially created by IBM
+
+13
+00:00:39,200 --> 00:00:41,510
+and is now managed by the Eclipse Foundation. And of
+
+14
+00:00:41,510 --> 00:00:43,840
+course, there are many other great IDEs such as for
+
+15
+00:00:43,840 --> 00:00:47,310
+example, Microsoft Visual Studio or Netbeans. We will be using
+
+16
+00:00:47,310 --> 00:00:50,830
+Eclipse because it is open and because it is multi-platform,
+
+17
+00:00:50,830 --> 00:00:52,390
+which means that you can use Eclipse
+
+18
+00:00:52,390 --> 00:00:55,140
+no matter what operating system we're using.
+
+19
+00:00:55,140 --> 00:00:59,030
+So if we consider the most commonly used operating system, such as Mac
+
+20
+00:00:59,030 --> 00:01:02,780
+OS, Windows, Linux, Eclipse runs on any
+
+21
+00:01:02,780 --> 00:01:04,769
+of these environments. Therefore, no matter what
+
+22
+00:01:04,769 --> 00:01:06,490
+you're using, you'll be able to install
+
+23
+00:01:06,490 --> 00:01:08,560
+Eclipse, run Eclipse, and follow the class.

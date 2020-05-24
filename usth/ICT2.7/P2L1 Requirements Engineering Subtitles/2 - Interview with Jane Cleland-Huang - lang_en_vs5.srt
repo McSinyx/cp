@@ -1,0 +1,411 @@
+1
+00:00:00,270 --> 00:00:02,800
+As we did for other lessons, before starting this
+
+2
+00:00:02,800 --> 00:00:06,150
+lesson on requirements engineering, I want to ask a world
+
+3
+00:00:06,150 --> 00:00:10,210
+expert on this topic a few questions. I'm here with
+
+4
+00:00:10,210 --> 00:00:14,150
+Jane Cleland-Huang, a professor at the DePaul University. And Jane
+
+5
+00:00:14,150 --> 00:00:16,500
+is a world expert in the area of requirements
+
+6
+00:00:16,500 --> 00:00:19,830
+engineering, which is the theme of this lesson. So I'm
+
+7
+00:00:19,830 --> 00:00:22,220
+talking to Jane who is currently in Chicago and I
+
+8
+00:00:22,220 --> 00:00:25,380
+want to. Ask her a few questions about requirements engineering.
+
+9
+00:00:25,380 --> 00:00:26,530
+So hi Jane how are you?
+
+10
+00:00:26,530 --> 00:00:27,990
+&gt;&gt; Fine. Thank you Alex.
+
+11
+00:00:27,990 --> 00:00:29,480
+&gt;&gt; And thank you so much for agreeing to
+
+12
+00:00:29,480 --> 00:00:31,960
+be interviewed for our course, I'm sure the students
+
+13
+00:00:31,960 --> 00:00:34,080
+will really benefit from this. And let me start
+
+14
+00:00:34,080 --> 00:00:37,240
+with the first question which is what are software requirements?
+
+15
+00:00:37,240 --> 00:00:40,900
+&gt;&gt; That's an interesting question. And software requirements
+
+16
+00:00:40,900 --> 00:00:44,220
+basically provide us a description of what a
+
+17
+00:00:44,220 --> 00:00:47,520
+system has to do. So, typically they describe
+
+18
+00:00:47,520 --> 00:00:50,550
+the functionality of the features. That the system has
+
+19
+00:00:50,550 --> 00:00:54,420
+to deliver in order to satisfy its stakeholders.
+
+20
+00:00:54,420 --> 00:00:59,010
+And we usually talk about the requirement specification
+
+21
+00:00:59,010 --> 00:01:01,050
+in terms of what the system's going to
+
+22
+00:01:01,050 --> 00:01:04,010
+do. And we describe it sometimes formally in
+
+23
+00:01:04,010 --> 00:01:07,300
+terms of set of shall statements, that the
+
+24
+00:01:07,300 --> 00:01:09,110
+system shall do this or shall do that.
+
+25
+00:01:09,110 --> 00:01:12,330
+Or we can use various templates to specify
+
+26
+00:01:12,330 --> 00:01:16,120
+both textural requirements. But requirements can also be represented
+
+27
+00:01:16,120 --> 00:01:20,790
+informally in, in the form of user stories, or use cases, or more
+
+28
+00:01:20,790 --> 00:01:26,180
+formally in the form of state transition diagrams and even in kind of
+
+29
+00:01:26,180 --> 00:01:32,260
+formal specifications. Especially for critical parts of safety critical systems.
+
+30
+00:01:32,260 --> 00:01:34,180
+&gt;&gt; And another should discuss what the
+
+31
+00:01:34,180 --> 00:01:37,230
+requirements are. What is the requirements engineering?
+
+32
+00:01:37,230 --> 00:01:41,180
+&gt;&gt; So, that's also an interesting question because if you notice
+
+33
+00:01:41,180 --> 00:01:45,330
+it's it's engineering and I'm sure in the
+
+34
+00:01:45,330 --> 00:01:47,750
+other parts of the software engineering process that
+
+35
+00:01:47,750 --> 00:01:51,130
+you're discussing in your course. Parts such as
+
+36
+00:01:51,130 --> 00:01:55,200
+testing or coding. They don't have the word engineering
+
+37
+00:01:55,200 --> 00:01:56,930
+there and I think one of the reasons
+
+38
+00:01:56,930 --> 00:02:00,310
+requirements engineering has that term is because it covers
+
+39
+00:02:00,310 --> 00:02:03,570
+a number of different activities. So it includes
+
+40
+00:02:03,570 --> 00:02:07,390
+things such as working with stakeholders to elicit or
+
+41
+00:02:07,390 --> 00:02:10,620
+to proactively discover what their requirements of the
+
+42
+00:02:10,620 --> 00:02:14,440
+system are. Analyzing those requirements so that we
+
+43
+00:02:14,440 --> 00:02:17,380
+understand the tradeoffs. So you might have different
+
+44
+00:02:17,380 --> 00:02:21,170
+stakeholders that care about different things, and it
+
+45
+00:02:21,170 --> 00:02:26,086
+might not be possible to deliver all of those things, so we have to analyze the
+
+46
+00:02:26,086 --> 00:02:29,140
+feasibility of the requirements, explore the tradeoffs, emerge
+
+47
+00:02:29,140 --> 00:02:32,550
+conflicts. And then of course the specification part,
+
+48
+00:02:32,550 --> 00:02:34,930
+which we talked about a little bit already,
+
+49
+00:02:34,930 --> 00:02:37,340
+and the validation, so did we in fact get
+
+50
+00:02:37,340 --> 00:02:40,480
+the requirements right? Did we build a system
+
+51
+00:02:40,480 --> 00:02:43,490
+that actually matches our, our requirements. And then on
+
+52
+00:02:43,490 --> 00:02:46,960
+into the requirements management process. And the requirements
+
+53
+00:02:46,960 --> 00:02:50,860
+management process. Kind of like goes through things like
+
+54
+00:02:50,860 --> 00:02:55,010
+change management. So what if customer or stakeholders
+
+55
+00:02:55,010 --> 00:02:57,630
+need the system to change? How do we manage
+
+56
+00:02:57,630 --> 00:03:00,180
+changing requirements? And I think this is one of
+
+57
+00:03:00,180 --> 00:03:03,230
+the reasons that we've coined the term engineering because
+
+58
+00:03:03,230 --> 00:03:06,490
+that it's, has to be a systematic process which
+
+59
+00:03:06,490 --> 00:03:09,550
+extends across. The whole of this is life cycle.
+
+60
+00:03:09,550 --> 00:03:12,890
+&gt;&gt; And I guess my last question here is
+
+61
+00:03:12,890 --> 00:03:15,100
+so now that we heard about software requirements and
+
+62
+00:03:15,100 --> 00:03:18,790
+about software requirements engineering, why is requirements engineering so
+
+63
+00:03:18,790 --> 00:03:20,770
+important? So what happens if we don't do it right?
+
+64
+00:03:20,770 --> 00:03:22,620
+&gt;&gt; Well, I'm sure that, you know,
+
+65
+00:03:22,620 --> 00:03:24,880
+many people have probably read the kind of
+
+66
+00:03:24,880 --> 00:03:28,560
+report like Spanish report, and other reports of failed
+
+67
+00:03:28,560 --> 00:03:31,900
+project, and things like that, and are aware that
+
+68
+00:03:31,900 --> 00:03:35,280
+one of the major reasons for projects failing
+
+69
+00:03:35,280 --> 00:03:37,360
+is because we didn't get the requirements right
+
+70
+00:03:37,360 --> 00:03:40,110
+in the first place. So if we don't understand
+
+71
+00:03:40,110 --> 00:03:42,970
+the requirements then we're simply going to build the
+
+72
+00:03:42,970 --> 00:03:47,960
+wrong system. Getting requirements right includes all sorts of
+
+73
+00:03:47,960 --> 00:03:52,900
+things such as finding the right group of stakeholders so we don't exclude major
+
+74
+00:03:52,900 --> 00:03:56,940
+groups of stakeholders. Understanding the requirements correctly.
+
+75
+00:03:56,940 --> 00:03:59,910
+There will be many, many different examples of
+
+76
+00:03:59,910 --> 00:04:02,310
+projects that have failed. For example, in
+
+77
+00:04:02,310 --> 00:04:06,500
+America the healthcare.gov failure, and while we cannot
+
+78
+00:04:06,500 --> 00:04:09,540
+put the blame squarely in the area
+
+79
+00:04:09,540 --> 00:04:13,040
+of requirements, because obviously the project was challenged
+
+80
+00:04:13,040 --> 00:04:15,650
+for a number of different reasons. But
+
+81
+00:04:15,650 --> 00:04:21,070
+clearly it underperformed in many respects related to
+
+82
+00:04:21,070 --> 00:04:25,740
+security, performance, and reliability and these are all
+
+83
+00:04:25,740 --> 00:04:28,300
+parts of the requirements process. Things that should
+
+84
+00:04:28,300 --> 00:04:30,000
+have been discovered and the system should have
+
+85
+00:04:30,000 --> 00:04:32,914
+been built in order to meet those requirements,
+
+86
+00:04:32,914 --> 00:04:36,240
+getting the requirements right in the first place.
+
+87
+00:04:36,240 --> 00:04:38,110
+Puts us, a project on the right foot.
+
+88
+00:04:38,110 --> 00:04:41,430
+And so that gives us a much better chance
+
+89
+00:04:41,430 --> 00:04:44,940
+of delivering to the customer what they need. And
+
+90
+00:04:44,940 --> 00:04:49,130
+designing a solution that really meets those requirements. So,
+
+91
+00:04:49,130 --> 00:04:52,800
+it's a critical part of the overall software engineering success.
+
+92
+00:04:52,800 --> 00:04:56,441
+&gt;&gt; Okay. So that's critical. I mean, we better get our requirements right.
+
+93
+00:04:56,441 --> 00:04:56,987
+&gt;&gt; Yeah.
+
+94
+00:04:56,987 --> 00:04:57,733
+&gt;&gt; That's, that's the message.
+
+95
+00:04:57,733 --> 00:04:57,743
+&gt;&gt; Yeah.
+
+96
+00:04:57,743 --> 00:05:00,822
+&gt;&gt; Okay. Well, thank you so much Jane, for taking
+
+97
+00:05:00,822 --> 00:05:03,435
+the time off your busy schedule to speak with us.
+
+98
+00:05:03,435 --> 00:05:07,150
+I'm sure. The students really appreciate this, and we'll talk to you soon.
+
+99
+00:05:07,150 --> 00:05:08,480
+&gt;&gt; Bye Alex, thank you.
+
+100
+00:05:08,480 --> 00:05:10,890
+&gt;&gt; Bye, Jane, bye bye. Jane gave
+
+101
+00:05:10,890 --> 00:05:13,410
+us an interesting perspective on requirements engineering
+
+102
+00:05:13,410 --> 00:05:15,410
+and its importance. Let's now start our
+
+103
+00:05:15,410 --> 00:05:18,050
+lesson with a general definition of requirements engineering.

@@ -1,0 +1,35 @@
+1
+00:00:00,460 --> 00:00:03,770
+Hi. In the last lesson we discussed
+
+2
+00:00:03,770 --> 00:00:08,370
+requirements engineering. This lesson is about object orientation
+
+3
+00:00:08,370 --> 00:00:11,958
+and other related concepts. The lesson is split
+
+4
+00:00:11,958 --> 00:00:14,720
+in two main parts. In the first part,
+
+5
+00:00:14,720 --> 00:00:16,870
+we will provide a quick introduction to
+
+6
+00:00:16,870 --> 00:00:20,890
+object orientation and object oriented analysis and design.
+
+7
+00:00:20,890 --> 00:00:22,750
+In the second part, we will cover the
+
+8
+00:00:22,750 --> 00:00:25,710
+essential of UML, which is the notation that
+
+9
+00:00:25,710 --> 00:00:29,190
+we will use in the rest of the course and also in our projects.

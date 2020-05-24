@@ -1,0 +1,79 @@
+1
+00:00:00,140 --> 00:00:02,220
+What I want to do next, is to look at how
+
+2
+00:00:02,220 --> 00:00:05,780
+version control systems actually work. We saw what they are. We
+
+3
+00:00:05,780 --> 00:00:08,130
+saw why they are useful. But how do they actually work?
+
+4
+00:00:08,130 --> 00:00:11,460
+And we're going to do that by starting from some essential
+
+5
+00:00:11,460 --> 00:00:15,400
+actions that version control systems perform. The first one is the
+
+6
+00:00:15,400 --> 00:00:18,920
+addition of files. So, when you use a version control system,
+
+7
+00:00:18,920 --> 00:00:22,280
+you can add a file to the repository. And at that
+
+8
+00:00:22,280 --> 00:00:25,400
+point the file will be accessible to other people who have access
+
+9
+00:00:25,400 --> 00:00:28,640
+to the repository. And now the fundamental action is commit.
+
+10
+00:00:28,640 --> 00:00:31,230
+When you change a file, a file that is already in
+
+11
+00:00:31,230 --> 00:00:33,610
+the repository, when you make some local changes to a
+
+12
+00:00:33,610 --> 00:00:36,430
+file that is already in the repository, you want then to
+
+13
+00:00:36,430 --> 00:00:39,460
+commit your changes to the central repository, so they can
+
+14
+00:00:39,460 --> 00:00:43,990
+become visible to all of the other users on the repository. Finally,
+
+15
+00:00:43,990 --> 00:00:47,770
+another fundamental action is the action of updating a file. If
+
+16
+00:00:47,770 --> 00:00:50,650
+we have a repository and someone else can modify the files
+
+17
+00:00:50,650 --> 00:00:52,800
+in the repository, I want to be able to get
+
+18
+00:00:52,800 --> 00:00:55,550
+the changes that other people made to the files in the
+
+19
+00:00:55,550 --> 00:00:58,980
+repository. And these are just three of the basic actions, but
+
+20
+00:00:58,980 --> 00:01:01,870
+there are many, many more. And we'll see several of those.

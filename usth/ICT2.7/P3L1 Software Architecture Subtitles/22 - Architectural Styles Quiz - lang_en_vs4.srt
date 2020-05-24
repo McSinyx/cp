@@ -1,0 +1,27 @@
+1
+00:00:00,090 --> 00:00:02,630
+Consider now the following architectural styles
+
+2
+00:00:02,630 --> 00:00:04,356
+that we just saw: pipes and filters,
+
+3
+00:00:04,356 --> 00:00:09,310
+event-driven, publish-subscribe, client-server, peer-to-peer, and rest.
+
+4
+00:00:09,310 --> 00:00:11,150
+I'm showing you here, a list of
+
+5
+00:00:11,150 --> 00:00:15,220
+four different systems, and I would like for you to mark here which
+
+6
+00:00:15,220 --> 00:00:18,750
+architectural style, or styles, characterize Each of
+
+7
+00:00:18,750 --> 00:00:21,510
+these systems. Again, mark all that apply.

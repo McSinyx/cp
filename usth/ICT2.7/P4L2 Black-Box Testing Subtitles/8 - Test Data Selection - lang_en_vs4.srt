@@ -1,0 +1,103 @@
+1
+00:00:00,230 --> 00:00:03,550
+Once we have identified Independently Testable Features, the next step is to
+
+2
+00:00:03,550 --> 00:00:07,720
+identify the Relevant Inputs for each one of these features. And there are
+
+3
+00:00:07,720 --> 00:00:10,420
+many ways to do that. So, what we're going to do, instead of
+
+4
+00:00:10,420 --> 00:00:13,770
+looking at them all, is that we're just going to focus on two different
+
+5
+00:00:13,770 --> 00:00:16,239
+ways of doing it. And they are fairly general ways. So, they
+
+6
+00:00:16,239 --> 00:00:19,910
+are applicable to a number of situations. And in addition, what I will
+
+7
+00:00:19,910 --> 00:00:22,190
+do, I will point you to other sources in which you can
+
+8
+00:00:22,190 --> 00:00:25,530
+look at different ways of doing this in the class notes. The problem
+
+9
+00:00:25,530 --> 00:00:28,390
+of identifying relevant inputs for some Software or some feature
+
+10
+00:00:28,390 --> 00:00:31,930
+of it is called Test Data Selection and can be expressed
+
+11
+00:00:31,930 --> 00:00:35,040
+as followed. Let's consider our software as usual we have
+
+12
+00:00:35,040 --> 00:00:38,190
+our Input Domain, which is the set of inputs for all
+
+13
+00:00:38,190 --> 00:00:40,980
+the software. And again as usual, we have our Output
+
+14
+00:00:40,980 --> 00:00:44,050
+Domain, which is the set of corresponding outlets for these inputs.
+
+15
+00:00:44,050 --> 00:00:47,450
+So the question here is, how can we select a meaningful
+
+16
+00:00:47,450 --> 00:00:50,920
+set of inputs in my domain? And of course corresponding outputs
+
+17
+00:00:50,920 --> 00:00:53,240
+because we know that test cases are an input, plus an
+
+18
+00:00:53,240 --> 00:00:56,900
+expected output. So how can we select interesting inputs for our
+
+19
+00:00:56,900 --> 00:01:00,040
+software? So a set of inputs that, after we run them
+
+20
+00:01:00,040 --> 00:01:02,950
+on the software, if the software behaves correctly, we'll have enough
+
+21
+00:01:02,950 --> 00:01:07,060
+confidence that the software is correctly implemented. So one possible idea
+
+22
+00:01:07,060 --> 00:01:09,830
+is, hey, why don't we just test them all? We just
+
+23
+00:01:09,830 --> 00:01:12,800
+do exhaustive testing. We do all the inputs, nowadays we have
+
+24
+00:01:12,800 --> 00:01:16,290
+powerful machines, we have a lot of computational power in the cloud.
+
+25
+00:01:16,290 --> 00:01:17,890
+Why not just doing it? So to answer that
+
+26
+00:01:17,890 --> 00:01:20,480
+question, what I'm going to do? I'm going to use another quiz.

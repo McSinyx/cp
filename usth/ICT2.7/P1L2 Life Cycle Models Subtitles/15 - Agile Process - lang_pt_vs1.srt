@@ -1,0 +1,123 @@
+1
+00:00:00,150 --> 00:00:02,300
+O próximo tipo de modelos de processo para software que eu
+
+2
+00:00:02,300 --> 00:00:06,300
+gostaria de discutir são os Processos Ágil de Desenvolvimento de Software. E este
+
+3
+00:00:06,300 --> 00:00:08,470
+é um grupo de métodos de desenvolvimento de software que são
+
+4
+00:00:08,470 --> 00:00:12,620
+baseados em desenvolvimento incremental e altamente iterativo. E em particular,
+
+5
+00:00:12,620 --> 00:00:16,000
+eu irei discutir é o Desenvolvimento Orientado a Testes, ou TDD. O
+
+6
+00:00:16,000 --> 00:00:18,490
+espaço na interação de três fases principais. Na
+
+7
+00:00:18,490 --> 00:00:20,970
+primeira delas que iremos marcar em vermelho, nós
+
+8
+00:00:20,970 --> 00:00:25,350
+escrevemos casos de teste que codificam nossos requisitos, e para os quais
+
+9
+00:00:25,350 --> 00:00:29,180
+nós ainda não escrevemos o código. E obviamente, em seguida eles irão falhar.
+
+10
+00:00:29,180 --> 00:00:31,800
+E então nós iremos cair neste tipo de fase vermelha, ou de falha. Desta
+
+11
+00:00:31,800 --> 00:00:34,830
+fase, nós passamos para esta outra fase, a qual ocorre depois de nós
+
+12
+00:00:34,830 --> 00:00:37,970
+escrevermos código suficiente para que os casos de teste aprovem.
+
+13
+00:00:37,970 --> 00:00:40,670
+Nós temos um conjunto de casos de testes em que todos aprovaram.
+
+14
+00:00:40,670 --> 00:00:43,810
+E em segunda, nós podemos considerar isso como a fase verde. Nós
+
+15
+00:00:43,810 --> 00:00:46,930
+temos código suficiente para fazer os casos de teste aprovarem porquê os
+
+16
+00:00:46,930 --> 00:00:50,520
+casos de teste codificam nossos requisitos. Nós escrevemos código suficiente para
+
+17
+00:00:50,520 --> 00:00:53,940
+satisfazer nossos requisitos. Quando nós seguimos com isso ao longo do tempo,
+
+18
+00:00:53,940 --> 00:00:57,080
+o que ocorre é que a estrutura do código deteriora, porquê
+
+19
+00:00:57,080 --> 00:00:59,100
+nós continuamos adicionando partes! E esta é a razão de nós termos o
+
+20
+00:00:59,100 --> 00:01:02,540
+primeiro passo, que é a Refatoração. Neste passo, nós modificamos o
+
+21
+00:01:02,540 --> 00:01:05,724
+código, e nós iremos falar extensamente sobre refatoração. Nós iremos dedicar
+
+22
+00:01:05,724 --> 00:01:08,190
+uma aula para isso. Nós modificamos o código para o tornar mais
+
+23
+00:01:08,190 --> 00:01:12,650
+legível, mais fácil de dar manutenção. Em geral, nós modificamos para aprimorar a
+
+24
+00:01:12,650 --> 00:01:15,560
+concepção do código. E depois desta fase, nós iremos tornar a
+
+25
+00:01:15,560 --> 00:01:17,670
+escrever mais casos de teste para
+
+26
+00:01:17,670 --> 00:01:19,730
+novos requisitos... escrever código que faz com que
+
+27
+00:01:19,730 --> 00:01:24,870
+esses casos de teste aprovem e assim em diante. E então nós iremos continuar a iterar ao entre essas fases. E
+
+28
+00:01:24,870 --> 00:01:26,500
+também, neste caso, nós iremos falar
+
+29
+00:01:26,500 --> 00:01:29,390
+sobre Processos Ágil de Desenvolvimento de Software. E em particular, em
+
+30
+00:01:29,390 --> 00:01:32,250
+Programação Extrema, ou XP e SCRUM
+
+31
+00:01:32,250 --> 00:01:35,349
+mais detalhadamente, no subcurso número quatro.

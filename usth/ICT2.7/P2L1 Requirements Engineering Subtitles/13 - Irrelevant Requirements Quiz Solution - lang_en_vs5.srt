@@ -1,0 +1,63 @@
+1
+00:00:00,200 --> 00:00:02,920
+So let's go through the list. Definitely irrelevant requirements
+
+2
+00:00:02,920 --> 00:00:06,370
+cannot lead to missing functionality in the final product, because
+
+3
+00:00:06,370 --> 00:00:10,730
+irrelevant requirements actually refer to unneeded functionality in the system.
+
+4
+00:00:10,730 --> 00:00:13,030
+So functionality that is put in the requirements, but it
+
+5
+00:00:13,030 --> 00:00:15,120
+is not really needed. So we're not going to mark
+
+6
+00:00:15,120 --> 00:00:19,400
+this one. Indeed, irrelevant requirements can introduce inconsistencies. So they
+
+7
+00:00:19,400 --> 00:00:22,490
+could be irrelevant requirements that not only are not pertinent
+
+8
+00:00:22,490 --> 00:00:25,620
+but they are inconsistent with some of the pertinent requirements.
+
+9
+00:00:25,620 --> 00:00:29,220
+They can also waste project resources, because if we spend time
+
+10
+00:00:29,220 --> 00:00:31,920
+designing and then implementing the parts of the system that we
+
+11
+00:00:31,920 --> 00:00:35,410
+refer to these irrelevant requirements, of course, we are wasting project
+
+12
+00:00:35,410 --> 00:00:38,570
+resources. And I will not mark the last one because there's really
+
+13
+00:00:38,570 --> 00:00:42,220
+no correlation between any irrelevant requirements and bugs in the software
+
+14
+00:00:42,220 --> 00:00:45,350
+system. Of course, by implementing the part of the system that refers
+
+15
+00:00:45,350 --> 00:00:47,960
+to an irrelevant requirement you might introduce a bug. But that's
+
+16
+00:00:47,960 --> 00:00:51,020
+not necessarily the case, and there really no correlation between the two.

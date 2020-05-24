@@ -1,0 +1,579 @@
+1
+00:00:00,220 --> 00:00:04,900
+Okay so let me start underlining these nouns, and I'll start
+
+2
+00:00:04,900 --> 00:00:07,810
+identifying the ones that are relevant, and I'll ask you some
+
+3
+00:00:07,810 --> 00:00:10,550
+questions or you can ask me questions if
+
+4
+00:00:10,550 --> 00:00:14,666
+you see something that doesn't make sense to you. Good enough.
+
+5
+00:00:14,666 --> 00:00:17,650
+>> okay, let's see, patron. It seems to
+
+6
+00:00:17,650 --> 00:00:19,670
+me that patron is definitely an important entity.
+
+7
+00:00:19,670 --> 00:00:20,808
+>> That's, that's what its all about.
+
+8
+00:00:20,808 --> 00:00:23,270
+>> Okay, all right, so actually, the way
+
+9
+00:00:23,270 --> 00:00:25,750
+I'm going to do this, I'm going to take all these relevant
+
+10
+00:00:25,750 --> 00:00:28,610
+entities and I'm going to start putting them into what I call a class
+
+11
+00:00:28,610 --> 00:00:32,450
+diagram. So you don't really need to know what that is exactly, but imagine
+
+12
+00:00:32,450 --> 00:00:37,150
+this being a, a diagram in which I'm drawing, I represent in all development
+
+13
+00:00:37,150 --> 00:00:42,260
+items as rectangles with a given name and, and then later on some attributes.
+
+14
+00:00:42,260 --> 00:00:42,660
+>> Okay.
+
+15
+00:00:42,660 --> 00:00:44,055
+>> Okay, and I'm, I'm just going to put
+
+16
+00:00:44,055 --> 00:00:45,600
+them there. So I'm going to start with patron.
+
+17
+00:00:45,600 --> 00:00:48,420
+I'm going to create one class for the
+
+18
+00:00:48,420 --> 00:00:50,250
+patron. I'm going to give it the name patron.
+
+19
+00:00:51,380 --> 00:00:54,120
+And by the way, assuming that you'd probably figure out, it's important that we
+
+20
+00:00:54,120 --> 00:00:57,430
+represent, we use the right names so that it's clear when we're looking at
+
+21
+00:00:57,430 --> 00:01:00,790
+the class diagram what we're referring to, so I'll just use the, the nouns
+
+22
+00:01:00,790 --> 00:01:06,520
+themselves as names. Okay, library card seems to be also a relevant element.
+
+23
+00:01:06,520 --> 00:01:08,072
+>> Every patron has a library card.
+
+24
+00:01:08,072 --> 00:01:09,530
+>> All right, perfect, so we'll just
+
+25
+00:01:09,530 --> 00:01:12,880
+create a library card here. And let's see.
+
+26
+00:01:12,880 --> 00:01:16,530
+As, as long as they're in the system. And I saw that there's a system
+
+27
+00:01:16,530 --> 00:01:19,000
+here, this concept of system, this concept
+
+28
+00:01:19,000 --> 00:01:22,076
+of library. And based on my experience, normally,
+
+29
+00:01:22,076 --> 00:01:26,574
+those are kind of in an overarching themes. So this is really what we are
+
+30
+00:01:26,574 --> 00:01:28,597
+modeling. So the only
+
+31
+00:01:28,597 --> 00:01:30,297
+thing that will make a difference is
+
+32
+00:01:30,297 --> 00:01:34,120
+if there were more than one library or more than one system. Is that the case?
+
+33
+00:01:34,120 --> 00:01:36,740
+>> We just want one system for our one library
+
+34
+00:01:36,740 --> 00:01:38,770
+>> Okay so, in this case I won't even represent
+
+35
+00:01:38,770 --> 00:01:41,540
+those because basically what I'm representing is the system and
+
+36
+00:01:41,540 --> 00:01:41,990
+the library.
+
+37
+00:01:41,990 --> 00:01:42,740
+>> I understand, I understand.
+
+38
+00:01:42,740 --> 00:01:44,420
+
+39
+00:01:44,420 --> 00:01:48,350
+Okay and then, oh name, address and phone
+
+40
+00:01:48,350 --> 00:01:51,510
+number are interesting because these are important entities,
+
+41
+00:01:51,510 --> 00:01:53,180
+but this seems like, you know, they're not
+
+42
+00:01:53,180 --> 00:01:56,550
+entities in themselves, so they're more attributes
+
+43
+00:01:56,550 --> 00:01:58,070
+of something else. I would imagine that
+
+44
+00:01:58,070 --> 00:02:00,080
+this is the way you identify, or these
+
+45
+00:02:00,080 --> 00:02:01,860
+are elements that are important for the patron?
+
+46
+00:02:01,860 --> 00:02:04,880
+>> That's what we take down when we issue the cards.
+
+47
+00:02:04,880 --> 00:02:06,800
+>> Okay. Perfect. So, I'm going to
+
+48
+00:02:06,800 --> 00:02:09,710
+take those and make those attributes of the patron, which means
+
+49
+00:02:09,710 --> 00:02:12,350
+that I'm going to take the class that I created before, and I'm
+
+50
+00:02:12,350 --> 00:02:16,430
+just going to write them down here so that they're represented and,
+
+51
+00:02:16,430 --> 00:02:19,360
+and we know that these are kind of what characterizes the patron.
+
+52
+00:02:19,360 --> 00:02:20,070
+>> Gotcha.
+
+53
+00:02:20,070 --> 00:02:25,540
+>> Okay? And then, I guess similar consideration for the library
+
+54
+00:02:25,540 --> 00:02:28,750
+card number. So this is to be associated with the library card?
+
+55
+00:02:28,750 --> 00:02:29,902
+>> It's printed right on it.
+
+56
+00:02:29,902 --> 00:02:32,180
+>> All right, so we'll put this as
+
+57
+00:02:32,180 --> 00:02:38,130
+an attribute of the library card, then. And then, in addition, at any particular point
+
+58
+00:02:38,130 --> 00:02:43,630
+in time. Okay, so time seems to be a relevant entity right,
+
+59
+00:02:43,630 --> 00:02:47,880
+because time seems to occur several times in this description. For example, I
+
+60
+00:02:47,880 --> 00:02:53,940
+think you guys keep track of how long a book has been loaned, right?
+
+61
+00:02:53,940 --> 00:02:54,300
+>> Right.
+
+62
+00:02:54,300 --> 00:02:57,270
+>> And there's some time associated also here.
+
+63
+00:02:57,270 --> 00:02:58,380
+>> And a children's age.
+
+64
+00:02:58,380 --> 00:02:59,760
+>> Oh yeah. The children's age here that
+
+65
+00:02:59,760 --> 00:03:02,200
+I didn't see before. Yeah. So, what
+
+66
+00:03:02,200 --> 00:03:03,800
+I'm going to do, I'm going to represent this in
+
+67
+00:03:03,800 --> 00:03:05,520
+a sort of generic way, as a date.
+
+68
+00:03:05,520 --> 00:03:06,520
+>> Okay.
+
+69
+00:03:06,520 --> 00:03:08,380
+>> These are kind of, kind of classes, utility
+
+70
+00:03:08,380 --> 00:03:10,880
+classes we call them, that are normally in every system.
+
+71
+00:03:10,880 --> 00:03:10,970
+>> Okay.
+
+72
+00:03:10,970 --> 00:03:13,060
+>> So I'm just going to put it down here
+
+73
+00:03:13,060 --> 00:03:14,940
+as a utility class that will be used
+
+74
+00:03:14,940 --> 00:03:18,780
+by different elements in the diagram. Okay, so
+
+75
+00:03:18,780 --> 00:03:23,070
+I want to calculate the items. So the items also
+
+76
+00:03:23,070 --> 00:03:25,230
+I mean I for what I know about libraries they
+
+77
+00:03:25,230 --> 00:03:28,490
+seem to be pretty relevant elements, right? So these are all
+
+78
+00:03:28,490 --> 00:03:31,305
+>> This is what we check out, this is what we're for.
+
+79
+00:03:31,305 --> 00:03:34,459
+>> Okay, so then items definitely will become a
+
+80
+00:03:34,459 --> 00:03:37,349
+class, and then we have a due. Oh there's also
+
+81
+00:03:37,349 --> 00:03:39,730
+this concept of fines. I guess that seems to be
+
+82
+00:03:39,730 --> 00:03:42,330
+important. Right? You guys give fines to people who are late.
+
+83
+00:03:42,330 --> 00:03:42,700
+>> Right, right.
+
+84
+00:03:42,700 --> 00:03:49,160
+>> Right, collect fines and so on. So we create a fine class down here and
+
+85
+00:03:49,160 --> 00:03:54,150
+the children. So children are special customers, right? It's
+
+86
+00:03:55,240 --> 00:03:56,890
+their age makes a difference? Is that the way it works?
+
+87
+00:03:56,890 --> 00:03:58,950
+>> Right. They, they can only check out a few books.
+
+88
+00:03:58,950 --> 00:04:01,410
+>> Okay. So I'll create them a special
+
+89
+00:04:01,410 --> 00:04:03,170
+kind of case, a special kind of customer so
+
+90
+00:04:03,170 --> 00:04:06,000
+I just create here a class for children. And
+
+91
+00:04:06,000 --> 00:04:08,682
+I can see that they're categorized by their age.
+
+92
+00:04:08,682 --> 00:04:09,340
+>> Right.
+
+93
+00:04:09,340 --> 00:04:13,160
+>> So I'll just put the age here as an attribute of the child.
+
+94
+00:04:14,220 --> 00:04:15,712
+And, okay, so the next one is
+
+95
+00:04:15,712 --> 00:04:19,653
+restriction. And restriction is kind of tricky because just
+
+96
+00:04:19,653 --> 00:04:22,010
+to be sort of a general concept. I mean,
+
+97
+00:04:22,010 --> 00:04:24,915
+in a sense, all of those are restrictions, right?
+
+98
+00:04:24,915 --> 00:04:28,250
+>> Right, this is just another one of these requirements.
+
+99
+00:04:28,250 --> 00:04:31,180
+>> Oh, okay, so, so we don't need to represent it explicitly, right?
+
+100
+00:04:31,180 --> 00:04:31,430
+>> Right, right.
+
+101
+00:04:31,430 --> 00:04:34,390
+>> It's just telling us how the children, yeah, okay, right; this is
+
+102
+00:04:34,390 --> 00:04:39,151
+just another requirement, so I just won't consider that for now. And oh,
+
+103
+00:04:39,151 --> 00:04:43,444
+I see that these books and audio video materials, I guess these
+
+104
+00:04:43,444 --> 00:04:48,902
+are things that the patrons can check out, right?
+
+105
+00:04:48,902 --> 00:04:50,725
+>> Those are some of the items, right.
+
+106
+00:04:50,725 --> 00:04:53,770
+>> There are two
+
+107
+00:04:53,770 --> 00:04:56,380
+more down here, right? Reference books and magazines?
+
+108
+00:04:56,380 --> 00:04:57,990
+>> But, they can't be checked
+
+109
+00:04:57,990 --> 00:04:59,270
+out, but they're definitely in the library.
+
+110
+00:04:59,270 --> 00:05:01,338
+>> Okay, so then I'm going to represent all of those
+
+111
+00:05:01,338 --> 00:05:04,180
+actually, now. So, I'm going to have books, I'm going to have audio
+
+112
+00:05:04,180 --> 00:05:07,990
+video materials, reference books, and magazines. And
+
+113
+00:05:07,990 --> 00:05:12,150
+I'm just going to have those as classes. Then,
+
+114
+00:05:12,150 --> 00:05:14,060
+okay here we have week, and we
+
+115
+00:05:14,060 --> 00:05:16,630
+already represented this general concept of time, so
+
+116
+00:05:16,630 --> 00:05:23,270
+week will be represented by the date class as well. And oh, I see best sellers.
+
+117
+00:05:23,270 --> 00:05:27,520
+So best sellers are also, I guess, items that can be checked out, right?
+
+118
+00:05:27,520 --> 00:05:28,150
+>> Right.
+
+119
+00:05:28,150 --> 00:05:29,330
+>> Okay, so I'll
+
+120
+00:05:29,330 --> 00:05:32,900
+just represent those as a class as well and an additional item that
+
+121
+00:05:32,900 --> 00:05:38,480
+is relevant for the library. And the limit, this is also a time limit, right?
+
+122
+00:05:38,480 --> 00:05:39,150
+>> Right.
+
+123
+00:05:39,150 --> 00:05:41,500
+>> So it can also be represented with a, with a class.
+
+124
+00:05:43,860 --> 00:05:47,380
+Oh, here we have cents, and for cents, same consideration that made
+
+125
+00:05:47,380 --> 00:05:50,430
+for time. This is kind of the money, is a general concept
+
+126
+00:05:50,430 --> 00:05:54,240
+that in all currency, many, in many IT systems. So, I'm, I'm
+
+127
+00:05:54,240 --> 00:05:57,430
+going to just have a money class here, which is another utility class.
+
+128
+00:05:57,430 --> 00:05:57,740
+>> Okay
+
+129
+00:05:57,740 --> 00:06:04,000
+>> Okay, and, oh, here I have value, so value is a property.
+
+130
+00:06:04,000 --> 00:06:09,320
+Let me look again at the requirement. Oh, it's the value of the item. So value
+
+131
+00:06:09,320 --> 00:06:11,450
+I'm going to put in the item as an attribute. Okay?
+
+132
+00:06:11,450 --> 00:06:13,120
+>> Okay. That's how much it cost us.
+
+133
+00:06:13,120 --> 00:06:14,090
+>> Okay. Perfect.
+
+134
+00:06:14,090 --> 00:06:18,400
+>> Seems like we got them all. Right? Anything I forgot?
+
+135
+00:06:18,400 --> 00:06:19,640
+>> That looks like it.
+
+136
+00:06:19,640 --> 00:06:22,580
+>> Okay, so this one, what I'd like to do. We have a kind of
+
+137
+00:06:22,580 --> 00:06:26,890
+a first take, first cut at the class diagram. I'd like to kind of
+
+138
+00:06:26,890 --> 00:06:31,480
+move to that and go through the different classes with you. And I'll ask
+
+139
+00:06:31,480 --> 00:06:33,440
+you some questions again. And you can
+
+140
+00:06:33,440 --> 00:06:34,510
+tell me whether there is something that
+
+141
+00:06:34,510 --> 00:06:36,894
+jumps at you that's not right. And
+
+142
+00:06:36,894 --> 00:06:38,930
+then we're going to try to refine that.
+
+143
+00:06:38,930 --> 00:06:39,180
+>> Okay
+
+144
+00:06:39,180 --> 00:06:39,510
+>> Okay.
+
+145
+00:06:39,510 --> 00:06:39,800
+>> Sounds good.
+

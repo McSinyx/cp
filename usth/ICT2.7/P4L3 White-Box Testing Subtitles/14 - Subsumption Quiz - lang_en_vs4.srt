@@ -1,0 +1,31 @@
+1
+00:00:00,080 --> 00:00:02,220
+So now that we introduced an additional criterion,
+
+2
+00:00:02,220 --> 00:00:04,290
+let's have a quiz to see whether everybody
+
+3
+00:00:04,290 --> 00:00:06,410
+understood the concept of subsumption. We know that
+
+4
+00:00:06,410 --> 00:00:09,490
+branch coverage subsumes statement coverage, but what about condition
+
+5
+00:00:09,490 --> 00:00:12,230
+coverage? Does it subsume branch coverage? Is it
+
+6
+00:00:12,230 --> 00:00:13,720
+the case that all of the test which
+
+7
+00:00:13,720 --> 00:00:16,980
+satisfy condition coverage will also satisfy branch coverage?
+
+8
+00:00:16,980 --> 00:00:19,160
+Think about it, and answer either yes or no.

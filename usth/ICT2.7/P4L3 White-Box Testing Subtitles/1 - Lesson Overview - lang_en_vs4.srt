@@ -1,0 +1,47 @@
+1
+00:00:00,110 --> 00:00:02,570
+In the previous lesson we discussed black box
+
+2
+00:00:02,570 --> 00:00:05,120
+testing, which is the testing performed based on a
+
+3
+00:00:05,120 --> 00:00:08,760
+description of the software, but without considering any of
+
+4
+00:00:08,760 --> 00:00:12,440
+software's internal details. In this lesson, we will discuss
+
+5
+00:00:12,440 --> 00:00:15,490
+the counterpart of black box testing, which is called
+
+6
+00:00:15,490 --> 00:00:20,590
+unsurprisingly white box testing or structural testing. And just
+
+7
+00:00:20,590 --> 00:00:22,780
+like we did for black box testing, we will
+
+8
+00:00:22,780 --> 00:00:25,740
+cover the main characteristics of white box testing and
+
+9
+00:00:25,740 --> 00:00:30,620
+this casts the most commonly used white box testing techniques. We
+
+10
+00:00:30,620 --> 00:00:33,650
+will conclude the lesson with the discussion of the main strengths and
+
+11
+00:00:33,650 --> 00:00:37,540
+limitations of white box testing. So that you will know, when to
+
+12
+00:00:37,540 --> 00:00:40,950
+use it? How to use it? And what to expect from it?

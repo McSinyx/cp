@@ -1,0 +1,19 @@
+1
+00:00:00,160 --> 00:00:03,095
+Na verdade é muito simples. 
+Só tens que ir a
+
+2
+00:00:03,095 --> 00:00:08,720
+github.com/join e criar uma conta grátis
+no GitHub. Se já tiveres uma conta GitHub,
+
+3
+00:00:08,720 --> 00:00:11,870
+podes entrar com a tua conta.
+Se quiseres
+
+4
+00:00:11,870 --> 00:00:14,550
+criar uma diferente para o curso,
+podes criar uma segunda sem problemas.

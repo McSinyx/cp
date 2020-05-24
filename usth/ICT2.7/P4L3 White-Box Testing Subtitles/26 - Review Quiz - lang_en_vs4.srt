@@ -1,0 +1,15 @@
+1
+00:00:00,108 --> 00:00:03,890
+But now want to ask a different question which is, does this test reveal
+
+2
+00:00:03,890 --> 00:00:07,760
+the fault at line three? Clearly, here there is a possible problem, because
+
+3
+00:00:07,760 --> 00:00:10,440
+if we pass the right input, we can have a division by zero.
+
+4
+00:00:10,440 --> 00:00:13,760
+Is that revealed if we run this test within the code? Yes or no?

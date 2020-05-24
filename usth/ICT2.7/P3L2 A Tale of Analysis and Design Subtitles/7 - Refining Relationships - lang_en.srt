@@ -1,0 +1,188 @@
+1
+00:00:00,350 --> 00:00:03,460
+Spencer, I gotta tell you, I'm impressed.
+
+2
+00:00:03,460 --> 00:00:05,441
+You're getting very good at this. So, why
+
+3
+00:00:05,441 --> 00:00:07,190
+don't you go wild and continue, there
+
+4
+00:00:07,190 --> 00:00:09,240
+anything else you think we can improve here?
+
+5
+00:00:09,240 --> 00:00:11,800
+>> Well something was bothering
+
+6
+00:00:11,800 --> 00:00:14,600
+me, that what happens if there's more
+
+7
+00:00:14,600 --> 00:00:19,110
+than one book with the same title and somebody puts in a request?
+
+8
+00:00:19,110 --> 00:00:25,360
+>> Oh, I see. That's a good point. So basically what you are telling me is
+
+9
+00:00:25,360 --> 00:00:28,630
+there's kind of a difference between an item and
+
+10
+00:00:28,630 --> 00:00:30,660
+the title, so the title is kind of a more
+
+11
+00:00:30,660 --> 00:00:32,940
+general concept, in a sense. So if you can
+
+12
+00:00:32,940 --> 00:00:35,830
+have multiple copies of a given title, is that right?
+
+13
+00:00:35,830 --> 00:00:38,460
+>> Yeah, we have five copies of Tom Sawyer, and the
+
+14
+00:00:38,460 --> 00:00:42,810
+persons, the patrons, really putting in a request for any Tom Sawyer.
+
+15
+00:00:42,810 --> 00:00:45,332
+>> They don't want like copy number three of Tom Sawyer, right? They want,
+
+16
+00:00:45,332 --> 00:00:50,530
+they want to read Tom Sawyer. Okay and I can represent that. So, in which
+
+17
+00:00:50,530 --> 00:00:55,230
+I suggest we do that, and you can tell me whether it makes sense to you is by
+
+18
+00:00:55,230 --> 00:00:59,650
+introducing an additional class, which I call Title. And
+
+19
+00:00:59,650 --> 00:01:02,614
+that represents exactly the concept that you're mentioning. So
+
+20
+00:01:02,614 --> 00:01:04,666
+this is a title which represents some
+
+21
+00:01:04,666 --> 00:01:09,180
+specific content. That is not related to a specific
+
+22
+00:01:09,180 --> 00:01:12,110
+physical element. Like it can be rated to multiple,
+
+23
+00:01:12,110 --> 00:01:15,520
+physical elements. So basically I'm going to create this title.
+
+24
+00:01:15,520 --> 00:01:18,100
+And then I'm going to create a relationship between
+
+25
+00:01:18,100 --> 00:01:20,500
+the title and the item. And what
+
+26
+00:01:20,500 --> 00:01:22,530
+the relationship is telling me, the the association
+
+27
+00:01:22,530 --> 00:01:25,512
+between these two in this case. Is an association,
+
+28
+00:01:25,512 --> 00:01:30,320
+that we call aggregation. So it's a special kind of association, that basically
+
+29
+00:01:30,320 --> 00:01:35,450
+indicates that an item of this type, so a title can
+
+30
+00:01:35,450 --> 00:01:40,692
+consist of a multiple elements of this type of multiple items.
+
+31
+00:01:40,692 --> 00:01:42,710
+So it's telling me that one title can
+
+32
+00:01:42,710 --> 00:01:45,700
+consist of multiple items, and I'm going to indicate
+
+33
+00:01:45,700 --> 00:01:48,560
+it with this annotation, which is a this
+
+34
+00:01:49,700 --> 00:01:53,200
+diamond at the top of the association.
+
+35
+00:01:53,200 --> 00:01:55,570
+>> And so we can move our request
+
+36
+00:01:55,570 --> 00:01:57,510
+line, up from loanable item to
+
+37
+00:01:57,510 --> 00:01:59,010
+title, because that's what they're really requesting.
+
+38
+00:01:59,010 --> 00:02:00,710
+>> Definitely, definitely, and in fact,
+
+39
+00:02:00,710 --> 00:02:02,420
+you know, that represents exactly the situation
+
+40
+00:02:02,420 --> 00:02:06,350
+that you are mentioning, at this point when the patron makes a request.
+
+41
+00:02:06,350 --> 00:02:12,240
+It makes a request to a title and not to a loanable item. And then, and
+
+42
+00:02:12,240 --> 00:02:15,420
+when the actual loan will take place,
+
+43
+00:02:15,420 --> 00:02:18,420
+then that will be connected to a specific item.
+
+44
+00:02:18,420 --> 00:02:20,090
+>> Right. Okay that makes sense.
+
+45
+00:02:20,090 --> 00:02:20,388
+>> Makes sense?
+
+46
+00:02:20,388 --> 00:02:20,779
+>> Yeah.
+
+47
+00:02:20,779 --> 00:02:21,214
+>> Okay, good.
+

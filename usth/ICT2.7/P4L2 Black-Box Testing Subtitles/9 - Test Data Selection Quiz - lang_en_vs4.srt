@@ -1,0 +1,31 @@
+1
+00:00:00,200 --> 00:00:02,180
+So I'm going to ask you something. Which is if
+
+2
+00:00:02,180 --> 00:00:04,750
+we consider again our function print sum, the one
+
+3
+00:00:04,750 --> 00:00:06,760
+that takes two integers and prints the sum. How
+
+4
+00:00:06,760 --> 00:00:09,300
+long would it take to exhaustively test this function? And
+
+5
+00:00:09,300 --> 00:00:10,950
+this is a very simple one. There's just two
+
+6
+00:00:10,950 --> 00:00:13,240
+inputs, right? So we can just enumerate them all.
+
+7
+00:00:13,240 --> 00:00:15,950
+And put them throw them at the computer form,
+
+8
+00:00:15,950 --> 00:00:18,440
+and wait for the results. How long would that take?

@@ -1,0 +1,323 @@
+1
+00:00:00,430 --> 00:00:01,050
+Hi, I'm Lauren.
+
+2
+00:00:01,050 --> 00:00:01,990
+&gt;&gt; Hi, I'm Alvin.
+
+3
+00:00:01,990 --> 00:00:06,470
+&gt;&gt; I'm an instructor at a university nearby and I've been noticing that when
+
+4
+00:00:06,470 --> 00:00:09,700
+my students write their essays, they have
+
+5
+00:00:09,700 --> 00:00:13,100
+very long, very wordy sentences and I would
+
+6
+00:00:13,100 --> 00:00:17,600
+like to develop some kind of tool that they can use to keep track of
+
+7
+00:00:17,600 --> 00:00:20,440
+this and maybe perfect their writing style.
+
+8
+00:00:20,440 --> 00:00:21,410
+Do you think that's something you could do?
+
+9
+00:00:21,410 --> 00:00:25,850
+&gt;&gt; I think so. Let's start by helping me get acquainted with the students
+
+10
+00:00:25,850 --> 00:00:29,620
+in the class. So how many students do we have in this class typically?
+
+11
+00:00:29,620 --> 00:00:34,000
+&gt;&gt; Usually about 45 per unit, but I can have up to six units a semester.
+
+12
+00:00:34,000 --> 00:00:36,420
+&gt;&gt; 45 students, and six sections per
+
+13
+00:00:36,420 --> 00:00:39,220
+semester. That's a farily reasonable size. So,
+
+14
+00:00:39,220 --> 00:00:42,790
+do you know anything about what the students are using as far as computers go?
+
+15
+00:00:42,790 --> 00:00:46,640
+&gt;&gt; I don't know what kind of computers they're using. And they
+
+16
+00:00:46,640 --> 00:00:50,960
+could be, I don't know, anywhere from having no tech experience to
+
+17
+00:00:50,960 --> 00:00:52,200
+being pretty proficient.
+
+18
+00:00:52,200 --> 00:00:54,930
+&gt;&gt; Do you know anything about how
+
+19
+00:00:54,930 --> 00:00:57,350
+familiar the students are with computers in general?
+
+20
+00:00:57,350 --> 00:00:59,540
+&gt;&gt; I'm sure we have some people on the low end that have
+
+21
+00:00:59,540 --> 00:01:01,430
+never done any type of programming, and
+
+22
+00:01:01,430 --> 00:01:03,680
+then some people who are pretty self-sufficient.
+
+23
+00:01:03,680 --> 00:01:07,210
+&gt;&gt; Okay, and I guess my last question related to
+
+24
+00:01:07,210 --> 00:01:10,170
+the students is, what is the students actually submitting to you.
+
+25
+00:01:10,170 --> 00:01:14,080
+&gt;&gt; They've been sending just raw text files via email to me.
+
+26
+00:01:14,080 --> 00:01:16,660
+&gt;&gt; So from the sounds of things
+
+27
+00:01:16,660 --> 00:01:19,140
+we have a fairly broad, I guess base
+
+28
+00:01:19,140 --> 00:01:23,100
+of students to work with, both in technical proficiency
+
+29
+00:01:23,100 --> 00:01:27,180
+as well as their operating system environments potentially.
+
+30
+00:01:27,180 --> 00:01:29,420
+So I think what we'll probably do to start
+
+31
+00:01:29,420 --> 00:01:33,270
+off with is make a command line, Java
+
+32
+00:01:33,270 --> 00:01:36,760
+based tool. That the students can run and we'll
+
+33
+00:01:36,760 --> 00:01:39,910
+give them a fair amount of you know, documentation
+
+34
+00:01:39,910 --> 00:01:41,690
+on how to use the tool. And I expect
+
+35
+00:01:41,690 --> 00:01:45,090
+that there will be a lot of little error conditions that may happen
+
+36
+00:01:45,090 --> 00:01:49,320
+that we want to produce a reasonably friendly message were anything to go wrong.
+
+37
+00:01:49,320 --> 00:01:50,480
+&gt;&gt; Yeah. That'd be great.
+
+38
+00:01:50,480 --> 00:01:54,750
+&gt;&gt; So, a little bit more, I guess about
+
+39
+00:01:54,750 --> 00:01:58,539
+the actual essay itself, its submission, what constitutes a word?
+
+40
+00:01:59,820 --> 00:02:03,190
+&gt;&gt; I really only care about the longer words, so, is there a
+
+41
+00:02:03,190 --> 00:02:06,140
+way that we can only count words that are maybe above three letters?
+
+42
+00:02:06,140 --> 00:02:06,830
+&gt;&gt; I think
+
+43
+00:02:06,830 --> 00:02:08,508
+that's something we can do. And I think
+
+44
+00:02:08,508 --> 00:02:10,030
+that because you seem a little bit unsure
+
+45
+00:02:10,030 --> 00:02:11,540
+we might be able to have that be
+
+46
+00:02:11,540 --> 00:02:13,820
+a little bit more flexible than we otherwise would.
+
+47
+00:02:13,820 --> 00:02:14,500
+&gt;&gt; Great.
+
+48
+00:02:14,500 --> 00:02:18,330
+&gt;&gt; What does a sentence mean to you? Is it kind of flexible?
+
+49
+00:02:18,330 --> 00:02:21,280
+&gt;&gt; I would say anything that ends in a period or
+
+50
+00:02:21,280 --> 00:02:25,870
+even a question mark. Maybe even an exclamation mark. or, something
+
+51
+00:02:25,870 --> 00:02:28,760
+even, maybe even with a comma or semi-colon. I really only
+
+52
+00:02:28,760 --> 00:02:32,370
+care about the sentences that aren't gramatically correct and are too long.
+
+53
+00:02:32,370 --> 00:02:35,180
+&gt;&gt; I think we can probably make that a little bit more flexible too
+
+54
+00:02:35,180 --> 00:02:37,520
+so that way, you can kind of say we're going to, or you want to include them.
+
+55
+00:02:37,520 --> 00:02:38,020
+&gt;&gt; Mm-hm.
+
+56
+00:02:38,020 --> 00:02:41,786
+&gt;&gt; So maybe, sounds like you are little bit on the fence
+
+57
+00:02:41,786 --> 00:02:45,100
+about whether or not say, a comma should be considered a sentence.
+
+58
+00:02:45,100 --> 00:02:45,130
+&gt;&gt; Mm.
+
+59
+00:02:45,130 --> 00:02:46,370
+&gt;&gt; Entirely on its own or not. So we
+
+60
+00:02:46,370 --> 00:02:49,830
+can probably make that a little bit configurable as well.
+
+61
+00:02:51,880 --> 00:02:56,510
+And so, just to confirm the actual end result to
+
+62
+00:02:56,510 --> 00:02:59,870
+the student is the average number of words per sentence?
+
+63
+00:02:59,870 --> 00:03:01,610
+&gt;&gt; Yeah, yeah that'd be fine.
+
+64
+00:03:01,610 --> 00:03:07,430
+&gt;&gt; Okay, overall to start off with, looks like we have some
+
+65
+00:03:07,430 --> 00:03:10,280
+sort of customization of the word length that we want to look for.
+
+66
+00:03:10,280 --> 00:03:10,780
+&gt;&gt; Mm-hm. Yeah.
+
+67
+00:03:12,000 --> 00:03:14,650
+&gt;&gt; We have some kind of variability in
+
+68
+00:03:14,650 --> 00:03:17,880
+what we want to have as acceptable sentence structure.
+
+69
+00:03:17,880 --> 00:03:24,570
+So, periods, question marks, semicolons, things like that. And, the end result
+
+70
+00:03:24,570 --> 00:03:27,260
+to the student is if we're successful, they'll get the average number of
+
+71
+00:03:27,260 --> 00:03:31,060
+words per sentence. Otherwise we tell them something a little bit helpful to
+
+72
+00:03:31,060 --> 00:03:33,240
+kind of put them on the right track to use the tool correctly.
+
+73
+00:03:33,240 --> 00:03:34,620
+&gt;&gt; Yeah that's the error codes right?
+
+74
+00:03:35,850 --> 00:03:38,150
+&gt;&gt; Hopefully not error codes but something a little bit nicer.
+
+75
+00:03:38,150 --> 00:03:39,800
+&gt;&gt; [LAUGH] Okay.
+
+76
+00:03:39,800 --> 00:03:41,150
+&gt;&gt; So I think I have enough to
+
+77
+00:03:41,150 --> 00:03:43,440
+get started and produce something that's you know,
+
+78
+00:03:43,440 --> 00:03:47,150
+a reasonable I guess, rough draft. Of something
+
+79
+00:03:47,150 --> 00:03:48,700
+that you can use to help your class out.
+
+80
+00:03:48,700 --> 00:03:49,590
+&gt;&gt; Great. Thank you.
+
+81
+00:03:49,590 --> 00:03:50,240
+&gt;&gt; Thank you.

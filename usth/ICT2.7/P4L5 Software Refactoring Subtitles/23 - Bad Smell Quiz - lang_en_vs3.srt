@@ -1,0 +1,31 @@
+1
+00:00:00,100 --> 00:00:01,620
+So now, I would like for you to tell me
+
+2
+00:00:01,620 --> 00:00:04,810
+which of the following can be considered bad smells in
+
+3
+00:00:04,810 --> 00:00:07,320
+the context of refactoring. The fact that the program takes
+
+4
+00:00:07,320 --> 00:00:10,070
+too long to execute? The fact that method M in class
+
+5
+00:00:10,070 --> 00:00:12,460
+C is very long? Or the, the fact that Class
+
+6
+00:00:12,460 --> 00:00:16,120
+Cat and Dog are subclasses of class Animal? Or finally the
+
+7
+00:00:16,120 --> 00:00:18,960
+fact that every time we modify method M1 we also
+
+8
+00:00:18,960 --> 00:00:22,120
+need to modify method M2? So please mark all that apply.
