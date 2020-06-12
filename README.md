@@ -6,7 +6,7 @@ this README as well as commit messages are duolingo (anglais et vietnamien).
 
 |    Thư mục   |                      Nguồn đề bài                      |
 | ------------ | ------------------------------------------------------ |
-| `\d{2}`      | Đề thi, kiểm tra phân theo lớp                         |
+| `2ndary`     | Secondary school competitions                          |
 | `coci`       | [Giải Tin học Croatia mở rộng][0]                      |
 | `codechef`   | [Codechef][2]                                          |
 | `codeforces` | [Codeforces][3]                                        |
@@ -18,7 +18,6 @@ this README as well as commit messages are duolingo (anglais et vietnamien).
 | `paip`       | Paradigms of Artificial Intelligence Programming       |
 | `sicp`       | Structure and Interpretation of Computer Programs      |
 | `thinkperl6` | Think Perl 6                                           |
-| `tht`        | Hội thi Tin học trẻ                                    |
 | `toys`       | Programs that don't deserve their own repo             |
 | `usth`       | L'Université des Sciences et des Technologies de Hanoï |
 

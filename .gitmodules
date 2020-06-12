@@ -5,3 +5,7 @@
 [submodule "usth/ICT2.8"]
 	path = usth/ICT2.8
 	url = https://github.com/McSinyx/os2020.git
+
+[submodule "usth/ICT2.9/speakerid"]
+	path = usth/ICT2.9/speakerid
+	url = https://github.com/McSinyx/speakerid.git
