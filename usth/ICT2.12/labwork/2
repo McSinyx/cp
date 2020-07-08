@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+from cv2 import (
+    COLOR_BGR2GRAY, KMEANS_RANDOM_CENTERS, THRESH_BINARY, TERM_CRITERIA_EPS,
+    TERM_CRITERIA_MAX_ITER, Canny as canny, cvtColor as cvt_color,
+    HoughLines as hough_lines, imread, imshow, inRange as in_range, kmeans,
+    Laplacian as laplacian, line, Sobel as sobel, threshold,
+    waitKey as wait_key)
+from numpy import cos, float32, pi, sin, uint8
+
+FILENAME = 'dino-gang.jpg'
+THRESHOLD, WHITE = 128, 255
+CANNY_THRESH = 69
+
+
+def disp(image, name):
+    """Display the given image."""
+    imshow(name, image.astype(uint8))
+    wait_key()
+
+
+image = imread(FILENAME)
+disp(image, 'original')
+
+# Exercise 1
+# Requiring all three channels to be greater than THRESHOLD
+# using in_range produces a blacker result (fewer white points).
+# The information inferred by human (me) is less clear.
+grey = cvt_color(image, COLOR_BGR2GRAY)
+disp(threshold(grey, THRESHOLD, WHITE, THRESH_BINARY)[-1], 'threshold')
+disp(in_range(image, (THRESHOLD,)*3, (WHITE,)*3), 'in range')
+
+# Exercise 2
+disp(laplacian(image, 2), 'Laplacian')
+disp(sobel(image, 2, 1, 1), 'Sobel')
+# Canny produces a lot visible edge comparing to Laplacian and Sobel.
+edges = canny(image, CANNY_THRESH, CANNY_THRESH*2)
+disp(edges, 'canny')
+
+# Exercise 3
+pixels = float32(image.reshape((-1, 3)))
+criteria = TERM_CRITERIA_EPS|TERM_CRITERIA_MAX_ITER, 10, 1.0
+ret, labels, centers = kmeans(pixels, 3, None, criteria,
+                              10, KMEANS_RANDOM_CENTERS)
+# Compared to global threshold, this has colors.
+# I am unsure how this relate to adaptive threshold though.
+disp(centers[labels.flatten()].reshape(image.shape), 'seg')
+
+# Exercise 4
+for ((rho, theta),) in hough_lines(edges, 1, pi/180, THRESHOLD):
+    a, b = cos(theta), sin(theta)
+    x, y = a*rho, b*rho
+    line(image, (int(x-b*1000), int(y+a*1000)), (int(x+b*1000), int(y-a*1000)),
+         (0, 0, 255), 2)
+disp(image, 'hough')

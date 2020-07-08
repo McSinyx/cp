@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+from cv2 import (
+    THRESH_BINARY, ADAPTIVE_THRESH_MEAN_C,
+    adaptiveThreshold as adaptive_threshold, calcHist as calc_hist, blur,
+    equalizeHist as equalize_hist, GaussianBlur as gaussian_blur,
+    imread, imshow, Laplacian as laplacian, medianBlur as median_blur,
+    resize, Sobel as sobel, threshold, waitKey as wait_key)
+from numpy import uint8
+
+FILENAME = 'dino-gang.jpg'
+GREYSCALE_COEFF = 0.2126, 0.7152, 0.0722
+THRESHOLD, WHITE = 128, 255
+BLUR_KSIZE = 6, 9
+
+
+def disp(image, name):
+    """Display the given image."""
+    imshow(name, image.astype(uint8))
+    wait_key()
+
+
+# Exercise 1
+image = imread(FILENAME)
+disp(image, 'original')
+
+# Exercise 2
+disp(resize(image, (512, 512)), 'square')
+
+# Exercise 3
+# I'm going to ignore about cv2.IMREAD_GRAYSCALE
+grey_image = uint8(image.dot(GREYSCALE_COEFF))
+disp(grey_image, 'grey')
+
+# Exercise 4
+a, b = 1/2, 1/3
+disp(image*a+b, 'brightness adjusted')
+
+# Exercise 5
+disp(threshold(grey_image, THRESHOLD, WHITE, THRESH_BINARY)[-1],
+     'binary threshold')
+disp(adaptive_threshold(grey_image, WHITE, ADAPTIVE_THRESH_MEAN_C,
+                        THRESH_BINARY, 25, 12), 'adaptive threshold')
+
+# Exercise 6
+hist = calc_hist([grey_image], [0], None, [256], [0, 256])
+disp(equalize_hist(grey_image), 'equalized')
+
+# Exercise 7
+disp(blur(image, BLUR_KSIZE), 'blur')
+disp(gaussian_blur(image, (0, 0), 5), 'Gaussian blur')
+disp(median_blur(image, 7), 'median blur')
+
+# Exercise 8
+disp(laplacian(image, 2), 'Laplacian')
+disp(sobel(image, 2, 1, 1), 'Sobel')
