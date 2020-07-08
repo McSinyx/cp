@@ -1,11 +1,18 @@
 [submodule "paip/book"]
 	path = paip/book
 	url = https://github.com/norvig/paip-lisp.git
-
 [submodule "usth/ICT2.8"]
 	path = usth/ICT2.8
 	url = https://github.com/McSinyx/os2020.git
-
 [submodule "usth/ICT2.9/speakerid"]
 	path = usth/ICT2.9/speakerid
 	url = https://github.com/McSinyx/speakerid.git
+[submodule "usth/ICT2.12/recipe"]
+	path = usth/ICT2.12/recipe
+	url = https://github.com/McSinyx/recipe.git
+[submodule "usth/ICT2.5/cheese-shop"]
+	path = usth/ICT2.5/cheese-shop
+	url = https://github.com/McSinyx/cheese-shop.git
+[submodule "usth/ICT2.5/practical/mywind"]
+	path = usth/ICT2.5/practical/mywind
+	url = https://github.com/dalers/mywind.git
